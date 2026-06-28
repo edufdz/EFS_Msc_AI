@@ -1,0 +1,11 @@
+Cliente: Me llamo José Antonio Hernández Pérez, pero me dicen Toño.
+Agente: Hola Toño, ¿en qué te puedo ayudar?
+Cliente: Mira mi teléfono es 5512345678 y el de mi esposa es 3398765432, anótalos ambos.
+Agente: Anotado. ¿Me das tu correo?
+Cliente: jose.hernandez@empresa.com.mx y también uso toño_hp@outlook.es
+Agente: Perfecto. ¿Cuál es tu dirección para el envío?
+Cliente: Av. Insurgentes Sur 1234, Depto 5B, Col. Del Valle, C.P. 03100, Ciudad de México
+Agente: Gracias. Tu pedido ORD-MX-99001 del Galaxy Tab S9 FE será enviado mañana.
+Cliente: Oye y mi folio anterior era caso#TKT-2024-001, ¿ya lo cerraron?
+Agente: Sí, tu folio TKT-2024-001 ya está resuelto. El reembolso fue a tu cuenta CLABE 012345678901234567.
+Cliente: Ah y olvidé decirte, mi IMEI anterior era 490154203237518. El nuevo Galaxy A55 sí funciona bien.

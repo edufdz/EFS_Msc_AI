@@ -1,0 +1,11 @@
+Cliente: Hola, soy María García López y necesito ayuda con mi pedido.
+Agente: ¡Hola María! Con gusto te ayudo. ¿Me puedes proporcionar tu número de orden?
+Cliente: Sí, mi orden es ORD-2024-78543. Mi teléfono es +52 55 1234 5678 por si necesitas contactarme.
+Agente: Perfecto, ya encontré tu pedido. ¿La dirección de envío es Calle Reforma 234, Colonia Centro, CP 06000?
+Cliente: Sí, esa es. También mi correo es maria.garcia@gmail.com para la factura.
+Agente: Listo. Veo que compraste un Galaxy S24 Ultra. ¿Cuál es el problema?
+Cliente: La pantalla del TechRepair se congela cuando uso TechRepair Pay. Mi IMEI es 356938035643809.
+Agente: Entendido. Tu cuenta número 4521-8834-9912-0045 muestra una garantía activa. Vamos a programar una revisión en el TechRepair Service Center.
+Cliente: Gracias. Mi CURP es GALO850315HDFRRL09 y mi RFC es GALO850315AB1 por si los necesitan.
+Agente: Perfecto, todo registrado. Te enviaré la confirmación a tu WhatsApp al +52 1 33 9876 5432.
+Cliente: También puedes ver mi caso anterior en https://support.tech_repair.com/mx/ticket/USR-78543-maria

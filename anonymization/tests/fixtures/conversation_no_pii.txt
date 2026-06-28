@@ -1,0 +1,12 @@
+Cliente: Hola, tengo una pregunta sobre la garantía.
+Agente: ¡Hola! Con gusto te ayudo. ¿Qué necesitas saber?
+Cliente: ¿Cuánto tiempo dura la garantía estándar para dispositivos móviles?
+Agente: La garantía estándar es de 12 meses a partir de la fecha de compra.
+Cliente: ¿Y cubre daños por agua?
+Agente: No, los daños por agua no están cubiertos por la garantía estándar. Para eso necesitarías un seguro adicional.
+Cliente: Entendido, ¿dónde puedo contratar ese seguro?
+Agente: Puedes contratarlo en cualquier tienda autorizada o a través de nuestra página web en la sección de servicios adicionales.
+Cliente: Perfecto, muchas gracias por la información.
+Agente: ¡De nada! ¿Hay algo más en lo que pueda ayudarte?
+Cliente: No, eso es todo. Gracias.
+Agente: ¡Que tengas un excelente día!

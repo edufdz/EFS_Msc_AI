@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head><title>Anonymization Spot Check</title></head>
+<body style="font-family:monospace;margin:20px">
+<h1>Anonymization Spot-Check Report</h1>
+<table style="width:100%;border-collapse:collapse;border:1px solid #ddd">
+<tr><th style="padding:8px;border:1px solid #ddd">Original</th><th style="padding:8px;border:1px solid #ddd">Anonymized</th></tr>
+
+        <tr>
+            <td colspan="2" style="background:#f0f0f0;font-weight:bold;padding:8px">conversation_with_pii.txt</td>
+        </tr>
+        <tr>
+            <td style="padding:12px;white-space:pre-wrap;border-right:1px solid #ddd;width:50%">Cliente: Hola, soy María García López y necesito ayuda con mi pedido.
+Agente: ¡Hola María! Con gusto te ayudo. ¿Me puedes proporcionar tu número de orden?
+Cliente: Sí, mi orden es ORD-2024-78543. Mi teléfono es +52 55 1234 5678 por si necesitas contactarme.
+Agente: Perfecto, ya encontré tu pedido. ¿La dirección de envío es Calle Reforma 234, Colonia Centro, CP 06000?
+Cliente: Sí, esa es. También mi correo es maria.garcia@gmail.com para la factura.
+Agente: Listo. Veo que compraste un Galaxy S24 Ultra. ¿Cuál es el problema?
+Cliente: La pantalla del TechRepair se congela cuando uso TechRepair Pay. Mi IMEI es 356938035643809.
+Agente: Entendido. Tu cuenta número 4521-8834-9912-0045 muestra una garantía activa. Vamos a programar una revisión en el TechRepair Service Center.
+Cliente: Gracias. Mi CURP es GALO850315HDFRRL09 y mi RFC es GALO850315AB1 por si los necesitan.
+Agente: Perfecto, todo registrado. Te enviaré la confirmación a tu WhatsApp al +52 1 33 9876 5432.
+Cliente: También puedes ver mi caso anterior en https://support.tech_repair.com/mx/ticket/USR-78543-maria
+</td>
+            <td style="padding:12px;white-space:pre-wrap;width:50%">Cliente: Hola, soy <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PERSON_1]</span> y necesito ayuda con mi pedido.
+Agente: ¡Hola María! Con gusto te ayudo. ¿Me puedes proporcionar tu número de orden?
+Cliente: Sí, mi orden es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_2]</span>. Mi teléfono es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PHONE_2]</span>por si necesitas contactarme.
+Agente: Perfecto, ya encontré tu pedido. ¿La dirección de envío es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ADDRESS_1]</span>?
+Cliente: Sí, esa es. También mi correo es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[EMAIL_1]</span> para la factura.
+Agente: Listo. Veo que compraste un <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[DEVICE_1]</span> Ultra. ¿Cuál es el problema?
+Cliente: La pantalla del <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[BRAND_1]</span> se congela cuando uso <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[SERVICE_1]</span>. Mi IMEI es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ACCOUNT_NUMBER_2]</span>.
+Agente: Entendido. Tu cuenta número <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ACCOUNT_NUMBER_1]</span> muestra una garantía activa. Vamos a programar una revisión en el <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[BRAND_1]</span> Service Center.
+Cliente: Gracias. Mi CURP es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[CURP_1]</span> y mi RFC es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[RFC_1]</span> por si los necesitan.
+Agente: Perfecto, todo registrado. Te enviaré la confirmación a tu WhatsApp al <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PHONE_1]</span>.
+Cliente: También puedes ver mi caso <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_1]</span> en <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[URL_1]</span>
+</td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" style="background:#f0f0f0;font-weight:bold;padding:8px">conversation_edge_cases.txt</td>
+        </tr>
+        <tr>
+            <td style="padding:12px;white-space:pre-wrap;border-right:1px solid #ddd;width:50%">Cliente: Me llamo José Antonio Hernández Pérez, pero me dicen Toño.
+Agente: Hola Toño, ¿en qué te puedo ayudar?
+Cliente: Mira mi teléfono es 5512345678 y el de mi esposa es 3398765432, anótalos ambos.
+Agente: Anotado. ¿Me das tu correo?
+Cliente: jose.hernandez@empresa.com.mx y también uso toño_hp@outlook.es
+Agente: Perfecto. ¿Cuál es tu dirección para el envío?
+Cliente: Av. Insurgentes Sur 1234, Depto 5B, Col. Del Valle, C.P. 03100, Ciudad de México
+Agente: Gracias. Tu pedido ORD-MX-99001 del Galaxy Tab S9 FE será enviado mañana.
+Cliente: Oye y mi folio anterior era caso#TKT-2024-001, ¿ya lo cerraron?
+Agente: Sí, tu folio TKT-2024-001 ya está resuelto. El reembolso fue a tu cuenta CLABE 012345678901234567.
+Cliente: Ah y olvidé decirte, mi IMEI anterior era 490154203237518. El nuevo Galaxy A55 sí funciona bien.
+</td>
+            <td style="padding:12px;white-space:pre-wrap;width:50%">Cliente: Me llamo <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PERSON_2]</span>, pero me dicen <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PERSON_1]</span>.
+Agente: Hola Toño, ¿en qué te puedo ayudar?
+Cliente: Mira mi teléfono es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PHONE_2]</span> y el de mi esposa es <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[PHONE_1]</span>, anótalos ambos.
+Agente: Anotado. ¿Me das tu correo?
+Cliente: <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[EMAIL_2]</span> y también uso toñ<span style="background:#ffd700;padding:2px 4px;border-radius:3px">[EMAIL_1]</span>
+Agente: Perfecto. ¿Cuál es tu dirección para el envío?
+Cliente: <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ADDRESS_1]</span>nte: Gracias. Tu pedido <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_3]</span> del <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[DEVICE_1]</span> FE será enviado mañana.
+Cliente: Oye y mi folio <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_2]</span> era caso#<span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_1]</span>, ¿ya lo cerraron?
+Agente: Sí, tu folio <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ORDER_ID_1]</span> ya está resuelto. El reembolso fue a tu cuenta CLABE <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ACCOUNT_NUMBER_2]</span>.
+Cliente: Ah y olvidé decirte, mi IMEI anterior era <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[ACCOUNT_NUMBER_1]</span>. El nuevo <span style="background:#ffd700;padding:2px 4px;border-radius:3px">[BRAND_1]</span> A55 sí funciona bien.
+</td>
+        </tr>
+        
+        <tr>
+            <td colspan="2" style="background:#f0f0f0;font-weight:bold;padding:8px">conversation_no_pii.txt</td>
+        </tr>
+        <tr>
+            <td style="padding:12px;white-space:pre-wrap;border-right:1px solid #ddd;width:50%">Cliente: Hola, tengo una pregunta sobre la garantía.
+Agente: ¡Hola! Con gusto te ayudo. ¿Qué necesitas saber?
+Cliente: ¿Cuánto tiempo dura la garantía estándar para dispositivos móviles?
+Agente: La garantía estándar es de 12 meses a partir de la fecha de compra.
+Cliente: ¿Y cubre daños por agua?
+Agente: No, los daños por agua no están cubiertos por la garantía estándar. Para eso necesitarías un seguro adicional.
+Cliente: Entendido, ¿dónde puedo contratar ese seguro?
+Agente: Puedes contratarlo en cualquier tienda autorizada o a través de nuestra página web en la sección de servicios adicionales.
+Cliente: Perfecto, muchas gracias por la información.
+Agente: ¡De nada! ¿Hay algo más en lo que pueda ayudarte?
+Cliente: No, eso es todo. Gracias.
+Agente: ¡Que tengas un excelente día!
+</td>
+            <td style="padding:12px;white-space:pre-wrap;width:50%">Cliente: Hola, tengo una pregunta sobre la garantía.
+Agente: ¡Hola! Con gusto te ayudo. ¿Qué necesitas saber?
+Cliente: ¿Cuánto tiempo dura la garantía estándar para dispositivos móviles?
+Agente: La garantía estándar es de 12 meses a partir de la fecha de compra.
+Cliente: ¿Y cubre daños por agua?
+Agente: No, los daños por agua no están cubiertos por la garantía estándar. Para eso necesitarías un seguro adicional.
+Cliente: Entendido, ¿dónde puedo contratar ese seguro?
+Agente: Puedes contratarlo en cualquier tienda autorizada o a través de nuestra página web en la sección de servicios adicionales.
+Cliente: Perfecto, muchas gracias por la información.
+Agente: ¡De nada! ¿Hay algo más en lo que pueda ayudarte?
+Cliente: No, eso es todo. Gracias.
+Agente: ¡Que tengas un excelente día!
+</td>
+        </tr>
+        
+</table>
+<h2>Reviewer Checklist</h2>
+<ul>
+<li>☐ No person names visible in anonymized column</li>
+<li>☐ No phone numbers visible in anonymized column</li>
+<li>☐ No email addresses visible in anonymized column</li>
+<li>☐ No account/order numbers visible in anonymized column</li>
+<li>☐ No brand names visible in anonymized column</li>
+<li>☐ Conversational meaning is preserved</li>
+<li>☐ Turn structure (Cliente/Agente) is intact</li>
+</ul>
+<p><strong>Reviewed by:</strong> _________________ <strong>Date:</strong> _________________</p>
+</body>
+</html>

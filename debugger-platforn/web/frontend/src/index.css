@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* Animations */
+@keyframes pulse-accent {
+  0%, 100% { box-shadow: 0 0 4px rgba(59, 130, 200, 0.3); }
+  50% { box-shadow: 0 0 10px rgba(59, 130, 200, 0.15); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+.animate-pulse-accent { animation: pulse-accent 2.5s ease-in-out infinite; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-shimmer { animation: shimmer 2s ease-in-out infinite; }
+
+/* Certificate animations */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in { animation: slide-in 0.25s ease-out forwards; }
+
+/* Print styles for certificate export */
+@media print {
+  body > *:not(.print-target) { display: none !important; }
+  .print\\:hidden { display: none !important; }
+  .print\\:shadow-none { box-shadow: none !important; }
+  .print\\:bg-white { background: white !important; }
+  .print\\:p-0 { padding: 0 !important; }
+  .print\\:w-full { width: 100% !important; }
+}
+
+/* Range slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #E2E8F0;
+  border-radius: 4px;
+  height: 4px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #3B82C8;
+  cursor: pointer;
+  border: 2px solid #FFFFFF;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: #2563EB;
+}

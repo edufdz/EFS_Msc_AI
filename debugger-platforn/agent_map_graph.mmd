@@ -1,0 +1,28 @@
+graph TD
+  agent[["Agent"]]:::agentNode
+  orchestrator[["Orchestrator<br/>function-calling"]]:::orchNode
+  tool_check_availability("check_availability"):::toolLow
+  tool_create_booking("create_booking"):::toolLow
+  tool_update_collected_data("update_collected_data"):::toolLow
+  tool_escalate_to_human("escalate_to_human"):::toolLow
+  tool_get_service_info("get_service_info"):::toolLow
+  tool_lookup_vehicle("lookup_vehicle"):::toolLow
+
+  agent --> orchestrator
+  orchestrator -->|invokes| tool_check_availability
+  orchestrator -->|invokes| tool_create_booking
+  orchestrator -->|invokes| tool_escalate_to_human
+  orchestrator -->|invokes| tool_get_service_info
+  orchestrator -->|invokes| tool_lookup_vehicle
+  orchestrator -->|invokes| tool_update_collected_data
+  tool_update_collected_data -.->|requires| tool_create_booking
+
+  classDef agentNode fill:#6366f1,color:#fff,stroke:#818cf8
+  classDef orchNode fill:#3b82f6,color:#fff,stroke:#60a5fa
+  classDef plannerNode fill:#06b6d4,color:#fff,stroke:#22d3ee
+  classDef toolLow fill:#22c55e,color:#000,stroke:#4ade80
+  classDef toolMed fill:#f97316,color:#000,stroke:#fb923c
+  classDef toolHigh fill:#ef4444,color:#fff,stroke:#f87171
+  classDef memNode fill:#a855f7,color:#fff,stroke:#c084fc
+  classDef retNode fill:#06b6d4,color:#fff,stroke:#22d3ee
+  classDef defaultNode fill:#6b7280,color:#fff,stroke:#9ca3af

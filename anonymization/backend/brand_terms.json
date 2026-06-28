@@ -1,0 +1,6 @@
+{
+  "brands": ["TechRepair", "Galaxy", "Pulpoo"],
+  "devices": ["Galaxy S24", "Galaxy S23", "Galaxy A15", "Galaxy Tab S9"],
+  "products": ["TechRepair Care+", "TechRepair Members"],
+  "services": ["SmartThings", "TechRepair Pay", "Bixby"]
+}

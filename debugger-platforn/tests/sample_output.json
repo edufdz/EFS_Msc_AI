@@ -1,0 +1,367 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-02-07T16:42:13.856864+00:00",
+  "agent_id": "fa0f0302-1b0f-4005-8013-8e93f3290f01",
+  "metadata": {
+    "name": "Agent",
+    "type": "custom",
+    "framework": "langchain",
+    "framework_confidence": 0.9,
+    "language": "python",
+    "purpose": "Unknown \u2013 run with AI analysis for details",
+    "capabilities": []
+  },
+  "components": {
+    "orchestrator": {
+      "type": "unknown",
+      "error_handling": {},
+      "guardrails": [],
+      "typical_flow": [],
+      "ambiguity_handling": "unknown"
+    },
+    "tools": [
+      {
+        "id": "track_order",
+        "name": "track_order",
+        "description": "Look up the current status of an order by its order ID (e.g. ORD-12345).",
+        "parameters": [
+          {
+            "name": "order_id",
+            "type": "str",
+            "default": null
+          }
+        ],
+        "dependencies": [],
+        "sandbox_safe": true,
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "source": "langchain_decorator",
+        "confidence": 1.0,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 10
+        }
+      },
+      {
+        "id": "search_knowledge_base",
+        "name": "search_knowledge_base",
+        "description": "Search the internal knowledge base for answers to customer questions.",
+        "parameters": [
+          {
+            "name": "query",
+            "type": "str",
+            "default": null
+          }
+        ],
+        "dependencies": [],
+        "sandbox_safe": true,
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "source": "langchain_decorator",
+        "confidence": 1.0,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 18
+        }
+      },
+      {
+        "id": "escalate_to_human",
+        "name": "escalate_to_human",
+        "description": "Escalate the conversation to a human support agent.\n    Use this when you cannot resolve the customer's issue.",
+        "parameters": [
+          {
+            "name": "reason",
+            "type": "str",
+            "default": null
+          },
+          {
+            "name": "customer_email",
+            "type": "str",
+            "default": null
+          }
+        ],
+        "dependencies": [],
+        "sandbox_safe": true,
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "source": "langchain_decorator",
+        "confidence": 1.0,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 25
+        }
+      },
+      {
+        "id": "refundtool",
+        "name": "RefundTool",
+        "description": "Process a refund for an order. Use with caution - this charges the company.",
+        "parameters": [
+          {
+            "name": "order_id",
+            "type": "str",
+            "default": null
+          },
+          {
+            "name": "amount",
+            "type": "float",
+            "default": null
+          },
+          {
+            "name": "reason",
+            "type": "str",
+            "default": "\"Customer request\""
+          }
+        ],
+        "dependencies": [],
+        "sandbox_safe": true,
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "source": "langchain_class",
+        "confidence": 1.0,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 39
+        }
+      },
+      {
+        "id": "run_agent",
+        "name": "run_agent",
+        "description": "Run the support agent with a user message.",
+        "parameters": [
+          {
+            "name": "user_input",
+            "type": "str",
+            "default": null
+          }
+        ],
+        "dependencies": [],
+        "sandbox_safe": true,
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "source": "custom_heuristic",
+        "confidence": 0.5714285714285714,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py",
+          "line": 34
+        }
+      }
+    ],
+    "memory": {
+      "systems": [
+        {
+          "type": "conversation_buffer",
+          "implementation": "ConversationBufferMemory",
+          "location": {
+            "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py",
+            "line": 26
+          }
+        }
+      ],
+      "conversation_history": true,
+      "persistent_state": false
+    },
+    "retrieval": {
+      "systems": [],
+      "exists": false
+    },
+    "prompts": [
+      {
+        "name": "SYSTEM_PROMPT",
+        "type": "system_prompt",
+        "content": "You are a helpful customer support agent for Acme Corp.\nYou help customers with order tracking, refunds, and general inquiries.\nNever disclose customer payment details like credit card numbers.\nAlways verify the customer's identity before making changes.\nIf you cannot resolve an issue, escalate to a human agent.\n",
+        "variables": [],
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py",
+          "line": 12
+        }
+      },
+      {
+        "name": "prompt",
+        "type": "system_prompt",
+        "content": "ChatPromptTemplate.from_messages([\n    (\"system\", SYSTEM_PROMPT),\n    (\"human\", \"{input}\"),\n    (\"placeholder\", \"{agent_scratchpad}\"),\n])",
+        "variables": [
+          "input",
+          "agent_scratchpad"
+        ],
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py",
+          "line": 19
+        }
+      },
+      {
+        "name": "prompt",
+        "type": "template",
+        "content": "ChatPromptTemplate.from_messages([\n    (\"system\", SYSTEM_PROMPT),\n    (\"human\", \"{input}\"),\n    (\"placeholder\", \"{agent_scratchpad}\"),\n])",
+        "variables": [
+          "input",
+          "agent_scratchpad"
+        ],
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py",
+          "line": 19
+        }
+      }
+    ]
+  },
+  "success_criteria": {
+    "task_completion": [],
+    "max_latency_ms": 10000,
+    "max_cost_per_conversation": 1.0,
+    "max_turns": 20
+  },
+  "risk_flags": {
+    "pii_handling": true,
+    "critical_actions": [
+      "RefundTool"
+    ],
+    "all_risks": [
+      {
+        "tool": "escalate_to_human",
+        "risk_type": "pii",
+        "pii_type": "email",
+        "severity": "high",
+        "description": "Parameter 'customer_email' in tool 'escalate_to_human' may handle email data.",
+        "mitigation": null,
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 25
+        }
+      },
+      {
+        "tool": "RefundTool",
+        "risk_type": "critical_action",
+        "pii_type": null,
+        "severity": "critical",
+        "description": "Tool 'RefundTool' performs financial operations (matched: charge, refund).",
+        "mitigation": "Require confirmation before executing RefundTool.",
+        "location": {
+          "file": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+          "line": 39
+        }
+      }
+    ]
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "agent",
+        "type": "agent",
+        "framework": "langchain",
+        "purpose": "",
+        "domain": ""
+      },
+      {
+        "id": "orchestrator",
+        "type": "orchestrator",
+        "strategy": "unknown"
+      },
+      {
+        "id": "tool_track_order",
+        "type": "tool",
+        "name": "track_order",
+        "description": "Look up the current status of an order by its order ID (e.g. ORD-12345).",
+        "source": "langchain_decorator",
+        "risk_level": "low"
+      },
+      {
+        "id": "tool_search_knowledge_base",
+        "type": "tool",
+        "name": "search_knowledge_base",
+        "description": "Search the internal knowledge base for answers to customer questions.",
+        "source": "langchain_decorator",
+        "risk_level": "low"
+      },
+      {
+        "id": "tool_escalate_to_human",
+        "type": "tool",
+        "name": "escalate_to_human",
+        "description": "Escalate the conversation to a human support agent.\n    Use this when you cannot resolve the customer's issue.",
+        "source": "langchain_decorator",
+        "risk_level": "low"
+      },
+      {
+        "id": "tool_refundtool",
+        "type": "tool",
+        "name": "RefundTool",
+        "description": "Process a refund for an order. Use with caution - this charges the company.",
+        "source": "langchain_class",
+        "risk_level": "low"
+      },
+      {
+        "id": "tool_run_agent",
+        "type": "tool",
+        "name": "run_agent",
+        "description": "Run the support agent with a user message.",
+        "source": "custom_heuristic",
+        "risk_level": "low"
+      },
+      {
+        "id": "memory",
+        "type": "memory_subsystem"
+      },
+      {
+        "id": "memory_conversation_buffer_0",
+        "type": "memory",
+        "memory_type": "conversation_buffer",
+        "implementation": "ConversationBufferMemory"
+      }
+    ],
+    "edges": [
+      {
+        "source": "agent",
+        "target": "orchestrator",
+        "relationship": "contains"
+      },
+      {
+        "source": "agent",
+        "target": "memory",
+        "relationship": "uses"
+      },
+      {
+        "source": "orchestrator",
+        "target": "tool_track_order",
+        "relationship": "invokes"
+      },
+      {
+        "source": "orchestrator",
+        "target": "tool_search_knowledge_base",
+        "relationship": "invokes"
+      },
+      {
+        "source": "orchestrator",
+        "target": "tool_escalate_to_human",
+        "relationship": "invokes"
+      },
+      {
+        "source": "orchestrator",
+        "target": "tool_refundtool",
+        "relationship": "invokes"
+      },
+      {
+        "source": "orchestrator",
+        "target": "tool_run_agent",
+        "relationship": "invokes"
+      },
+      {
+        "source": "memory",
+        "target": "memory_conversation_buffer_0",
+        "relationship": "contains"
+      }
+    ]
+  },
+  "source_files": {
+    "analyzed_files": [
+      "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/tools.py",
+      "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py"
+    ],
+    "entry_points": [
+      "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent/main.py"
+    ],
+    "repository": "/Users/eduardo7/Desktop/dos-agent-debugger/agent-debugger/debugger-platforn/tests/sample_agent"
+  }
+}
