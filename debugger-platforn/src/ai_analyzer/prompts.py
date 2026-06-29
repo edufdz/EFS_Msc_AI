@@ -35,6 +35,12 @@ For each tool below, determine:
 5. Does it handle sensitive data (PII, financial, etc.)?
 6. What other tools does it logically depend on?
 7. What is its risk level?
+8. What preconditions must be true before calling this tool?
+   (e.g., "user must be authenticated", "order_id must exist in database")
+9. What postconditions become true after successful execution?
+   (e.g., "appointment is created in system", "refund is processed")
+10. What side-effects does this tool perform?
+   (e.g., "writes to database", "sends email", "charges payment")
 
 Tools:
 {tools}
@@ -54,7 +60,10 @@ Respond with ONLY valid JSON (no markdown fences):
       "handles_sensitive_data": false,
       "sensitive_data_types": [],
       "dependencies": ["other_tool_name"],
-      "risk_level": "low"
+      "risk_level": "low",
+      "preconditions": ["condition that must hold before calling"],
+      "postconditions": ["condition that becomes true after success"],
+      "side_effects": ["state change or external action performed"]
     }}
   ]
 }}
@@ -121,5 +130,50 @@ Respond with ONLY valid JSON (no markdown fences):
     ["tool_1", "tool_2"]
   ],
   "circular_dependency_risks": []
+}}
+"""
+
+GUARDRAIL_EXTRACTION_PROMPT = """\
+You are analyzing system prompts and policy documents from an AI agent.
+Extract every explicit rule, constraint, prohibition, requirement, escalation trigger,
+and fallback behaviour as a numbered list.
+
+For each rule, determine:
+- text: the rule in its original wording
+- category: one of "constraint", "requirement", "prohibition", "fallback", "escalation"
+- complexity: 1-5 (1=simple boolean like "Never share data", 5=multi-condition with exceptions)
+- scope: "always" (applies unconditionally), "conditional" (depends on a condition), or "tool_specific" (mentions specific tools)
+- target_tools: list of tool names this rule specifically mentions (empty if general)
+- conditions: list of conditions under which this rule applies (empty if unconditional)
+
+Also identify rule interactions:
+- Which rules might conflict with each other?
+- Which rules tend to apply together in the same scenario?
+
+Prompts to analyze:
+{prompts}
+
+Available tools: {tool_names}
+
+Respond with ONLY valid JSON (no markdown fences):
+{{
+  "rules": [
+    {{
+      "text": "the rule in original wording",
+      "category": "prohibition",
+      "complexity": 1,
+      "scope": "always",
+      "target_tools": [],
+      "conditions": []
+    }}
+  ],
+  "interactions": [
+    {{
+      "from": "R001",
+      "to": "R003",
+      "type": "conflict",
+      "description": "why these rules interact"
+    }}
+  ]
 }}
 """

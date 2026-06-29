@@ -323,6 +323,50 @@ def _render_mermaid(agent_map: dict, output_path: str) -> str:
 
 # ── Public API ──────────────────────────────────────────────────────────────
 
+def _render_fsm_mermaid(agent_map: dict, output_path: str) -> str | None:
+    """Render an FSM state diagram in Mermaid format (Sprint 8)."""
+    bm = agent_map.get("behavioural_model", {})
+    fsm = bm.get("fsm")
+    if not fsm or not fsm.get("states"):
+        return None
+
+    lines = ["stateDiagram-v2"]
+
+    states = fsm["states"]
+    transitions = fsm.get("transitions", [])
+
+    # Declare states
+    for s in states:
+        safe_name = s["name"].replace(" ", "_").replace("-", "_")
+        if s.get("is_initial"):
+            lines.append(f"    [*] --> {safe_name}")
+        if s.get("description"):
+            desc = s["description"].replace('"', "'")[:60]
+            lines.append(f"    {safe_name} : {desc}")
+
+    # Transitions
+    for t in transitions:
+        from_name = next(
+            (s["name"] for s in states if s["state_id"] == t["from_state"]),
+            t["from_state"],
+        ).replace(" ", "_").replace("-", "_")
+        to_name = next(
+            (s["name"] for s in states if s["state_id"] == t["to_state"]),
+            t["to_state"],
+        ).replace(" ", "_").replace("-", "_")
+        freq = f" ({t['frequency']:.2f})" if t.get("frequency") else ""
+        lines.append(f"    {from_name} --> {to_name} : {t['trigger']}{freq}")
+
+    # Terminal states
+    for s in states:
+        if s.get("is_terminal"):
+            safe_name = s["name"].replace(" ", "_").replace("-", "_")
+            lines.append(f"    {safe_name} --> [*]")
+
+    Path(output_path).write_text("\n".join(lines))
+    return output_path
+
+
 def visualize_agent_map(agent_map: dict, output_dir: str) -> tuple[str, str]:
     """
     Generate PNG and Mermaid visualizations of the agent map graph.
@@ -340,5 +384,9 @@ def visualize_agent_map(agent_map: dict, output_dir: str) -> tuple[str, str]:
 
     _render_png(agent_map, png_path)
     _render_mermaid(agent_map, mmd_path)
+
+    # FSM state diagram (Sprint 8) — optional
+    fsm_path = os.path.join(output_dir, "agent_fsm.mmd")
+    _render_fsm_mermaid(agent_map, fsm_path)
 
     return png_path, mmd_path

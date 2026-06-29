@@ -62,9 +62,19 @@ def _print_pattern_summary(pattern_result):
         tree = Tree("[bold]Tools found[/bold]")
         for t in pattern_result.tools:
             desc = (t.description or "no description")[:80]
-            leaf = tree.add(f"[cyan]{t.name}[/cyan] ({t.source})")
+            modifier = "[red]state-modifying[/red]" if t.state_modifying else "[green]read-only[/green]"
+            leaf = tree.add(f"[cyan]{t.name}[/cyan] ({t.source}) {modifier}")
             leaf.add(f"[dim]{desc}[/dim]")
+            if t.preconditions:
+                leaf.add(f"[dim]Preconditions: {len(t.preconditions)}[/dim]")
+            if t.side_effects:
+                leaf.add(f"[dim]Side-effects: {', '.join(t.side_effects[:3])}[/dim]")
         console.print(tree)
+        n_state = sum(1 for t in pattern_result.tools if t.state_modifying)
+        n_readonly = len(pattern_result.tools) - n_state
+        n_with_pre = sum(1 for t in pattern_result.tools if t.preconditions)
+        console.print(f"  [dim]{n_state} state-modifying, {n_readonly} read-only, "
+                      f"{n_with_pre} with preconditions[/dim]")
     else:
         console.print("[yellow]No tools detected[/yellow]")
 
@@ -88,6 +98,7 @@ def _print_risk_summary(risks):
     table.add_column("Tool", style="cyan")
     table.add_column("Type", style="yellow")
     table.add_column("Severity")
+    table.add_column("Taxonomy", style="magenta")
     table.add_column("Description")
 
     for r in risks:
@@ -95,13 +106,32 @@ def _print_risk_summary(risks):
             "low": "green", "medium": "yellow",
             "high": "red", "critical": "bold red",
         }.get(r.severity, "white")
+        taxonomy_str = ", ".join(r.taxonomy_ids) if r.taxonomy_ids else "-"
         table.add_row(
             r.tool or "-",
             r.risk_type,
             f"[{severity_style}]{r.severity}[/{severity_style}]",
-            r.description[:80],
+            taxonomy_str,
+            r.description[:70],
         )
     console.print(table)
+
+    # Show taxonomy summary
+    taxonomy_counts: dict[str, tuple[int, str]] = {}
+    for r in risks:
+        for tid, tname in zip(r.taxonomy_ids, r.taxonomy_names):
+            if tid not in taxonomy_counts:
+                taxonomy_counts[tid] = (0, tname)
+            taxonomy_counts[tid] = (taxonomy_counts[tid][0] + 1, tname)
+
+    if taxonomy_counts:
+        tax_table = Table(title="Risk Taxonomy Summary")
+        tax_table.add_column("ID", style="magenta")
+        tax_table.add_column("Name", style="cyan")
+        tax_table.add_column("Count", style="yellow", justify="right")
+        for tid, (count, name) in sorted(taxonomy_counts.items()):
+            tax_table.add_row(tid, name, str(count))
+        console.print(tax_table)
 
 
 def _print_ai_summary(ai_result):
@@ -129,6 +159,8 @@ def _print_ai_summary(ai_result):
 @click.option("--skip-ai", is_flag=True, help="Skip AI semantic analysis (offline mode)")
 @click.option("--language", "-l", default=None, help="Language filter (default: None = scan all languages)")
 @click.option("--prompt-encoding", default="utf-8", help="Encoding for prompt files (default: utf-8)")
+@click.option("--context-budget", default=80_000, type=int, help="Max chars for AI context (default: 80000)")
+@click.option("--use-traces", is_flag=True, help="Ingest Langfuse traces for dynamic analysis")
 @click.option("--verbose", "-v", is_flag=True, help="Verbose output")
 def main(
     repo_path: str,
@@ -136,6 +168,8 @@ def main(
     skip_ai: bool,
     language: str | None,
     prompt_encoding: str,
+    context_budget: int,
+    use_traces: bool,
     verbose: bool,
 ):
     """Analyze an agent codebase and generate an Agent Map."""
@@ -181,8 +215,43 @@ def main(
 
     # ── Step 4: Risk Analysis ──
     with console.status("[bold green]Analyzing risks..."):
-        risks = analyze_risks(pattern_result.tools, pattern_result.prompts)
+        risks, taint_flows = analyze_risks(pattern_result.tools, pattern_result.prompts, all_symbols)
     _print_risk_summary(risks)
+    if taint_flows:
+        console.print(f"\n[bold]Taint flows detected:[/bold] {len(taint_flows)}")
+        for tf in taint_flows[:10]:
+            pii = f" [{', '.join(tf.data_types)}]" if tf.data_types else ""
+            console.print(f"  - {tf.source.description} → {tf.sink.description}{pii} ({tf.risk_level})")
+
+    # ── Step 4.5: Trace Ingestion (optional) ──
+    trace_result = None
+    if use_traces:
+        with console.status("[bold green]Ingesting Langfuse traces..."):
+            from src.traces.langfuse_client import LangfuseTraceIngester
+            from src.traces.trace_parser import parse_trace_detail
+            from src.traces.sequence_miner import mine_tool_sequences
+
+            ingester = LangfuseTraceIngester()
+            if ingester.available:
+                raw_traces = ingester.fetch_traces(limit=500)
+                trace_details = []
+                for rt in raw_traces:
+                    detail = ingester.fetch_trace_detail(rt["id"])
+                    if detail:
+                        trace_details.append(detail)
+                from src.traces.trace_parser import parse_langfuse_traces
+                conversations = parse_langfuse_traces(trace_details)
+                tool_names = [t.name for t in pattern_result.tools]
+                trace_result = mine_tool_sequences(conversations, tool_names)
+                console.print(f"\n[bold]Traces:[/bold] {len(conversations)} conversations, "
+                              f"{len(trace_result.tool_frequency)} unique tools observed")
+                if trace_result.tools_not_in_static:
+                    console.print(f"  [yellow]Tools in traces but not in static: "
+                                  f"{', '.join(trace_result.tools_not_in_static)}[/yellow]")
+                if len(conversations) < 50:
+                    console.print("  [dim]Warning: <50 conversations — trace patterns may not be statistically meaningful[/dim]")
+            else:
+                console.print("[yellow]Langfuse credentials not set — skipping trace ingestion.[/yellow]")
 
     # ── Step 5: AI Semantic Analysis (optional) ──
     ai_result = None
@@ -200,6 +269,7 @@ def main(
                     prompts=pattern_result.prompts,
                     entry_points=ingestion.entry_points,
                     framework=pattern_result.framework,
+                    context_budget=context_budget,
                 )
             _print_ai_summary(ai_result)
 
@@ -212,6 +282,8 @@ def main(
             risks=risks,
             entry_points=ingestion.entry_points,
             root_path=ingestion.root_path,
+            taint_flows=taint_flows,
+            trace_result=trace_result,
         )
 
     # ── Output ──
@@ -240,6 +312,44 @@ def main(
 
     console.print(f"[dim]Analysis completed in {elapsed:.1f}s[/dim]")
 
+    # Guardrail summary
+    guardrails = agent_map.get("guardrails", {})
+    n_rules = guardrails.get("total_rules", 0)
+    if n_rules > 0:
+        by_cat = guardrails.get("by_category", {})
+        cat_parts = [f"{v} {k}" for k, v in sorted(by_cat.items())]
+        console.print(f"\n[bold]Guardrail rules:[/bold] {n_rules} "
+                      f"(complexity: {guardrails.get('total_complexity', 0)})")
+        if cat_parts:
+            console.print(f"  [dim]{', '.join(cat_parts)}[/dim]")
+        if not guardrails.get("guardrail_language_matches_conversation", True):
+            console.print(
+                f"  [yellow]⚠ Language mismatch: guardrails in "
+                f"{guardrails.get('guardrail_language', '?')} but conversation in "
+                f"{agent_map['metadata'].get('conversation_language', '?')}[/yellow]"
+            )
+
+    # Behavioural model summary
+    bm = agent_map.get("behavioural_model", {})
+    dep_graph = bm.get("dependency_graph", {})
+    n_edges = len(dep_graph.get("edges", []))
+    if n_edges > 0:
+        props = dep_graph.get("properties", {})
+        parts = [f"{n_edges} dependency edges"]
+        if props.get("bottleneck_tools"):
+            parts.append(f"bottlenecks: {', '.join(props['bottleneck_tools'][:3])}")
+        if props.get("circular_dependencies"):
+            parts.append(f"[red]{len(props['circular_dependencies'])} circular deps[/red]")
+        if props.get("longest_chain"):
+            parts.append(f"longest chain: {len(props['longest_chain'])} tools")
+        if props.get("orphan_tools"):
+            parts.append(f"{len(props['orphan_tools'])} orphan tools")
+        console.print(f"\n[bold]Behavioural model:[/bold] {', '.join(parts)}")
+    fsm = bm.get("fsm")
+    if fsm and fsm.get("states"):
+        console.print(f"  [dim]FSM: {len(fsm['states'])} states, "
+                      f"{len(fsm.get('transitions', []))} transitions[/dim]")
+
     # Quick summary
     n_tools = len(agent_map["components"]["tools"])
     n_risks = len(agent_map["risk_flags"]["all_risks"])
@@ -249,6 +359,7 @@ def main(
         Panel(
             f"[bold]{n_tools}[/bold] tools | "
             f"[bold]{n_prompts}[/bold] prompts | "
+            f"[bold]{n_rules}[/bold] rules | "
             f"[bold]{n_risks}[/bold] risks | "
             f"Framework: [cyan]{agent_map['metadata']['framework']}[/cyan] | "
             f"Language: [cyan]{conv_lang}[/cyan]",

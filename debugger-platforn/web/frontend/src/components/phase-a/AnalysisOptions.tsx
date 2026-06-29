@@ -4,14 +4,16 @@ interface AnalysisOptionsProps {
   skipAi: boolean
   language: string
   promptEncoding: string
+  useTraces: boolean
   onSkipAiChange: (v: boolean) => void
   onLanguageChange: (v: string) => void
   onEncodingChange: (v: string) => void
+  onUseTracesChange: (v: boolean) => void
 }
 
 export default function AnalysisOptions({
-  skipAi, language, promptEncoding,
-  onSkipAiChange, onLanguageChange, onEncodingChange,
+  skipAi, language, promptEncoding, useTraces,
+  onSkipAiChange, onLanguageChange, onEncodingChange, onUseTracesChange,
 }: AnalysisOptionsProps) {
   return (
     <div className="space-y-4">
@@ -23,6 +25,12 @@ export default function AnalysisOptions({
         checked={skipAi}
         onChange={onSkipAiChange}
         description="Offline mode — no API key needed"
+      />
+      <Toggle
+        label="Use Langfuse Traces"
+        checked={useTraces}
+        onChange={onUseTracesChange}
+        description="Ingest runtime traces for dynamic analysis"
       />
       <Select
         label="Language Filter"

@@ -50,7 +50,7 @@ export const browseDirectory = (path: string, showHidden = false) =>
   )
 
 // Phase A
-export const runPhaseA = (body: { session_id: string; repo_path: string; skip_ai: boolean; language: string | null; prompt_encoding: string }) =>
+export const runPhaseA = (body: { session_id: string; repo_path: string; skip_ai: boolean; language: string | null; prompt_encoding: string; use_traces: boolean }) =>
   request<{ status: string; session_id: string }>('/api/phase-a/run', { method: 'POST', body: JSON.stringify(body) })
 
 export const getPhaseAStatus = (sessionId: string) =>

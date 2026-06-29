@@ -110,3 +110,102 @@ CRITICAL_ACTION_KEYWORDS = {
         "send_email", "send_sms", "notify", "alert", "post_message",
     ],
 }
+
+# ── Language Detection Indicators ──
+
+SPANISH_INDICATORS = [
+    "bienvenido", "hola", "servicio", "cliente", "cita", "reserva",
+    "consulta", "agente", "disponible", "horario", "gracias", "ayuda",
+    "problema", "solución", "pedido", "factura", "devolución", "garantía",
+    "reparación", "técnico", "soporte", "atención", "información",
+    "confirmar", "cancelar", "modificar", "estado", "seguimiento", "envío", "pago",
+]
+
+ENGLISH_INDICATORS = [
+    "welcome", "hello", "service", "customer", "appointment", "booking",
+    "support", "help", "problem", "solution", "order", "invoice",
+    "warranty", "repair", "information", "confirm", "cancel", "status",
+    "shipping", "payment", "please", "thank", "sorry", "available",
+]
+
+PORTUGUESE_INDICATORS = [
+    "obrigado", "bom dia", "serviço", "cliente", "atendimento",
+    "consulta", "agendamento", "disponível", "horário", "ajuda",
+    "problema", "solução", "pedido", "fatura", "devolução", "garantia",
+]
+
+PORTUGUESE_CHARS = ["ã", "õ"]  # chars distinctive to Portuguese (ç shared with others)
+
+SPANISH_FORMALITY_USTED = ["usted", "estimado", "le informamos", "sírvase"]
+SPANISH_FORMALITY_TU = ["tú", "te ", "quieres", "puedes"]
+
+# ── Domain & Channel Detection Indicators ──
+
+DOMAIN_INDICATORS = {
+    "customer_support": ["support", "ticket", "complaint", "helpdesk", "soporte", "queja", "atención"],
+    "sales": ["order", "purchase", "price", "product", "pedido", "compra", "precio"],
+    "scheduling": ["appointment", "booking", "schedule", "calendar", "cita", "reserva", "agenda"],
+}
+
+INDUSTRY_INDICATORS = {
+    "consumer_electronics": ["device", "phone", "laptop", "warranty", "dispositivo", "garantía", "tech_repair", "apple"],
+    "healthcare": ["patient", "doctor", "appointment", "diagnosis", "paciente", "médico", "cita médica"],
+    "finance": ["account", "balance", "transfer", "loan", "cuenta", "saldo", "préstamo"],
+    "retail": ["cart", "checkout", "shipping", "return", "carrito", "envío", "devolución"],
+}
+
+CHANNEL_INDICATORS = {
+    "whatsapp": ["whatsapp", "wa_", "wamid"],
+    "web_chat": ["webchat", "livechat", "chat_widget"],
+    "email": ["email", "inbox", "smtp"],
+    "sms": ["sms", "twilio", "text_message"],
+}
+
+# ── OWASP / MITRE Taxonomy Constants ──
+
+OWASP_LLM_2025 = {
+    "LLM01": "Prompt Injection",
+    "LLM02": "Sensitive Information Disclosure",
+    "LLM03": "Supply Chain Vulnerabilities",
+    "LLM04": "Data and Model Poisoning",
+    "LLM05": "Improper Output Handling",
+    "LLM06": "Excessive Agency",
+    "LLM07": "System Prompt Leakage",
+    "LLM08": "Vector and Embedding Weaknesses",
+    "LLM09": "Misinformation",
+    "LLM10": "Unbounded Consumption",
+}
+
+OWASP_AGENTIC_2026 = {
+    "ASI01": "Agent Goal Hijack",
+    "ASI02": "Tool Misuse and Exploitation",
+    "ASI03": "Identity and Privilege Abuse",
+    "ASI04": "Agentic Supply Chain Vulnerabilities",
+    "ASI05": "Unexpected Code Execution",
+    "ASI06": "Memory and Context Poisoning",
+    "ASI07": "Insecure Inter-Agent Communication",
+    "ASI08": "Cascading Failures",
+    "ASI09": "Human-Agent Trust Exploitation",
+    "ASI10": "Rogue Agents",
+}
+
+# Maps (risk_type, sub_type) → list of taxonomy IDs
+RISK_TO_TAXONOMY = {
+    # PII risks
+    ("pii", "email"): ["LLM02", "ASI03"],
+    ("pii", "phone"): ["LLM02", "ASI03"],
+    ("pii", "ssn"): ["LLM02", "ASI03"],
+    ("pii", "credit_card"): ["LLM02", "ASI03"],
+    ("pii", "address"): ["LLM02", "ASI03"],
+    # Critical action risks
+    ("critical_action", "financial"): ["LLM06", "ASI02"],
+    ("critical_action", "data_modification"): ["LLM06", "ASI02"],
+    ("critical_action", "user_management"): ["LLM06", "ASI03"],
+    ("critical_action", "communication"): ["LLM06", "ASI02"],
+    # Code execution risks
+    ("unsafe_operation", "eval"): ["ASI05", "LLM01"],
+    ("unsafe_operation", "exec"): ["ASI05", "LLM01"],
+    ("unsafe_operation", "subprocess"): ["ASI05"],
+    # Excessive agency
+    ("excessive_agency", "excessive_agency"): ["LLM06"],
+}

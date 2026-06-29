@@ -56,7 +56,24 @@ def _run_phase_a_sync(req: PhaseARequest, emitter: ProgressEmitter) -> dict:
 
     # Step 4: Risk analysis
     emitter.emit("analyzing_risks", "Analyzing risks...", 60)
-    risks = analyze_risks(pattern_result.tools, pattern_result.prompts)
+    risks, _taint_flows = analyze_risks(pattern_result.tools, pattern_result.prompts, all_symbols)
+
+    # Step 4.5: Trace ingestion (optional)
+    _trace_result = None
+    if req.use_traces:
+        emitter.emit("ingesting_traces", "Ingesting Langfuse traces...", 55)
+        from src.traces.langfuse_client import LangfuseTraceIngester
+        from src.traces.trace_parser import parse_langfuse_traces
+        from src.traces.sequence_miner import mine_tool_sequences
+
+        ingester = LangfuseTraceIngester()
+        if ingester.available:
+            raw_traces = ingester.fetch_traces(limit=500)
+            trace_details = [ingester.fetch_trace_detail(rt["id"]) for rt in raw_traces]
+            trace_details = [d for d in trace_details if d]
+            conversations = parse_langfuse_traces(trace_details)
+            tool_names = [t.name for t in pattern_result.tools]
+            _trace_result = mine_tool_sequences(conversations, tool_names)
 
     # Step 5: AI semantic analysis (optional)
     ai_result = None
@@ -71,6 +88,7 @@ def _run_phase_a_sync(req: PhaseARequest, emitter: ProgressEmitter) -> dict:
                 prompts=pattern_result.prompts,
                 entry_points=ingestion.entry_points,
                 framework=pattern_result.framework,
+                context_budget=req.context_budget,
             )
 
     # Step 6: Build agent map
@@ -82,6 +100,8 @@ def _run_phase_a_sync(req: PhaseARequest, emitter: ProgressEmitter) -> dict:
         risks=risks,
         entry_points=ingestion.entry_points,
         root_path=ingestion.root_path,
+        taint_flows=_taint_flows,
+        trace_result=_trace_result,
     )
 
     # Save output

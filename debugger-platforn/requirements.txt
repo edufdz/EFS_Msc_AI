@@ -7,6 +7,8 @@ rich>=13.0
 # Agent analysis / graph
 tree-sitter>=0.23.0
 tree-sitter-python>=0.23.0
+tree-sitter-typescript>=0.23.0
+tree-sitter-javascript>=0.23.0
 networkx>=3.0
 matplotlib>=3.8.0
 
@@ -17,6 +19,9 @@ scipy>=1.11.0
 
 # Multi-provider LLM support (Ollama, Groq, Together, etc.)
 openai>=1.0.0
+
+# Observability / traces
+langfuse>=2.0.0
 
 # Real-time / WebSocket
 websockets>=12.0

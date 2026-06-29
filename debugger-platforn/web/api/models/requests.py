@@ -13,6 +13,8 @@ class PhaseARequest(BaseModel):
     skip_ai: bool = False
     language: Optional[str] = None
     prompt_encoding: str = "utf-8"
+    context_budget: int = Field(default=80_000, ge=10_000, le=500_000)
+    use_traces: bool = False
 
 
 class PhaseBRequest(BaseModel):

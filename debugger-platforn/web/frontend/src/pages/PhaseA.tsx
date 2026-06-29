@@ -14,6 +14,7 @@ const PHASE_A_STEPS = [
   { key: 'parsing_treesitter', label: 'Parsing with Tree-sitter...', pctThreshold: 20 },
   { key: 'detecting_patterns', label: 'Detecting agent patterns...', pctThreshold: 40 },
   { key: 'analyzing_risks', label: 'Analyzing risks...', pctThreshold: 55 },
+  { key: 'ingesting_traces', label: 'Ingesting Langfuse traces...', pctThreshold: 60 },
   { key: 'ai_analysis', label: 'Running AI semantic analysis...', pctThreshold: 65 },
   { key: 'building_map', label: 'Building Agent Map...', pctThreshold: 85 },
 ]
@@ -34,6 +35,7 @@ export default function PhaseA() {
   const [skipAi, setSkipAi] = useState(false)
   const [language, setLanguage] = useState('')
   const [promptEncoding, setPromptEncoding] = useState('utf-8')
+  const [useTraces, setUseTraces] = useState(false)
   const [error, setError] = useState('')
 
   // On mount, check if we already have a result
@@ -67,6 +69,7 @@ export default function PhaseA() {
         skip_ai: skipAi,
         language: language || null,
         prompt_encoding: promptEncoding,
+        use_traces: useTraces,
       })
     } catch (e) {
       setError(String(e))
@@ -98,9 +101,11 @@ export default function PhaseA() {
             skipAi={skipAi}
             language={language}
             promptEncoding={promptEncoding}
+            useTraces={useTraces}
             onSkipAiChange={setSkipAi}
             onLanguageChange={setLanguage}
             onEncodingChange={setPromptEncoding}
+            onUseTracesChange={setUseTraces}
           />
 
           {error && (

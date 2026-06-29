@@ -24,6 +24,8 @@ export interface PhaseARequest {
   skip_ai: boolean
   language: string | null
   prompt_encoding: string
+  context_budget?: number
+  use_traces: boolean
 }
 
 export interface PhaseAResult {

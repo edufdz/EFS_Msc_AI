@@ -217,7 +217,7 @@ def main(
             )
 
         with console.status("[bold green]Analyzing risks..."):
-            risks = analyze_risks(pattern_result.tools, pattern_result.prompts)
+            risks, _taint_flows = analyze_risks(pattern_result.tools, pattern_result.prompts, all_symbols)
 
         ai_result = None
         if not skip_ai:
@@ -241,6 +241,7 @@ def main(
                 risks=risks,
                 entry_points=ingestion.entry_points,
                 root_path=ingestion.root_path,
+                taint_flows=_taint_flows,
             )
 
         agent_map_path = str(out / "agent_map.json")
