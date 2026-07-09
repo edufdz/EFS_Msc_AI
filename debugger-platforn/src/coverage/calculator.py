@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from itertools import combinations
 from typing import Dict, List
 
+from .interaction import extract_factors_from_agent_map, generate_covering_array
 from .models import (
     CoverageGoals,
     EdgeCaseCoverageGoals,
@@ -18,15 +19,36 @@ from .models import (
     TestConfiguration,
     ToolCoverageGoals,
     ToolSandboxConfig,
+    TransitionCoverageGoals,
+)
+from .transition import (
+    compute_all_transitions,
+    compute_round_trip_paths,
+    compute_transition_pairs,
+    extract_fsm,
 )
 
-# Risk → min invocations mapping
+# Risk → per-tool invocation floor (Sprint E3).
+#
+# Flat repetition (critical=25x, high=15x, ...) is replaced by t-way
+# interaction coverage: the NIST interaction rule (Kuhn, Wallace & Gallo,
+# IEEE TSE 2004) shows ~93% of faults come from 2-way interactions, so
+# the budget goes to a pairwise covering array over tool x parameter
+# factors plus FSM transition coverage.  Per-tool repetition remains
+# only as a small floor for stochastic variation.
 _RISK_MIN_CALLS: Dict[str, int] = {
-    "critical": 25,
-    "high": 15,
-    "medium": 10,
-    "low": 5,
+    "critical": 3,
+    "high": 3,
+    "medium": 2,
+    "low": 1,
 }
+
+# Interaction strength for the covering array (2 = pairwise)
+_INTERACTION_STRENGTH = 2
+
+# Only add 1-switch transition pairs when the plain transition list is
+# small enough that the extra depth fits the budget
+_TRANSITION_PAIR_BUDGET = 50
 
 # Risk → edge-case multiplier (higher risk tools get more edge-case coverage)
 _RISK_EDGE_MULTIPLIER: Dict[str, float] = {
@@ -37,12 +59,32 @@ _RISK_EDGE_MULTIPLIER: Dict[str, float] = {
 }
 
 
+def _legacy_tool_combinations(tools: List[Dict], seen_names: set) -> List[List[str]]:
+    """Pairwise combinations of high/critical tool names (pre-E3 behaviour),
+    used as a fallback when no covering array can be built."""
+    high_risk_tools = [
+        t["name"] for t in tools
+        if t.get("risk_level") in ("critical", "high") and t["name"] in seen_names
+    ]
+    tool_combos: List[List[str]] = []
+    unique_high = list(dict.fromkeys(high_risk_tools))  # dedupe preserving order
+    for pair in combinations(unique_high[:10], 2):  # cap at 10 to avoid explosion
+        tool_combos.append(list(pair))
+    return tool_combos
+
+
 def calculate_coverage_goals(agent_map: Dict) -> CoverageGoals:
-    """Auto-calculate coverage goals based on agent map tool inventory and risk levels."""
+    """Auto-calculate coverage goals based on agent map tool inventory and risk levels.
+
+    Sprint E3: flat per-tool repetition is replaced by (a) a pairwise
+    covering array over high/critical tool x parameter factors and
+    (b) FSM transition/transition-pair/round-trip coverage; per-tool
+    counts drop to a small floor (critical/high=3x, medium=2x, low=1x).
+    """
     tools = agent_map.get("components", {}).get("tools", [])
     risk_flags = agent_map.get("risk_flags", {})
 
-    # --- Tool coverage ---
+    # --- Per-tool floor (reduced from 25x flat repetition to 3x max) ---
     min_invocations: Dict[str, int] = {}
     seen_names: set = set()
     risk_counts = {"critical": 0, "high": 0, "medium": 0, "low": 0}
@@ -54,25 +96,50 @@ def calculate_coverage_goals(agent_map: Dict) -> CoverageGoals:
         seen_names.add(name)
 
         risk = tool.get("risk_level", "medium")
-        min_invocations[name] = _RISK_MIN_CALLS.get(risk, 10)
+        min_invocations[name] = _RISK_MIN_CALLS.get(risk, _RISK_MIN_CALLS["medium"])
         risk_counts[risk] = risk_counts.get(risk, 0) + 1
 
-    # Build interesting tool-combination pairs from tools that share dependencies
-    # or are both high/critical risk
-    high_risk_tools = [
-        t["name"] for t in tools
-        if t.get("risk_level") in ("critical", "high") and t["name"] in seen_names
-    ]
+    # --- Interaction coverage (replaces flat counts) ---
+    # Pairwise covering array over tool selection + key parameter values.
+    factors = extract_factors_from_agent_map(agent_map)
+    covering_array: List[Dict[str, str]] = []
     tool_combos: List[List[str]] = []
-    unique_high = list(dict.fromkeys(high_risk_tools))  # dedupe preserving order
-    for pair in combinations(unique_high[:10], 2):  # cap at 10 to avoid explosion
-        tool_combos.append(list(pair))
+    if factors and len(factors) >= 2:
+        covering_array = generate_covering_array(factors, strength=_INTERACTION_STRENGTH)
+    if not covering_array:
+        # Fallback to existing pairwise tool combos (legacy behaviour)
+        tool_combos = _legacy_tool_combinations(tools, seen_names)
 
     tool_coverage = ToolCoverageGoals(
         target_percentage=100,
         min_invocations_per_tool=min_invocations,
         tool_combinations=tool_combos,
+        interaction_strength=_INTERACTION_STRENGTH,
+        covering_array=covering_array,
     )
+
+    # --- Transition coverage (if the behavioural model has an FSM) ---
+    transition_coverage = None
+    fsm = extract_fsm(agent_map)
+    if fsm:
+        all_transitions = compute_all_transitions(fsm)
+        if all_transitions:
+            transition_pairs = (
+                compute_transition_pairs(fsm)
+                if len(all_transitions) < _TRANSITION_PAIR_BUDGET
+                else []
+            )
+            high_risk_names = {
+                t["name"] for t in tools
+                if t.get("risk_level") in ("critical", "high")
+            }
+            transition_coverage = TransitionCoverageGoals(
+                all_transitions=all_transitions,
+                transition_pairs=transition_pairs,
+                round_trip_paths=compute_round_trip_paths(
+                    fsm, high_risk_tools=high_risk_names
+                ),
+            )
 
     # --- Edge-case coverage (scale with risk profile) ---
     max_risk_mult = max(
@@ -99,6 +166,7 @@ def calculate_coverage_goals(agent_map: Dict) -> CoverageGoals:
         tool_coverage=tool_coverage,
         edge_case_coverage=edge_case_coverage,
         stressor_coverage=stressor_coverage,
+        transition_coverage=transition_coverage,
     )
 
 

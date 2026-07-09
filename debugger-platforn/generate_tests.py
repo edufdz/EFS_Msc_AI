@@ -101,6 +101,8 @@ def _run_phase_b(
     usage_tracker: PhaseBUsageTracker | None = None,
     include_templates: bool = False,
     llm_config=None,
+    use_traces: bool = False,
+    traces_file: str | None = None,
 ) -> str:
     """Run all four Phase B sub-steps. Returns path to test_suite.json."""
     import random as _random
@@ -147,9 +149,14 @@ def _run_phase_b(
 
     tool_count = len(config.coverage_goals.tool_coverage.min_invocations_per_tool)
     combo_count = len(config.coverage_goals.tool_coverage.tool_combinations)
+    # Sprint E3: interaction & transition coverage summary
+    ca_count = len(config.coverage_goals.tool_coverage.covering_array)
+    tcov = config.coverage_goals.transition_coverage
+    transition_count = len(tcov.all_transitions) if tcov else 0
     console.print(
         f"  [green]Done[/green] — {tool_count} tools, "
-        f"{combo_count} combos → [cyan]{config_path}[/cyan]"
+        f"{combo_count} combos, {ca_count} covering-array rows, "
+        f"{transition_count} FSM transitions → [cyan]{config_path}[/cyan]"
     )
 
     # ── B1: Persona library ──
@@ -215,6 +222,48 @@ def _run_phase_b(
         flow_attack_personas = builder.generate_flow_attack_personas(tool_chains)
         console.print(f"  Generated [green]{len(flow_attack_personas)}[/green] flow-attack personas")
 
+    # Adversarial personas (one per OWASP/ASI taxonomy category present in
+    # risk_flags — Sprint E5). Fully offline; used by Phase 2.5 adversarial
+    # coverage to pair each risk-guided attack scenario with an attacker.
+    from src.scenarios.adversarial import present_taxonomy_ids as _present_tax_ids
+    _adv_tax_ids = _present_tax_ids(agent_map)
+    if _adv_tax_ids:
+        adversarial_personas = builder.generate_adversarial_personas(_adv_tax_ids)
+        console.print(
+            f"  Generated [green]{len(adversarial_personas)}[/green] adversarial personas "
+            f"for taxonomy: [cyan]{', '.join(_adv_tax_ids)}[/cyan]"
+        )
+
+    # Production-grounded personas (Sprint E6): fit the 10-trait and style
+    # distributions to real production conversations and sample a matching
+    # persona population (source="production_grounded"). Fully offline — reads
+    # --traces-file or the agent map's embedded trace_analysis; degrades
+    # gracefully to no personas when no traced conversations are available.
+    if use_traces:
+        from src.scenarios.seed_corpus import load_trace_result as _load_traces_e6
+
+        _trace_result_e6 = _load_traces_e6(traces_file=traces_file, agent_map=agent_map)
+        _e6_conversations = (
+            (_trace_result_e6.get("conversations")
+             if isinstance(_trace_result_e6, dict)
+             else getattr(_trace_result_e6, "conversations", None))
+            if _trace_result_e6 else None
+        ) or []
+        if _e6_conversations:
+            production_personas = builder.generate_production_grounded_personas(
+                _trace_result_e6, count=5,
+            )
+            console.print(
+                f"  Generated [green]{len(production_personas)}[/green] "
+                f"production-grounded personas from [green]{len(_e6_conversations)}[/green] "
+                f"traced conversations"
+            )
+        else:
+            console.print(
+                "  [dim]No traced conversations available — skipping "
+                "production-grounded personas[/dim]"
+            )
+
     # AI-generated personas (skip when using tlahuac-only mode)
     if use_tlahuac:
         console.print("  [dim]AI persona generation skipped (tlahuac-only mode)[/dim]")
@@ -233,6 +282,16 @@ def _run_phase_b(
 
     console.print(
         f"  [green]Done[/green] — {len(builder.personas)} personas → [cyan]{persona_path}[/cyan]"
+    )
+
+    # Sprint E7: report quality-diversity coverage (MAP-Elites archive) next to
+    # the classic trait-bucket diversity score.
+    _div = builder.report_diversity()
+    console.print(
+        f"  Diversity: trait score [green]{_div.get('diversity_score', 0.0):.3f}[/green], "
+        f"MAP-Elites coverage [green]{_div.get('map_elites_coverage', 0.0):.3f}[/green] "
+        f"([cyan]{_div.get('map_elites_cells_filled', 0)}[/cyan]/"
+        f"{_div.get('map_elites_cells_total', 0)} behavioural cells)"
     )
 
     # ── B2: Scenario catalog ──
@@ -260,6 +319,71 @@ def _run_phase_b(
         except Exception as e:
             console.print(f"  [yellow]Could not load tlahuac scenarios: {e}[/yellow]")
 
+    # Production-failure seed corpus (Sprint E1): convert real failure
+    # traces into seed scenarios + mutated neighbours. Fully offline —
+    # reads --traces-file or the agent map's embedded trace_analysis.
+    # Phase A trace analysis, when available, is reused by the B4 APFD
+    # prioritiser (Sprint E8) to weight tests by the operational profile.
+    trace_result = None
+    if use_traces:
+        from src.scenarios.seed_corpus import load_trace_result
+
+        trace_result = load_trace_result(traces_file=traces_file, agent_map=agent_map)
+        if trace_result is None:
+            console.print(
+                "  [yellow]No trace data available (no --traces-file and no "
+                "trace_analysis in agent map) — skipping production seeds[/yellow]"
+            )
+        else:
+            failure_patterns = (
+                trace_result.get("failure_patterns")
+                if isinstance(trace_result, dict)
+                else getattr(trace_result, "failure_patterns", None)
+            ) or []
+            n_conversations = len(
+                (trace_result.get("conversations")
+                 if isinstance(trace_result, dict)
+                 else getattr(trace_result, "conversations", None)) or []
+            )
+            with console.status("[bold green]Loading production-failure seeds..."):
+                seed_scenarios = scenario_lib.load_production_seeds(trace_result, agent_map)
+            console.print(
+                f"  Production seeds: [green]{len(seed_scenarios)}[/green] scenarios from "
+                f"[green]{len(failure_patterns)}[/green] failure patterns and "
+                f"[green]{n_conversations}[/green] traced conversations"
+            )
+
+    # Policy-graph scenarios (Sprint E2): IntellAgent-style weighted random
+    # walks over the guardrail policy graph. Graph construction and walk
+    # sampling are fully offline; user-goal naturalisation uses the LLM
+    # only when AI mode is on. Maps without guardrails skip this step.
+    _guardrails = agent_map.get("guardrails") or {}
+    if _guardrails.get("total_rules", 0) > 0 or _guardrails.get("rules"):
+        with console.status("[bold green]Generating policy-graph scenarios..."):
+            policy_scenarios = scenario_lib.generate_policy_graph_scenarios(
+                count=min(scenario_count, 15),
+                naturalise=(not skip_ai and has_api_key),
+            )
+        console.print(
+            f"  Policy-graph scenarios: [green]{len(policy_scenarios)}[/green] "
+            f"from [green]{len(_guardrails.get('rules', []) or [])}[/green] guardrail rules"
+        )
+
+    # Guardrail compliance/violation test pairs (Sprint E11): one compliance
+    # + one-or-more violation-provocation tests per numbered rule, scaled by
+    # complexity, with condition-met/not-met and language-mismatch handling.
+    # Structural generation and oracle attachment are fully offline; only the
+    # provocation naturalisation uses the LLM. Maps without guardrails no-op.
+    if _guardrails.get("total_rules", 0) > 0 or _guardrails.get("rules"):
+        with console.status("[bold green]Generating guardrail test pairs..."):
+            guardrail_scenarios = scenario_lib.generate_guardrail_pairs(
+                naturalise=(not skip_ai and has_api_key),
+            )
+        console.print(
+            f"  Guardrail test pairs: [green]{len(guardrail_scenarios)}[/green] "
+            f"from [green]{len(_guardrails.get('rules', []) or [])}[/green] guardrail rules"
+        )
+
     # AI-generated scenarios
     if scenario_count > 0 and not skip_ai and has_api_key:
         with console.status(f"[bold green]Generating {scenario_count} AI scenarios..."):
@@ -283,6 +407,33 @@ def _run_phase_b(
                     v = scenario_lib.generate_variants(base, count=variants)
                 total_variants += len(v)
         console.print(f"  Variants generated: [green]{total_variants}[/green]")
+
+    # Non-LLM oracle attachment (Sprint E4): derive deterministic
+    # success/failure checks from Phase A postconditions, guardrails,
+    # taint flows, side effects, and dependency edges — no LLM judge.
+    with console.status("[bold green]Attaching non-LLM oracles..."):
+        oracle_counts = scenario_lib.attach_oracles(agent_map)
+    console.print(
+        f"  Oracles attached: [green]{oracle_counts['oracles']}[/green] "
+        f"(+ [green]{oracle_counts['metamorphic_relations']}[/green] metamorphic relations)"
+    )
+
+    # Risk-guided adversarial scenarios (Sprint E5): taint-flow leakage
+    # probes and taxonomy-mapped attacks (OWASP LLM01/LLM02/LLM06,
+    # ASI03/ASI05) derived from risk_flags. Generated AFTER attach_oracles
+    # so each attack keeps its own deterministic TAINT_FLOW /
+    # GUARDRAIL_VIOLATION oracle. Fully offline — no LLM required.
+    with console.status("[bold green]Generating risk-guided adversarial scenarios..."):
+        adversarial_scenarios = scenario_lib.generate_adversarial_scenarios(agent_map)
+    if adversarial_scenarios:
+        _adv_tags = sorted({
+            t for s in adversarial_scenarios for t in s.tags
+            if t[:3] in ("LLM", "ASI")
+        })
+        console.print(
+            f"  Adversarial scenarios: [green]{len(adversarial_scenarios)}[/green] "
+            f"covering [cyan]{', '.join(_adv_tags) or 'n/a'}[/cyan]"
+        )
 
     catalog = scenario_lib.export_catalog()
     scenario_path = output_dir / "scenario_catalog.json"
@@ -308,6 +459,7 @@ def _run_phase_b(
             scenarios=catalog.scenarios,
             coverage_goals=config.coverage_goals,
             sandbox_config=config.sandbox_config,
+            trace_result=trace_result,
         )
         suite = generator.generate(target_count=count)
 
@@ -318,6 +470,19 @@ def _run_phase_b(
     console.print(
         f"  [green]Done[/green] — {suite.summary.total_tests} test cases → [cyan]{suite_path}[/cyan]"
     )
+
+    # Sprint E8: estimated APFD of the prioritised ordering (proxy for real
+    # faults, computed over the static potential-fault matrix). Offline; the
+    # full --evaluate harness reports the same metric with more detail.
+    try:
+        from src.evaluation.apfd import calculate_apfd
+        from src.evaluation.harness import build_fault_matrix
+
+        _order = [tc.test_id for tc in sorted(suite.test_cases, key=lambda t: t.test_number)]
+        _apfd = calculate_apfd(_order, build_fault_matrix(suite))
+        console.print(f"  Estimated APFD (prioritised order): [green]{_apfd:.4f}[/green]")
+    except Exception as _e:  # never let reporting break generation
+        console.print(f"  [yellow]APFD reporting skipped: {_e}[/yellow]")
 
     # Phase B token/cost summary (when AI was used)
     if usage_tracker and usage_tracker.total_tokens() > 0:
@@ -348,6 +513,10 @@ def _run_phase_b(
 @click.option("--tlahuac-dir", default=None, type=click.Path(exists=True), help="Path to tlahuac persona pack directory (default: auto-detect ../tlahuac_simulator_agent)")
 @click.option("--tlahuac-endpoint", default="http://localhost:8000", help="Tlahuac API endpoint (fallback if no directory found)")
 @click.option("--tlahuac-personas", multiple=True, help="Specific tlahuac persona IDs to load (repeatable)")
+@click.option("--include-templates", is_flag=True, help="Include built-in template personas and scenarios (required for offline --skip-ai runs)")
+@click.option("--evaluate", is_flag=True, help="Run the suite-quality measurement harness after generation and save evaluation_report.json")
+@click.option("--use-traces", is_flag=True, help="Seed scenarios from production failure traces (reads --traces-file or the agent map's trace_analysis; offline, no Langfuse credentials needed)")
+@click.option("--traces-file", default=None, type=click.Path(exists=True), help="JSON file with production trace data ({conversations, failure_patterns} or a list of conversations)")
 def main(
     agent_map_file: str,
     output_dir: str,
@@ -362,6 +531,10 @@ def main(
     tlahuac_dir: str | None,
     tlahuac_endpoint: str,
     tlahuac_personas: tuple,
+    include_templates: bool,
+    evaluate: bool,
+    use_traces: bool,
+    traces_file: str | None,
 ):
     """Run unified Phase B: generate test suite from agent map (B1→B2→B3→B4)."""
     start = time.time()
@@ -401,7 +574,52 @@ def main(
         tlahuac_personas=list(tlahuac_personas) if tlahuac_personas else None,
         tlahuac_dir=tlahuac_dir,
         usage_tracker=usage_tracker,
+        include_templates=include_templates,
+        use_traces=use_traces,
+        traces_file=traces_file,
     )
+
+    # ── Optional: suite-quality measurement harness (Sprint E12) ──
+    if evaluate:
+        from src.evaluation.harness import evaluate_suite
+        from src.generator.models import TestSuite
+
+        console.print()
+        console.print(Panel(
+            "[bold]Evaluation: Suite-Quality Measurement Harness[/bold]\n"
+            "APFD, diversity, taxonomy coverage, predictive validity, mutants",
+            style="blue",
+        ))
+
+        with open(suite_path) as f:
+            suite = TestSuite.model_validate(json.load(f))
+
+        with console.status("[bold green]Evaluating test suite..."):
+            report = evaluate_suite(suite, agent_map)
+
+        report_path = Path(output_dir) / "evaluation_report.json"
+        with open(report_path, "w") as f:
+            json.dump(report, f, indent=2, default=str)
+
+        tbl = Table(title="Suite quality report")
+        tbl.add_column("Metric", style="cyan")
+        tbl.add_column("Value", justify="right")
+        tbl.add_row("APFD (potential faults)", f"{report['apfd']['apfd']:.4f}")
+        tbl.add_row("Weighted APFD", f"{report['apfd']['weighted_apfd']:.4f}")
+        tbl.add_row("Potential faults", str(report["apfd"]["n_potential_faults"]))
+        tbl.add_row("Overall diversity", f"{report['diversity']['overall_diversity']:.4f}")
+        tbl.add_row("Tool-pair coverage", f"{report['diversity']['tool_pair_coverage']:.4f}")
+        tbl.add_row("Taxonomy coverage", f"{report['taxonomy_coverage']['coverage']:.4f}")
+        pv = report["predictive_validity"]
+        if pv is not None:
+            tbl.add_row("Precision vs production", f"{pv['precision']:.4f}")
+            tbl.add_row("Recall vs production", f"{pv['recall']:.4f}")
+            tbl.add_row("F1 vs production", f"{pv['f1']:.4f}")
+        else:
+            tbl.add_row("Predictive validity", "[dim]n/a (no production signals)[/dim]")
+        tbl.add_row("Mutants generated", str(report["mutation"]["total_mutants"]))
+        console.print(tbl)
+        console.print(f"  [green]Saved[/green] → [cyan]{report_path}[/cyan]")
 
     elapsed = time.time() - start
 

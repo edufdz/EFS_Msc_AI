@@ -62,6 +62,7 @@ class Persona(BaseModel):
     tlahuac_data: Optional[Dict[str, Any]] = None  # Extra tlahuac persona data (common_phrases, action_weights, etc.)
     target_tool: Optional[str] = None  # tool name this persona is designed to stress-test
     target_flow: Optional[str] = None  # tool chain name this persona is designed to test
+    tags: List[str] = []  # free-form labels (e.g. adversarial taxonomy IDs, Sprint E5)
 
     @property
     def archetype(self) -> str:

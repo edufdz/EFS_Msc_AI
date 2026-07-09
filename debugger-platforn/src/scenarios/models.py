@@ -9,6 +9,8 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
+from src.oracles.models import MetamorphicRelation, Oracle
+
 
 class ScenarioSuccessConditions(BaseModel):
     tool_called: Optional[str] = None
@@ -45,10 +47,13 @@ class Scenario(BaseModel):
     chaos_config: ChaosConfig = Field(default_factory=ChaosConfig)
     tags: List[str] = []
     estimated_turns: int = 5
-    source: str = "template"  # template|ai_generated|variant|tlahuac
+    source: str = "template"  # template|ai_generated|variant|tlahuac|external|production_seed|policy_graph
     base_scenario_id: Optional[str] = None
     variant_type: Optional[str] = None  # ambiguity|missing_info|interruption|constraint|error
     starter_openers: List[str] = []  # Pre-written first messages (e.g. from tlahuac scenarios)
+    # Non-LLM oracles derived from Phase A data (Sprint E4)
+    oracles: List[Oracle] = Field(default_factory=list)
+    metamorphic_relations: List[MetamorphicRelation] = Field(default_factory=list)
     created_at: datetime
 
 

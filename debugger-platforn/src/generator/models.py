@@ -23,6 +23,9 @@ class TestCase(BaseModel):
     target_tool: Optional[str] = None
     difficulty: str  # easy|medium|hard
     estimated_duration_sec: int = 30
+    # Non-LLM oracles carried from the scenario (Sprint E4):
+    # [{oracle_id, type, description, check_expression, severity}]
+    oracles: List[Dict[str, Any]] = Field(default_factory=list)
 
 
 class TestSuiteSummary(BaseModel):
@@ -34,6 +37,9 @@ class TestSuiteSummary(BaseModel):
     tool_invocation_counts: Dict[str, int] = Field(default_factory=dict)
     estimated_duration_min: float = 0.0
     estimated_cost_usd: float = 0.0
+    # Non-LLM oracle counts (Sprint E4)
+    total_oracles: int = 0
+    oracles_by_type: Dict[str, int] = Field(default_factory=dict)
 
 
 class TestSuite(BaseModel):

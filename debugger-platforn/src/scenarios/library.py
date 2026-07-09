@@ -641,6 +641,287 @@ Return ONLY valid JSON (no markdown fences):
         return variants
 
     # ------------------------------------------------------------------
+    # Non-LLM oracle attachment (Sprint E4)
+    # ------------------------------------------------------------------
+
+    def attach_oracles(self, agent_map: Optional[Dict] = None) -> Dict[str, int]:
+        """Attach deterministic, non-LLM oracles to every scenario.
+
+        Called after all scenarios have been generated. Oracles are derived
+        from Phase A data (postconditions, guardrails, taint flows, side
+        effects, dependency edges) and matched to scenarios by tool overlap;
+        guardrail oracles with global scope (no target tools) attach to all
+        scenarios. Metamorphic relations (language/formality/synonym/ordering
+        invariance) are attached to their base scenario.
+
+        Returns counts: {"oracles": <attached>, "metamorphic_relations": <attached>}.
+        """
+        from src.oracles.generator import generate_oracles_from_agent_map
+        from src.oracles.metamorphic import generate_metamorphic_relations
+        from src.oracles.models import OracleType
+
+        agent_map = agent_map if agent_map is not None else self.agent_map
+
+        all_oracles = generate_oracles_from_agent_map(agent_map)
+        guardrail_types = (OracleType.GUARDRAIL_COMPLIANCE, OracleType.GUARDRAIL_VIOLATION)
+
+        total_attached = 0
+        for scenario in self.scenarios:
+            scenario_tools = set(scenario.required_tools) | set(scenario.optional_tools)
+            attached: List = []
+            seen_ids: set = set()
+            for oracle in all_oracles:
+                # Tool-scoped oracles: attach when tools intersect the scenario's
+                if set(oracle.applies_to_tools) & scenario_tools:
+                    relevant = True
+                # Guardrail oracles with global scope apply to every scenario
+                elif oracle.oracle_type in guardrail_types and not oracle.applies_to_tools:
+                    relevant = True
+                else:
+                    relevant = False
+                if relevant and oracle.oracle_id not in seen_ids:
+                    attached.append(oracle)
+                    seen_ids.add(oracle.oracle_id)
+            scenario.oracles = attached
+            total_attached += len(attached)
+
+        # Metamorphic relations, attached to their base scenario
+        relations = generate_metamorphic_relations(self.scenarios, agent_map)
+        by_base: Dict[str, List] = {}
+        for rel in relations:
+            by_base.setdefault(rel.base_scenario_id, []).append(rel)
+        total_relations = 0
+        for scenario in self.scenarios:
+            scenario.metamorphic_relations = by_base.get(scenario.scenario_id, [])
+            total_relations += len(scenario.metamorphic_relations)
+
+        return {"oracles": total_attached, "metamorphic_relations": total_relations}
+
+    # ------------------------------------------------------------------
+    # Production-failure seed corpus (Sprint E1)
+    # ------------------------------------------------------------------
+
+    def load_production_seeds(
+        self,
+        trace_result: Any,
+        agent_map: Optional[Dict] = None,
+        mutations_per_seed: int = 3,
+    ) -> List[Scenario]:
+        """Convert production failure traces into seed scenarios plus
+        mutated neighbour scenarios, and append them to the catalog.
+
+        ``trace_result`` may be a Phase A ``TraceAnalysisResult``-like object,
+        the ``trace_analysis`` dict embedded in an agent map, or any dict
+        with ``conversations`` and/or ``failure_patterns``. Works fully
+        offline — no Langfuse credentials required.
+        """
+        import logging
+
+        from src.scenarios.seed_corpus import (
+            build_seed_corpus,
+            expand_seed_corpus,
+            seed_to_scenario,
+        )
+
+        agent_map = agent_map if agent_map is not None else self.agent_map
+
+        corpus = build_seed_corpus(trace_result, agent_map)
+        loaded: List[Scenario] = [
+            seed_to_scenario(seed, agent_map) for seed in corpus.seeds
+        ]
+        loaded.extend(expand_seed_corpus(
+            corpus, mutations_per_seed=mutations_per_seed, agent_map=agent_map,
+        ))
+
+        self.scenarios.extend(loaded)
+        logging.getLogger(__name__).info(
+            "Loaded %d production seeds, expanded to %d scenarios",
+            corpus.total_seeds, len(loaded),
+        )
+        return loaded
+
+    # ------------------------------------------------------------------
+    # Policy-graph scenarios (Sprint E2)
+    # ------------------------------------------------------------------
+
+    def generate_policy_graph_scenarios(
+        self,
+        count: int = 10,
+        naturalise: bool = True,
+    ) -> List[Scenario]:
+        """Generate scenarios by weighted random walks over the guardrail
+        policy graph (IntellAgent-style, Sprint E2).
+
+        Builds the policy graph from ``self.agent_map["guardrails"]``,
+        samples ``count`` diverse walks, converts each walk into a
+        Scenario carrying guardrail compliance/violation oracles, and
+        appends them to the catalog. When ``naturalise`` is True the
+        user goals are rewritten by the LLM as realistic customer
+        requests; any LLM failure leaves the structural scenario intact.
+
+        Returns [] when the agent map has no guardrail rules — maps
+        without a guardrails section degrade gracefully.
+        """
+        import logging
+
+        from src.oracles.generator import generate_oracles_from_agent_map
+        from src.scenarios.policy_graph import (
+            build_policy_graph,
+            naturalise_scenario,
+            sample_n_scenarios,
+            walk_to_scenario,
+        )
+
+        graph = build_policy_graph(self.agent_map)
+        if graph.is_empty:
+            return []
+
+        walks = sample_n_scenarios(graph, n=count)
+        all_oracles = generate_oracles_from_agent_map(self.agent_map)
+        generated: List[Scenario] = [
+            walk_to_scenario(walk, self.agent_map, all_oracles=all_oracles)
+            for walk in walks
+            if walk
+        ]
+
+        if naturalise:
+            generated = [
+                naturalise_scenario(
+                    s, self.agent_map, self._llm_config,
+                    usage_tracker=self._usage_tracker,
+                    language=self.language,
+                )
+                for s in generated
+            ]
+
+        self.scenarios.extend(generated)
+        logging.getLogger(__name__).info(
+            "Generated %d policy-graph scenarios from %d guardrail rules "
+            "(%d edges)", len(generated), len(graph.nodes), len(graph.edges),
+        )
+        return generated
+
+    # ------------------------------------------------------------------
+    # Guardrail compliance/violation test pairs (Sprint E11)
+    # ------------------------------------------------------------------
+
+    def generate_guardrail_pairs(
+        self,
+        count_limit: Optional[int] = None,
+        naturalise: bool = True,
+    ) -> List[Scenario]:
+        """Generate compliance/violation test pairs for every guardrail rule
+        (Sprint E11).
+
+        For each numbered guardrail rule this produces a compliance test
+        (legitimate request the agent must satisfy while honouring the rule)
+        and one or more violation-provocation tests (adversarial requests it
+        must resist), scaled by rule complexity, with condition-met /
+        condition-not-met tests for conditional rules and code-switched /
+        language-mismatch provocations when Phase A flags them. Compliance
+        tests carry the rule's GUARDRAIL_COMPLIANCE oracle and violation
+        tests its GUARDRAIL_VIOLATION oracle (Sprint E4); language- and
+        formality-invariance are attached as metamorphic relations.
+
+        When ``naturalise`` is True and an LLM is available the violation
+        provocations are rewritten as realistic customer messages; any LLM
+        failure leaves the structural text intact. When ``count_limit`` is
+        set the number of guardrail scenarios is capped (rule pairs are kept
+        whole in order, so early rules stay fully covered).
+
+        Returns ``[]`` when the agent map has no guardrail rules — maps
+        without a guardrails section degrade gracefully.
+        """
+        import logging
+
+        from src.scenarios.guardrail_pairs import (
+            generate_guardrail_test_pairs,
+            generate_language_invariance_pairs,
+            naturalise_provocations,
+        )
+
+        pairs = generate_guardrail_test_pairs(self.agent_map, language=self.language)
+        if not pairs:
+            return []
+
+        if count_limit is not None and count_limit >= 0:
+            pairs = pairs[:count_limit]
+
+        if naturalise:
+            pairs = naturalise_provocations(
+                pairs, self.agent_map, self._llm_config,
+                usage_tracker=self._usage_tracker, language=self.language,
+            )
+
+        # Attach language-/formality-invariance metamorphic relations to their
+        # base (compliance) scenarios.
+        relations = generate_language_invariance_pairs(
+            pairs, self.agent_map, language=self.language,
+        )
+        by_base: Dict[str, List] = {}
+        for rel in relations:
+            by_base.setdefault(rel.base_scenario_id, []).append(rel)
+        for scenario in pairs:
+            attached = by_base.get(scenario.scenario_id)
+            if attached:
+                scenario.metamorphic_relations = attached
+
+        self.scenarios.extend(pairs)
+        logging.getLogger(__name__).info(
+            "Generated %d guardrail test pairs (%d metamorphic relations) "
+            "from %d guardrail rules",
+            len(pairs), len(relations),
+            len((self.agent_map.get("guardrails") or {}).get("rules") or []),
+        )
+        return pairs
+
+    # ------------------------------------------------------------------
+    # Risk-guided adversarial scenarios (Sprint E5)
+    # ------------------------------------------------------------------
+
+    def generate_adversarial_scenarios(
+        self,
+        agent_map: Optional[Dict] = None,
+    ) -> List[Scenario]:
+        """Generate risk-guided adversarial scenarios (Sprint E5).
+
+        Combines taint-flow leakage probes and taxonomy-mapped attack
+        scenarios (OWASP LLM01/LLM02/LLM06, OWASP Agentic ASI03/ASI05)
+        derived from ``risk_flags``. Each scenario carries a deterministic
+        non-LLM oracle (TAINT_FLOW for leakage, GUARDRAIL_VIOLATION for
+        injection / excessive-agency) built with the Sprint E4 Oracle model,
+        so the attacks keep their oracles even when appended after
+        :meth:`attach_oracles`. Fully offline — no LLM required.
+
+        Returns [] when the agent map carries no security-relevant risks.
+        """
+        import logging
+
+        from src.oracles.generator import generate_oracles_from_agent_map
+        from src.scenarios.adversarial import (
+            generate_taint_flow_attacks,
+            generate_taxonomy_attacks,
+        )
+
+        agent_map = agent_map if agent_map is not None else self.agent_map
+        all_oracles = generate_oracles_from_agent_map(agent_map)
+
+        generated: List[Scenario] = []
+        generated.extend(generate_taint_flow_attacks(
+            agent_map, language=self.language, all_oracles=all_oracles,
+        ))
+        generated.extend(generate_taxonomy_attacks(
+            agent_map, language=self.language, all_oracles=all_oracles,
+        ))
+
+        self.scenarios.extend(generated)
+        logging.getLogger(__name__).info(
+            "Generated %d adversarial scenarios (taint-flow + taxonomy attacks)",
+            len(generated),
+        )
+        return generated
+
+    # ------------------------------------------------------------------
     # Export
     # ------------------------------------------------------------------
 
