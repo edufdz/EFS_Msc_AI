@@ -48,7 +48,7 @@ def _remove_guardrail_mutants(agent_map: Dict) -> List[Dict]:
             mutated["guardrails"]["total_rules"] = len(mutated["guardrails"]["rules"])
         mutants.append({
             "operator": MutationOperator.REMOVE_GUARDRAIL,
-            "description": f"Removed guardrail rule {rule_id}: {rule.get('text', '')[:80]}",
+            "description": f"Removed guardrail rule {rule_id}: {(rule.get('text') or '')[:80]}",
             "modified_agent_map": mutated,
         })
     return mutants
@@ -76,13 +76,13 @@ def _swap_tool_mutants(agent_map: Dict) -> List[Dict]:
 
 def _remove_escalation_mutants(agent_map: Dict) -> List[Dict]:
     escalation_tools = [
-        t.get("name", "") for t in _tools_of(agent_map)
-        if any(kw in (t.get("name", "") + " " + t.get("description", "")).lower()
+        t.get("name") or "" for t in _tools_of(agent_map)
+        if any(kw in ((t.get("name") or "") + " " + (t.get("description") or "")).lower()
                for kw in _ESCALATION_KEYWORDS)
     ]
     escalation_rules = [
         r.get("rule_id") for r in _rules_of(agent_map)
-        if any(kw in r.get("text", "").lower() for kw in _ESCALATION_KEYWORDS)
+        if any(kw in (r.get("text") or "").lower() for kw in _ESCALATION_KEYWORDS)
     ]
     if not escalation_tools and not escalation_rules:
         return []
@@ -129,7 +129,7 @@ def _inject_pii_mutants(agent_map: Dict) -> List[Dict]:
 def _wrong_language_mutants(agent_map: Dict) -> List[Dict]:
     mutated = copy.deepcopy(agent_map)
     metadata = mutated.setdefault("metadata", {})
-    current = metadata.get("conversation_language", "English")
+    current = metadata.get("conversation_language") or "English"
     wrong = "Spanish" if current.lower() in ("english", "en") else "English"
     metadata["conversation_language"] = wrong
     return [{
@@ -159,7 +159,7 @@ def _remove_confirmation_mutants(agent_map: Dict) -> List[Dict]:
 
     # Confirmation gates expressed as guardrail rules
     for rule in _rules_of(agent_map):
-        text = rule.get("text", "").lower()
+        text = (rule.get("text") or "").lower()
         category = str(rule.get("category", "")).lower()
         if category != "confirmation" and not any(kw in text for kw in _CONFIRMATION_KEYWORDS):
             continue
@@ -172,7 +172,7 @@ def _remove_confirmation_mutants(agent_map: Dict) -> List[Dict]:
             mutated["guardrails"]["total_rules"] = len(mutated["guardrails"]["rules"])
         mutants.append({
             "operator": MutationOperator.REMOVE_CONFIRMATION,
-            "description": f"Removed confirmation guardrail {rule_id}: {rule.get('text', '')[:80]}",
+            "description": f"Removed confirmation guardrail {rule_id}: {(rule.get('text') or '')[:80]}",
             "modified_agent_map": mutated,
         })
 
@@ -182,7 +182,7 @@ def _remove_confirmation_mutants(agent_map: Dict) -> List[Dict]:
 def _truncate_context_mutants(agent_map: Dict) -> List[Dict]:
     mutated = copy.deepcopy(agent_map)
     criteria = mutated.setdefault("success_criteria", {})
-    original_turns = criteria.get("max_turns", 20)
+    original_turns = criteria.get("max_turns") or 20
     criteria["max_turns"] = min(3, original_turns)
     criteria["context_truncated"] = True
     return [{
