@@ -111,6 +111,19 @@ def infer_detectable_failures(test_case: TestCase) -> Set[FailureCategory]:
         categories.add(FailureCategory.STYLE_VIOLATION)
         categories.add(FailureCategory.ESCALATION_FAILURE)
 
+    # Production-seed scenarios reproduce a specific observed failure; the
+    # category they reproduce is recorded in the scenario tags (Sprint E1 /
+    # feedback loop).  A reproduction test detects the failure mode it
+    # reproduces — including the production-spanning categories that no
+    # structural rule above can name (comprehension, resolution, data gaps,
+    # delivery).
+    if scenario.source == "production_seed":
+        for tag in scenario.tags or []:
+            try:
+                categories.add(FailureCategory(tag))
+            except ValueError:
+                continue
+
     return categories
 
 

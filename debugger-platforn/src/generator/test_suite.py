@@ -202,6 +202,15 @@ class TestSuiteGenerator:
     # Phase 1: Tool/interaction coverage (Sprint E3)
     # ------------------------------------------------------------------
 
+    def _fallback_scenario(self) -> Scenario:
+        """Random scenario for coverage phases that found no tool-specific
+        match.  Prefers non-seed scenarios so structural-coverage tests stay
+        structural even when a large production seed corpus is loaded (seeds
+        have their own reserved allocation in _generate_seed_coverage_tests).
+        """
+        pool = [s for s in self.scenarios if s.source != "production_seed"] or self.scenarios
+        return random.choice(pool)
+
     def _generate_tool_coverage_tests(self) -> List[TestCase]:
         """Covering-array-driven interaction coverage with a per-tool floor.
 
@@ -222,7 +231,7 @@ class TestSuiteGenerator:
         for row in getattr(tool_coverage, "covering_array", None) or []:
             tool_name = self._tool_of_row(row)
             pool = self._scenarios_by_tool.get(tool_name, []) if tool_name else []
-            scenario = random.choice(pool) if pool else random.choice(self.scenarios)
+            scenario = random.choice(pool) if pool else self._fallback_scenario()
             attack_personas = self._personas_by_target_tool.get(tool_name, []) if tool_name else []
             persona = (
                 random.choice(attack_personas) if attack_personas
@@ -245,7 +254,7 @@ class TestSuiteGenerator:
             # Prefer tool-attack personas when available
             attack_personas = self._personas_by_target_tool.get(tool_name, [])
             for _ in range(needed):
-                scenario = random.choice(pool) if pool else random.choice(self.scenarios)
+                scenario = random.choice(pool) if pool else self._fallback_scenario()
                 persona = random.choice(attack_personas) if attack_personas else select_persona_weighted(self.personas, scenario)
                 tests.append(self._make_test_case(
                     scenario=scenario,
@@ -261,7 +270,7 @@ class TestSuiteGenerator:
                 s for s in self.scenarios
                 if all(t in s.required_tools for t in combo)
             ]
-            scenario = random.choice(matching) if matching else random.choice(self.scenarios)
+            scenario = random.choice(matching) if matching else self._fallback_scenario()
             persona = select_persona_weighted(self.personas, scenario)
             tests.append(self._make_test_case(
                 scenario=scenario,
@@ -371,7 +380,7 @@ class TestSuiteGenerator:
             ]
             if partial:
                 return random.choice(partial)
-        return random.choice(self.scenarios)
+        return self._fallback_scenario()
 
     # ------------------------------------------------------------------
     # Phase 2: Edge-case coverage
@@ -486,9 +495,14 @@ class TestSuiteGenerator:
     # ------------------------------------------------------------------
 
     def _generate_scenario_fill(self, count: int) -> List[TestCase]:
+        # Production-seed scenarios already claimed their reserved allocation
+        # in _generate_seed_coverage_tests; letting them also dominate the
+        # random fill would blow past seed_budget_fraction whenever the seed
+        # corpus is large.  Fill draws from non-seed scenarios when any exist.
+        fill_pool = [s for s in self.scenarios if s.source != "production_seed"] or self.scenarios
         tests: List[TestCase] = []
         for _ in range(count):
-            scenario = random.choice(self.scenarios)
+            scenario = random.choice(fill_pool)
             persona = select_persona_weighted(self.personas, scenario)
             tests.append(self._make_test_case(
                 scenario=scenario,

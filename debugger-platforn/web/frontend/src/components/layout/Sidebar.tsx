@@ -91,6 +91,32 @@ export default function Sidebar() {
         })}
       </nav>
 
+      {/* Research */}
+      <div className="px-3 pb-2">
+        <div className="border-t border-border pt-3">
+          <button
+            onClick={() => navigate('/research')}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-all duration-200 ${
+              location.pathname === '/research'
+                ? 'bg-graphite/50 text-pearl'
+                : 'text-text-dim hover:bg-bg-card hover:text-text-primary'
+            }`}
+          >
+            <span className="w-5 h-5 rounded-full bg-border flex items-center justify-center text-text-muted shrink-0">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M10 2v6L4.5 17.5A2 2 0 0 0 6.24 20.5h11.52a2 2 0 0 0 1.74-3L14 8V2" />
+                <line x1="8.5" y1="2" x2="15.5" y2="2" />
+                <line x1="7" y1="14" x2="17" y2="14" />
+              </svg>
+            </span>
+            <div>
+              <div className="text-sm font-medium">Research</div>
+              <div className="text-[11px] text-text-muted">RQ1–RQ4 Experiments</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
       {/* Bottom actions */}
       <div className="px-3 pb-4 space-y-2">
         {sessionId && hasAnyCompleted && (

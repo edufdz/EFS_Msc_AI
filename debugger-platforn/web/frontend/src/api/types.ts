@@ -290,6 +290,169 @@ export interface FileBrowseResponse {
   entries: FileEntry[]
 }
 
+// Research (offline research workflow: anonymize -> ground truth -> RQ1-RQ4 experiments)
+export interface ResearchProjection {
+  taxonomy_version: string
+  categories: Array<{ category: string; severity: string }>
+  production_to_shared: Array<{ production_category: string; shared_category: string }>
+  root_cause_to_shared: Array<{ root_cause: string; shared_category: string }>
+}
+
+export interface GroundTruthWorstConversation {
+  conversation_id: string
+  failure_score: number
+  production_categories: string[]
+  severity: string
+  message_count: number
+}
+
+export interface GroundTruthPreview {
+  n_conversations_analysed: number
+  n_failures: number
+  min_score: number
+  by_category: Record<string, number>
+  by_shared_category: Record<string, number>
+  worst: GroundTruthWorstConversation[]
+}
+
+export interface ResearchAnonymizeRequest {
+  input_path: string
+  output_path: string
+}
+
+export interface ResearchExperimentRequest {
+  export_path: string
+  agent_map_path: string
+  budget?: number
+  holdout_fraction?: number
+  min_score?: number
+  mode?: 'static' | 'execute'
+  connector?: string
+  seed_budget_fraction?: number
+}
+
+export interface ResearchRunProgressLine {
+  at: string
+  message: string
+}
+
+export interface ResearchRun {
+  run_id: string
+  kind: 'experiment' | 'anonymize'
+  status: 'running' | 'completed' | 'error'
+  started_at: string | null
+  finished_at: string | null
+  output_dir: string | null
+  error: string | null
+  progress: ResearchRunProgressLine[]
+  results?: ResearchResults | null
+}
+
+export interface ResearchOverallMetrics {
+  recall: number
+  precision: number
+  f1: number
+  n_synthetic_failures?: number
+  n_production_signals?: number
+}
+
+export interface ResearchRecallCI {
+  recall: number
+  ci_low: number
+  ci_high: number
+}
+
+export interface ResearchCategoryMetrics {
+  severity: string
+  n_production_signals: number
+  n_synthetic_failures: number
+  precision: number
+  recall: number
+  f1: number
+}
+
+export interface ResearchGapCharacterisation {
+  n_conversations: number
+  avg_message_count: number
+  max_message_count: number
+  long_horizon_share: number
+  escalated_share: number
+  avg_failure_score: number
+}
+
+export interface ResearchCoverageGap {
+  category: string
+  severity: string
+  n_production_signals: number
+  recall: number
+  characterisation?: ResearchGapCharacterisation
+}
+
+export interface ResearchArmComparison {
+  recall: number
+  precision: number
+  f1?: number
+  recall_ci?: ResearchRecallCI
+}
+
+export interface ResearchBudgetPoint {
+  budget: number
+  recall: number
+  n_matched: number
+}
+
+export interface ResearchResults {
+  generated_at?: string
+  taxonomy_version: string
+  anonymisation_level: string
+  config: {
+    mode: string
+    budget: number
+    holdout_fraction?: number
+    min_score?: number
+    connector?: string
+    seed_budget_fraction?: number
+    export_path?: string
+    agent_map_path?: string
+    [key: string]: unknown
+  }
+  ground_truth: {
+    n_conversations_analysed?: number
+    n_failures: number
+    n_train: number
+    n_holdout: number
+    by_production_category: Record<string, number>
+    by_shared_category?: Record<string, number>
+  }
+  rq1_predictive_validity: {
+    arm: string
+    n_ground_truth_failures?: number
+    overall: ResearchOverallMetrics
+    recall_ci: ResearchRecallCI
+    per_category: Record<string, ResearchCategoryMetrics>
+  }
+  rq2_coverage_gaps: {
+    arm?: string
+    recall_threshold?: number
+    gaps: ResearchCoverageGap[]
+  }
+  rq3_production_feedback: {
+    available: boolean
+    n_holdout_signals?: number
+    comparison?: {
+      baseline_arm?: string
+      arms: Record<string, ResearchArmComparison>
+      tests: Record<string, { delta: number; p_value: number; n_signals?: number; n_discordant: number }>
+    }
+  }
+  rq4_recall_vs_budget: {
+    budget_points?: number[]
+    ranking: string[]
+    curves: Record<string, ResearchBudgetPoint[]>
+    note?: string
+  }
+}
+
 // WebSocket events
 export interface WSEvent {
   type: string

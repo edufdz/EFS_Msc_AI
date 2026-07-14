@@ -122,6 +122,12 @@ def _run_phase_b(
     else:
         console.print(f"  LLM provider: [cyan]anthropic (default)[/cyan]  has_api_key={has_api_key}")
 
+    # Offline runs cannot generate AI scenarios; fall back to the built-in
+    # template personas/scenarios so --skip-ai always yields a usable suite.
+    if (skip_ai or not has_api_key) and not include_templates and not use_tlahuac:
+        include_templates = True
+        console.print("  [yellow]Offline mode: enabling built-in template personas and scenarios[/yellow]")
+
     # Resolve language: explicit flag > agent_map metadata > default English
     if language:
         detected_language = language

@@ -197,7 +197,7 @@ def main(
         a_start = time.time()
 
         with console.status("[bold green]Scanning codebase..."):
-            ingestion = ingest_directory(repo_path, language_filter="python")
+            ingestion = ingest_directory(repo_path, language_filter=None)
 
         console.print(f"  Files found: [bold]{len(ingestion.files)}[/bold]")
 

@@ -53,3 +53,6 @@ traces/
 # OS
 .DS_Store
 Thumbs.db
+experiments_output/
+sandbox_traces/
+fidelity_report.json

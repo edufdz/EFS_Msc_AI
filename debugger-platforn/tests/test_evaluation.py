@@ -235,7 +235,7 @@ class TestTaxonomy:
 
     def test_categories_are_strings(self):
         assert FailureCategory.WRONG_TOOL == "wrong_tool"
-        assert len(FailureCategory) == 12
+        assert len(FailureCategory) == 16
 
 
 # ---------------------------------------------------------------

@@ -109,3 +109,27 @@ export const getTrace = (sessionId: string, traceFilename: string) =>
 // Artifacts
 export const getArtifact = (sessionId: string, type: string) =>
   request<unknown>(`/api/artifacts/${sessionId}/${type}`)
+
+// Research
+export const getResearchProjection = () =>
+  request<import('./types').ResearchProjection>('/api/research/projection')
+
+export const previewGroundTruth = (exportPath: string, minScore: number) =>
+  request<import('./types').GroundTruthPreview>(
+    `/api/research/ground-truth/preview?export_path=${encodeURIComponent(exportPath)}&min_score=${minScore}`,
+  )
+
+export const runResearchAnonymize = (body: import('./types').ResearchAnonymizeRequest) =>
+  request<{ status: string; run_id: string }>('/api/research/anonymize/run', { method: 'POST', body: JSON.stringify(body) })
+
+export const runResearchExperiment = (body: import('./types').ResearchExperimentRequest) =>
+  request<{ status: string; run_id: string }>('/api/research/experiments/run', { method: 'POST', body: JSON.stringify(body) })
+
+export const listResearchRuns = () =>
+  request<{ runs: import('./types').ResearchRun[] }>('/api/research/runs')
+
+export const getResearchRun = (runId: string) =>
+  request<import('./types').ResearchRun>(`/api/research/runs/${runId}`)
+
+export const researchChartUrl = (runId: string, name: string) =>
+  `/api/research/runs/${runId}/chart/${name}`

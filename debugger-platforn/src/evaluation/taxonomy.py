@@ -1,16 +1,30 @@
 """
-Shared Failure Taxonomy (Sprint E12.1).
+Shared Failure Taxonomy (Sprint E12.1, frozen for the predictive-validity study).
 
 Defines the failure categories that every measurement in the harness is
 expressed against, maps each category to OWASP LLM 2025 / OWASP Agentic 2026
 taxonomy IDs (the same IDs Phase A attaches to risk_flags), and assigns
 severity weights used by weighted APFD and prioritisation.
+
+This is the SHARED taxonomy spanning both failure sources: synthetic failures
+(Phase C execution + Phase D diagnosis) and real production failures
+(human-process signals: escalations, takeovers, complaints, QA flags).  Both
+sources are projected onto it by :mod:`src.evaluation.projection`.  The first
+twelve categories are synthetic-native; the last four exist because production
+telemetry surfaces failure modes that agent-structure-derived testing does not
+name (comprehension, resolution, backend data gaps, delivery infrastructure).
+
+FROZEN: the category set below is versioned and must not change during a
+measurement campaign — precision/recall comparisons are only meaningful
+against a fixed vocabulary.  Bump TAXONOMY_VERSION if it ever changes.
 """
 
 from __future__ import annotations
 
 from enum import Enum
 from typing import Dict, List
+
+TAXONOMY_VERSION = "1.0-frozen-2026-07-14"
 
 
 class FailureCategory(str, Enum):
@@ -26,6 +40,11 @@ class FailureCategory(str, Enum):
     INFINITE_LOOP = "infinite_loop"               # Agent stuck in a loop
     PREMATURE_EXIT = "premature_exit"             # Agent ended conversation prematurely
     STYLE_VIOLATION = "style_violation"           # Agent violated style guide (tone, length)
+    # Production-spanning categories (observed in human-process signals)
+    COMPREHENSION_FAILURE = "comprehension_failure"  # Agent did not understand the user's need
+    RESOLUTION_FAILURE = "resolution_failure"        # Agent understood but could not resolve; user demanded a human
+    DATA_GAP = "data_gap"                            # Backend/tool data missing or incomplete
+    DELIVERY_FAILURE = "delivery_failure"            # Message/infrastructure delivery failure
 
 
 # OWASP LLM 2025 (LLM01-LLM10) and OWASP Agentic 2026 (ASI01-ASI10) IDs,
@@ -43,6 +62,10 @@ CATEGORY_TAXONOMY_IDS: Dict[FailureCategory, List[str]] = {
     FailureCategory.INFINITE_LOOP: ["LLM10", "ASI08"],           # Unbounded Consumption / Cascading Failures
     FailureCategory.PREMATURE_EXIT: ["ASI09"],                   # Human-Agent Trust Exploitation
     FailureCategory.STYLE_VIOLATION: ["LLM05"],                  # Improper Output Handling
+    FailureCategory.COMPREHENSION_FAILURE: ["LLM09"],            # Misinformation (wrong-topic responses)
+    FailureCategory.RESOLUTION_FAILURE: ["ASI09"],               # Human-Agent Trust Exploitation
+    FailureCategory.DATA_GAP: ["ASI08"],                         # Cascading Failures (upstream data)
+    FailureCategory.DELIVERY_FAILURE: ["ASI08"],                 # Cascading Failures (infrastructure)
 }
 
 
@@ -60,6 +83,10 @@ CATEGORY_SEVERITY: Dict[FailureCategory, str] = {
     FailureCategory.INFINITE_LOOP: "medium",
     FailureCategory.PREMATURE_EXIT: "medium",
     FailureCategory.STYLE_VIOLATION: "low",
+    FailureCategory.COMPREHENSION_FAILURE: "high",
+    FailureCategory.RESOLUTION_FAILURE: "high",
+    FailureCategory.DATA_GAP: "medium",
+    FailureCategory.DELIVERY_FAILURE: "medium",
 }
 
 

@@ -6,6 +6,7 @@ import PhaseB from './pages/PhaseB'
 import PhaseC from './pages/PhaseC'
 import PhaseD from './pages/PhaseD'
 import Certification from './pages/Certification'
+import Research from './pages/Research'
 import SessionOverview from './pages/SessionOverview'
 
 export default function App() {
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/phase-c" element={<PhaseC />} />
         <Route path="/phase-d" element={<PhaseD />} />
         <Route path="/certification" element={<Certification />} />
+        <Route path="/research" element={<Research />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </AppShell>

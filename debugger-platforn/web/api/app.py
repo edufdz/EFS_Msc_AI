@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
 
 from web.api.config import CORS_ORIGINS
-from web.api.routes import sessions, filesystem, phase_a, phase_b, phase_c, phase_d, certification, artifacts
+from web.api.routes import sessions, filesystem, phase_a, phase_b, phase_c, phase_d, certification, artifacts, research
 from web.api.ws import ws_endpoint
 
 app = FastAPI(
@@ -47,6 +47,7 @@ app.include_router(phase_c.router)
 app.include_router(phase_d.router)
 app.include_router(certification.router)
 app.include_router(artifacts.router)
+app.include_router(research.router)
 
 
 # WebSocket endpoint
@@ -64,4 +65,18 @@ async def health():
 # In production, serve the React build from web/frontend/dist
 frontend_dist = Path(__file__).resolve().parent.parent / "frontend" / "dist"
 if frontend_dist.exists():
-    app.mount("/", StaticFiles(directory=str(frontend_dist), html=True), name="frontend")
+
+    class SPAStaticFiles(StaticFiles):
+        """Serve index.html for client-side routes (BrowserRouter deep links)."""
+
+        async def get_response(self, path: str, scope):
+            from starlette.exceptions import HTTPException as StarletteHTTPException
+
+            try:
+                return await super().get_response(path, scope)
+            except StarletteHTTPException as exc:
+                if exc.status_code == 404 and "." not in path.rsplit("/", 1)[-1]:
+                    return await super().get_response("index.html", scope)
+                raise
+
+    app.mount("/", SPAStaticFiles(directory=str(frontend_dist), html=True), name="frontend")

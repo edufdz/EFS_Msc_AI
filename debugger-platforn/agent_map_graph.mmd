@@ -1,21 +1,127 @@
 graph TD
   agent[["Agent"]]:::agentNode
-  orchestrator[["Orchestrator<br/>function-calling"]]:::orchNode
-  tool_check_availability("check_availability"):::toolLow
-  tool_create_booking("create_booking"):::toolLow
-  tool_update_collected_data("update_collected_data"):::toolLow
-  tool_escalate_to_human("escalate_to_human"):::toolLow
-  tool_get_service_info("get_service_info"):::toolLow
-  tool_lookup_vehicle("lookup_vehicle"):::toolLow
+  orchestrator[["Orchestrator<br/>unknown"]]:::orchNode
+  tool_lookuporder("lookupOrder"):::toolLow
+  tool_routebyintent("routeByIntent"):::toolLow
+  tool_routeaftersupport("routeAfterSupport"):::toolLow
+  tool_buildgraph("buildGraph"):::toolLow
+  tool_getcheckpointer("getCheckpointer"):::toolLow
+  tool_getgraph("getGraph"):::toolLow
+  tool_planpricingresponse("planPricingResponse"):::toolLow
+  tool_getcustomerinfo("getCustomerInfo"):::toolLow
+  tool_getactiveorders("getActiveOrders"):::toolLow
+  tool_getsessioninfo("getSessionInfo"):::toolLow
+  tool_shouldescalate("shouldEscalate"):::toolLow
+  tool_formatconversationhistory("formatConversationHistory"):::toolLow
+  tool_createinitialstate("createInitialState"):::toolLow
+  tool_makeso("makeSO"):::toolLow
+  tool_statewithorders("stateWithOrders"):::toolLow
+  tool_contactinfonode("contactInfoNode"):::toolLow
+  tool_parsecorrections("parseCorrections"):::toolLow
+  tool_applycorrections("applyCorrections"):::toolLow
+  tool_eventdetectornode("eventDetectorNode"):::toolLow
+  tool_memoryextractionnode("memoryExtractionNode"):::toolLow
+  tool_joinspanish("joinSpanish"):::toolLow
+  tool_multiorderdisambiguation("multiOrderDisambiguation"):::toolLow
+  tool_intakefeecopy("intakeFeeCopy"):::toolLow
+  tool_quotedcopy("quotedCopy"):::toolLow
+  tool_pricinganswernode("pricingAnswerNode"):::toolLow
+  tool_runsideeffects("runSideEffects"):::toolLow
+  tool_isfirstoutbound("isFirstOutbound"):::toolLow
+  tool_stylectx("styleCtx"):::toolLow
+  tool_logthought("logThought"):::toolLow
+  tool_truncateresponse("truncateResponse"):::toolLow
+  tool_buildescalationresponse("buildEscalationResponse"):::toolLow
+  tool_resolvetypedreason("resolveTypedReason"):::toolLow
+  tool_buildhandoffcontext("buildHandoffContext"):::toolLow
+  tool_buildwaittimenotice("buildWaitTimeNotice"):::toolLow
+  tool_responsenode("responseNode"):::toolLow
+  tool_escalationnode("escalationNode"):::toolLow
+  tool_humantakenovernode("humanTakenOverNode"):::toolLow
+  tool_normalizeintentforversion("normalizeIntentForVersion"):::toolLow
+  tool_classifybykeywords("classifyByKeywords"):::toolLow
+  tool_makeclassificationschema("makeClassificationSchema"):::toolLow
+  tool_classifybyllm("classifyByLLM"):::toolLow
+  tool_routernode("routerNode"):::toolLow
+  tool_statusnode("statusNode"):::toolLow
+  tool_supportnode("supportNode"):::toolLow
+  tool_warrantyanswernode("warrantyAnswerNode"):::toolLow
+  tool_basestate("baseState"):::toolLow
+  tool_so("so"):::toolLow
+  tool_assertnohedgewords("assertNoHedgeWords"):::toolLow
+  tool_escalatedetectedevent("escalateDetectedEvent"):::toolLow
+  tool_eventdetector("EventDetector"):::toolLow
+  tool_verifydetectedevents("verifyDetectedEvents"):::toolLow
+  tool_address("address"):::toolLow
+  tool_order_received("order_received"):::toolLow
+  tool_payment_receipt("payment_receipt"):::toolLow
+  node_delivery_logistics["?"]:::defaultNode
 
   agent --> orchestrator
-  orchestrator -->|invokes| tool_check_availability
-  orchestrator -->|invokes| tool_create_booking
-  orchestrator -->|invokes| tool_escalate_to_human
-  orchestrator -->|invokes| tool_get_service_info
-  orchestrator -->|invokes| tool_lookup_vehicle
-  orchestrator -->|invokes| tool_update_collected_data
-  tool_update_collected_data -.->|requires| tool_create_booking
+  orchestrator -->|flows_to| tool_eventdetectornode
+  orchestrator -->|invokes| tool_lookuporder
+  orchestrator -->|invokes| tool_routebyintent
+  orchestrator -->|invokes| tool_routeaftersupport
+  orchestrator -->|invokes| tool_buildgraph
+  orchestrator -->|invokes| tool_getcheckpointer
+  orchestrator -->|invokes| tool_getgraph
+  orchestrator -->|invokes| tool_planpricingresponse
+  orchestrator -->|invokes| tool_getcustomerinfo
+  orchestrator -->|invokes| tool_getactiveorders
+  orchestrator -->|invokes| tool_getsessioninfo
+  orchestrator -->|invokes| tool_shouldescalate
+  orchestrator -->|invokes| tool_formatconversationhistory
+  orchestrator -->|invokes| tool_createinitialstate
+  orchestrator -->|invokes| tool_makeso
+  orchestrator -->|invokes| tool_statewithorders
+  orchestrator -->|invokes| tool_parsecorrections
+  orchestrator -->|invokes| tool_applycorrections
+  orchestrator -->|invokes| tool_joinspanish
+  orchestrator -->|invokes| tool_multiorderdisambiguation
+  orchestrator -->|invokes| tool_intakefeecopy
+  orchestrator -->|invokes| tool_quotedcopy
+  orchestrator -->|invokes| tool_runsideeffects
+  orchestrator -->|invokes| tool_isfirstoutbound
+  orchestrator -->|invokes| tool_stylectx
+  orchestrator -->|invokes| tool_logthought
+  orchestrator -->|invokes| tool_truncateresponse
+  orchestrator -->|invokes| tool_buildescalationresponse
+  orchestrator -->|invokes| tool_resolvetypedreason
+  orchestrator -->|invokes| tool_buildhandoffcontext
+  orchestrator -->|invokes| tool_buildwaittimenotice
+  orchestrator -->|invokes| tool_normalizeintentforversion
+  orchestrator -->|invokes| tool_classifybykeywords
+  orchestrator -->|invokes| tool_makeclassificationschema
+  orchestrator -->|invokes| tool_classifybyllm
+  orchestrator -->|invokes| tool_basestate
+  orchestrator -->|invokes| tool_so
+  orchestrator -->|invokes| tool_assertnohedgewords
+  orchestrator -->|invokes| tool_escalatedetectedevent
+  orchestrator -->|invokes| tool_eventdetector
+  orchestrator -->|invokes| tool_verifydetectedevents
+  orchestrator -->|invokes| tool_address
+  orchestrator -->|invokes| tool_order_received
+  orchestrator -->|invokes| tool_payment_receipt
+  tool_contactinfonode -->|flows_to| tool_responsenode
+  tool_eventdetectornode -->|flows_to| tool_routernode
+  tool_memoryextractionnode -->|flows_to| tool_responsenode
+  tool_pricinganswernode -->|flows_to| tool_responsenode
+  tool_responsenode -->|flows_to| agent
+  tool_escalationnode -->|flows_to| tool_responsenode
+  tool_humantakenovernode -->|flows_to| tool_responsenode
+  tool_routernode -->|routes_to| tool_statusnode
+  tool_routernode -->|routes_to| tool_supportnode
+  tool_routernode -->|routes_to| tool_contactinfonode
+  tool_routernode -->|routes_to| node_delivery_logistics
+  tool_routernode -->|routes_to| tool_warrantyanswernode
+  tool_routernode -->|routes_to| tool_pricinganswernode
+  tool_routernode -->|routes_to| tool_escalationnode
+  tool_routernode -->|routes_to| tool_humantakenovernode
+  tool_statusnode -->|flows_to| tool_responsenode
+  tool_supportnode -->|routes_to| tool_memoryextractionnode
+  tool_supportnode -->|routes_to| tool_responsenode
+  tool_warrantyanswernode -->|flows_to| tool_responsenode
+  node_delivery_logistics -->|flows_to| tool_responsenode
 
   classDef agentNode fill:#6366f1,color:#fff,stroke:#818cf8
   classDef orchNode fill:#3b82f6,color:#fff,stroke:#60a5fa
