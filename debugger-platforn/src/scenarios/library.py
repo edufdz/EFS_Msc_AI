@@ -37,16 +37,26 @@ def _parse_json(text: str):
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # Use json.JSONDecoder to parse the first valid JSON value and ignore trailing text
+    # Use json.JSONDecoder to parse valid JSON values embedded in text.
+    # LLMs sometimes emit several top-level objects back to back (one per
+    # scenario) instead of one array; collect them all.
     decoder = json.JSONDecoder()
-    # Find the first [ or { and try to decode from there
-    for i, ch in enumerate(text):
-        if ch in ("{", "["):
+    values = []
+    i = 0
+    while i < len(text):
+        if text[i] in ("{", "["):
             try:
-                obj, _ = decoder.raw_decode(text, i)
-                return obj
-            except json.JSONDecodeError:
+                obj, end = decoder.raw_decode(text, i)
+                values.append(obj)
+                i = end
                 continue
+            except json.JSONDecodeError:
+                pass
+        i += 1
+    if len(values) == 1:
+        return values[0]
+    if values:
+        return values
     raise json.JSONDecodeError("No JSON found in LLM response", text, 0)
 
 
@@ -296,11 +306,13 @@ Return ONLY valid JSON (no markdown fences):
                     raise
         generated = []
 
-        # Handle both {"scenarios": [...]} and direct [...] formats
+        # Handle {"scenarios": [...]}, direct [...], and a bare scenario object
         if isinstance(data, list):
             scenario_list = data
         elif isinstance(data, dict):
             scenario_list = data.get("scenarios", data.get("results", []))
+            if not scenario_list and "title" in data and "user_goal" in data:
+                scenario_list = [data]
         else:
             scenario_list = []
 

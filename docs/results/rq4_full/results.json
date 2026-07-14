@@ -1,0 +1,743 @@
+{
+  "generated_at": "2026-07-14T15:57:36.382043+00:00",
+  "taxonomy_version": "1.0-frozen-2026-07-14",
+  "config": {
+    "budget": 100,
+    "holdout_fraction": 0.3,
+    "min_score": 3.0,
+    "per_category_cap": 25,
+    "rng_seed": 42,
+    "mode": "static",
+    "connector": "mock",
+    "seed_budget_fraction": 0.35,
+    "mutations_per_seed": 2,
+    "arms": [
+      "blind",
+      "feedback",
+      "naive_llm",
+      "gan"
+    ],
+    "export_path": "../docs/tech_repair-conversations-anonymized.json",
+    "agent_map_path": "tech_repair_whatsapp_map.json"
+  },
+  "anonymisation_level": "full",
+  "skipped_arms": [],
+  "ground_truth": {
+    "n_conversations_analysed": 1299,
+    "n_failures": 376,
+    "n_train": 263,
+    "n_holdout": 113,
+    "by_production_category": {
+      "delivery_infra": 14,
+      "silent_abandonment": 9,
+      "comprehension": 153,
+      "loop_stall": 256,
+      "resolution": 221,
+      "hallucination": 13,
+      "data_gap": 48,
+      "missed_escalation": 11
+    },
+    "by_shared_category": {
+      "delivery_failure": 14,
+      "premature_exit": 9,
+      "comprehension_failure": 153,
+      "infinite_loop": 256,
+      "resolution_failure": 221,
+      "hallucination": 13,
+      "data_gap": 48,
+      "escalation_failure": 11
+    }
+  },
+  "projection": {
+    "taxonomy_version": "1.0-frozen-2026-07-14",
+    "production_to_shared": [
+      {
+        "production_category": "comprehension",
+        "shared_category": "comprehension_failure"
+      },
+      {
+        "production_category": "resolution",
+        "shared_category": "resolution_failure"
+      },
+      {
+        "production_category": "data_gap",
+        "shared_category": "data_gap"
+      },
+      {
+        "production_category": "loop_stall",
+        "shared_category": "infinite_loop"
+      },
+      {
+        "production_category": "delivery_infra",
+        "shared_category": "delivery_failure"
+      },
+      {
+        "production_category": "missed_escalation",
+        "shared_category": "escalation_failure"
+      },
+      {
+        "production_category": "silent_abandonment",
+        "shared_category": "premature_exit"
+      },
+      {
+        "production_category": "hallucination",
+        "shared_category": "hallucination"
+      }
+    ],
+    "root_cause_to_shared": [
+      {
+        "root_cause": "prompt_issue",
+        "shared_category": "comprehension_failure"
+      },
+      {
+        "root_cause": "tool_selection_error",
+        "shared_category": "wrong_tool"
+      },
+      {
+        "root_cause": "tool_schema_mismatch",
+        "shared_category": "tool_misuse"
+      },
+      {
+        "root_cause": "missing_guardrail",
+        "shared_category": "guardrail_violation"
+      },
+      {
+        "root_cause": "retry_logic_bug",
+        "shared_category": "infinite_loop"
+      },
+      {
+        "root_cause": "hallucination",
+        "shared_category": "hallucination"
+      },
+      {
+        "root_cause": "timeout_handling",
+        "shared_category": "delivery_failure"
+      },
+      {
+        "root_cause": "error_handling",
+        "shared_category": "data_gap"
+      },
+      {
+        "root_cause": "state_management",
+        "shared_category": "infinite_loop"
+      },
+      {
+        "root_cause": "validation_missing",
+        "shared_category": "tool_misuse"
+      },
+      {
+        "root_cause": "edge_case_unhandled",
+        "shared_category": "resolution_failure"
+      },
+      {
+        "root_cause": "service_unavailable",
+        "shared_category": "delivery_failure"
+      }
+    ]
+  },
+  "arms": {
+    "blind": {
+      "n_tests": 100,
+      "n_seed_tests": 0,
+      "n_synthetic_failures": 7
+    },
+    "naive_llm": {
+      "n_tests": 100,
+      "n_seed_tests": 0,
+      "n_synthetic_failures": 137
+    },
+    "gan": {
+      "n_tests": 100,
+      "n_seed_tests": 0,
+      "n_synthetic_failures": 174
+    },
+    "feedback": {
+      "n_tests": 100,
+      "n_seed_tests": 35,
+      "n_synthetic_failures": 11
+    }
+  },
+  "rq1_predictive_validity": {
+    "arm": "blind",
+    "n_ground_truth_failures": 376,
+    "overall": {
+      "precision": 0.5714,
+      "recall": 0.0676,
+      "f1": 0.1209,
+      "n_synthetic_failures": 7,
+      "n_production_signals": 725
+    },
+    "recall_ci": {
+      "recall": 0.0676,
+      "ci_low": 0.0483,
+      "ci_high": 0.0855
+    },
+    "per_category": {
+      "hallucination": {
+        "severity": "high",
+        "n_production_signals": 13,
+        "n_synthetic_failures": 1,
+        "precision": 1.0,
+        "recall": 0.2308,
+        "f1": 0.375
+      },
+      "guardrail_violation": {
+        "severity": "critical",
+        "n_production_signals": 0,
+        "n_synthetic_failures": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "escalation_failure": {
+        "severity": "high",
+        "n_production_signals": 11,
+        "n_synthetic_failures": 1,
+        "precision": 1.0,
+        "recall": 0.3636,
+        "f1": 0.5333
+      },
+      "tool_misuse": {
+        "severity": "high",
+        "n_production_signals": 0,
+        "n_synthetic_failures": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "infinite_loop": {
+        "severity": "medium",
+        "n_production_signals": 256,
+        "n_synthetic_failures": 1,
+        "precision": 1.0,
+        "recall": 0.1484,
+        "f1": 0.2585
+      },
+      "premature_exit": {
+        "severity": "medium",
+        "n_production_signals": 9,
+        "n_synthetic_failures": 1,
+        "precision": 1.0,
+        "recall": 0.4444,
+        "f1": 0.6154
+      },
+      "style_violation": {
+        "severity": "low",
+        "n_production_signals": 0,
+        "n_synthetic_failures": 1,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "comprehension_failure": {
+        "severity": "high",
+        "n_production_signals": 153,
+        "n_synthetic_failures": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "resolution_failure": {
+        "severity": "high",
+        "n_production_signals": 221,
+        "n_synthetic_failures": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "data_gap": {
+        "severity": "medium",
+        "n_production_signals": 48,
+        "n_synthetic_failures": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "delivery_failure": {
+        "severity": "medium",
+        "n_production_signals": 14,
+        "n_synthetic_failures": 0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    }
+  },
+  "rq2_coverage_gaps": {
+    "arm": "blind",
+    "recall_threshold": 0.25,
+    "gaps": [
+      {
+        "category": "infinite_loop",
+        "severity": "medium",
+        "n_production_signals": 256,
+        "recall": 0.1484,
+        "characterisation": {
+          "n_conversations": 256,
+          "avg_message_count": 83.4,
+          "max_message_count": 809,
+          "long_horizon_share": 0.938,
+          "escalated_share": 0.707,
+          "avg_failure_score": 9.84
+        }
+      },
+      {
+        "category": "resolution_failure",
+        "severity": "high",
+        "n_production_signals": 221,
+        "recall": 0.0,
+        "characterisation": {
+          "n_conversations": 221,
+          "avg_message_count": 74.1,
+          "max_message_count": 809,
+          "long_horizon_share": 0.647,
+          "escalated_share": 1.0,
+          "avg_failure_score": 11.52
+        }
+      },
+      {
+        "category": "comprehension_failure",
+        "severity": "high",
+        "n_production_signals": 153,
+        "recall": 0.0,
+        "characterisation": {
+          "n_conversations": 153,
+          "avg_message_count": 87.2,
+          "max_message_count": 809,
+          "long_horizon_share": 0.85,
+          "escalated_share": 0.588,
+          "avg_failure_score": 10.2
+        }
+      },
+      {
+        "category": "data_gap",
+        "severity": "medium",
+        "n_production_signals": 48,
+        "recall": 0.0,
+        "characterisation": {
+          "n_conversations": 48,
+          "avg_message_count": 33.0,
+          "max_message_count": 158,
+          "long_horizon_share": 0.333,
+          "escalated_share": 1.0,
+          "avg_failure_score": 4.29
+        }
+      },
+      {
+        "category": "delivery_failure",
+        "severity": "medium",
+        "n_production_signals": 14,
+        "recall": 0.0,
+        "characterisation": {
+          "n_conversations": 14,
+          "avg_message_count": 48.4,
+          "max_message_count": 158,
+          "long_horizon_share": 0.571,
+          "escalated_share": 0.643,
+          "avg_failure_score": 7.93
+        }
+      },
+      {
+        "category": "hallucination",
+        "severity": "high",
+        "n_production_signals": 13,
+        "recall": 0.2308,
+        "characterisation": {
+          "n_conversations": 13,
+          "avg_message_count": 89.0,
+          "max_message_count": 231,
+          "long_horizon_share": 0.923,
+          "escalated_share": 0.923,
+          "avg_failure_score": 9.82
+        }
+      }
+    ]
+  },
+  "rq3_production_feedback": {
+    "available": true,
+    "n_holdout_signals": 215,
+    "holdout_period": {
+      "start": "2026-05-28 18:17:33.682554+00:00",
+      "end": "2026-06-27 18:50:50.573040+00:00"
+    },
+    "comparison": {
+      "baseline_arm": "blind",
+      "arms": {
+        "blind": {
+          "recall": 0.1116,
+          "precision": 0.4286,
+          "f1": 0.1771,
+          "recall_ci": {
+            "recall": 0.1116,
+            "ci_low": 0.0698,
+            "ci_high": 0.1535
+          },
+          "per_category": {
+            "hallucination": {
+              "severity": "high",
+              "n_production_signals": 5,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.75
+            },
+            "guardrail_violation": {
+              "severity": "critical",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "escalation_failure": {
+              "severity": "high",
+              "n_production_signals": 4,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6667
+            },
+            "tool_misuse": {
+              "severity": "high",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "infinite_loop": {
+              "severity": "medium",
+              "n_production_signals": 79,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.2405,
+              "f1": 0.3878
+            },
+            "premature_exit": {
+              "severity": "medium",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "style_violation": {
+              "severity": "low",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comprehension_failure": {
+              "severity": "high",
+              "n_production_signals": 56,
+              "n_synthetic_failures": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "resolution_failure": {
+              "severity": "high",
+              "n_production_signals": 68,
+              "n_synthetic_failures": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "delivery_failure": {
+              "severity": "medium",
+              "n_production_signals": 3,
+              "n_synthetic_failures": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          }
+        },
+        "feedback": {
+          "recall": 0.3116,
+          "precision": 0.5455,
+          "f1": 0.3966,
+          "recall_ci": {
+            "recall": 0.3116,
+            "ci_low": 0.2512,
+            "ci_high": 0.3721
+          },
+          "per_category": {
+            "hallucination": {
+              "severity": "high",
+              "n_production_signals": 5,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.6,
+              "f1": 0.75
+            },
+            "guardrail_violation": {
+              "severity": "critical",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "escalation_failure": {
+              "severity": "high",
+              "n_production_signals": 4,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.5,
+              "f1": 0.6667
+            },
+            "tool_misuse": {
+              "severity": "high",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "infinite_loop": {
+              "severity": "medium",
+              "n_production_signals": 79,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.2405,
+              "f1": 0.3878
+            },
+            "premature_exit": {
+              "severity": "medium",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "style_violation": {
+              "severity": "low",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "comprehension_failure": {
+              "severity": "high",
+              "n_production_signals": 56,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.3036,
+              "f1": 0.4658
+            },
+            "resolution_failure": {
+              "severity": "high",
+              "n_production_signals": 68,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.3529,
+              "f1": 0.5217
+            },
+            "data_gap": {
+              "severity": "medium",
+              "n_production_signals": 0,
+              "n_synthetic_failures": 1,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "delivery_failure": {
+              "severity": "medium",
+              "n_production_signals": 3,
+              "n_synthetic_failures": 1,
+              "precision": 1.0,
+              "recall": 0.6667,
+              "f1": 0.8
+            }
+          }
+        }
+      },
+      "tests": {
+        "feedback_vs_blind": {
+          "delta": 0.2,
+          "p_value": 0.0001,
+          "n_signals": 215,
+          "n_discordant": 43
+        }
+      }
+    }
+  },
+  "rq4_recall_vs_budget": {
+    "budget_points": [
+      5,
+      10,
+      20,
+      30,
+      50,
+      75,
+      100
+    ],
+    "curves": {
+      "blind": [
+        {
+          "budget": 5,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 10,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 20,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 30,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 50,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 75,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 100,
+          "recall": 0.1116,
+          "n_matched": 24
+        }
+      ],
+      "naive_llm": [
+        {
+          "budget": 5,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 10,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 20,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 30,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 50,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 75,
+          "recall": 0.1116,
+          "n_matched": 24
+        },
+        {
+          "budget": 100,
+          "recall": 0.1116,
+          "n_matched": 24
+        }
+      ],
+      "gan": [
+        {
+          "budget": 5,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 10,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 20,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 30,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 50,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 75,
+          "recall": 0.0977,
+          "n_matched": 21
+        },
+        {
+          "budget": 100,
+          "recall": 0.0977,
+          "n_matched": 21
+        }
+      ],
+      "feedback": [
+        {
+          "budget": 5,
+          "recall": 0.1767,
+          "n_matched": 38
+        },
+        {
+          "budget": 10,
+          "recall": 0.1767,
+          "n_matched": 38
+        },
+        {
+          "budget": 20,
+          "recall": 0.1767,
+          "n_matched": 38
+        },
+        {
+          "budget": 30,
+          "recall": 0.1767,
+          "n_matched": 38
+        },
+        {
+          "budget": 50,
+          "recall": 0.1907,
+          "n_matched": 41
+        },
+        {
+          "budget": 75,
+          "recall": 0.1907,
+          "n_matched": 41
+        },
+        {
+          "budget": 100,
+          "recall": 0.3116,
+          "n_matched": 67
+        }
+      ]
+    },
+    "note": "Budget unit = one test conversation; recall over held-out signals.",
+    "ranking": [
+      "feedback",
+      "blind",
+      "naive_llm",
+      "gan"
+    ]
+  },
+  "charts": [
+    "experiments_output/rq4_full/charts/rq1_per_category_recall.png",
+    "experiments_output/rq4_full/charts/rq4_recall_vs_budget.png",
+    "experiments_output/rq4_full/charts/rq3_arm_comparison.png",
+    "experiments_output/rq4_full/charts/ground_truth_categories.png"
+  ]
+}

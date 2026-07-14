@@ -23,9 +23,12 @@ from datetime import datetime
 from pathlib import Path
 
 import click
+from dotenv import load_dotenv
 from rich.console import Console
 from rich.panel import Panel
 from rich.table import Table
+
+load_dotenv(Path(__file__).parent / ".env")
 
 from src.experiments import ExperimentConfig, run_experiment
 
@@ -55,9 +58,12 @@ console = Console()
 @click.option("--language", default=None, help="Conversation language override")
 @click.option("--seed-budget-fraction", default=0.35, show_default=True,
               help="Feedback arm: fraction of budget reserved for seed reproductions")
+@click.option("--arms", default="blind,feedback", show_default=True,
+              help="Comma-separated arms: blind|template, feedback, naive_llm, gan "
+                   "(LLM arms need ANTHROPIC_API_KEY)")
 def main(export_path, agent_map_path, output_dir, budget, holdout_fraction,
          min_score, per_category_cap, rng_seed, mode, connector, language,
-         seed_budget_fraction):
+         seed_budget_fraction, arms):
     """Answer RQ1-RQ4: predictive validity, coverage gaps, feedback value,
     and recall-per-budget — grounded in real production failures."""
     if output_dir is None:
@@ -83,6 +89,7 @@ def main(export_path, agent_map_path, output_dir, budget, holdout_fraction,
         connector=connector,
         language=language,
         seed_budget_fraction=seed_budget_fraction,
+        arms=[a.strip() for a in arms.split(",") if a.strip()],
     )
 
     results = run_experiment(config, on_progress=lambda msg: console.print(f"  {msg}"))

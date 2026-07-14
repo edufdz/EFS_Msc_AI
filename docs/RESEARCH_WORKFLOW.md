@@ -68,6 +68,40 @@ Outputs to `experiments_output/<timestamp>/`:
 | `ground_truth.json` | Every ground-truth failure with score, categories, evidence |
 | `suite_blind.json` / `suite_feedback.json` | The generated test suites per arm |
 
+### 2b. Generation-method arms (RQ4)
+
+All four generation strategies from the Background Report are implemented
+(`src/experiments/arms.py`) and share the same suite assembler and budget:
+
+```bash
+python3 run_experiments.py \
+    --export ../docs/tech_repair-conversations-anonymized.json \
+    --agent-map tech_repair_whatsapp_map.json \
+    --budget 100 --arms blind,feedback,naive_llm,gan
+```
+
+- `blind`/`template` — offline templates + structural coverage (no LLM)
+- `naive_llm` — single-shot LLM persona/scenario generation (needs `ANTHROPIC_API_KEY`)
+- `gan` — generator–critic loop: an LLM critic scores candidates on realism,
+  specificity, and failure-provoking power; rejects are regenerated with the
+  critic's objections in context
+- `feedback` — production-failure-seeded generation (RQ3's treatment arm)
+
+LLM arms are skipped with an explicit note when no API key is present.
+
+### 2c. Sensitivity analysis (RQ3 robustness)
+
+```bash
+python3 run_sensitivity.py \
+    --export ../docs/tech_repair-conversations-anonymized.json \
+    --agent-map tech_repair_whatsapp_map.json
+```
+
+Re-runs the blind-vs-feedback comparison varying one analysis choice at a
+time (ground-truth threshold `min_score` 2–5, holdout fraction 0.2–0.4, RNG
+seeds 41–45) and writes `SENSITIVITY.md` + `sensitivity_deltas.png` with a
+per-configuration Δ/p table and an overall robustness verdict.
+
 ### 3. Modes
 
 - `--mode static` (default): synthetic failures = categories each test is
@@ -134,9 +168,18 @@ Anonymised corpus of 1,299 conversations → 376 ground-truth failures
 - **RQ3**: production feedback lifts held-out recall **0.112 → 0.312**
   (Δ +0.200, p = 0.0001, sign-flip permutation) — grounding generation in
   real failures measurably improves prediction of *future* failures.
-- **RQ4**: feedback > blind at every budget point (recall-per-budget curves
-  in `charts/rq4_recall_vs_budget.png`).
+- **RQ4** (four arms, budget 100): **feedback > blind > naive_llm > gan** by
+  held-out recall per budget — production grounding beats every ungrounded
+  strategy, and naive LLM prompting does not beat structural templates in
+  targeting terms (recall-per-budget curves in
+  `charts/rq4_recall_vs_budget.png`).
+- **Sensitivity**: the RQ3 delta is positive and significant in **10/10**
+  analysis configurations (min_score 2–5, holdout 0.2–0.4, seeds 41–45;
+  Δ +0.165…+0.288, all p = 0.0001). Note that seed variation does not move
+  static-mode numbers: category-level targeting is invariant to pairing
+  randomness, which is itself evidence the measure is stable.
 
-Numbers regenerate deterministically with the same seed; they will shift as
-the corpus grows or thresholds change. Treat `results.json` as the source of
-truth for any citation.
+Archived copies of the headline runs live in `docs/results/` (rq4_full +
+sensitivity). Numbers regenerate deterministically with the same seed; they
+will shift as the corpus grows or thresholds change. Treat `results.json`
+as the source of truth for any citation.

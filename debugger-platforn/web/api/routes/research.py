@@ -48,6 +48,7 @@ class ExperimentRequest(BaseModel):
     connector: str = "mock"
     seed_budget_fraction: float = 0.35
     language: Optional[str] = None
+    arms: Optional[List[str]] = None    # default: ["blind", "feedback"]
 
 
 class AnonymizeRequest(BaseModel):
@@ -121,6 +122,7 @@ async def run_experiments(req: ExperimentRequest):
                 connector=req.connector,
                 seed_budget_fraction=req.seed_budget_fraction,
                 language=req.language,
+                **({"arms": req.arms} if req.arms else {}),
             )
             results = run_experiment(config, on_progress=_progress)
             state["results"] = results

@@ -220,20 +220,45 @@ def run_experiment(config: ExperimentConfig, on_progress=None) -> Dict[str, Any]
     )
 
     # ---------- Arms ----------
+    from src.experiments.arms import available_arms, generate_gan_suite, generate_naive_llm_suite
+
+    runnable_arms, skipped_arms = available_arms(config.arms)
+    for arm in skipped_arms:
+        progress(f"Arm '{arm}' skipped: requires ANTHROPIC_API_KEY (LLM generation).")
+
     workdir = out / "work"
     workdir.mkdir(exist_ok=True)
     suites: Dict[str, TestSuite] = {}
     used_by_arm: Dict[str, set] = {}
 
-    if "blind" in config.arms:
-        progress(f"Generating blind arm ({config.budget} tests)...")
-        suites["blind"] = generate_blind_suite(
+    if "blind" in runnable_arms or "template" in runnable_arms:
+        name = "blind" if "blind" in runnable_arms else "template"
+        progress(f"Generating {name} arm ({config.budget} tests, offline templates)...")
+        suites[name] = generate_blind_suite(
             agent_map, target_count=config.budget,
             rng_seed=config.rng_seed, language=config.language,
         )
-        used_by_arm["blind"] = set()
+        used_by_arm[name] = set()
 
-    if "feedback" in config.arms:
+    if "naive_llm" in runnable_arms:
+        progress(f"Generating naive_llm arm ({config.budget} tests, single-shot LLM)...")
+        suites["naive_llm"] = generate_naive_llm_suite(
+            agent_map, target_count=config.budget,
+            rng_seed=config.rng_seed, language=config.language,
+            on_progress=progress,
+        )
+        used_by_arm["naive_llm"] = set()
+
+    if "gan" in runnable_arms:
+        progress(f"Generating gan arm ({config.budget} tests, generator-critic)...")
+        suites["gan"] = generate_gan_suite(
+            agent_map, target_count=config.budget,
+            rng_seed=config.rng_seed, language=config.language,
+            on_progress=progress,
+        )
+        used_by_arm["gan"] = set()
+
+    if "feedback" in runnable_arms:
         progress("Building feedback seed corpus from train-split failures...")
         corpus, provenance = build_feedback_corpus(
             train, conversations,
@@ -349,6 +374,7 @@ def run_experiment(config: ExperimentConfig, on_progress=None) -> Dict[str, Any]
             "agent_map_path": str(config.agent_map_path),
         },
         "anonymisation_level": anonymisation_level,
+        "skipped_arms": skipped_arms,
         "ground_truth": {
             "n_conversations_analysed": ground_truth.n_conversations_analysed,
             "n_failures": len(ground_truth.failures),
