@@ -20,6 +20,7 @@ from src.patterns.detector import (
 from src.ai_analyzer.analyzer import SemanticAnalysisResult
 from src.patterns.rule_extractor import PolicyGraph, extract_rules_from_prompts
 from src.graph.behavioural_model import build_behavioural_model, BehaviouralModel
+from src.graph.code_tree import build_code_tree
 from src.risk.analyzer import RiskFlag
 from config.framework_signatures import (
     SPANISH_INDICATORS, ENGLISH_INDICATORS, PORTUGUESE_INDICATORS,
@@ -670,6 +671,14 @@ def generate_agent_map(
         "risk_flags": risk_flags,
         "risk_summary": risk_summary,
         "graph": _graph_to_dict(graph),
+        "code_tree": build_code_tree(
+            all_symbols=all_symbols,
+            tools=pattern_result.tools,
+            prompts=pattern_result.prompts,
+            risks=risks,
+            entry_points=entry_points,
+            root_path=root_path,
+        ),
         "source_files": {
             "analyzed_files": files_analyzed,
             "entry_points": entry_points,

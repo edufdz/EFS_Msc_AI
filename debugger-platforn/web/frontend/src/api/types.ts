@@ -28,6 +28,44 @@ export interface PhaseARequest {
   use_traces: boolean
 }
 
+export interface CodeTreeCounts {
+  files: number
+  classes: number
+  functions: number
+  tools: number
+  prompts: number
+  risks: number
+}
+
+export interface CodeTreeNode {
+  name: string
+  type: 'directory' | 'file' | 'class' | 'function' | 'method'
+  path?: string
+  language?: string | null
+  line?: number
+  params?: string[]
+  bases?: string[]
+  doc?: string
+  is_async?: boolean
+  is_entry_point?: boolean
+  implements_tool?: string
+  max_risk_severity?: string
+  parse_errors?: number
+  counts?: CodeTreeCounts
+  tools?: Array<{ name: string; risk_level: string }>
+  prompts?: string[]
+  risks?: Array<{ severity: string; risk_type: string; description: string }>
+  children?: CodeTreeNode[]
+}
+
+export interface CodeTree {
+  root: string
+  total_files: number
+  total_classes: number
+  total_functions: number
+  tree: CodeTreeNode
+}
+
 export interface PhaseAResult {
   framework: string
   framework_confidence: number
@@ -40,6 +78,7 @@ export interface PhaseAResult {
   graph_path: string | null
   tools: Array<{ name: string; description: string; risk_level: string }>
   risks: Array<{ tool: string; risk_type: string; severity: string; description: string }>
+  code_tree?: CodeTree | null
 }
 
 // Phase B

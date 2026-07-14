@@ -1,6 +1,7 @@
 import type { PhaseAResult } from '../../api/types'
 import StatusBadge from '../shared/StatusBadge'
 import JsonViewer from '../shared/JsonViewer'
+import CodeTree from './CodeTree'
 
 interface AgentMapViewerProps {
   result: PhaseAResult
@@ -19,6 +20,11 @@ export default function AgentMapViewer({ result, sessionId }: AgentMapViewerProp
         <SummaryCard label="Risks" value={String(result.risks_count)} />
         <SummaryCard label="Language" value={result.language} />
       </div>
+
+      {/* Code structure tree */}
+      {result.code_tree && result.code_tree.tree.children && result.code_tree.tree.children.length > 0 && (
+        <CodeTree codeTree={result.code_tree} />
+      )}
 
       {/* Tools list */}
       {result.tools.length > 0 && (

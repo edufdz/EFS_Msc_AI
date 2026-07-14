@@ -139,6 +139,7 @@ def _run_phase_a_sync(req: PhaseARequest, emitter: ProgressEmitter) -> dict:
             {"tool": r.get("tool", "-"), "risk_type": r.get("risk_type", ""), "severity": r.get("severity", ""), "description": r.get("description", "")}
             for r in agent_map["risk_flags"]["all_risks"]
         ],
+        "code_tree": agent_map.get("code_tree"),
     }
     return result
 
