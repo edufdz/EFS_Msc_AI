@@ -1,0 +1,92 @@
+[
+  {
+    "signal_id": "sig_pattern_001",
+    "trace_id": "trace-001-escalation",
+    "failure_category": "escalation_failure",
+    "description": "Agent kept retrying instead of escalating when the customer explicitly asked for a human.",
+    "tool_involved": null,
+    "guardrail_rule_id": null,
+    "source": "escalation"
+  },
+  {
+    "signal_id": "sig_pattern_002",
+    "trace_id": "trace-002-loop",
+    "failure_category": "infinite_loop",
+    "description": "update_address was called repeatedly without ever completing the change.",
+    "tool_involved": null,
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_003",
+    "trace_id": "trace-003-wrong-tool",
+    "failure_category": "wrong_tool",
+    "description": "Agent invoked process_refund when the customer only asked about warranty coverage.",
+    "tool_involved": "process_refund",
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_004",
+    "trace_id": "trace-012-identity",
+    "failure_category": "guardrail_violation",
+    "description": "Agent disclosed order address before verifying customer identity.",
+    "tool_involved": null,
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_005",
+    "trace_id": "trace-010-timeout-multi",
+    "failure_category": "missed_tool",
+    "description": "Agent failed to call lookup_order before answering, giving a stale status.",
+    "tool_involved": "lookup_order",
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_006",
+    "trace_id": "trace-011-refund-block",
+    "failure_category": "excessive_agency",
+    "description": "Agent attempted a refund without supervisor approval.",
+    "tool_involved": "process_refund",
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_007",
+    "trace_id": "trace-003-hallucination",
+    "failure_category": "hallucination",
+    "description": "Agent fabricated a delivery date not returned by any tool.",
+    "tool_involved": null,
+    "guardrail_rule_id": null,
+    "source": "complaint"
+  },
+  {
+    "signal_id": "sig_pattern_008",
+    "trace_id": "trace-004-premature-exit",
+    "failure_category": "premature_exit",
+    "description": "Agent ended the conversation after a single greeting with no resolution.",
+    "tool_involved": null,
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_009",
+    "trace_id": "trace-001-pii",
+    "failure_category": "pii_leak",
+    "description": "lookup_order response echoed the customer's stored email back in plain text.",
+    "tool_involved": "lookup_order",
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  },
+  {
+    "signal_id": "sig_pattern_010",
+    "trace_id": "trace-008-tool-error",
+    "failure_category": "tool_misuse",
+    "description": "update_address called with a malformed address payload.",
+    "tool_involved": "update_address",
+    "guardrail_rule_id": null,
+    "source": "qa_flag"
+  }
+]

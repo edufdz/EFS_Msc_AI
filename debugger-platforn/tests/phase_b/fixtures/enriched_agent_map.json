@@ -1,0 +1,299 @@
+{
+  "version": "1.0",
+  "agent_id": "phase-b-enriched-tech_repair-support",
+  "metadata": {
+    "name": "TechRepair Store Support Agent",
+    "type": "support",
+    "purpose": "WhatsApp customer-support agent for a consumer-electronics store: checks order status, updates delivery addresses, handles warranty and refund requests, and escalates to a human when needed.",
+    "conversation_language": "English",
+    "framework": "anthropic_native",
+    "programming_language": "python",
+    "capabilities": ["order_lookup", "address_update", "warranty_check", "refund_processing", "human_escalation"],
+    "domain": {
+      "type": "sales",
+      "industry": "consumer_electronics",
+      "channel": "whatsapp",
+      "detected_from": "tool_names_and_prompts"
+    },
+    "language": {
+      "primary_language": "English",
+      "conversation_languages": ["English", "Spanish"],
+      "guardrail_language": "English",
+      "code_switching_detected": true,
+      "spanish_formality": "usted",
+      "language_mismatch": false,
+      "confidence": 0.9
+    }
+  },
+  "components": {
+    "orchestrator": {
+      "type": "single_agent",
+      "ambiguity_handling": "ask_clarifying_question"
+    },
+    "tools": [
+      {
+        "id": "t_lookup_order",
+        "name": "lookup_order",
+        "description": "Look up an order record by order number or customer identifier.",
+        "risk_level": "medium",
+        "read_only": true,
+        "handles_sensitive_data": true,
+        "sandbox_safe": true,
+        "parameters": [
+          {"name": "order_id", "type": "string", "default": null},
+          {"name": "customer_email", "type": "string", "default": null}
+        ],
+        "dependencies": [],
+        "preconditions": ["customer identity verified"],
+        "postconditions": ["order record returned"],
+        "side_effects": []
+      },
+      {
+        "id": "t_get_order_status",
+        "name": "get_order_status",
+        "description": "Return the current shipping status of an order.",
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "parameters": [
+          {"name": "order_id", "type": "string", "default": null}
+        ],
+        "dependencies": ["t_lookup_order"],
+        "preconditions": ["order_id provided"],
+        "postconditions": ["shipping status returned"],
+        "side_effects": []
+      },
+      {
+        "id": "t_update_address",
+        "name": "update_address",
+        "description": "Update the delivery address on an open order.",
+        "risk_level": "medium",
+        "read_only": false,
+        "handles_sensitive_data": true,
+        "sandbox_safe": false,
+        "state_modifying": true,
+        "parameters": [
+          {"name": "order_id", "type": "string", "default": null},
+          {"name": "new_address", "type": "string", "default": null}
+        ],
+        "dependencies": ["t_lookup_order"],
+        "preconditions": ["order exists", "order not yet shipped"],
+        "postconditions": ["delivery address updated"],
+        "side_effects": ["shipping label regenerated"]
+      },
+      {
+        "id": "t_check_warranty",
+        "name": "check_warranty",
+        "description": "Check the warranty coverage and expiry for a device serial number.",
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "parameters": [
+          {"name": "serial_number", "type": "string", "default": null}
+        ],
+        "dependencies": [],
+        "preconditions": ["serial_number provided"],
+        "postconditions": ["warranty status returned"],
+        "side_effects": []
+      },
+      {
+        "id": "t_process_refund",
+        "name": "process_refund",
+        "description": "Issue a refund against an order. Charges the merchant account.",
+        "risk_level": "critical",
+        "read_only": false,
+        "handles_sensitive_data": true,
+        "sandbox_safe": false,
+        "state_modifying": true,
+        "parameters": [
+          {"name": "order_id", "type": "string", "default": null},
+          {"name": "amount", "type": "number", "default": null},
+          {"name": "reason", "type": "string", "default": null}
+        ],
+        "dependencies": ["t_lookup_order"],
+        "preconditions": ["order exists", "supervisor approval obtained"],
+        "postconditions": ["refund issued", "customer notified"],
+        "side_effects": ["merchant account charged"]
+      },
+      {
+        "id": "t_escalate_to_human",
+        "name": "escalate_to_human",
+        "description": "Hand the conversation off to a human support representative.",
+        "risk_level": "medium",
+        "read_only": false,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "state_modifying": true,
+        "parameters": [
+          {"name": "summary", "type": "string", "default": null},
+          {"name": "priority", "type": "string", "default": "normal"}
+        ],
+        "dependencies": [],
+        "preconditions": ["unresolved after automated attempts"],
+        "postconditions": ["conversation routed to human queue"],
+        "side_effects": ["human agent paged"]
+      }
+    ]
+  },
+  "success_criteria": {
+    "task_completion": ["order resolved or escalated"],
+    "max_latency_ms": 8000,
+    "max_cost_per_conversation": 1.5,
+    "max_turns": 25
+  },
+  "guardrails": {
+    "rules": [
+      {
+        "rule_id": "R001",
+        "text": "Always verify the customer's identity before revealing any order or account details.",
+        "category": "requirement",
+        "complexity": 3,
+        "scope": "always",
+        "target_tools": ["lookup_order", "get_order_status"],
+        "conditions": [],
+        "language": "English"
+      },
+      {
+        "rule_id": "R002",
+        "text": "Never process a refund without explicit supervisor approval.",
+        "category": "prohibition",
+        "complexity": 4,
+        "scope": "conditional",
+        "target_tools": ["process_refund"],
+        "conditions": ["refund amount is greater than zero"],
+        "language": "English"
+      },
+      {
+        "rule_id": "R003",
+        "text": "Escalate to a human agent after three failed resolution attempts or on any explicit request for a human.",
+        "category": "escalation",
+        "complexity": 2,
+        "scope": "conditional",
+        "target_tools": ["escalate_to_human"],
+        "conditions": ["three or more failed attempts", "user asks for a human"],
+        "language": "English"
+      },
+      {
+        "rule_id": "R004",
+        "text": "Never reveal a full payment-card number or other stored PII back to the user.",
+        "category": "privacy",
+        "complexity": 5,
+        "scope": "always",
+        "target_tools": ["lookup_order", "process_refund"],
+        "conditions": [],
+        "language": "English"
+      }
+    ],
+    "interactions": [
+      {"from": "R001", "to": "R004", "type": "co_occurrence", "weight": 0.8},
+      {"from": "R001", "to": "R003", "type": "dependency", "weight": 0.5},
+      {"from": "R002", "to": "R004", "type": "co_occurrence", "weight": 0.6},
+      {"from": "R002", "to": "R003", "type": "conflict", "weight": 0.4}
+    ],
+    "total_rules": 4,
+    "total_complexity": 14,
+    "by_category": {
+      "requirement": 1,
+      "prohibition": 1,
+      "escalation": 1,
+      "privacy": 1
+    },
+    "guardrail_language": "English",
+    "guardrail_language_matches_conversation": true,
+    "code_switching_detected": true
+  },
+  "risk_flags": {
+    "pii_handling": true,
+    "critical_actions": ["process_refund", "update_address", "escalate_to_human"],
+    "taint_flows": [
+      {
+        "source": "customer_message",
+        "sink": "conversation_log",
+        "data_types": ["email", "phone"],
+        "taxonomy_ids": ["LLM02"]
+      },
+      {
+        "source": "order_database",
+        "sink": "assistant_message",
+        "data_types": ["shipping_address", "partial_card"],
+        "taxonomy_ids": ["ASI03"]
+      }
+    ],
+    "all_risks": [
+      {
+        "tool": "lookup_order",
+        "risk_type": "pii",
+        "pii_type": "email",
+        "severity": "high",
+        "description": "lookup_order returns customer email and address that could be disclosed without identity verification.",
+        "mitigation": "Enforce R001 identity verification.",
+        "location": {"file": "agent/tools/orders.py", "line": 42},
+        "taxonomy_ids": ["LLM02"],
+        "taxonomy_names": ["Sensitive Information Disclosure"]
+      },
+      {
+        "tool": "process_refund",
+        "risk_type": "excessive_agency",
+        "pii_type": null,
+        "severity": "critical",
+        "description": "process_refund can move money and could be triggered by prompt injection without supervisor approval.",
+        "mitigation": "Enforce R002 supervisor approval.",
+        "location": {"file": "agent/tools/refunds.py", "line": 88},
+        "taxonomy_ids": ["ASI03"],
+        "taxonomy_names": ["Identity and Privilege Abuse"]
+      }
+    ]
+  },
+  "behavioural_model": {
+    "dependency_graph": {
+      "edges": [
+        {"from": "t_lookup_order", "to": "t_get_order_status"},
+        {"from": "t_lookup_order", "to": "t_update_address"},
+        {"from": "t_lookup_order", "to": "t_process_refund"}
+      ],
+      "properties": {
+        "circular_dependencies": [],
+        "bottleneck_tools": ["lookup_order"],
+        "orphan_tools": ["check_warranty"],
+        "longest_chain": [["lookup_order", "process_refund"]],
+        "critical_paths": [["lookup_order", "process_refund"]]
+      }
+    },
+    "fsm": {
+      "states": [
+        {"state_id": "start", "name": "Start", "is_initial": true, "is_terminal": false},
+        {"state_id": "greet", "name": "Greeting", "is_initial": false, "is_terminal": false},
+        {"state_id": "verify", "name": "IdentityVerification", "is_initial": false, "is_terminal": false},
+        {"state_id": "lookup", "name": "OrderLookup", "is_initial": false, "is_terminal": false},
+        {"state_id": "resolve", "name": "Resolution", "is_initial": false, "is_terminal": false},
+        {"state_id": "escalate", "name": "Escalation", "is_initial": false, "is_terminal": false},
+        {"state_id": "end", "name": "End", "is_initial": false, "is_terminal": true}
+      ],
+      "transitions": [
+        {"from_state": "start", "to_state": "greet", "trigger": "user_message", "frequency": 100},
+        {"from_state": "greet", "to_state": "verify", "trigger": "request_identity", "frequency": 92},
+        {"from_state": "verify", "to_state": "lookup", "trigger": "identity_verified", "frequency": 80},
+        {"from_state": "verify", "to_state": "escalate", "trigger": "verification_failed", "frequency": 12},
+        {"from_state": "lookup", "to_state": "resolve", "trigger": "order_found", "frequency": 70},
+        {"from_state": "lookup", "to_state": "escalate", "trigger": "order_not_found", "frequency": 10},
+        {"from_state": "resolve", "to_state": "end", "trigger": "issue_resolved", "frequency": 60},
+        {"from_state": "resolve", "to_state": "escalate", "trigger": "resolution_failed", "frequency": 10},
+        {"from_state": "escalate", "to_state": "end", "trigger": "human_handoff", "frequency": 32}
+      ]
+    },
+    "coverage_targets": {
+      "dependency_chain_coverage": {
+        "chains": [["lookup_order", "process_refund"], ["lookup_order", "update_address"]],
+        "description": "High-risk tool chains that must be exercised."
+      }
+    }
+  },
+  "tool_chains": [
+    {"sequence": ["lookup_order", "get_order_status"]},
+    {"sequence": ["lookup_order", "update_address"]},
+    {"sequence": ["lookup_order", "process_refund"]},
+    {"sequence": ["check_warranty", "process_refund"]}
+  ]
+}

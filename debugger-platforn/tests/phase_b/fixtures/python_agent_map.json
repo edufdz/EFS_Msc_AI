@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "agent_id": "phase-b-minimal-python-agent",
+  "metadata": {
+    "name": "Minimal Python Utility Agent",
+    "type": "custom",
+    "purpose": "A stripped-down agent used to test graceful degradation: no guardrails, no risk taxonomy, no behavioural model, no traces.",
+    "conversation_language": "English",
+    "framework": "anthropic_native",
+    "programming_language": "python"
+  },
+  "components": {
+    "tools": [
+      {
+        "id": "t_read_file",
+        "name": "read_file",
+        "description": "Read the contents of a file by path.",
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "parameters": [
+          {
+            "name": "path",
+            "type": "string",
+            "default": null
+          }
+        ],
+        "preconditions": [],
+        "postconditions": [],
+        "side_effects": []
+      },
+      {
+        "id": "t_list_dir",
+        "name": "list_dir",
+        "description": "List the entries of a directory.",
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "parameters": [
+          {
+            "name": "path",
+            "type": "string",
+            "default": "."
+          }
+        ],
+        "preconditions": [],
+        "postconditions": [],
+        "side_effects": []
+      },
+      {
+        "id": "t_word_count",
+        "name": "word_count",
+        "description": "Count the words in a supplied text blob.",
+        "risk_level": "low",
+        "read_only": true,
+        "handles_sensitive_data": false,
+        "sandbox_safe": true,
+        "parameters": [
+          {
+            "name": "text",
+            "type": "string",
+            "default": null
+          }
+        ],
+        "preconditions": [],
+        "postconditions": [],
+        "side_effects": []
+      }
+    ]
+  },
+  "success_criteria": {
+    "max_turns": 20,
+    "max_cost_per_conversation": 1.0
+  },
+  "risk_flags": {
+    "pii_handling": false,
+    "critical_actions": [],
+    "taint_flows": [],
+    "all_risks": []
+  }
+}

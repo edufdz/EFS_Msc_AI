@@ -1,0 +1,209 @@
+{
+  "conversations": [
+    {
+      "trace_id": "trace-001-escalation",
+      "outcome": "escalation",
+      "escalated": true,
+      "messages": [
+        {"role": "user", "content": "Hola, necesito saber dónde está mi pedido número ORD-2024-001."},
+        {"role": "assistant", "content": "Con gusto verifico el estado de su pedido."},
+        {"role": "user", "content": "¿Podría usted ayudarme, por favor? Lo compré hace una semana."},
+        {"role": "assistant", "content": "El pedido ORD-2024-001 está en tránsito. Llegará en 3 a 5 días."},
+        {"role": "user", "content": "Eso no es aceptable. Necesito hablar con un agente humano ahora mismo."},
+        {"role": "assistant", "content": "Entiendo su frustración. Le paso con un agente."}
+      ],
+      "tool_sequence": ["get_order_status", "escalate_to_human"],
+      "total_turns": 6
+    },
+    {
+      "trace_id": "trace-002-loop",
+      "outcome": "loop",
+      "messages": [
+        {"role": "user", "content": "I need to change my delivery address."},
+        {"role": "assistant", "content": "I can help with that. What's your order number?"},
+        {"role": "user", "content": "ORD-2024-002"},
+        {"role": "assistant", "content": "Let me update that for you."},
+        {"role": "user", "content": "Actually, nevermind, I changed my mind again."},
+        {"role": "assistant", "content": "No problem. Let me update your address."},
+        {"role": "user", "content": "Wait no, change it back."},
+        {"role": "assistant", "content": "Let me update the address again."}
+      ],
+      "tool_calls": [
+        {"tool_name": "update_address", "success": true},
+        {"tool_name": "update_address", "success": true},
+        {"tool_name": "update_address", "success": true}
+      ],
+      "total_turns": 8
+    },
+    {
+      "trace_id": "trace-003-wrong-tool",
+      "outcome": "complaint",
+      "messages": [
+        {"role": "user", "content": "Can you check if my device is under warranty?"},
+        {"role": "assistant", "content": "I'll look that up for you."},
+        {"role": "user", "content": "Actually the display is broken, what can you do?"},
+        {"role": "assistant", "content": "Let me try to process a refund for you."},
+        {"role": "user", "content": "That's not what I asked for! This agent is useless."}
+      ],
+      "tool_sequence": ["check_warranty", "process_refund"],
+      "total_turns": 5
+    },
+    {
+      "trace_id": "trace-004-premature-exit",
+      "outcome": "abandoned",
+      "messages": [
+        {"role": "user", "content": "Hi"}
+      ],
+      "tool_sequence": [],
+      "total_turns": 1
+    },
+    {
+      "trace_id": "trace-005-spanish-casual",
+      "outcome": "complaint",
+      "escalated": true,
+      "messages": [
+        {"role": "user", "content": "Ey, dónde ta mi pedido? Lleva 2 semanas 😤😤😤"},
+        {"role": "assistant", "content": "Voy a revisar eso."},
+        {"role": "user", "content": "Porfa respondé rápido, q necesito la info YA"},
+        {"role": "assistant", "content": "Tu pedido está en el almacén."},
+        {"role": "user", "content": "Eso no sirve! Quiero hablar con alguien que sepa."}
+      ],
+      "tool_sequence": ["lookup_order", "escalate_to_human"],
+      "total_turns": 5
+    },
+    {
+      "trace_id": "trace-006-success",
+      "outcome": "success",
+      "escalated": false,
+      "messages": [
+        {"role": "user", "content": "What's my order status for ORD-2024-006?"},
+        {"role": "assistant", "content": "Your order is on the way and arrives tomorrow."},
+        {"role": "user", "content": "Great, thanks!"}
+      ],
+      "tool_sequence": ["get_order_status"],
+      "total_turns": 3
+    },
+    {
+      "trace_id": "trace-007-formal-english",
+      "outcome": "escalation",
+      "escalated": true,
+      "messages": [
+        {"role": "user", "content": "Good morning. I would like to inquire about the status of my order, if you would be so kind."},
+        {"role": "assistant", "content": "Of course, I'd be happy to help."},
+        {"role": "user", "content": "Could you please provide me with an update on the order tracking?"},
+        {"role": "assistant", "content": "Your order is currently in transit."},
+        {"role": "user", "content": "I appreciate your assistance; however, I require speaking with a senior representative due to the urgency of this matter."}
+      ],
+      "tool_sequence": ["get_order_status", "escalate_to_human"],
+      "total_turns": 5
+    },
+    {
+      "trace_id": "trace-008-tool-error",
+      "outcome": "complaint",
+      "messages": [
+        {"role": "user", "content": "Can I update my shipping address?"},
+        {"role": "assistant", "content": "Sure, let me do that."},
+        {"role": "user", "content": "New address: 123 Main St, Springfield."},
+        {"role": "assistant", "content": "Sorry, that didn't work."},
+        {"role": "user", "content": "This is terrible, I'm going to contact customer service."}
+      ],
+      "tool_calls": [
+        {"tool_name": "lookup_order", "success": true},
+        {"tool_name": "update_address", "success": false}
+      ],
+      "total_turns": 5
+    },
+    {
+      "trace_id": "trace-009-verbose-polite",
+      "outcome": "success",
+      "messages": [
+        {"role": "user", "content": "Hello! I hope you're having a wonderful day. I ordered a TechRepair Galaxy phone about two weeks ago and I wanted to know if it has been dispatched yet. If you could check the status for me, I would be very grateful. Thank you so much in advance!"},
+        {"role": "assistant", "content": "Thank you for your detailed message! I'm happy to help."},
+        {"role": "user", "content": "I truly appreciate your help. Could you possibly provide any information about the expected delivery date?"}
+      ],
+      "tool_sequence": ["lookup_order", "get_order_status"],
+      "total_turns": 3
+    },
+    {
+      "trace_id": "trace-010-timeout-multi",
+      "outcome": "timeout",
+      "messages": [
+        {"role": "user", "content": "I need help with my order."},
+        {"role": "assistant", "content": "Let me check that."},
+        {"role": "user", "content": "Have you checked?"},
+        {"role": "assistant", "content": "Still processing..."},
+        {"role": "user", "content": "It's taking forever."}
+      ],
+      "tool_sequence": ["get_order_status", "check_warranty", "get_order_status", "lookup_order"],
+      "total_turns": 5
+    },
+    {
+      "trace_id": "trace-011-refund-block",
+      "outcome": "complaint",
+      "messages": [
+        {"role": "user", "content": "I want a full refund for ORD-2024-011 right now."},
+        {"role": "assistant", "content": "Refunds require supervisor approval. Let me check."},
+        {"role": "user", "content": "I don't care about approvals, just give me my money back."},
+        {"role": "assistant", "content": "I understand. I'll escalate this to a supervisor."}
+      ],
+      "tool_sequence": ["lookup_order", "escalate_to_human"],
+      "total_turns": 4
+    },
+    {
+      "trace_id": "trace-012-identity",
+      "outcome": "escalation",
+      "escalated": true,
+      "messages": [
+        {"role": "user", "content": "Just tell me the address on order ORD-2024-012."},
+        {"role": "assistant", "content": "For security I first need to verify your identity. Can you confirm the email on the account?"},
+        {"role": "user", "content": "This is ridiculous, I'm the customer! Get me a human."},
+        {"role": "assistant", "content": "I'll connect you with a representative right away."}
+      ],
+      "tool_sequence": ["escalate_to_human"],
+      "total_turns": 4
+    }
+  ],
+  "failure_patterns": [
+    {
+      "sequence": ["update_address", "update_address", "update_address"],
+      "count": 12,
+      "outcome": "loop",
+      "tool": "update_address"
+    },
+    {
+      "sequence": ["get_order_status", "escalate_to_human"],
+      "count": 45,
+      "outcome": "escalation"
+    },
+    {
+      "sequence": ["check_warranty", "process_refund"],
+      "count": 8,
+      "outcome": "complaint",
+      "tool": "process_refund"
+    },
+    {
+      "sequence": ["lookup_order", "lookup_order", "lookup_order"],
+      "count": 6,
+      "outcome": "loop",
+      "tool": "lookup_order"
+    },
+    {
+      "sequence": ["escalate_to_human"],
+      "count": 22,
+      "outcome": "escalation"
+    }
+  ],
+  "tool_frequency": {
+    "get_order_status": 850.0,
+    "lookup_order": 620.0,
+    "update_address": 320.5,
+    "escalate_to_human": 145.2,
+    "check_warranty": 67.8,
+    "process_refund": 45.3
+  },
+  "common_sequences": [
+    {"sequence": ["get_order_status", "escalate_to_human"], "count": 45},
+    {"sequence": ["lookup_order", "update_address"], "count": 30},
+    {"sequence": ["check_warranty", "process_refund"], "count": 12}
+  ]
+}

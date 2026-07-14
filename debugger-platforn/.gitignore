@@ -48,6 +48,7 @@ traces/
 # Output files
 *.json
 !tests/sample_output.json
+!tests/phase_b/fixtures/*.json
 
 # OS
 .DS_Store
