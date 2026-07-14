@@ -102,6 +102,36 @@ time (ground-truth threshold `min_score` 2–5, holdout fraction 0.2–0.4, RNG
 seeds 41–45) and writes `SENSITIVITY.md` + `sensitivity_deltas.png` with a
 per-configuration Δ/p table and an overall robustness verdict.
 
+### 2d. Ground-truth validation
+
+Ground-truth labels can be checked against a read of the
+transcripts. The harness makes this a ~1-hour task:
+
+```bash
+# Build the blind 50-conversation packet (40 flagged + 10 clean controls)
+python3 run_validation.py sample \
+    --export ../docs/tech_repair-conversations-anonymized.json \
+    --output-dir validation_packet
+
+# Annotate interactively in the terminal (resumable; q to save & quit)
+python3 run_validation.py annotate --packet validation_packet
+
+# Agreement statistics (Cohen's κ, per-category precision/recall)
+python3 run_validation.py agree --packet validation_packet \
+    --annotations validation_packet/annotations.json
+```
+
+The sample is blind (no scores or labels shown) and stratified across
+production categories. `answer_key.json` holds the heuristic labels — do
+not open it until annotation is finished.
+
+An **LLM pilot** pass exists (`run_validation.py llm-annotate`) as a
+preliminary consistency check only. On the current corpus it gives lenient
+agreement 0.86 (κ=0.51) with heuristic precision 0.95 — but this number
+must NEVER be reported as inter-annotator agreement: an LLM annotator
+reintroduces exactly the circularity the ground-truth design excludes.
+Agreement figures in this repository come from the LLM pilot only.
+
 ### 3. Modes
 
 - `--mode static` (default): synthetic failures = categories each test is
