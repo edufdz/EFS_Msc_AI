@@ -21,6 +21,9 @@ from src.ai_analyzer.analyzer import SemanticAnalysisResult
 from src.patterns.rule_extractor import PolicyGraph, extract_rules_from_prompts
 from src.graph.behavioural_model import build_behavioural_model, BehaviouralModel
 from src.graph.code_tree import build_code_tree
+from src.graph.workflow_extractor import (
+    START, END, WorkflowGraph, extract_workflow, map_node_effects, map_node_tools,
+)
 from src.risk.analyzer import RiskFlag
 from config.framework_signatures import (
     SPANISH_INDICATORS, ENGLISH_INDICATORS, PORTUGUESE_INDICATORS,
@@ -143,60 +146,17 @@ def _detect_domain_metadata(
     }
 
 
-def _extract_langgraph_topology(
-    all_symbols: list[FileSymbols],
-) -> list[tuple[str, str, str]]:
-    """Extract LangGraph edges from addNode/addEdge/addConditionalEdges calls.
-
-    Returns a list of (source, target, relationship) tuples using
-    the LangGraph node names (not function names).
-    """
-    edges: list[tuple[str, str, str]] = []
-
-    for symbols in all_symbols:
-        path_lower = symbols.file_path.lower()
-        if "builder" not in path_lower and "graph" not in path_lower:
-            continue
-
-        try:
-            with open(symbols.file_path, encoding="utf-8", errors="replace") as f:
-                content = f.read()
-        except OSError:
-            continue
-
-        # .addEdge(START, "event_detector") or .addEdge("status", "response")
-        for m in re.finditer(
-            r'\.addEdge\s*\(\s*(?:START|["\'](\w+)["\'])\s*,\s*(?:END|["\'](\w+)["\'])\s*\)',
-            content,
-        ):
-            src = m.group(1) or "__start__"
-            tgt = m.group(2) or "__end__"
-            edges.append((src, tgt, "flows_to"))
-
-        # .addConditionalEdges("router", routeByIntent, ["status", "support", ...])
-        for m in re.finditer(
-            r'\.addConditionalEdges\s*\(\s*["\'](\w+)["\']\s*,\s*\w+\s*,\s*\[(.*?)\]',
-            content,
-            re.DOTALL,
-        ):
-            src = m.group(1)
-            targets_str = m.group(2)
-            targets = re.findall(r'["\'](\w+)["\']', targets_str)
-            for tgt in targets:
-                edges.append((src, tgt, "routes_to"))
-
-    return edges
-
-
 def build_architecture_graph(
     pattern_result: PatternResult,
     ai_result: SemanticAnalysisResult | None,
-    all_symbols: list[FileSymbols] | None = None,
+    workflow: WorkflowGraph | None = None,
+    node_tools: dict[str, list[str]] | None = None,
+    node_effects: dict[str, list[dict]] | None = None,
 ) -> nx.DiGraph:
     """
     Construct a directed graph representing the agent architecture.
-    Nodes = components (agent, orchestrator, tools, memory, retrieval).
-    Edges = relationships (uses, requires, feeds, flows_to, routes_to).
+    Nodes = components (agent, orchestrator, workflow steps, tools, memory, retrieval).
+    Edges = relationships (uses, requires, transitions, feeds).
     """
     g = nx.DiGraph()
 
@@ -222,102 +182,86 @@ def build_architecture_graph(
         g.add_node("planner", type="planner")
         g.add_edge("orchestrator", "planner", relationship="delegates")
 
-    # --- Try LangGraph topology extraction first ---
-    lg_edges = _extract_langgraph_topology(all_symbols or [])
+    # Workflow state machine (LangGraph addNode/addEdge wiring)
+    wf_ids: dict[str, str] = {}
+    if workflow and workflow.nodes:
+        for node in workflow.nodes:
+            name = node["name"]
+            nid = f"wf_{name}"
+            wf_ids[name] = nid
+            g.add_node(nid, type="workflow_node", name=name,
+                       handler=node.get("handler") or "")
 
-    # Build LangGraph node name → addNode mapping by parsing
-    # .addNode("name", functionRef) patterns
-    lg_name_to_func: dict[str, str] = {}
-    for symbols in (all_symbols or []):
-        path_lower = symbols.file_path.lower()
-        if "builder" not in path_lower and "graph" not in path_lower:
-            continue
-        try:
-            with open(symbols.file_path, encoding="utf-8", errors="replace") as f:
-                content = f.read()
-        except OSError:
-            continue
-        for m in re.finditer(r'\.addNode\s*\(\s*["\'](\w+)["\']\s*,\s*(\w+)', content):
-            lg_name_to_func[m.group(1)] = m.group(2)
+        endpoints = {e["source"] for e in workflow.edges} | {e["target"] for e in workflow.edges}
+        if START in endpoints:
+            wf_ids[START] = "wf_start"
+            g.add_node("wf_start", type="start", name="START")
+            g.add_edge("orchestrator", "wf_start", relationship="runs")
+        if END in endpoints:
+            wf_ids[END] = "wf_end"
+            g.add_node("wf_end", type="end", name="END")
 
-    # Map tool function names → tool IDs
-    tool_name_to_id: dict[str, str] = {}
+        for edge in workflow.edges:
+            src = wf_ids.get(edge["source"])
+            tgt = wf_ids.get(edge["target"])
+            if src and tgt:
+                rel = "routes_to" if edge["conditional"] else "transitions"
+                g.add_edge(src, tgt, relationship=rel)
+
+        # Side effects: datastores read/written, external calls, delegations
+        for node_name, effects in (node_effects or {}).items():
+            src = wf_ids.get(node_name)
+            if not src:
+                continue
+            for eff in effects:
+                if eff["type"] in ("db_read", "db_write"):
+                    eid = f"db_{eff['target']}"
+                    g.add_node(eid, type="datastore", name=eff["target"])
+                    rel = "writes" if eff["type"] == "db_write" else "reads"
+                elif eff["type"] == "delegation":
+                    eid = f"ext_{eff['target']}"
+                    g.add_node(eid, type="delegation", name=eff["target"])
+                    rel = "delegates_to"
+                else:
+                    eid = f"ext_{eff['target']}"
+                    g.add_node(eid, type="external_call", name=eff["target"])
+                    rel = "calls"
+                # A node that both reads and writes a table shows as "writes"
+                if g.has_edge(src, eid) and rel != "writes":
+                    continue
+                g.add_edge(src, eid, relationship=rel)
+
+    # Tools
+    dep_lookup: dict[str, list[str]] = {}
+    if ai_result and ai_result.dependency_analysis:
+        for dep in ai_result.dependency_analysis.dependencies:
+            dep_lookup[dep.get("tool", "")] = dep.get("requires", [])
+
+    # Which workflow node invokes each tool (deterministic node-level calls)
+    tool_invokers: dict[str, list[str]] = {}
+    for node_name, tools_used in (node_tools or {}).items():
+        for tname in tools_used:
+            tool_invokers.setdefault(tname, []).append(node_name)
+
     for tool in pattern_result.tools:
         tid = f"tool_{tool.id}"
-        tool_name_to_id[tool.name] = tid
-        tool_name_to_id[tool.name.lower()] = tid
-
-    # Map LangGraph node names → tool IDs via the function reference
-    lg_node_to_tool: dict[str, str] = {}
-    for lg_name, func_name in lg_name_to_func.items():
-        if func_name in tool_name_to_id:
-            lg_node_to_tool[lg_name] = tool_name_to_id[func_name]
-        elif func_name.lower() in tool_name_to_id:
-            lg_node_to_tool[lg_name] = tool_name_to_id[func_name.lower()]
-
-    # Track which tools are part of the LangGraph state machine
-    lg_tool_ids: set[str] = set(lg_node_to_tool.values())
-
-    if lg_edges:
-        # Add all tool nodes
-        for tool in pattern_result.tools:
-            tid = f"tool_{tool.id}"
-            g.add_node(tid, type="tool", name=tool.name,
-                       description=tool.description or "",
-                       source=tool.source, risk_level=tool.risk_level)
-
-        def _resolve_lg_node(name: str) -> str:
-            """Resolve a LangGraph node name to a graph node ID."""
-            if name == "__start__":
-                return "orchestrator"
-            if name == "__end__":
-                return "agent"
-            # First: check if this LG node maps to a known tool
-            if name in lg_node_to_tool:
-                return lg_node_to_tool[name]
-            # Direct tool match
-            if name in tool_name_to_id:
-                return tool_name_to_id[name]
-            if name.lower() in tool_name_to_id:
-                return tool_name_to_id[name.lower()]
-            # Create a standalone graph node
-            nid = f"node_{name}"
-            if nid not in g:
-                g.add_node(nid, type="graph_node", name=name)
-            return nid
-
-        # Add LangGraph edges
-        for src, tgt, rel in lg_edges:
-            src_id = _resolve_lg_node(src)
-            tgt_id = _resolve_lg_node(tgt)
-            g.add_edge(src_id, tgt_id, relationship=rel)
-
-        # Tools NOT in the LangGraph flow are helpers — connect to orchestrator
-        for tool in pattern_result.tools:
-            tid = f"tool_{tool.id}"
-            if tid not in lg_tool_ids and not any(True for _ in g.predecessors(tid)):
-                g.add_edge("orchestrator", tid, relationship="invokes")
-
-    else:
-        # Fallback: flat orchestrator → tool layout
-        dep_lookup: dict[str, list[str]] = {}
-        if ai_result and ai_result.dependency_analysis:
-            for dep in ai_result.dependency_analysis.dependencies:
-                dep_lookup[dep.get("tool", "")] = dep.get("requires", [])
-
-        for tool in pattern_result.tools:
-            tid = f"tool_{tool.id}"
-            g.add_node(tid, type="tool", name=tool.name,
-                       description=tool.description or "",
-                       source=tool.source, risk_level=tool.risk_level)
+        g.add_node(tid, type="tool", name=tool.name,
+                   description=tool.description or "",
+                   source=tool.source, risk_level=tool.risk_level)
+        invokers = [wf_ids[n] for n in tool_invokers.get(tool.name, []) if n in wf_ids]
+        if invokers:
+            for wf_nid in invokers:
+                g.add_edge(wf_nid, tid, relationship="invokes")
+        else:
             g.add_edge("orchestrator", tid, relationship="invokes")
 
-            requires = dep_lookup.get(tool.name, [])
-            for req_name in requires:
-                req_id = f"tool_{req_name.lower().replace(' ', '_')}"
-                if req_id not in g:
-                    g.add_node(req_id, type="tool", name=req_name)
-                g.add_edge(req_id, tid, relationship="requires")
+        # Tool-to-tool dependencies
+        requires = dep_lookup.get(tool.name, [])
+        for req_name in requires:
+            req_id = f"tool_{req_name.lower().replace(' ', '_')}"
+            if req_id not in g:
+                g.add_node(req_id, type="tool", name=req_name)
+            g.add_edge(req_id, tid, relationship="requires")
 
     # Memory subsystem
     if pattern_result.memory_systems:
@@ -411,7 +355,20 @@ def generate_agent_map(
     """
     Generate the final Agent Map v1 JSON structure.
     """
-    graph = build_architecture_graph(pattern_result, ai_result, all_symbols)
+    workflow = extract_workflow(all_symbols)
+    node_tools: dict[str, list[str]] = {}
+    node_effects: dict[str, list[dict]] = {}
+    runtime_effects: list[dict] = []
+    if workflow:
+        node_tools = map_node_tools(
+            workflow, all_symbols, [t.name for t in pattern_result.tools]
+        )
+        node_effects, runtime_effects = map_node_effects(
+            workflow, all_symbols, root_path
+        )
+    graph = build_architecture_graph(
+        pattern_result, ai_result, workflow, node_tools, node_effects
+    )
 
     # Build semantic lookup
     semantic_lookup: dict[str, dict] = {}
@@ -462,6 +419,24 @@ def generate_agent_map(
             "guardrails": [],
             "typical_flow": [],
             "ambiguity_handling": "unknown",
+        }
+
+    # Extracted state machine (LangGraph wiring), if the codebase declares one
+    if workflow:
+        workflow_info["state_machine"] = {
+            "source_file": workflow.source_file,
+            "nodes": [
+                {
+                    **n,
+                    "tools": node_tools.get(n["name"], []),
+                    "effects": node_effects.get(n["name"], []),
+                }
+                for n in workflow.nodes
+            ],
+            "edges": workflow.edges,
+            # DB effects in analyzed files outside node handlers (context
+            # assembly, event handlers, metrics) — the rest of the mock surface
+            "runtime_effects": runtime_effects,
         }
 
     # Memory info

@@ -1,24 +1,60 @@
 graph TD
   agent[["Agent"]]:::agentNode
-  orchestrator[["Orchestrator<br/>unknown"]]:::orchNode
+  orchestrator[["Orchestrator<br/>state-machine"]]:::orchNode
+  wf_event_detector["event_detector"]:::wfNode
+  wf_router["router"]:::wfNode
+  wf_status["status"]:::wfNode
+  wf_support["support"]:::wfNode
+  wf_contact_info["contact_info"]:::wfNode
+  wf_delivery_logistics["delivery_logistics"]:::wfNode
+  wf_warranty_answer["warranty_answer"]:::wfNode
+  wf_pricing_answer["pricing_answer"]:::wfNode
+  wf_memory_extraction["memory_extraction"]:::wfNode
+  wf_escalation["escalation"]:::wfNode
+  wf_human_taken_over["human_taken_over"]:::wfNode
+  wf_response["response"]:::wfNode
+  wf_start(["START"]):::startEndNode
+  wf_end(["END"]):::startEndNode
+  ext_loadAgentConfig{{"loadAgentConfig"}}:::extNode
+  ext_rememberServiceOrder{{"rememberServiceOrder"}}:::extNode
+  db_interaction_history[("interaction_history")]:::memNode
+  ext_buildCrmOverrides{{"buildCrmOverrides"}}:::extNode
+  ext_detectEscalationSignals{{"detectEscalationSignals"}}:::extNode
+  ext_processSignals{{"processSignals"}}:::extNode
+  ext_renderOrderCards{{"renderOrderCards"}}:::extNode
+  ext_getContactNumbers{{"getContactNumbers"}}:::extNode
+  ext_assessSOCompleteness{{"assessSOCompleteness"}}:::extNode
+  ext_deliveryLogisticsNode{{"deliveryLogisticsNode"}}:::extNode
+  ext_translateStatusToState{{"translateStatusToState"}}:::extNode
+  ext_insertPendingCostFollowup{{"insertPendingCostFollowup"}}:::extNode
+  ext_renderHandoff{{"renderHandoff"}}:::extNode
+  ext_priorityFor{{"priorityFor"}}:::extNode
+  db_whatsapp_conversations[("whatsapp_conversations")]:::memNode
+  ext_extractAndPersistMemory{{"extractAndPersistMemory"}}:::extNode
+  ext_hasActionableInsights{{"hasActionableInsights"}}:::extNode
+  ext_isEscalationReason{{"isEscalationReason"}}:::extNode
   tool_lookuporder("lookupOrder"):::toolLow
   tool_routebyintent("routeByIntent"):::toolLow
-  tool_routeaftersupport("routeAfterSupport"):::toolLow
   tool_buildgraph("buildGraph"):::toolLow
+  tool_routeaftersupport("routeAfterSupport"):::toolLow
   tool_getcheckpointer("getCheckpointer"):::toolLow
   tool_getgraph("getGraph"):::toolLow
   tool_planpricingresponse("planPricingResponse"):::toolLow
   tool_getcustomerinfo("getCustomerInfo"):::toolLow
+  tool_createinitialstate("createInitialState"):::toolLow
   tool_getactiveorders("getActiveOrders"):::toolLow
   tool_getsessioninfo("getSessionInfo"):::toolLow
   tool_shouldescalate("shouldEscalate"):::toolLow
   tool_formatconversationhistory("formatConversationHistory"):::toolLow
-  tool_createinitialstate("createInitialState"):::toolLow
   tool_makeso("makeSO"):::toolLow
   tool_statewithorders("stateWithOrders"):::toolLow
   tool_contactinfonode("contactInfoNode"):::toolLow
   tool_parsecorrections("parseCorrections"):::toolLow
   tool_applycorrections("applyCorrections"):::toolLow
+  tool_deliverylogisticsdispatchnode("deliveryLogisticsDispatchNode"):::toolLow
+  tool_isfirstoutbound("isFirstOutbound"):::toolLow
+  tool_stylectx("styleCtx"):::toolLow
+  tool_logthought("logThought"):::toolLow
   tool_eventdetectornode("eventDetectorNode"):::toolLow
   tool_memoryextractionnode("memoryExtractionNode"):::toolLow
   tool_joinspanish("joinSpanish"):::toolLow
@@ -27,9 +63,6 @@ graph TD
   tool_quotedcopy("quotedCopy"):::toolLow
   tool_pricinganswernode("pricingAnswerNode"):::toolLow
   tool_runsideeffects("runSideEffects"):::toolLow
-  tool_isfirstoutbound("isFirstOutbound"):::toolLow
-  tool_stylectx("styleCtx"):::toolLow
-  tool_logthought("logThought"):::toolLow
   tool_truncateresponse("truncateResponse"):::toolLow
   tool_buildescalationresponse("buildEscalationResponse"):::toolLow
   tool_resolvetypedreason("resolveTypedReason"):::toolLow
@@ -55,73 +88,183 @@ graph TD
   tool_address("address"):::toolLow
   tool_order_received("order_received"):::toolLow
   tool_payment_receipt("payment_receipt"):::toolLow
-  node_delivery_logistics["?"]:::defaultNode
 
   agent --> orchestrator
-  orchestrator -->|flows_to| tool_eventdetectornode
-  orchestrator -->|invokes| tool_lookuporder
+  orchestrator -->|runs| wf_start
   orchestrator -->|invokes| tool_routebyintent
   orchestrator -->|invokes| tool_routeaftersupport
   orchestrator -->|invokes| tool_buildgraph
   orchestrator -->|invokes| tool_getcheckpointer
   orchestrator -->|invokes| tool_getgraph
-  orchestrator -->|invokes| tool_planpricingresponse
-  orchestrator -->|invokes| tool_getcustomerinfo
-  orchestrator -->|invokes| tool_getactiveorders
-  orchestrator -->|invokes| tool_getsessioninfo
-  orchestrator -->|invokes| tool_shouldescalate
-  orchestrator -->|invokes| tool_formatconversationhistory
   orchestrator -->|invokes| tool_createinitialstate
   orchestrator -->|invokes| tool_makeso
   orchestrator -->|invokes| tool_statewithorders
-  orchestrator -->|invokes| tool_parsecorrections
-  orchestrator -->|invokes| tool_applycorrections
-  orchestrator -->|invokes| tool_joinspanish
-  orchestrator -->|invokes| tool_multiorderdisambiguation
-  orchestrator -->|invokes| tool_intakefeecopy
-  orchestrator -->|invokes| tool_quotedcopy
-  orchestrator -->|invokes| tool_runsideeffects
-  orchestrator -->|invokes| tool_isfirstoutbound
-  orchestrator -->|invokes| tool_stylectx
-  orchestrator -->|invokes| tool_logthought
-  orchestrator -->|invokes| tool_truncateresponse
-  orchestrator -->|invokes| tool_buildescalationresponse
-  orchestrator -->|invokes| tool_resolvetypedreason
-  orchestrator -->|invokes| tool_buildhandoffcontext
-  orchestrator -->|invokes| tool_buildwaittimenotice
-  orchestrator -->|invokes| tool_normalizeintentforversion
-  orchestrator -->|invokes| tool_classifybykeywords
-  orchestrator -->|invokes| tool_makeclassificationschema
-  orchestrator -->|invokes| tool_classifybyllm
   orchestrator -->|invokes| tool_basestate
-  orchestrator -->|invokes| tool_so
   orchestrator -->|invokes| tool_assertnohedgewords
   orchestrator -->|invokes| tool_escalatedetectedevent
   orchestrator -->|invokes| tool_eventdetector
-  orchestrator -->|invokes| tool_verifydetectedevents
-  orchestrator -->|invokes| tool_address
   orchestrator -->|invokes| tool_order_received
   orchestrator -->|invokes| tool_payment_receipt
-  tool_contactinfonode -->|flows_to| tool_responsenode
-  tool_eventdetectornode -->|flows_to| tool_routernode
-  tool_memoryextractionnode -->|flows_to| tool_responsenode
-  tool_pricinganswernode -->|flows_to| tool_responsenode
-  tool_responsenode -->|flows_to| agent
-  tool_escalationnode -->|flows_to| tool_responsenode
-  tool_humantakenovernode -->|flows_to| tool_responsenode
-  tool_routernode -->|routes_to| tool_statusnode
-  tool_routernode -->|routes_to| tool_supportnode
-  tool_routernode -->|routes_to| tool_contactinfonode
-  tool_routernode -->|routes_to| node_delivery_logistics
-  tool_routernode -->|routes_to| tool_warrantyanswernode
-  tool_routernode -->|routes_to| tool_pricinganswernode
-  tool_routernode -->|routes_to| tool_escalationnode
-  tool_routernode -->|routes_to| tool_humantakenovernode
-  tool_statusnode -->|flows_to| tool_responsenode
-  tool_supportnode -->|routes_to| tool_memoryextractionnode
-  tool_supportnode -->|routes_to| tool_responsenode
-  tool_warrantyanswernode -->|flows_to| tool_responsenode
-  node_delivery_logistics -->|flows_to| tool_responsenode
+  wf_event_detector --> wf_router
+  wf_event_detector -->|invokes| tool_eventdetectornode
+  wf_event_detector -->|invokes| tool_so
+  wf_event_detector -->|invokes| tool_verifydetectedevents
+  wf_event_detector -->|invokes| tool_address
+  wf_router -.->|routes_to| wf_status
+  wf_router -.->|routes_to| wf_support
+  wf_router -.->|routes_to| wf_contact_info
+  wf_router -.->|routes_to| wf_delivery_logistics
+  wf_router -.->|routes_to| wf_warranty_answer
+  wf_router -.->|routes_to| wf_pricing_answer
+  wf_router -.->|routes_to| wf_escalation
+  wf_router -.->|routes_to| wf_human_taken_over
+  wf_router -->|calls| ext_loadAgentConfig
+  wf_router -->|invokes| tool_formatconversationhistory
+  wf_router -->|invokes| tool_normalizeintentforversion
+  wf_router -->|invokes| tool_classifybykeywords
+  wf_router -->|invokes| tool_makeclassificationschema
+  wf_router -->|invokes| tool_classifybyllm
+  wf_router -->|invokes| tool_routernode
+  wf_router -->|invokes| tool_so
+  wf_router -->|invokes| tool_address
+  wf_status --> wf_response
+  wf_status -->|calls| ext_loadAgentConfig
+  wf_status -->|calls| ext_rememberServiceOrder
+  wf_status -->|invokes| tool_lookuporder
+  wf_status -->|invokes| tool_getcustomerinfo
+  wf_status -->|invokes| tool_getactiveorders
+  wf_status -->|invokes| tool_formatconversationhistory
+  wf_status -->|invokes| tool_statusnode
+  wf_status -->|invokes| tool_so
+  wf_support -.->|routes_to| wf_memory_extraction
+  wf_support -.->|routes_to| wf_response
+  wf_support -->|writes| db_interaction_history
+  wf_support -->|calls| ext_loadAgentConfig
+  wf_support -->|calls| ext_buildCrmOverrides
+  wf_support -->|calls| ext_detectEscalationSignals
+  wf_support -->|calls| ext_processSignals
+  wf_support -->|calls| ext_renderOrderCards
+  wf_support -->|calls| ext_getContactNumbers
+  wf_support -->|calls| ext_assessSOCompleteness
+  wf_support -->|invokes| tool_getcustomerinfo
+  wf_support -->|invokes| tool_getactiveorders
+  wf_support -->|invokes| tool_getsessioninfo
+  wf_support -->|invokes| tool_formatconversationhistory
+  wf_support -->|invokes| tool_parsecorrections
+  wf_support -->|invokes| tool_applycorrections
+  wf_support -->|invokes| tool_supportnode
+  wf_support -->|invokes| tool_so
+  wf_support -->|invokes| tool_address
+  wf_contact_info --> wf_response
+  wf_contact_info -->|calls| ext_getContactNumbers
+  wf_contact_info -->|invokes| tool_getcustomerinfo
+  wf_contact_info -->|invokes| tool_contactinfonode
+  wf_contact_info -->|invokes| tool_address
+  wf_delivery_logistics --> wf_response
+  wf_delivery_logistics -.->|delegates_to| ext_deliveryLogisticsNode
+  wf_delivery_logistics -->|calls| ext_translateStatusToState
+  wf_delivery_logistics -->|invokes| tool_getcustomerinfo
+  wf_delivery_logistics -->|invokes| tool_getactiveorders
+  wf_delivery_logistics -->|invokes| tool_deliverylogisticsdispatchnode
+  wf_delivery_logistics -->|invokes| tool_isfirstoutbound
+  wf_delivery_logistics -->|invokes| tool_stylectx
+  wf_delivery_logistics -->|invokes| tool_logthought
+  wf_delivery_logistics -->|invokes| tool_so
+  wf_warranty_answer --> wf_response
+  wf_warranty_answer -->|calls| ext_insertPendingCostFollowup
+  wf_warranty_answer -->|calls| ext_renderHandoff
+  wf_warranty_answer -->|calls| ext_priorityFor
+  wf_warranty_answer -->|invokes| tool_planpricingresponse
+  wf_warranty_answer -->|invokes| tool_getcustomerinfo
+  wf_warranty_answer -->|invokes| tool_getactiveorders
+  wf_warranty_answer -->|invokes| tool_isfirstoutbound
+  wf_warranty_answer -->|invokes| tool_stylectx
+  wf_warranty_answer -->|invokes| tool_logthought
+  wf_warranty_answer -->|invokes| tool_warrantyanswernode
+  wf_warranty_answer -->|invokes| tool_so
+  wf_pricing_answer --> wf_response
+  wf_pricing_answer -->|calls| ext_insertPendingCostFollowup
+  wf_pricing_answer -->|calls| ext_renderHandoff
+  wf_pricing_answer -->|calls| ext_priorityFor
+  wf_pricing_answer -->|invokes| tool_planpricingresponse
+  wf_pricing_answer -->|invokes| tool_getcustomerinfo
+  wf_pricing_answer -->|invokes| tool_getactiveorders
+  wf_pricing_answer -->|invokes| tool_isfirstoutbound
+  wf_pricing_answer -->|invokes| tool_stylectx
+  wf_pricing_answer -->|invokes| tool_logthought
+  wf_pricing_answer -->|invokes| tool_joinspanish
+  wf_pricing_answer -->|invokes| tool_multiorderdisambiguation
+  wf_pricing_answer -->|invokes| tool_intakefeecopy
+  wf_pricing_answer -->|invokes| tool_quotedcopy
+  wf_pricing_answer -->|invokes| tool_pricinganswernode
+  wf_pricing_answer -->|invokes| tool_runsideeffects
+  wf_pricing_answer -->|invokes| tool_so
+  wf_memory_extraction --> wf_response
+  wf_memory_extraction -->|writes| db_whatsapp_conversations
+  wf_memory_extraction -->|calls| ext_extractAndPersistMemory
+  wf_memory_extraction -->|calls| ext_hasActionableInsights
+  wf_memory_extraction -->|invokes| tool_memoryextractionnode
+  wf_memory_extraction -->|invokes| tool_so
+  wf_escalation --> wf_response
+  wf_escalation -->|calls| ext_isEscalationReason
+  wf_escalation -->|calls| ext_renderHandoff
+  wf_escalation -->|calls| ext_getContactNumbers
+  wf_escalation -->|invokes| tool_getcustomerinfo
+  wf_escalation -->|invokes| tool_getactiveorders
+  wf_escalation -->|invokes| tool_getsessioninfo
+  wf_escalation -->|invokes| tool_shouldescalate
+  wf_escalation -->|invokes| tool_truncateresponse
+  wf_escalation -->|invokes| tool_buildescalationresponse
+  wf_escalation -->|invokes| tool_resolvetypedreason
+  wf_escalation -->|invokes| tool_buildhandoffcontext
+  wf_escalation -->|invokes| tool_buildwaittimenotice
+  wf_escalation -->|invokes| tool_responsenode
+  wf_escalation -->|invokes| tool_escalationnode
+  wf_escalation -->|invokes| tool_humantakenovernode
+  wf_escalation -->|invokes| tool_so
+  wf_human_taken_over --> wf_response
+  wf_human_taken_over -->|calls| ext_isEscalationReason
+  wf_human_taken_over -->|calls| ext_renderHandoff
+  wf_human_taken_over -->|calls| ext_getContactNumbers
+  wf_human_taken_over -->|invokes| tool_getcustomerinfo
+  wf_human_taken_over -->|invokes| tool_getactiveorders
+  wf_human_taken_over -->|invokes| tool_getsessioninfo
+  wf_human_taken_over -->|invokes| tool_shouldescalate
+  wf_human_taken_over -->|invokes| tool_truncateresponse
+  wf_human_taken_over -->|invokes| tool_buildescalationresponse
+  wf_human_taken_over -->|invokes| tool_resolvetypedreason
+  wf_human_taken_over -->|invokes| tool_buildhandoffcontext
+  wf_human_taken_over -->|invokes| tool_buildwaittimenotice
+  wf_human_taken_over -->|invokes| tool_responsenode
+  wf_human_taken_over -->|invokes| tool_escalationnode
+  wf_human_taken_over -->|invokes| tool_humantakenovernode
+  wf_human_taken_over -->|invokes| tool_so
+  wf_response --> wf_end
+  wf_response -->|calls| ext_isEscalationReason
+  wf_response -->|calls| ext_renderHandoff
+  wf_response -->|calls| ext_getContactNumbers
+  wf_response -->|invokes| tool_getcustomerinfo
+  wf_response -->|invokes| tool_getactiveorders
+  wf_response -->|invokes| tool_getsessioninfo
+  wf_response -->|invokes| tool_shouldescalate
+  wf_response -->|invokes| tool_truncateresponse
+  wf_response -->|invokes| tool_buildescalationresponse
+  wf_response -->|invokes| tool_resolvetypedreason
+  wf_response -->|invokes| tool_buildhandoffcontext
+  wf_response -->|invokes| tool_buildwaittimenotice
+  wf_response -->|invokes| tool_responsenode
+  wf_response -->|invokes| tool_escalationnode
+  wf_response -->|invokes| tool_humantakenovernode
+  wf_response -->|invokes| tool_so
+  wf_start --> wf_event_detector
+  tool_lookuporder -.->|requires| tool_planpricingresponse
+  tool_buildgraph -.->|requires| tool_routebyintent
+  tool_buildgraph -.->|requires| tool_routeaftersupport
+  tool_buildgraph -.->|requires| tool_getgraph
+  tool_createinitialstate -.->|requires| tool_getcustomerinfo
+  tool_createinitialstate -.->|requires| tool_getactiveorders
+  tool_createinitialstate -.->|requires| tool_getsessioninfo
+  tool_createinitialstate -.->|requires| tool_formatconversationhistory
 
   classDef agentNode fill:#6366f1,color:#fff,stroke:#818cf8
   classDef orchNode fill:#3b82f6,color:#fff,stroke:#60a5fa
@@ -129,6 +272,9 @@ graph TD
   classDef toolLow fill:#22c55e,color:#000,stroke:#4ade80
   classDef toolMed fill:#f97316,color:#000,stroke:#fb923c
   classDef toolHigh fill:#ef4444,color:#fff,stroke:#f87171
+  classDef wfNode fill:#f59e0b,color:#000,stroke:#fbbf24
+  classDef extNode fill:#ec4899,color:#fff,stroke:#f472b6
+  classDef startEndNode fill:#64748b,color:#fff,stroke:#94a3b8
   classDef memNode fill:#a855f7,color:#fff,stroke:#c084fc
   classDef retNode fill:#06b6d4,color:#fff,stroke:#22d3ee
   classDef defaultNode fill:#6b7280,color:#fff,stroke:#9ca3af

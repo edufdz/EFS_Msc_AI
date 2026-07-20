@@ -26,6 +26,13 @@ NODE_COLORS = {
     "agent":                "#6366f1",
     "orchestrator":         "#3b82f6",
     "planner":              "#06b6d4",
+    "start":                "#64748b",
+    "end":                  "#64748b",
+    "workflow_node":        "#f59e0b",
+    "graph_node":           "#f59e0b",  # legacy name in older agent maps
+    "datastore":            "#a855f7",
+    "external_call":        "#ec4899",
+    "delegation":           "#ec4899",
     "tool_low":             "#22c55e",
     "tool_medium":          "#f97316",
     "tool_high":            "#ef4444",
@@ -36,11 +43,19 @@ NODE_COLORS = {
 }
 
 EDGE_STYLES = {
-    "invokes":  {"color": "#cbd5e1", "style": "-",  "width": 1.5},
-    "requires": {"color": "#f97316", "style": "--", "width": 1.5},
-    "contains": {"color": "#475569", "style": "-",  "width": 1.0},
-    "uses":     {"color": "#38bdf8", "style": "-",  "width": 1.2},
-    "delegates":{"color": "#38bdf8", "style": "-",  "width": 1.2},
+    "invokes":     {"color": "#cbd5e1", "style": "-",  "width": 1.5},
+    "requires":    {"color": "#f97316", "style": "--", "width": 1.5},
+    "contains":    {"color": "#475569", "style": "-",  "width": 1.0},
+    "uses":        {"color": "#38bdf8", "style": "-",  "width": 1.2},
+    "delegates":   {"color": "#38bdf8", "style": "-",  "width": 1.2},
+    "runs":        {"color": "#38bdf8", "style": "-",  "width": 1.2},
+    "transitions": {"color": "#f59e0b", "style": "-",  "width": 1.5},
+    "flows_to":    {"color": "#f59e0b", "style": "-",  "width": 1.5},
+    "routes_to":   {"color": "#f59e0b", "style": "--", "width": 1.3},
+    "reads":       {"color": "#a855f7", "style": "-",  "width": 1.2},
+    "writes":      {"color": "#ef4444", "style": "-",  "width": 1.5},
+    "calls":       {"color": "#ec4899", "style": "-",  "width": 1.2},
+    "delegates_to":{"color": "#ec4899", "style": "--", "width": 1.3},
 }
 
 # Layer assignment for multipartite layout
@@ -48,12 +63,22 @@ LAYER_MAP = {
     "agent": 0,
     "orchestrator": 1,
     "planner": 1,
-    "tool": 2,
-    "memory_subsystem": 3,
-    "retrieval_subsystem": 3,
-    "memory": 4,
-    "retrieval": 4,
+    "start": 2,
+    "workflow_node": 3,
+    "graph_node": 3,
+    "end": 4,
+    "tool": 5,
+    "datastore": 6,
+    "external_call": 6,
+    "delegation": 6,
+    "memory_subsystem": 7,
+    "retrieval_subsystem": 7,
+    "memory": 8,
+    "retrieval": 8,
 }
+
+# Node types that make up the extracted state machine
+_WF_TYPES = ("workflow_node", "graph_node", "start", "end")
 
 
 def _node_color(node_data: dict) -> str:
@@ -75,6 +100,9 @@ def _node_label(node_data: dict) -> str:
         return "Planner"
     if ntype == "tool":
         return node_data.get("name", node_data.get("id", "tool"))
+    if ntype in ("workflow_node", "graph_node", "start", "end", "datastore",
+                 "external_call", "delegation"):
+        return node_data.get("name", node_data.get("id", "?"))
     if ntype in ("memory_subsystem", "retrieval_subsystem"):
         return ntype.replace("_", " ").title()
     if ntype == "memory":
@@ -82,6 +110,72 @@ def _node_label(node_data: dict) -> str:
     if ntype == "retrieval":
         return node_data.get("implementation", "retrieval")
     return node_data.get("id", "?")
+
+
+def _spread_workflow_layers(g: nx.DiGraph) -> None:
+    """Lay the extracted state machine out top-down by depth from START.
+
+    All workflow nodes share one multipartite layer by default, which crams
+    them onto a single row. Instead give each step a layer equal to its
+    longest path from START and push tools/memory below the deepest step.
+    """
+    wf_nodes = {nid for nid, d in g.nodes(data=True) if d.get("type") in _WF_TYPES}
+    if not wf_nodes:
+        return
+
+    base = LAYER_MAP["start"]
+    depths = {nid: 0 for nid in wf_nodes if g.nodes[nid].get("type") == "start"}
+    if not depths:
+        depths = {
+            nid: 0 for nid in wf_nodes
+            if not any(p in wf_nodes for p in g.predecessors(nid))
+        }
+
+    # Longest-path relaxation, capped so LangGraph cycles can't loop forever
+    cap = len(wf_nodes)
+    for _ in range(cap):
+        changed = False
+        for src, tgt in g.edges():
+            if src in depths and tgt in wf_nodes:
+                nd = depths[src] + 1
+                if nd <= cap and nd > depths.get(tgt, -1):
+                    depths[tgt] = nd
+                    changed = True
+        if not changed:
+            break
+
+    max_depth = max(depths.values(), default=0)
+    for nid in wf_nodes:
+        if g.nodes[nid].get("type") == "end":
+            g.nodes[nid]["subset"] = base + max_depth + 1
+        else:
+            g.nodes[nid]["subset"] = base + depths.get(nid, 1)
+
+    bottom = base + max_depth + 1
+    for nid, data in g.nodes(data=True):
+        t = data.get("type")
+        if t == "tool":
+            data["subset"] = bottom + 1
+        elif t in ("datastore", "external_call", "delegation"):
+            data["subset"] = bottom + 2
+        elif t in ("memory_subsystem", "retrieval_subsystem"):
+            data["subset"] = bottom + 3
+        elif t in ("memory", "retrieval"):
+            data["subset"] = bottom + 4
+
+
+def _wrap_wide_layers(g: nx.DiGraph, max_per_row: int = 8) -> None:
+    """Split any layer holding more than max_per_row nodes into extra rows,
+    renumbering all layers so the multipartite layout stays ordered."""
+    snapshot = [(nid, d["subset"]) for nid, d in g.nodes(data=True)]
+    order = sorted({s for _, s in snapshot})
+    new = 0
+    for s in order:
+        nodes = sorted(nid for nid, sub in snapshot if sub == s)
+        for i in range(0, len(nodes), max_per_row):
+            for nid in nodes[i:i + max_per_row]:
+                g.nodes[nid]["subset"] = new
+            new += 1
 
 
 def _build_nx_graph(agent_map: dict) -> nx.DiGraph:
@@ -110,10 +204,20 @@ def _render_png(agent_map: dict, output_path: str) -> str:
     for nid, data in g.nodes(data=True):
         ntype = data.get("type", "tool")
         data["subset"] = LAYER_MAP.get(ntype, 2)
+    _spread_workflow_layers(g)
+    _wrap_wide_layers(g)
 
     n_tools = sum(1 for _, d in g.nodes(data=True) if d.get("type") == "tool")
-    fig_w = max(16, n_tools * 2.5)
-    fig_h = max(10, 8 + n_tools * 0.3)
+    layer_counts: dict[int, int] = {}
+    for _, d in g.nodes(data=True):
+        layer_counts[d["subset"]] = layer_counts.get(d["subset"], 0) + 1
+    widest = max(layer_counts.values())
+    fig_w = max(16, widest * 4.0)
+    fig_h = max(10, len(layer_counts) * 1.8)
+    # Node boxes are sized in axis units while text is in points, so widening
+    # the figure must shrink the boxes proportionally or they overlap.
+    scale_x = 16 / fig_w
+    scale_y = 10 / fig_h
 
     fig, ax = plt.subplots(figsize=(fig_w, fig_h))
     fig.patch.set_facecolor(BG_COLOR)
@@ -177,8 +281,8 @@ def _render_png(agent_map: dict, output_path: str) -> str:
         # Box dimensions scale with label
         lines = label.split("\n")
         max_chars = max(len(l) for l in lines)
-        box_w = max(0.10, max_chars * 0.009 + 0.03)
-        box_h = max(0.05, len(lines) * 0.03 + 0.01)
+        box_w = max(0.10, max_chars * 0.009 + 0.03) * scale_x
+        box_h = max(0.05, len(lines) * 0.03 + 0.01) * scale_y
 
         bbox = FancyBboxPatch(
             (x - box_w / 2, y - box_h / 2), box_w, box_h,
@@ -188,7 +292,7 @@ def _render_png(agent_map: dict, output_path: str) -> str:
         )
         ax.add_patch(bbox)
 
-        text_color = "#000000" if color in ("#22c55e", "#f97316") else "#ffffff"
+        text_color = "#000000" if color in ("#22c55e", "#f97316", "#f59e0b") else "#ffffff"
         ax.text(
             x, y, label,
             ha="center", va="center",
@@ -207,6 +311,9 @@ def _render_png(agent_map: dict, output_path: str) -> str:
     legend_items = [
         mpatches.Patch(color="#6366f1", label="Agent"),
         mpatches.Patch(color="#3b82f6", label="Orchestrator"),
+        mpatches.Patch(color="#f59e0b", label="Workflow step"),
+        mpatches.Patch(color="#a855f7", label="Datastore"),
+        mpatches.Patch(color="#ec4899", label="External call / delegation"),
         mpatches.Patch(color="#22c55e", label="Tool (low risk)"),
         mpatches.Patch(color="#f97316", label="Tool (medium risk)"),
         mpatches.Patch(color="#ef4444", label="Tool (high risk)"),
@@ -235,7 +342,13 @@ def _mermaid_node_shape(ntype: str, nid: str, label: str) -> str:
         return f'  {nid}[[\"{safe}\"]]'
     if ntype == "tool":
         return f'  {nid}(\"{safe}\")'
-    if ntype in ("memory_subsystem", "memory", "retrieval_subsystem", "retrieval"):
+    if ntype in ("start", "end"):
+        return f'  {nid}([\"{safe}\"])'
+    if ntype in ("workflow_node", "graph_node"):
+        return f'  {nid}[\"{safe}\"]'
+    if ntype in ("external_call", "delegation"):
+        return f'  {nid}{{{{\"{safe}\"}}}}'
+    if ntype in ("memory_subsystem", "memory", "retrieval_subsystem", "retrieval", "datastore"):
         return f'  {nid}[(\"{safe}\")]'
     if ntype == "planner":
         return f'  {nid}[[\"{safe}\"]]'
@@ -255,6 +368,14 @@ def _mermaid_class(ntype: str, risk: str = "low") -> str:
         return "memNode"
     if ntype in ("retrieval_subsystem", "retrieval"):
         return "retNode"
+    if ntype in ("workflow_node", "graph_node"):
+        return "wfNode"
+    if ntype in ("start", "end"):
+        return "startEndNode"
+    if ntype == "datastore":
+        return "memNode"
+    if ntype in ("external_call", "delegation"):
+        return "extNode"
     return "defaultNode"
 
 
@@ -279,9 +400,9 @@ def _render_mermaid(agent_map: dict, output_path: str) -> str:
     # Edges
     for src, tgt, edata in g.edges(data=True):
         rel = edata.get("relationship", "invokes")
-        if rel == "requires":
+        if rel in ("requires", "routes_to", "delegates_to"):
             lines.append(f"  {src} -.->|{rel}| {tgt}")
-        elif rel in ("contains",):
+        elif rel in ("contains", "transitions", "flows_to"):
             lines.append(f"  {src} --> {tgt}")
         else:
             lines.append(f"  {src} -->|{rel}| {tgt}")
@@ -312,6 +433,9 @@ def _render_mermaid(agent_map: dict, output_path: str) -> str:
     lines.append("  classDef toolLow fill:#22c55e,color:#000,stroke:#4ade80")
     lines.append("  classDef toolMed fill:#f97316,color:#000,stroke:#fb923c")
     lines.append("  classDef toolHigh fill:#ef4444,color:#fff,stroke:#f87171")
+    lines.append("  classDef wfNode fill:#f59e0b,color:#000,stroke:#fbbf24")
+    lines.append("  classDef extNode fill:#ec4899,color:#fff,stroke:#f472b6")
+    lines.append("  classDef startEndNode fill:#64748b,color:#fff,stroke:#94a3b8")
     lines.append("  classDef memNode fill:#a855f7,color:#fff,stroke:#c084fc")
     lines.append("  classDef retNode fill:#06b6d4,color:#fff,stroke:#22d3ee")
     lines.append("  classDef defaultNode fill:#6b7280,color:#fff,stroke:#9ca3af")
@@ -320,8 +444,6 @@ def _render_mermaid(agent_map: dict, output_path: str) -> str:
     Path(output_path).write_text("\n".join(lines))
     return output_path
 
-
-# ── Public API ──────────────────────────────────────────────────────────────
 
 def _render_fsm_mermaid(agent_map: dict, output_path: str) -> str | None:
     """Render an FSM state diagram in Mermaid format (Sprint 8)."""
@@ -366,6 +488,8 @@ def _render_fsm_mermaid(agent_map: dict, output_path: str) -> str | None:
     Path(output_path).write_text("\n".join(lines))
     return output_path
 
+
+# ── Public API ──────────────────────────────────────────────────────────────
 
 def visualize_agent_map(agent_map: dict, output_dir: str) -> tuple[str, str]:
     """
