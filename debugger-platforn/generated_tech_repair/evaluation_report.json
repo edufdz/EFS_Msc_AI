@@ -1,0 +1,71 @@
+{
+  "suite": {
+    "test_suite_id": "c1ac0338-b1ef-4be4-a044-0f641a2d2e19",
+    "agent_id": "54ccc1bc-dd4c-4c68-b2d0-64af4568220d",
+    "total_tests": 40
+  },
+  "apfd": {
+    "apfd": 0.9168,
+    "weighted_apfd": 0.9202,
+    "n_tests": 40,
+    "n_potential_faults": 214,
+    "note": "Computed over the static potential-fault matrix (pre-execution)."
+  },
+  "diversity": {
+    "trait_coverage": 6.8e-05,
+    "trait_cells_filled": 4,
+    "trait_cells_total": 59049,
+    "scenario_coverage": 0.4167,
+    "scenario_cells_filled": 10,
+    "scenario_cells_total": 24,
+    "tool_pair_coverage": 0.3279,
+    "tool_pairs_exercised": 487,
+    "tool_pairs_total": 1485,
+    "archetype_coverage": 0.5,
+    "archetypes_used": [
+      "adversarial",
+      "general",
+      "ideal_customer"
+    ],
+    "overall_diversity": 0.3112
+  },
+  "taxonomy_coverage": {
+    "categories_covered": [
+      "escalation_failure",
+      "excessive_agency",
+      "guardrail_violation",
+      "hallucination",
+      "infinite_loop",
+      "missed_tool",
+      "pii_leak",
+      "premature_exit",
+      "style_violation",
+      "tool_misuse",
+      "wrong_tool"
+    ],
+    "categories_missing": [
+      "comprehension_failure",
+      "data_gap",
+      "delivery_failure",
+      "language_error",
+      "resolution_failure"
+    ],
+    "coverage": 0.6875
+  },
+  "predictive_validity": null,
+  "mutation": {
+    "total_mutants": 194,
+    "by_operator": {
+      "remove_guardrail": 77,
+      "swap_tool": 54,
+      "remove_escalation": 1,
+      "inject_pii": 55,
+      "wrong_language": 1,
+      "remove_confirmation": 5,
+      "truncate_context": 1
+    },
+    "mutation_score": null,
+    "note": "Mutation score requires executing the suite against each mutant (Phase C)."
+  },
+  "generated_at": "2026-07-23T21:53:26.288716+00:00"
+}

@@ -1,0 +1,588 @@
+{
+  "config_id": "ac71abeb-266b-4581-84f9-04e3d315d1e1",
+  "agent_id": "54ccc1bc-dd4c-4c68-b2d0-64af4568220d",
+  "coverage_goals": {
+    "tool_coverage": {
+      "target_percentage": 100,
+      "min_invocations_per_tool": {
+        "lookupOrder": 2,
+        "routeByIntent": 1,
+        "routeAfterSupport": 1,
+        "buildGraph": 1,
+        "getCheckpointer": 2,
+        "getGraph": 1,
+        "planPricingResponse": 2,
+        "getCustomerInfo": 1,
+        "getActiveOrders": 1,
+        "getSessionInfo": 1,
+        "shouldEscalate": 1,
+        "formatConversationHistory": 2,
+        "createInitialState": 1,
+        "makeSO": 1,
+        "stateWithOrders": 1,
+        "contactInfoNode": 1,
+        "parseCorrections": 2,
+        "applyCorrections": 3,
+        "deliveryLogisticsDispatchNode": 1,
+        "isFirstOutbound": 1,
+        "styleCtx": 1,
+        "logThought": 2,
+        "eventDetectorNode": 1,
+        "memoryExtractionNode": 2,
+        "joinSpanish": 1,
+        "multiOrderDisambiguation": 1,
+        "intakeFeeCopy": 1,
+        "quotedCopy": 1,
+        "pricingAnswerNode": 2,
+        "runSideEffects": 2,
+        "truncateResponse": 1,
+        "buildEscalationResponse": 1,
+        "resolveTypedReason": 1,
+        "buildHandoffContext": 2,
+        "buildWaitTimeNotice": 1,
+        "responseNode": 2,
+        "escalationNode": 3,
+        "humanTakenOverNode": 2,
+        "normalizeIntentForVersion": 1,
+        "classifyByKeywords": 1,
+        "makeClassificationSchema": 1,
+        "classifyByLLM": 2,
+        "routerNode": 2,
+        "statusNode": 2,
+        "supportNode": 1,
+        "warrantyAnswerNode": 1,
+        "baseState": 1,
+        "so": 1,
+        "assertNoHedgeWords": 1,
+        "escalateDetectedEvent": 3,
+        "EventDetector": 2,
+        "verifyDetectedEvents": 3,
+        "address": 2,
+        "order_received": 1,
+        "payment_receipt": 3
+      },
+      "tool_combinations": [],
+      "interaction_strength": 2,
+      "covering_array": [
+        {
+          "tool": "applyCorrections",
+          "applyCorrections.args": "typical",
+          "escalationNode.state": "typical",
+          "escalateDetectedEvent.supabase": "typical",
+          "escalateDetectedEvent.args": "typical",
+          "verifyDetectedEvents.candidates": "typical",
+          "verifyDetectedEvents.ctx": "typical"
+        },
+        {
+          "tool": "applyCorrections",
+          "applyCorrections.args": "boundary",
+          "escalationNode.state": "boundary",
+          "escalateDetectedEvent.supabase": "boundary",
+          "escalateDetectedEvent.args": "boundary",
+          "verifyDetectedEvents.candidates": "boundary",
+          "verifyDetectedEvents.ctx": "boundary"
+        },
+        {
+          "tool": "escalationNode",
+          "applyCorrections.args": "typical",
+          "escalationNode.state": "boundary",
+          "escalateDetectedEvent.supabase": "typical",
+          "escalateDetectedEvent.args": "boundary",
+          "verifyDetectedEvents.candidates": "typical",
+          "verifyDetectedEvents.ctx": "boundary"
+        },
+        {
+          "tool": "escalationNode",
+          "applyCorrections.args": "boundary",
+          "escalationNode.state": "typical",
+          "escalateDetectedEvent.supabase": "boundary",
+          "escalateDetectedEvent.args": "typical",
+          "verifyDetectedEvents.candidates": "boundary",
+          "verifyDetectedEvents.ctx": "typical"
+        },
+        {
+          "tool": "escalateDetectedEvent",
+          "applyCorrections.args": "typical",
+          "escalationNode.state": "typical",
+          "escalateDetectedEvent.supabase": "boundary",
+          "escalateDetectedEvent.args": "boundary",
+          "verifyDetectedEvents.candidates": "typical",
+          "verifyDetectedEvents.ctx": "typical"
+        },
+        {
+          "tool": "escalateDetectedEvent",
+          "applyCorrections.args": "boundary",
+          "escalationNode.state": "boundary",
+          "escalateDetectedEvent.supabase": "typical",
+          "escalateDetectedEvent.args": "typical",
+          "verifyDetectedEvents.candidates": "boundary",
+          "verifyDetectedEvents.ctx": "boundary"
+        },
+        {
+          "tool": "verifyDetectedEvents",
+          "applyCorrections.args": "typical",
+          "escalationNode.state": "typical",
+          "escalateDetectedEvent.supabase": "typical",
+          "escalateDetectedEvent.args": "typical",
+          "verifyDetectedEvents.candidates": "boundary",
+          "verifyDetectedEvents.ctx": "boundary"
+        },
+        {
+          "tool": "verifyDetectedEvents",
+          "applyCorrections.args": "boundary",
+          "escalationNode.state": "boundary",
+          "escalateDetectedEvent.supabase": "boundary",
+          "escalateDetectedEvent.args": "boundary",
+          "verifyDetectedEvents.candidates": "typical",
+          "verifyDetectedEvents.ctx": "typical"
+        },
+        {
+          "tool": "payment_receipt",
+          "applyCorrections.args": "typical",
+          "escalationNode.state": "typical",
+          "escalateDetectedEvent.supabase": "typical",
+          "escalateDetectedEvent.args": "typical",
+          "verifyDetectedEvents.candidates": "typical",
+          "verifyDetectedEvents.ctx": "typical"
+        },
+        {
+          "tool": "payment_receipt",
+          "applyCorrections.args": "boundary",
+          "escalationNode.state": "boundary",
+          "escalateDetectedEvent.supabase": "boundary",
+          "escalateDetectedEvent.args": "boundary",
+          "verifyDetectedEvents.candidates": "boundary",
+          "verifyDetectedEvents.ctx": "boundary"
+        }
+      ]
+    },
+    "edge_case_coverage": {
+      "ambiguous_requests": 60,
+      "incomplete_information": 52,
+      "user_changes_mind": 30,
+      "contradictory_statements": 22
+    },
+    "stressor_coverage": {
+      "timeout_scenarios": 275,
+      "malformed_response_scenarios": 137,
+      "data_conflict_scenarios": 165
+    },
+    "transition_coverage": null
+  },
+  "sandbox_config": {
+    "mode": "full_mock",
+    "tool_configs": {
+      "lookupOrder": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "routeByIntent": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "routeAfterSupport": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "buildGraph": {
+        "mode": "real",
+        "mock_strategy": null,
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "getCheckpointer": {
+        "mode": "real",
+        "mock_strategy": null,
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "getGraph": {
+        "mode": "real",
+        "mock_strategy": null,
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "planPricingResponse": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "getCustomerInfo": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "getActiveOrders": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "getSessionInfo": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "shouldEscalate": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "formatConversationHistory": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "createInitialState": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "makeSO": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "stateWithOrders": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "contactInfoNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "parseCorrections": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "applyCorrections": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": null,
+        "require_confirmation": false,
+        "latency_simulation": {
+          "min_ms": 200,
+          "max_ms": 800
+        }
+      },
+      "deliveryLogisticsDispatchNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "isFirstOutbound": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "styleCtx": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "logThought": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "eventDetectorNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "memoryExtractionNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "joinSpanish": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "multiOrderDisambiguation": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "intakeFeeCopy": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "quotedCopy": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "pricingAnswerNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "runSideEffects": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "truncateResponse": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "buildEscalationResponse": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "resolveTypedReason": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "buildHandoffContext": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "buildWaitTimeNotice": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "responseNode": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "escalationNode": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": null,
+        "require_confirmation": false,
+        "latency_simulation": {
+          "min_ms": 200,
+          "max_ms": 800
+        }
+      },
+      "humanTakenOverNode": {
+        "mode": "real",
+        "mock_strategy": null,
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "normalizeIntentForVersion": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "classifyByKeywords": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "makeClassificationSchema": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "classifyByLLM": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "routerNode": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "statusNode": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": 50,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "supportNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "warrantyAnswerNode": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "baseState": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "so": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "assertNoHedgeWords": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "escalateDetectedEvent": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": null,
+        "require_confirmation": false,
+        "latency_simulation": {
+          "min_ms": 200,
+          "max_ms": 800
+        }
+      },
+      "EventDetector": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "verifyDetectedEvents": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": null,
+        "require_confirmation": false,
+        "latency_simulation": {
+          "min_ms": 200,
+          "max_ms": 800
+        }
+      },
+      "address": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "order_received": {
+        "mode": "capture",
+        "mock_strategy": null,
+        "rate_limit": 100,
+        "require_confirmation": false,
+        "latency_simulation": null
+      },
+      "payment_receipt": {
+        "mode": "mock",
+        "mock_strategy": "schema_based",
+        "rate_limit": null,
+        "require_confirmation": false,
+        "latency_simulation": {
+          "min_ms": 200,
+          "max_ms": 800
+        }
+      }
+    },
+    "cost_limits": {
+      "max_llm_cost_per_episode": 0.1,
+      "max_total_cost_per_run": 50.0
+    },
+    "safety": {
+      "max_turns_per_episode": 20,
+      "timeout_per_tool_call_sec": 10,
+      "pii_detection": true,
+      "block_real_external_calls": true
+    }
+  },
+  "created_at": "2026-07-23 18:54:54.517830+00:00"
+}
