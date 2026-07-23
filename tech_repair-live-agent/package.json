@@ -1,0 +1,24 @@
+{
+  "name": "tech_repair-live-agent",
+  "version": "1.0.0",
+  "description": "TechRepair WhatsApp agent (verbatim copy from pulpoo-final) running against a fake in-memory database — a living simulation target for Phase C of the agent debugger.",
+  "type": "module",
+  "scripts": {
+    "api": "bun server.ts",
+    "cli": "bun index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@langchain/anthropic": "1.3.29",
+    "@langchain/core": "^1.2.3",
+    "@langchain/langgraph": "1.3.0",
+    "@langchain/langgraph-checkpoint-postgres": "1.0.1",
+    "@langchain/openai": "1.4.5",
+    "@supabase/supabase-js": "^2.49.0",
+    "zod": "3.25.76"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.11",
+    "typescript": "~5.8.3"
+  }
+}

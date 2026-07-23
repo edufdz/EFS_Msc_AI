@@ -1,0 +1,7 @@
+{
+  "default": "http://localhost:3098",
+  "by_agent_id": {
+    "54ccc1bc-dd4c-4c68-b2d0-64af4568220d": "http://localhost:3098"
+  },
+  "_comment": "Phase C endpoint resolution. 3098 = tech_repair-live-agent (verbatim TechRepair WhatsApp agent + fake DB). Start it with: cd ../tech_repair-live-agent && bun run api"
+}
