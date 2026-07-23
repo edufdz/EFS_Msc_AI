@@ -56,9 +56,27 @@ async function handleChat(body: { message?: string; session_id?: string; message
     const lane = result.metadata?.laneId;
     if (lane === 2) session.laneId = 2;
 
+    // Phase C oracle compatibility: the debugger's ConversationSimulator
+    // decides success from tool_call.result.status ("ok"/"error"). Mirror
+    // each tool_output into that shape, and surface an escalation as a
+    // synthetic escalate_to_human tool call so outcome tier 1 can see it.
+    const toolCalls = result.tool_calls.map((tc) => {
+        const out = tc.tool_output as Record<string, unknown> | null | undefined;
+        const failed = !!out && typeof out === "object" && ((out as any).found === false || (out as any).error);
+        return { ...tc, result: { status: failed ? "error" : "ok", data: tc.tool_output } };
+    }) as Array<Record<string, unknown>>;
+    if (result.escalation?.escalated) {
+        toolCalls.push({
+            tool_name: "escalate_to_human",
+            tool_input: { reason: result.escalation.reason ?? "" },
+            tool_output: result.escalation,
+            result: { status: "ok", data: result.escalation },
+        });
+    }
+
     return Response.json({
         response: result.response_text,
-        tool_calls: result.tool_calls,
+        tool_calls: toolCalls,
         intent: result.intent,
         confidence: result.confidence,
         escalation: result.escalation ?? null,
