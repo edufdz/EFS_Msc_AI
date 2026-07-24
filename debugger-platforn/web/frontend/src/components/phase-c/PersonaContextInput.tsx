@@ -11,7 +11,8 @@ export default function PersonaContextInput({ value, onChange }: PersonaContextI
       </h3>
       <p className="text-xs text-smoke">
         Provide business context for AI personas (e.g., product details, pricing, policies).
-        This replaces the CLI input() prompt.
+        Pre-filled with the default context (config/persona_context_default.txt) when available
+        &mdash; edit or delete it freely.
       </p>
       <textarea
         value={value}

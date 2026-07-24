@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import { usePhaseRunner } from '../hooks/usePhaseRunner'
-import { getPhaseCStatus, getPhaseCTraces, resetPhase as apiResetPhase } from '../api/client'
+import { getPhaseCStatus, getPhaseCTraces, getDefaultPersonaContext, downloadArtifact, resetPhase as apiResetPhase } from '../api/client'
 import ExecutionControls from '../components/phase-c/ExecutionControls'
 import PersonaContextInput from '../components/phase-c/PersonaContextInput'
 import LlmProviderSelect from '../components/shared/LlmProviderSelect'
@@ -49,6 +49,17 @@ export default function PhaseC() {
   useEffect(() => {
     if (forceAiPersonas && !aiPersonas) setAiPersonas(true)
   }, [forceAiPersonas, aiPersonas])
+
+  // Pre-fill persona context with the pre-made default (fake customer data).
+  // Only fills an empty field, so the user can clear or replace it freely.
+  useEffect(() => {
+    getDefaultPersonaContext()
+      .then((r) => {
+        if (r.context) setPersonaContext((prev) => prev || r.context!)
+      })
+      .catch(() => {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (sessionId && !phaseResult && phaseStatus !== 'running') {
@@ -189,6 +200,23 @@ export default function PhaseC() {
           </div>
           {status === 'completed' && phaseResult && (
             <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] uppercase tracking-wider text-text-muted mr-1">Download</span>
+                {([
+                  ['conversations', 'Conversations'],
+                  ['test-report', 'Report'],
+                  ['failure-inbox', 'Failures'],
+                ] as const).map(([type, label]) => (
+                  <button
+                    key={type}
+                    onClick={() => downloadArtifact(sessionId, type)}
+                    title={`Download ${label.toLowerCase()} JSON`}
+                    className="px-2.5 py-1 border border-border rounded-lg text-xs text-smoke hover:text-pearl hover:border-border-light transition-colors duration-200"
+                  >
+                    {label} ↓
+                  </button>
+                ))}
+              </div>
               <button
                 onClick={handleRerun}
                 className="px-3 py-1.5 border border-border rounded-lg text-sm text-smoke hover:text-pearl hover:border-border-light transition-colors duration-200"

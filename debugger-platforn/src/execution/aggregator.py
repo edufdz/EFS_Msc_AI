@@ -19,9 +19,15 @@ from .models import TestResult, TestRunReport
 class ResultsAggregator:
     """Aggregate test results into a report + failure inbox."""
 
-    def __init__(self, test_suite: Dict[str, Any], results: List[TestResult]):
+    def __init__(
+        self,
+        test_suite: Dict[str, Any],
+        results: List[TestResult],
+        agent_map: Dict[str, Any] | None = None,
+    ):
         self.test_suite = test_suite
         self.results = results
+        self.agent_map = agent_map or {}
 
     # ------------------------------------------------------------------
     # Report
@@ -47,11 +53,14 @@ class ResultsAggregator:
                 for tc in turn.tool_calls:
                     tool_counts[tc.get("tool_name", "unknown")] += 1
 
+        # Coverage baseline: prefer the runtime tool names the agent actually
+        # reports over /chat (declared as `runtime_tools` in the agent map).
+        # The static-analysis function names in the suite summary can never
+        # match runtime tool calls, which pins coverage at 0% on live agents.
         expected_tools: List[str] = list(
-            self.test_suite
-            .get("summary", {})
-            .get("tool_invocation_counts", {})
-            .keys()
+            self.agent_map.get("runtime_tools")
+            or self.agent_map.get("metadata", {}).get("runtime_tools")
+            or self.test_suite.get("summary", {}).get("tool_invocation_counts", {}).keys()
         )
         tools_not_covered = [t for t in expected_tools if t not in tool_counts]
         coverage_pct = (
@@ -158,6 +167,42 @@ class ResultsAggregator:
         }
 
     # ------------------------------------------------------------------
+    # Conversations export (all dialogues in one JSON)
+    # ------------------------------------------------------------------
+
+    def generate_conversations_export(self) -> Dict[str, Any]:
+        """Return every conversation from the run (all statuses) as one
+        JSON-serializable document: test metadata + full ordered turns
+        (persona/agent messages and tool calls)."""
+        ordered = sorted(self.results, key=lambda r: r.test_number)
+        return {
+            "test_suite_id": self.test_suite.get("test_suite_id", "unknown"),
+            "exported_at": datetime.now(timezone.utc).isoformat(),
+            "total_conversations": len(ordered),
+            "conversations": [
+                {
+                    "test_id": r.test_id,
+                    "test_number": r.test_number,
+                    "status": r.status.value,
+                    "scenario": r.scenario_title,
+                    "persona": r.persona_name,
+                    "difficulty": r.difficulty,
+                    "coverage_goal": r.coverage_goal,
+                    "outcome": r.outcome,
+                    "success": r.success,
+                    "failure_reason": r.failure_reason,
+                    "started_at": r.started_at,
+                    "completed_at": r.completed_at,
+                    "duration_sec": r.duration_sec,
+                    "total_turns": r.total_turns,
+                    "tools_called_sequence": r.tools_called_sequence,
+                    "turns": [t.model_dump() for t in r.turns],
+                }
+                for r in ordered
+            ],
+        }
+
+    # ------------------------------------------------------------------
     # Save helpers
     # ------------------------------------------------------------------
 
@@ -172,6 +217,12 @@ class ResultsAggregator:
         with open(filepath, "w") as f:
             json.dump(inbox, f, indent=2, default=str)
         return inbox
+
+    def save_conversations(self, filepath: str | Path) -> Dict:
+        export = self.generate_conversations_export()
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(export, f, indent=2, default=str, ensure_ascii=False)
+        return export
 
     def save_passed_inbox(self, filepath: str | Path) -> Dict:
         passed_inbox = self.generate_passed_inbox()

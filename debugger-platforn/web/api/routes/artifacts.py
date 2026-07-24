@@ -18,6 +18,7 @@ ARTIFACT_FILES = {
     "test-suite": "test_suite.json",
     "test-report": "test_run_report.json",
     "failure-inbox": "failure_inbox.json",
+    "conversations": "conversations.json",
     "persona-library": "persona_library.json",
     "scenario-catalog": "scenario_catalog.json",
     "conversation-log": "conversations.log",
@@ -27,8 +28,24 @@ ARTIFACT_FILES = {
 }
 
 
+def _serve(file_path: Path, session_id: str, download: bool):
+    if download:
+        # Content-Disposition: attachment — browser saves the file
+        return FileResponse(
+            str(file_path),
+            filename=f"{session_id}_{file_path.name}",
+            media_type="application/octet-stream",
+        )
+    if file_path.suffix == ".png":
+        return FileResponse(str(file_path), media_type="image/png")
+    if file_path.suffix == ".log":
+        return FileResponse(str(file_path), media_type="text/plain")
+    with open(file_path) as f:
+        return JSONResponse(json.load(f))
+
+
 @router.get("/{session_id}/{artifact_type}")
-async def get_artifact(session_id: str, artifact_type: str):
+async def get_artifact(session_id: str, artifact_type: str, download: bool = False):
     session = session_manager.get_session(session_id)
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
@@ -37,12 +54,7 @@ async def get_artifact(session_id: str, artifact_type: str):
     if artifact_type in session.artifacts:
         file_path = Path(session.artifacts[artifact_type])
         if file_path.exists():
-            if file_path.suffix == ".png":
-                return FileResponse(str(file_path), media_type="image/png")
-            if file_path.suffix == ".log":
-                return FileResponse(str(file_path), media_type="text/plain")
-            with open(file_path) as f:
-                return JSONResponse(json.load(f))
+            return _serve(file_path, session_id, download)
 
     # Fall back to standard file names
     filename = ARTIFACT_FILES.get(artifact_type)
@@ -59,11 +71,6 @@ async def get_artifact(session_id: str, artifact_type: str):
 
     for candidate in candidates:
         if candidate.exists():
-            if candidate.suffix == ".png":
-                return FileResponse(str(candidate), media_type="image/png")
-            if candidate.suffix == ".log":
-                return FileResponse(str(candidate), media_type="text/plain")
-            with open(candidate) as f:
-                return JSONResponse(json.load(f))
+            return _serve(candidate, session_id, download)
 
     raise HTTPException(status_code=404, detail=f"Artifact '{artifact_type}' not found")

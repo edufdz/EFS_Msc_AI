@@ -387,10 +387,11 @@ def main(
         if monitor_task:
             await monitor_task
 
-        aggregator = ResultsAggregator(suite_for_exec, results)
+        aggregator = ResultsAggregator(suite_for_exec, results, agent_map=agent_map_data)
         report = aggregator.save_report(results_dir / "test_run_report.json", started_at)
         inbox = aggregator.save_failure_inbox(results_dir / "failure_inbox.json")
         aggregator.save_passed_inbox(results_dir / "passed_inbox.json")
+        aggregator.save_conversations(results_dir / "conversations.json")
         return report, inbox, aggregator
 
     report, inbox, aggregator = asyncio.run(_run_phase_c())

@@ -84,6 +84,19 @@ export interface SavedTrace {
 export const getPhaseCTraces = (sessionId: string) =>
   request<{ traces: SavedTrace[] }>(`/api/phase-c/traces/${sessionId}`)
 
+export const getDefaultPersonaContext = () =>
+  request<{ context: string | null }>('/api/phase-c/persona-context-default')
+
+// Artifacts — trigger a browser download of a session artifact (JSON/log/png)
+export const downloadArtifact = (sessionId: string, artifactType: string) => {
+  const a = document.createElement('a')
+  a.href = `/api/artifacts/${sessionId}/${artifactType}?download=true`
+  a.download = ''
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+}
+
 // Phase D
 export const runPhaseD = (body: { session_id: string; skip_ai: boolean; use_embeddings: boolean; max_retries: number; backoff_base: number; backoff_max: number }) =>
   request<{ status: string; session_id: string }>('/api/phase-d/run', { method: 'POST', body: JSON.stringify(body) })

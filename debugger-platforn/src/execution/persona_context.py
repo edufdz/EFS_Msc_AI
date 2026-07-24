@@ -82,18 +82,49 @@ def _parse_analysis_response(text: str) -> tuple[str | None, str | None]:
     return analysis or None, when_agent_asks or None
 
 
+DEFAULT_CONTEXT_FILE = Path(__file__).resolve().parents[2] / "config" / "persona_context_default.txt"
+
+
+def load_default_persona_context() -> str | None:
+    """Return the pre-made persona context (config/persona_context_default.txt),
+    or None if the file doesn't exist / is empty."""
+    try:
+        if DEFAULT_CONTEXT_FILE.is_file():
+            text = DEFAULT_CONTEXT_FILE.read_text(encoding="utf-8", errors="replace").strip()
+            return text or None
+    except Exception:
+        pass
+    return None
+
+
 def prompt_for_persona_context() -> str | None:
     """
     Ask in the terminal whether to add context for the personas.
-    If yes, accept either a file path or multiline inline text (end with . or blank line).
+    If a pre-made context exists (config/persona_context_default.txt) it is
+    offered as the default. Otherwise accept either a file path or multiline
+    inline text (end with . or blank line).
     Returns the context string, or None if skipped / invalid.
     """
-    try:
-        answer = input("Do you want to add context for the personas to use? (y/n) [n]: ").strip().lower() or "n"
-    except (EOFError, KeyboardInterrupt):
-        return None
-    if answer not in ("y", "yes"):
-        return None
+    default_context = load_default_persona_context()
+    if default_context:
+        try:
+            answer = input(
+                f"Pre-made persona context found ({DEFAULT_CONTEXT_FILE.name} — fake customer data). "
+                "Use it? (Y=use / n=none / c=custom) [Y]: "
+            ).strip().lower() or "y"
+        except (EOFError, KeyboardInterrupt):
+            return None
+        if answer in ("y", "yes"):
+            return default_context
+        if answer not in ("c", "custom"):
+            return None
+    else:
+        try:
+            answer = input("Do you want to add context for the personas to use? (y/n) [n]: ").strip().lower() or "n"
+        except (EOFError, KeyboardInterrupt):
+            return None
+        if answer not in ("y", "yes"):
+            return None
 
     print(
         "Enter a file path (e.g. ./context.txt), or paste your context and end with a line containing only '.'"

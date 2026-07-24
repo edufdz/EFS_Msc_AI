@@ -235,12 +235,14 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
     emitter.emit("generating_reports", "Generating reports...", 85)
 
     # Aggregate results
-    aggregator = ResultsAggregator(test_suite, results)
+    aggregator = ResultsAggregator(test_suite, results, agent_map=agent_map)
     report = aggregator.save_report(output_dir / "test_run_report.json", started_at)
+    aggregator.save_conversations(output_dir / "conversations.json")
 
     # Register common artifacts
     session_manager.set_artifact(req.session_id, "test-report", str(output_dir / "test_run_report.json"))
     session_manager.set_artifact(req.session_id, "conversation-log", conversation_log_file)
+    session_manager.set_artifact(req.session_id, "conversations", str(output_dir / "conversations.json"))
 
     # Run AI-powered failure triage (or skip if validate=False)
     triage_summary = None
@@ -293,6 +295,15 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
         "triage": triage_summary,
     }
     return result
+
+
+@router.get("/persona-context-default")
+async def get_persona_context_default():
+    """Pre-made persona context (config/persona_context_default.txt) used to
+    pre-fill the Persona Context field in the UI. Returns null if absent."""
+    from src.execution.persona_context import load_default_persona_context
+
+    return {"context": load_default_persona_context()}
 
 
 @router.post("/run")

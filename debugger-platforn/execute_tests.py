@@ -135,6 +135,7 @@ def _print_final_report(report, inbox, output_dir):
     console.print(f"\n[bold green]Output files:[/bold green]")
     console.print(f"  Report:        [cyan]{output_dir}/test_run_report.json[/cyan]")
     console.print(f"  Failure inbox: [cyan]{output_dir}/failure_inbox.json[/cyan]")
+    console.print(f"  Conversations: [cyan]{output_dir}/conversations.json[/cyan]")
 
 
 @click.command()
@@ -501,9 +502,10 @@ async def _run_async(
 
     # Aggregate
     console.print("\n[bold]Generating reports...[/bold]")
-    aggregator = ResultsAggregator(test_suite, results)
+    aggregator = ResultsAggregator(test_suite, results, agent_map=agent_map)
     report = aggregator.save_report(output_dir / "test_run_report.json", started_at)
     inbox = aggregator.save_failure_inbox(output_dir / "failure_inbox.json")
+    aggregator.save_conversations(output_dir / "conversations.json")
 
     _print_final_report(report, inbox, output_dir)
 

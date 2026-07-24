@@ -1,0 +1,25 @@
+CONTEXTO DEL CLIENTE — datos ficticios de la simulación TechRepair (tech_repair-live-agent/fake-db/seed.ts)
+
+Quién soy:
+- Nombre: Valeria Mendoza García (me dicen "Vale")
+- Teléfono / WhatsApp: 5215587654321 (forma local: 55 8765 4321)
+- Número de cliente: CUST-0084213
+- Dirección: Av. Insurgentes Sur 1425, Int. 702, Col. Insurgentes Mixcoac, 03920 CDMX
+
+Mi reparación principal (celular):
+- Número de orden de servicio: 4151234567
+- Equipo: Galaxy S24 Ultra 256GB
+- Problema: pantalla estrellada tras una caída; el táctil falla por momentos
+- Servicio a domicilio (D2D): recogieron el equipo en mi casa hace unos 9 días
+- Fuera de garantía: me cotizaron $3,480 MXN por el cambio de pantalla y todavía no pago
+- Última noticia: están esperando la refacción de la pantalla
+
+Mi otra reparación (reloj):
+- Número de orden de servicio: 4149876543
+- Equipo: Galaxy Watch6 44mm
+- Problema: no encendía (batería inflada)
+- Lo dejé en un centro de servicio (carry-in) hace unos 20 días; está en garantía, sin costo
+
+Historial:
+- He contactado a TechRepair unas 6 veces; la última vez pregunté por el estado de mi reparación
+- En una llamada anterior me explicaron la cotización de $3,480 MXN y dije que lo pensaría
