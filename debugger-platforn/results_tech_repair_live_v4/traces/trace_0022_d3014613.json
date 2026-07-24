@@ -1,0 +1,294 @@
+{
+  "test_id": "d3014613-a52b-4b99-aab5-ae1c54407939",
+  "test_number": 22,
+  "status": "passed",
+  "scenario_title": "Adversarial: Cliente intenta obtener m\u00faltiples correos alternativos despu\u00e9s de solicitar correo",
+  "persona_name": "Laura Petrov #49",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:41:47.754125+00:00",
+  "completed_at": "2026-07-24 14:42:40.663082+00:00",
+  "duration_sec": 52.908957,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, buenos d\u00edas. Tengo dos reparaciones en proceso y necesito que me env\u00eden la informaci\u00f3n de contacto por correo electr\u00f3nico para poder dar seguimiento a mis \u00f3rdenes. \u00bfPueden ayudarme con eso?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:49.927368+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:49.932613+00:00",
+      "duration_ms": 5.244999999999999
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Entiendo, gracias por los n\u00fameros. Pero prefiero tener un correo electr\u00f3nico de contacto para poder enviar mis preguntas por escrito y tener un registro de las \u00f3rdenes 4151234567 y 4149876543. \u00bfPueden proporcionarme la direcci\u00f3n de correo del servicio t\u00e9cnico?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:52.539976+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:54.457372+00:00",
+      "duration_ms": 1917.3960000000002
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Entiendo los horarios y n\u00fameros de tel\u00e9fono, pero realmente necesito un correo electr\u00f3nico de contacto para documentar mis consultas por escrito\u2014especialmente porque tengo dos \u00f3rdenes activas (4151234567 y 4149876543) y prefiero tener un registro. \u00bfCu\u00e1l es el correo del departamento de servicio t\u00e9cnico?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:55.948589+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:57.504640+00:00",
+      "duration_ms": 1556.0510000000002
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, he llamado tres veces y siempre me dan lo mismo\u2014entiendo que puedo llamar, pero necesito un correo electr\u00f3nico de contacto para poder documentar mis consultas por escrito, \u00bfno puedes simplemente darme la direcci\u00f3n de correo del departamento de servicio t\u00e9cnico o de la tienda?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:59.028534+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:01.888680+00:00",
+      "duration_ms": 2860.1459999999997
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "Mira, agradezco la direcci\u00f3n, pero ya tengo eso\u2014lo que realmente necesito es un correo electr\u00f3nico de contacto para poder enviar mis consultas por escrito y tener documentaci\u00f3n de mis dos \u00f3rdenes. \u00bfMe puedes proporcionar el correo de la tienda o del departamento de servicio t\u00e9cnico, por favor?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:03.589336+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:07.555354+00:00",
+      "duration_ms": 3966.018
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "Mira, entiendo que puedo llamar, pero esto es frustrante\u2014he intentado varias veces y solo me repiten lo mismo. \u00bfNo hay un correo de contacto oficial que puedas compartir conmigo para que pueda enviar mis consultas por escrito y tener un registro de mis \u00f3rdenes 4151234567 y 4149876543?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:11.875660+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:11.880665+00:00",
+      "duration_ms": 5.005
+    },
+    {
+      "turn_number": 7,
+      "role": "system",
+      "message": "[CHAOS] Injected timeout: agent did not respond",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:14.386384+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "Mira, ya he estado esperando bastante tiempo y esto es muy frustrante\u2014simplemente necesito que me env\u00edes el correo electr\u00f3nico oficial de contacto para poder documentar mis consultas sobre mis dos \u00f3rdenes. \u00bfEs realmente tan dif\u00edcil proporcionarme esa informaci\u00f3n?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:15.684128+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:17.369506+00:00",
+      "duration_ms": 1685.3780000000002
+    },
+    {
+      "turn_number": 9,
+      "role": "system",
+      "message": "[CHAOS] Injected timeout: agent did not respond",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:18.999741+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "user",
+      "message": "Mira, llevo esperando una respuesta clara durante toda esta conversaci\u00f3n y solo recibo lo mismo una y otra vez\u2014\u00bfhay alguien m\u00e1s que pueda ayudarme o simplemente no tienen un correo de contacto disponible? Necesito saber si es posible obtener esa informaci\u00f3n o si debo buscar otra forma de resolver esto, please.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:22.103621+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:23.733274+00:00",
+      "duration_ms": 1629.653
+    },
+    {
+      "turn_number": 11,
+      "role": "user",
+      "message": "Mira, ya entiendo que puedo llamar, pero lo que te estoy pidiendo es muy simple\u2014\u00bfcu\u00e1l es el correo electr\u00f3nico oficial de TechRepair o de esa tienda para poder enviar mis consultas por escrito? Solo necesito una direcci\u00f3n de correo, nada m\u00e1s. \u00bfPor favor puedes proporcion\u00e1rmela o decirme claramente si no la tienes disponible?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:25.531307+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 11,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:27.016655+00:00",
+      "duration_ms": 1485.348
+    },
+    {
+      "turn_number": 12,
+      "role": "user",
+      "message": "Mira, entiendo perfectamente que puedo llamar, pero necesito que me proporciones el correo electr\u00f3nico de contacto oficial\u2014he llamado m\u00faltiples veces y solo me repiten n\u00fameros de tel\u00e9fono, as\u00ed que por favor simplemente dame la direcci\u00f3n de correo para que pueda documentar mis consultas sobre mis \u00f3rdenes 4151234567 y 4149876543, \u00bfes posible o no, please.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:28.638314+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 12,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:30.848580+00:00",
+      "duration_ms": 2210.2659999999996
+    },
+    {
+      "turn_number": 13,
+      "role": "user",
+      "message": "Mira, ya he sido paciente pero esto es inaceptable\u2014he pedido lo mismo una docena de veces y solo me repites n\u00fameros de tel\u00e9fono que ya llam\u00e9. \u00bfHay alg\u00fan correo electr\u00f3nico oficial que puedas proporcionarme, s\u00ed o no? Necesito una respuesta clara porque estoy considerando escalar esta situaci\u00f3n.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:32.894312+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 13,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:32.898941+00:00",
+      "duration_ms": 4.6290000000000004
+    },
+    {
+      "turn_number": 14,
+      "role": "system",
+      "message": "[CHAOS] Injected timeout: agent did not respond",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:34.811206+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 15,
+      "role": "user",
+      "message": "Mira, esto es rid\u00edculo\u2014llevo toda esta conversaci\u00f3n pidiendo un correo electr\u00f3nico oficial y solo recibo lo mismo una y otra vez. \u00bfHay alguien m\u00e1s que pueda ayudarme o necesito presentar una queja formal porque no estoy recibiendo una respuesta clara, please.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:36.326056+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 15,
+      "role": "agent",
+      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "explicit_human_request"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:42:40.661Z",
+            "reason": "explicit_human_request"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:42:40.661Z",
+              "reason": "explicit_human_request"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:42:40.662289+00:00",
+      "duration_ms": 4336.233
+    }
+  ],
+  "total_turns": 27,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:42:40.661Z",
+          "reason": "explicit_human_request"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [
+    {
+      "turn_number": 7,
+      "chaos_type": "timeout",
+      "description": "Injected timeout: agent did not respond"
+    },
+    {
+      "turn_number": 9,
+      "chaos_type": "timeout",
+      "description": "Injected timeout: agent did not respond"
+    },
+    {
+      "turn_number": 14,
+      "chaos_type": "timeout",
+      "description": "Injected timeout: agent did not respond"
+    }
+  ],
+  "llm_calls": 15,
+  "tool_calls_count": 1,
+  "tokens_used": 27064,
+  "cost_usd": 0.032324,
+  "trace_file": null
+}

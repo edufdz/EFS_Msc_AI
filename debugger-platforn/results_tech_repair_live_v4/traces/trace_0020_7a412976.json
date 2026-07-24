@@ -1,0 +1,238 @@
+{
+  "test_id": "7a412976-638f-4866-986b-bfe51467cea5",
+  "test_number": 20,
+  "status": "passed",
+  "scenario_title": "Variante 2: Informaci\u00f3n Faltante \u2014 Usuario no proporciona identificador de pedido",
+  "persona_name": "Camila Santos",
+  "difficulty": "hard",
+  "coverage_goal": "interaction_coverage",
+  "started_at": "2026-07-24 14:41:42.130884+00:00",
+  "completed_at": "2026-07-24 14:42:23.868479+00:00",
+  "duration_sec": 41.737595,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, miren, necesito cambiar mi direcci\u00f3n de env\u00edo URGENTE. Ped\u00ed hace ods d\u00edas y tengo registraeo Calle Principal 123 apartamento 4B, pero es el 4A. No me acuerdo el n\u00famero de la orden, \u00bfpueden arreglarlo antes de que se env\u00ede o qu\u00e9?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:43.581962+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:44.855746+00:00",
+      "duration_ms": 1273.784
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Bueno, est\u00e1 bien, pero ap\u00farense porfa porque el pedido salli\u00f3 hace dos d\u00edas y no quiero que llegue a la direcci\u00f3n equivocada. Mi n\u00famero de teel\u00e9fono es 555-0147 si necesigan confirmar conmigo, \u00bfcu\u00e1nto tiempo va a tardar esto?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:46.696468+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:47.549017+00:00",
+      "duration_ms": 852.549
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "iMra, entiendo que me des el n\u00famero, pero eso no me ayuda ahorita porque necesito que ALGUIEN actualice mi direcci\u00f3n YA, no que me pasen a otra l\u00ednea\u2014yya llevo esperando y el paquete puede salir en cualquier moemnto. \u00bfNo puedes t\u00fa mismo cambiar el apartamento 4B por 4A en mi orden dircetamente aqu\u00ed?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:49.726602+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:50.540300+00:00",
+      "duration_ms": 813.698
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, ya te di mi tel\u00e9fono hace poco, \u00bfen serio necesitas que lo repita? Es 555-0147. Pero te digo, \"en breve\" no me sirve porque el paquete pudde salir HOY\u2014\u00bfcu\u00e1nto es \"en breve\" excatamente, una hora, dos horas?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:52.323308+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:52.331081+00:00",
+      "duration_ms": 7.773000000000001
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1Pero espera, espera! \u00bfMe est\u00e1s diciendo que NO puedes hacer nada desde aqu\u00ed? Mira, entiendo que tengas un n\u00famero de tel\u00e9fono, pero yo necesito que ALGUEIN\u2014t\u00fa, otro agente, quien sea\u2014cambie mi direcci\u00f3n AHORA mismo antes de que sea demasiado tarde. \u00bfDe verdad no ahy ninguna ofrma de que actualices el apartamento 4B a 4A directamente en el sistema sin que tfnga quue llamar a otro lado?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:54.955066+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:41:57.559910+00:00",
+      "duration_ms": 2604.844
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1Esto es rid\u00edculo! Llevo esperando y ustedes solo me dn el mismo n\u00famero una y otra vez\u2014\u00bfacaso no entienden que necesito que se arregle AHORA, no cuando me atienda alguien en esa l\u00ednea? iMra, mi nombre es Valreia Mendoza Garc\u00eda, mi tel\u00e9fono es 555-0147, tengo dos reparaciones en proceso tabi\u00e9n\u2014Galaxy S24 Ultra con la pantalla rota, orden 4151234567, y un Galaxy Watch6 en garant\u00eda, orden 4149876543\u2014pero ESSO no es lo imporante ahorita, lo urgente es que cambien mi direcci\u00f3n del env\u00edo de 4B a 4A antes de que sea demasiado tarde, \u00bfno ahy NINGUNA manera de que alguien en tu equipo lo haga directamente?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:00.838761+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:04.109745+00:00",
+      "duration_ms": 3270.984
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "\u00a1Pero \"en breve\" no me dice NADA! \u00bfUna hora? \u00bfDos horas? \u00bfMa\u00f1ana? Mira, ya te di mi nombre, mi tel\u00e9fono, mis n\u00fameros de orden\u2014\u00bfqu\u00e9 m\u00e1s necesitas para que alguien de tu equipo simplemente cambie el 4B por 4A en mi direcci\u00f3n DE UNA VZE? \u00a1Esto es incre\u00edble, llevo idez minutos hablando contigo y nada ha avanzado!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:06.017340+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:08.771835+00:00",
+      "duration_ms": 2754.495
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "\u00a1NO! \u00a1Mira, ya tengo la direcci\u00f3n, no necesito que me la repitas tora vez! Lo quue necesito es que ALUIEN en tu equipo\u2014t\u00fa mism, un supervisor, quien sea\u2014entre al sistema AHORA y cambie mi apartamento de 4B a 4A, proque cada minuto que pasa es un minuto m\u00e1s cerca de que mi paquete salga con la direcci\u00f3n EQUIVOCADA. \u00bfDe verdad no hay un supervisor o un gerente que pueda hacer esto sin que tenga que colgar y llamar a otro n\u00famero?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:11.509943+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:12.291098+00:00",
+      "duration_ms": 781.1550000000001
+    },
+    {
+      "turn_number": 9,
+      "role": "user",
+      "message": "\u00a1Esto es un C\u00cdRCULO VICIOSO! Llevo diez minuttos dici\u00e9ndtoe lo mismo y t\u00fa me das el mismo n\u00famero una y otra vez\u2014\u00bfacaso tu sistema no permitte que un agente actualice una direcci\u00f3n o necesito llamar para uqe alguien haga lo que dever\u00eda ser una tarea de DOS SEGUNDOS? \u00a1Mira, vly a llsmar AHORA a ese n\u00famero, pero si mi paquete llega a la direcci\u00f3n equivocada, esto es responsabilidad de ustedes!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:14.752109+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 9,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:16.876137+00:00",
+      "duration_ms": 2124.0280000000002
+    },
+    {
+      "turn_number": 10,
+      "role": "user",
+      "message": "\u00a1EST\u00c1 BIEN, ETS\u00c1 BIEN! Voy a llamar ahora mismo, pero te advierto qe si mi paquete llega al 4B en luggar del 4, voy a volver aqu\u00ed y exigir\u00e9 una compensaci\u00f3n por esto\u2014ustedes tuvieron la oportunidad de arreglarlo en dos segundos y no lo hicieron.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:18.535700+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:20.821276+00:00",
+      "duration_ms": 2285.576
+    },
+    {
+      "turn_number": 11,
+      "role": "user",
+      "message": "\u00a1PERFECTO, voy a llmar AHORA MISMO a ese n\u00famreo, pero que quede claro que si mi paquete llega equivocado, exigir\u00e9 una copensaci\u00f3n y voy a dejar una rese\u00f1a terrible sobre este servicio! Esto es inaceptable.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:22.199128+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 11,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:42:23.866Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:42:23.866Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:42:23.867535+00:00",
+      "duration_ms": 1668.407
+    }
+  ],
+  "total_turns": 22,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:42:23.866Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 11,
+  "tool_calls_count": 1,
+  "tokens_used": 18646,
+  "cost_usd": 0.023662000000000002,
+  "trace_file": null
+}

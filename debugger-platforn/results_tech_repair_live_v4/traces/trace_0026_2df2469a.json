@@ -1,0 +1,174 @@
+{
+  "test_id": "2df2469a-1316-4057-90c6-e7c3d5052eaa",
+  "test_number": 26,
+  "status": "passed",
+  "scenario_title": "Ambig\u00fcedad: R072 \u2014 M\u00faltiples interpretaciones del estado de entrega",
+  "persona_name": "Zara Mitchell #52",
+  "difficulty": "hard",
+  "coverage_goal": "interaction_coverage",
+  "started_at": "2026-07-24 14:42:29.725406+00:00",
+  "completed_at": "2026-07-24 14:42:48.955906+00:00",
+  "duration_sec": 19.2305,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Mira, tengo un problema con una entrega que lleg\u00f3 hoy pero viene toda mojada, \u00bfvise? El sistema dice que fue entregado correctamente pero el paquete esy\u00e1 hecho un dssastre. \u00bfEsto cuenta como entrega exitosa o qu\u00e9 onda? Necesito saber qu\u00e9 tengo que hacer.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:31.302077+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:31.311293+00:00",
+      "duration_ms": 9.216000000000001
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah s\u00ed, claro, es la orden 4151234567 de mi Galaxy S24 Ultra que dej\u00e9 en reparaci\u00f3n... pero espera, la entrega mojada que me lleg\u00f3 ohy es diferente, es un paquete de accesorios que ped\u00ed por separado. \u00bfMe ayudas cn eso o necesito el n\u00famero de esa orden tambi\u00e9?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:33.074957+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:34.813590+00:00",
+      "duration_ms": 1738.633
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, te doy el n\u00famero pero esto es lo que no entiendo\u2014el paquete de accesorios lleg\u00f3 mojado hoy, la orden es la 4150987654, pero el sistema ya lo marc\u00f3 como entregado exitosamente. \u00bfEso es normal? Porque claramente no lleg\u00f3 en buenas condiciones y necesito saber si puedo reportarlo como problema o si tengo quue acpetarlo as\u00ed nom\u00e1s.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:36.985254+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:38.680835+00:00",
+      "duration_ms": 1695.581
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, ya te di el n\u00famero de la orden, \u00bfpor quu\u00e9 me est\u00e1s dando n\u00fameros de tel\u00e9fono? Yo necesito que T\u00da me ayudes AHORA a reportar este problema, no que me mandes a llamar a otro lado\u2014ya perd\u00ed suficiente tiempo con esto y el paqute sigue mojado en mi casa.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:40.766451+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:41.942576+00:00",
+      "duration_ms": 1176.125
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1Esto es rid\u00edculo! Llevo tres mensajes d\u00e1ndote el n\u00famero de orden 4150987654 y t\u00fa solo me das n\u00faneros de tel\u00e9fono\u2014\u00bfacaso no puedes prcoesar un reporte de entrega da\u00f1ada directamente aqu\u00ed? \u00bfO es que tu sistema no permite reportar problemas de entregas mojadas y tenho que dejarme estar con un paquete arruinado?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:43.870413+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:43.875538+00:00",
+      "duration_ms": 5.125
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1YA TE LO DI! \u00a1La orden es 4150987654! \u00bfEn serio necesito repetirlo OTRA VEZ? Mira, el paqete lleg\u00f3 mojado, estt\u00e1 arruinado, y necesito que reportes esto AHORA en tu sistema\u2014no me mandes m\u00e1s n\u00fameros de tel\u00e9fono porque ya estoy al l\u00edmite de mi pacienca.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:45.778012+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:45.789374+00:00",
+      "duration_ms": 11.362
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "\u00a1\u00bffST\u00c1 BROMEANDO?! He repetido el n\u00famero de orden CINCO VECES y usted solo me da n\u00fa\u00fameros de tel\u00e9fono\u2014\u00bfacaso su sistema no funciona o simplemente no quiere ayudarme? Esto es inaceptable, necesito hablar con un supervisor AHORA porque claramente usted no puede resolver eato.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:47.486602+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:42:48.955Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:42:48.955Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:42:48.955638+00:00",
+      "duration_ms": 1469.036
+    }
+  ],
+  "total_turns": 14,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:42:48.955Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 7,
+  "tool_calls_count": 1,
+  "tokens_used": 9058,
+  "cost_usd": 0.011726,
+  "trace_file": null
+}

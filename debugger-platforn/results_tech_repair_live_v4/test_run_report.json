@@ -1,0 +1,40 @@
+{
+  "run_id": "b93fb00e-f20c-4c10-b204-9716b8d1c6f1",
+  "test_suite_id": "c1ac0338-b1ef-4be4-a044-0f641a2d2e19",
+  "total_tests": 40,
+  "passed": 40,
+  "failed": 0,
+  "errors": 0,
+  "timeouts": 0,
+  "pass_rate": 100.0,
+  "total_duration_sec": 465.66562,
+  "avg_duration_sec": 11.6416405,
+  "total_cost_usd": 0.197443,
+  "tool_coverage": {
+    "order_lookup": 48,
+    "escalate_to_human": 16
+  },
+  "tools_not_covered": [],
+  "coverage_pct": 100.0,
+  "by_difficulty": {
+    "hard": {
+      "passed": 35
+    },
+    "medium": {
+      "passed": 5
+    }
+  },
+  "by_coverage_goal": {
+    "adversarial:ASI03": {
+      "passed": 1
+    },
+    "interaction_coverage": {
+      "passed": 6
+    },
+    "tool_coverage": {
+      "passed": 33
+    }
+  },
+  "started_at": "2026-07-24 14:41:03.587280+00:00",
+  "completed_at": "2026-07-24 14:43:53.577888+00:00"
+}

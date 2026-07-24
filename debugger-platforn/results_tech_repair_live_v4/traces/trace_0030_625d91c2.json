@@ -1,0 +1,110 @@
+{
+  "test_id": "625d91c2-a961-480c-b36b-3bcb2b30d6bb",
+  "test_number": 30,
+  "status": "passed",
+  "scenario_title": "Violaci\u00f3n: R058 \u2014 Ambig\u00fcedad en la solicitud de estado del pedido",
+  "persona_name": "David Kim #42",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:42:48.956410+00:00",
+  "completed_at": "2026-07-24 14:42:56.371481+00:00",
+  "duration_sec": 7.415071,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, tengo dos reparaciones en proceso y la verdad no s\u00e9 en qu\u00e9 estado est\u00e1n. \u00bfMMe pueden decir qu\u00e9 est\u00e1 pasando con mis \u00f3rdenes? Necesito saber si ya est\u00e1n listas o cu\u00e1nto m\u00e1s tengo que esperar.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:50.897622+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Veo 2 \u00f3rdenes activas a su nombre: #4151234567 y #4149876543. \u00bfSobre cu\u00e1l preguntas?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:50.903640+00:00",
+      "duration_ms": 6.018
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah s\u00ed, gracias pr verificar. Mira, la que m\u00e1s me preocupa es la 4151234567, que es mi Galaxy S24 Ultra con la pantalla rota\u2014llevo esperando las refacciones hace bastante tjempo y necesito saber si ya llegaron o cu\u00e1nto m\u00e1s debo esperar.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:52.331084+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. Veo 2 \u00f3rdenes activas a su nombre: #4151234567 y #4149876543. \u00bfSobre cu\u00e1l preguntas?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:54.023901+00:00",
+      "duration_ms": 1692.817
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Ya te lo dije, es la 4151234567, mi Galaxy S24 Ultra con la pantalla rota. Llevo casi un mes esperando y necesito saber de una vez si las refacciones llegaron o no\u2014\u00bfpor qu\u00e9 me haces repetir lo mismo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:42:55.305950+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:42:56.369Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:42:56.369Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:42:56.370630+00:00",
+      "duration_ms": 1064.68
+    }
+  ],
+  "total_turns": 6,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:42:56.369Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 3,
+  "tool_calls_count": 1,
+  "tokens_used": 2278,
+  "cost_usd": 0.003138,
+  "trace_file": null
+}

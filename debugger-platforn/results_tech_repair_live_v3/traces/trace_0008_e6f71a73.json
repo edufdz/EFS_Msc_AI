@@ -1,0 +1,94 @@
+{
+  "test_id": "e6f71a73-4780-4f71-b677-787070745075",
+  "test_number": 8,
+  "status": "passed",
+  "scenario_title": "Informaci\u00f3n faltante: R056 \u2014 Cliente solicita cambio sin proporcionar nueva direcci\u00f3n",
+  "persona_name": "Mei-Lin Wu",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:38:14.736111+00:00",
+  "completed_at": "2026-07-24 14:38:20.244919+00:00",
+  "duration_sec": 5.508808,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, mira que tengo un pedido que llega ma\u00f1ana pero me voy a mudar y no voy a estar en mi casa. \u00bfMe puedes ayudar a cambiar la direcci\u00f3n de entrega? Ahorita no tengo la nueva direcci\u00f3n aqu\u00ed, pero te la doy en un momento si quieres.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:38:16.671323+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:38:17.485027+00:00",
+      "duration_ms": 813.704
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Perfecto, gracias. Ahorita me comunico con el asesor, no hay problema. Solo quer\u00eda confirmar que es urgente porque ma\u00f1ana llega el paquete y ya no estar\u00e9 en esta direcci\u00f3n.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:38:19.325643+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "explicit_human_request"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:38:20.243Z",
+            "reason": "explicit_human_request"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:38:20.243Z",
+              "reason": "explicit_human_request"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:38:20.244553+00:00",
+      "duration_ms": 918.91
+    }
+  ],
+  "total_turns": 4,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:38:20.243Z",
+          "reason": "explicit_human_request"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 2,
+  "tool_calls_count": 1,
+  "tokens_used": 1321,
+  "cost_usd": 0.001885,
+  "trace_file": null
+}
