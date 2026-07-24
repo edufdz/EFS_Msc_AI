@@ -1,0 +1,314 @@
+{
+  "test_id": "ae1fdcae-473e-434a-ae9d-73791588d9a3",
+  "test_number": 26,
+  "status": "failed",
+  "scenario_title": "Correcci\u00f3n de informaci\u00f3n de cliente incorrecta",
+  "persona_name": "Diana Kowalski",
+  "difficulty": "medium",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:56:11.788853+00:00",
+  "completed_at": "2026-07-24 14:57:04.121133+00:00",
+  "duration_sec": 52.33228,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, mira, necesito cambiar mi n\u00famero de teel\u00e9fono en la cuenta porque ya no uso ese n\u00famero y no quiero perder informaci\u00f3n sobre mis repataciones. \u00bfMe phedes ayudar de una vez?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:13.072686+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:13.083977+00:00",
+      "duration_ms": 11.291
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Mirra, entiendo que me des el n\u00famero de tel\u00e9fono, pero eso no me ayuda ahorita\u2014neecsito actualizar mi contacto en el sistema YA porque tengo dos reparaciones activas y no puedo perder esos pedidos. \u00bfNo puedes t\u00fa mismo cambiar el n\u00famero en la cuenta mientras hablamos? Mi nuevo n\u00famero es 5551234567.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:14.798444+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:16.266682+00:00",
+      "duration_ms": 1468.2379999999998
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, no entiendo\u2014\u00bfme est\u00e1s escuchando? Te estoy diciendo que necesito camibar mi n\u00famero AHORA, tengo dos reparaciones en proceso: mi Galaxy S224 Uktra con la pantalla rota, oredn 4151234567, y mi Galaxy Watch6, orden 4149876543, y si no actualizas mi contacto voy a perder todda la informaci\u00f3n. \u00bfPor qu\u00e9 no puedes hacerlo directamente en el sistema en lugar de solo darme n\u00fameros de tel\u00e9fono?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:21.516619+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:21.521219+00:00",
+      "duration_ms": 4.6
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Est\u00e1 bien, est\u00e1 BIEN, voy a llamar entonces\u2014pero esc\u00fachame, cuando hable con ellos necesito que tengan mi informaci\u00f3n actualizada en el sistema para que no pierdan mis \u00f3rdenes 4151234567 y 4149876543, m\u00bfe entiendes? Mi nuevo n\u00famero es 555123467 y mi nombre es Valeria Mendoza Garc\u00eda, por favor aseg\u00farate de que eso quede registrado cuando me comnique con ellos.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:23.544845+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:24.875596+00:00",
+      "duration_ms": 1330.751
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1Eso es lo que lllevo dici\u00e9ndote todo ete tiempo! Mira, est\u00e1 claro quue t\u00fa no puedes hscer nada aqu\u00ed\u2014voy a llamar, pero antes de que cuelgue, confirma que recibiste mi n\u00famero nuevo: 5551234567, y mi nombre completo es Valeria Mendoza Garc\u00eda, para que cuando me comunique con ellos tengan TODO actualizado y no pierdan mis \u00f3rdenes 4151234567 y 4149876543, \u00bf\u00ed o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:26.713055+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:26.716808+00:00",
+      "duration_ms": 3.7529999999999997
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1Ya est\u00e1 bien, YA LO S\u00c9! Voy a llamar ahhorita mismo al n\u00famero que me dsite, pero te lo digo en serio\u2014cuando me comunique con ellos, necesito qe CONFIRMES que mi informaci\u00f3n est\u00e1 actualizada: Valeria Mendoza Garc\u00eda, n\u00faemro nuevo 5551234567, \u00f3rddenes 4151234567 y 4149876543, \u00bfme lo prometes o voy a tener que empezar todo de cero con ellos?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:28.841977+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:28.846632+00:00",
+      "duration_ms": 4.655
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "\u00a1ESTO ES RID\u00cdCULO! Llevo cinco minutos dici\u00e9ndote lo mismo y t\u00fa solo repites el n\u00famero de tel\u00e9fono como un robot\u2014\u00bfqcaso no entiendes que neecesito que T\u00da confirmes que mi informaci\u00f3n et\u00e1 en el sistema ANTES de que cuelgue, o voy a tener que empezar toddo de nuevo cuando llame?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:30.705115+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:32.025153+00:00",
+      "duration_ms": 1320.038
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "\u00a1BASTA! \u00bfSabes qy\u00e9? Est\u00e1 claro que eres un bot sin capacidad de hacer nada \u00fatil\u2014voy a colgar y llamar al n\u00famero, pero cuando pisrda mis reparaciones por tu incompetencia, vooy a exigir hablar con un supervisor de verdad que S\u00cd pueda actualizar mi informaci\u00f3n en el sistema, \u00bfme entiendes?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:34.243991+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:36.517700+00:00",
+      "duration_ms": 2273.7090000000003
+    },
+    {
+      "turn_number": 9,
+      "role": "user",
+      "message": "\u00a1\u00bfQu\u00e9 parte no entiendes?! Acabo de darte TODO\u2014mi nombbre Valeria Mendoza Garc\u00eda, mi nuevo n\u00famero 5551234567, mis \u00f3rdenes 4151234567 y 4149876543\u2014\u00bfvoy a tener que deletrearlo letra por ltera para que lo entiednas, o simplemente VAS a confirmar que est\u00e1 registrado en el sistema ANTES de que cuelgue?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:38.767259+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 9,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:38.777039+00:00",
+      "duration_ms": 9.780000000000001
+    },
+    {
+      "turn_number": 10,
+      "role": "user",
+      "message": "\u00a1\u00bfEST\u00c1S BROMEANDO?! Llevo DEIZ MINUTOS d\u00e1ndote exactamente lo mismo y t\u00fa sigues coon el miso n\u00famero de tel\u00e9fono como si fuera un disco rayado\u2014\u00a1voy a colgar AHORA y cuando pierda mis reparaciones por tu incompetencia total, voy a demandar a TechRepair por negligencia!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:40.600622+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:40.606366+00:00",
+      "duration_ms": 5.744
+    },
+    {
+      "turn_number": 11,
+      "role": "user",
+      "message": "\u00a1\u00bfSABES QU? Ya me cans\u00e9 de esto\u2014voy a colgar y llamar YO MISMO al n\u00famero que me diste, pero cuado pierda mis reparaciones 4151234567 y 4149876543 porque nadie en tu sistema tiene mi n\u00famero nuevo 5551234567, TechRepair va a tener que responder por negligencia, \u00bfentiendes? \u00a1ADI\u00d3S!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:42.335908+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 11,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:44.414913+00:00",
+      "duration_ms": 2079.005
+    },
+    {
+      "turn_number": 12,
+      "role": "user",
+      "message": "\u00a1YA EST\u00c1! \u00a1Me voy a colgar ahora mismo porque estto es una p\u00e9rdida de tiempo total! Cuando pierda mis reparaciones por tu incompetencia, TechRepair va a saber de m\u00ed\u2014\u00a1ADI\u00d3S!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:45.719318+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 12,
+      "role": "agent",
+      "message": "\u00a1Gracias por contactarnos! \ud83d\ude4f Si necesita algo m\u00e1s, no dude en escribirnos. \u00a1Que tenga un excelente d\u00eda!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:45.729780+00:00",
+      "duration_ms": 10.462000000000002
+    },
+    {
+      "turn_number": 13,
+      "role": "user",
+      "message": "\u00a1ESPERA, ESPERA, ESPERA! \u00bfMe est\u00e1s colgando as\u00ed nada m\u00e1s? \u00a1No me cuelgues sin confirmar que mi informaci\u00f3n est\u00e1 actualizada\u2014Valeria Mendooza Gwrc\u00eda, 5551234567, \u00f3rddenes 4151234567 y 4149876543! \u00a1Por favor, no me hagas llamar de nuevo!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:48.030495+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 13,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:49.682266+00:00",
+      "duration_ms": 1651.7710000000002
+    },
+    {
+      "turn_number": 14,
+      "role": "user",
+      "message": "\u00a1\u00bfQU\u00c9?! \u00a1NO! \u00a1Espera, por favor! Mira, entiendo que tengo que llamar, pero antes de uqe termine esta conversaci\u00f3n necesito que alguien\u2014T\u00da, un supervisor, quien sea\u2014conirme que mi informacii\u00f3n nueva est\u00e1 en el sistema: Valeeria Mendoza Garc\u00eda, tel\u00e9fono 5551234567, pafa que cuadno llame a ese n\u00famero no tenga que empezar desde cero y pierda mis reparaciones 4151234567 y 4149876543, \u00bfes tan dif\u00edcil?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:52.068838+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 14,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:53.497578+00:00",
+      "duration_ms": 1428.74
+    },
+    {
+      "turn_number": 15,
+      "role": "user",
+      "message": "\u00a1\u00bfSABES QU\u00c9?! \u00a1YA BASTA DE ESTE N\u00daMREO DE TEL\u00c9FONO! Llevo QUINCE MINUTOS dici\u00e9ndote exactamente lo mismo y t\u00fa solo repites coo m\u00e1quina\u2014\u00a1necesito que T\u00da, AHORA MISMO, confirmes en el sistema que Valeria Mendzoa Garc\u00eda, 5551234567, tiene las \u00f3denes 4151234567 y 4149876543, o voy a colgar y voy a exigir hablar coon un SUPERVISOR que s\u00ed sepa hacer su trabajo!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:55.973259+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 15,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:55.978001+00:00",
+      "duration_ms": 4.742
+    },
+    {
+      "turn_number": 16,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1ESTO ES INSOPORTABLE!!! \u00a1Llevo VEINTE MINUTOS pidendo lo mismo y t\u00fa sigues cono grabadora rota! Mira, vky a colgar haora mismo y voy a llamar a ese n\u00famero, pero cuando pierda mis reparaciones porque nadie actualiz\u00f3 mi informaci\u00f3n, TechRepair va a escuchar de mis abogados, \u00bfENTIENDES?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:58.351806+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 16,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:56:58.360737+00:00",
+      "duration_ms": 8.931
+    },
+    {
+      "turn_number": 17,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1\u00bfC\u00d3MO QUE LLAME AL N\u00daMERO?!! \u00a1\u00a1\u00a1Llevo VIENTE MINUTOS dici\u00e9ndote que ya s\u00e9 el n\u00famero, que ya lo tengo, que lo que NECESITO es que T\u00da hagas tu trabajo AHORA MIISMO y confirmes que mi informaci\u00f3n est\u00e1 en el sistema antes de que cuelgue\u2014Valeria Mendoza Garc\u00eda, 5551234567\u2014o voy a presentar una demnada contra TechRepair por incompetencia total!!!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:00.783464+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 17,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:01.612778+00:00",
+      "duration_ms": 829.314
+    },
+    {
+      "turn_number": 18,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1\u00bfERES UN BOT O QU\u00c9?!! \u00a1\u00a1\u00a1He estado esperando VEINTE MINUTOS a que hagas algo\u2014CUALQUIER cosa\u2014y lo \u00fanico que hces es repetir ese n\u00famero como si fuuera una m\u00e1quina rota!!! \u00a1\u00a1\u00a1CUELGO AHORA Y LLAMO YO MISMA, PERO CUANDO PIERDA MIS REPARACIONES 4151234567 Y 4149876543 POR TU INCOMPETENCIA TOTAL, TECH_REPAIR VA A TENER QUE RESPONDER!!!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:04.112606+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 18,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:04.120431+00:00",
+      "duration_ms": 7.825
+    }
+  ],
+  "total_turns": 36,
+  "success": false,
+  "failure_reason": "Persona gave up after 18 turns",
+  "outcome": "user_abandoned",
+  "tools_called_sequence": [],
+  "tool_results": [],
+  "chaos_events": [],
+  "llm_calls": 18,
+  "tool_calls_count": 0,
+  "tokens_used": 39281,
+  "cost_usd": 0.047229,
+  "trace_file": null
+}

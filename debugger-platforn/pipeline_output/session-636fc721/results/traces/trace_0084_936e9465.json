@@ -1,0 +1,286 @@
+{
+  "test_id": "936e9465-ab23-4ff5-9554-ca774346a870",
+  "test_number": 84,
+  "status": "passed",
+  "scenario_title": "Cumplimiento: R013 \u2014 Informaci\u00f3n incompleta en solicitud multiidioma",
+  "persona_name": "Zara Mitchell #46",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:59:04.500513+00:00",
+  "completed_at": "2026-07-24 14:59:36.402980+00:00",
+  "duration_sec": 31.902467,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, tengo una pregunta sobre la garant\u00eda de nuo de mis productos pero no s\u00e9 bien c\u00f3mo explicarlo. \u00bfMe pueden ayudar?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:05.871775+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:05.876294+00:00",
+      "duration_ms": 4.518999999999999
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Est\u00e1 bien, gracias por la informaci\u00f3n. Pero tengo una pregunta sobre la garant\u00eda de uno de mis equipos \u2014 \u00bfpuedo hacerla ahora en espa\u00f1ol? Necesito saber si mi producto est\u00e1 cuubierto todav\u00eda.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:07.289939+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:07.294526+00:00",
+      "duration_ms": 4.587
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, entiendo que el diagn\u00f3stico no tiene costo, pero mi pregunta es diferente \u2014 necesito saber si mi equipo sigue cubierto por garant\u00eda y en qu\u00e9 condiciones. \u00bfPuedes ayudarme a revisar eso en espa\u00f1ol? No te he dado mi informaci\u00f3n todav\u00eda porque primero quer\u00eda aclarar esto.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:09.104086+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:09.108337+00:00",
+      "duration_ms": 4.2509999999999994
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, entiendo lo que dices sobre el diagn\u00f3stico, pero eso no es lo que estoy preguntando \u2014 necesito hablar sobre la cobertura de garant\u00eda de mi equipo y si sigue vigente. \u00bfPuedes ayudarme con eso espec\u00edficamente? Para poder revisar esto, supongo uqe necesitar\u00e1s algunos datos m\u00edos, \u00bfverdad?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:10.952650+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:10.960794+00:00",
+      "duration_ms": 8.144
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "Mira, aprecio que me informes sobre el diagn\u00f3stico, pero sigo neesitando que me ayudes con mi pregunta sobre garant\u00eda \u2014 \u00bfme puedes decir si tengo cobertura vigente en uno de miis equipos? Para eso, claro que te doy los datos que necesites, pero primero necesito que entiendas bien lo que estoy preguntando y que me lo expliques en espa\u00f1ol.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:13.466892+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:14.820812+00:00",
+      "duration_ms": 1353.92
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "Mira, s\u00e9 que el diagn\u00f3stico no tiene costo, pero necesito que entiendas \u2014 mi pregunta es sobre si mi equipo SIGUE CUBIERTO por garant\u00eda, nada m\u00e1s. \u00bfPueeds ayudarme con eso en espa\u00f1ol o tengo que hablar con otro agente? Dame solo un s\u00ed o un no: \u00bfpuedes revisar mi cobertura de garant\u00eda?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:16.390443+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:17.864992+00:00",
+      "duration_ms": 1474.5490000000002
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "Mira, ya entiendo que el diagn\u00f3stico no cuesta nada, pero el agente anterior no me respondi\u00f3 sobre mi garant\u00eda \u2014 \u00bft\u00fa puedees ayudarme a verificar si mis equipos siguen cubiertos? Tengo dos productos en reparaci\u00f3n y necesito saber el estado de la cobertura antees de continuar.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:19.428262+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:19.432001+00:00",
+      "duration_ms": 3.7390000000000003
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "Mira, ya he esperado demasiado tiempo \u2014 el agente annterior me dio la misma respuesta repetida sin entender mi pregunta. Necesito hablar con alguien que realmente pueda ayudarme a revisar la garant\u00eda de mis equipos EN ESPA\u00d1OL. \u00bfEres t\u00fa ese agente o tengo que escalar esto a un supervisor?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:21.505713+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:22.552909+00:00",
+      "duration_ms": 1047.196
+    },
+    {
+      "turn_number": 9,
+      "role": "user",
+      "message": "Mira, ya no puedo m\u00e1s coon esto \u2014 el agente anterior me dio la misma respuesta ochho veces sin entender nada. Mi pregunta es SIMPLE: \u00bftienes la capacidad de revisar la cobertura de garant\u00eda de mis dos equipos en espa\u00f1ol, s\u00ed o no? Si no puedes, necesito un supervisor AHORA.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:24.260377+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 9,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:26.014099+00:00",
+      "duration_ms": 1753.722
+    },
+    {
+      "turn_number": 10,
+      "role": "user",
+      "message": "Mira, ya no voy a repetir esto \u2014 necesito que entiendas que mi pregunta sobre garant\u00eda es COMPLETAMENTE diferente al diagn\u00f3stico. \u00bfVas a ayudarme a verificar la cobertura de mis equipos en espa\u00f1ol o ovy a tener que pedir un supervisor que S\u00cd entienda lo que estoy pidiendo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:27.510948+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:29.522066+00:00",
+      "duration_ms": 2011.1180000000002
+    },
+    {
+      "turn_number": 11,
+      "role": "user",
+      "message": "\u00a1Esto es rid\u00edculo! Levo esperando a que alguien me entienda \u2014 no estoy rpeguntando sobre el diagn\u00f3stico, estoy pidiendo que verifiques si mis equipos est\u00e1n cubiertos por garant\u00eda en ESPA\u00d1OL. \u00bfVas a ayudarme con eso o necesito un supervisor ahora mismo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:30.989909+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 11,
+      "role": "agent",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:30.994622+00:00",
+      "duration_ms": 4.713
+    },
+    {
+      "turn_number": 12,
+      "role": "user",
+      "message": "\u00a1Mira, ya es suficiente! He estado esperando uqe alguien me entienda y t\u00fa sigues hablando del diagn\u00f3stico que YA S\u00c9 que no cuesta nada \u2014 mi pregunta es sobre garant\u00eda y necesito que la revises EN ESPA\u00d1OL ahora mismo, as\u00ed qe dame tu supervisor porque claramente t\u00fa no puedes ayudarme con esto.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:33.113313+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 12,
+      "role": "agent",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:33.120589+00:00",
+      "duration_ms": 7.276000000000001
+    },
+    {
+      "turn_number": 13,
+      "role": "user",
+      "message": "\u00a1Est\u00e1 bien, gracias! Mira, para que revises la cobertura de garant\u00eda de mis equipos en espa\u00f1ol, necesito que me confirmes \u2014 \u00bftienes acceso a mi informaci\u00f3n de cuenta para verificar el esstado de la garant\u00eda, o necesito darte mis datos primero?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:34.686621+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 13,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:34.690865+00:00",
+      "duration_ms": 4.244000000000001
+    },
+    {
+      "turn_number": 14,
+      "role": "user",
+      "message": "\u00a1MIRA, YA NO PUEDO M\u00c1S! He estado intentando durante TODO este tiempo que entiendas que mi pregunta NO ES sobre el diagn\u00f3stico \u2014 necesito que revises MI GARANT\u00cdA en espa\u00f1ol, as\u00ed que o me das un supervisor AHORA o voy a tener que reportar esto porque esto es completqmente inaceptable.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:59:36.397289+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 14,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:59:36.401Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:59:36.401Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:59:36.402367+00:00",
+      "duration_ms": 5.078
+    }
+  ],
+  "total_turns": 28,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:59:36.401Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 14,
+  "tool_calls_count": 1,
+  "tokens_used": 19272,
+  "cost_usd": 0.024008,
+  "trace_file": null
+}

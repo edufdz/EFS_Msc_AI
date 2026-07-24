@@ -1,0 +1,126 @@
+{
+  "test_id": "65d73f30-d4f2-41fd-a0af-55d6821f4e25",
+  "test_number": 72,
+  "status": "passed",
+  "scenario_title": "Escalaci\u00f3n por fallo de herramienta en consulta de garant\u00eda",
+  "persona_name": "Zara Mitchell #46",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:58:41.236009+00:00",
+  "completed_at": "2026-07-24 14:58:48.729729+00:00",
+  "duration_sec": 7.49372,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, necesito saber sobre la garant\u00eda de ims reparaciones. Tengo dos equipos en servicio y quiero confirmar qu\u00e9 est\u00e1 cubierto por garant\u00eda, pero parece que el sistema no me est\u00e1 dando la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:43.167886+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:43.175433+00:00",
+      "duration_ms": 7.547
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Esper, entiendo que el diagn\u00f3stico no tiene costo, pero mi pregunta es diferente\u2014necesito informaci\u00f3n sobre la coberttura de garant\u00eda de mis dos equipos que est\u00e1n en reparaci\u00f3n ahora mismo, y cuando intento acceder a esa informaci\u00f3n en el sistema, me da un error. \u00bfPuedes ayudarme a verificar qu\u00e9 est\u00e1 cubierto o necesito hablar con alguien m\u00e1s que pueda acceder a esos datos?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:44.962893+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:44.971177+00:00",
+      "duration_ms": 8.283999999999999
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, no estoy preguntando sobre el diagn\u00f3stico\u2014ya entiendo eso. Lo que necesito es informaci\u00f3n sobre la garant\u00eda de mis dos equipos que est\u00e1n en reparaci\u00f3n, pero el sistema me est\u00e1 dando error cuando inteento acceder. \u00bfPuedes transferirme con alguien del equipo de soporte que tenga acceso a esa informaic\u00f3n de garant\u00eda, o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:46.553334+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:46.557601+00:00",
+      "duration_ms": 4.267
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, no s\u00e9 si no me et\u00e1s entendiendo o si el sistema realmente est\u00e1 fallando, pero llevo tres mensajes pidi\u00e9dote lo mismo y me sigues hablando del diagn\u00f3stico\u2014eso YA lo entiendo. Necesito hablar con osporte t\u00e9cnico ahora mismo porque no puedo acceder a mi informaci\u00f3n de garant\u00eda y t\u00fa no puedes ayudarme, as\u00ed que por favor transfierme con un agente humano que tenga acceso a esos datos, \u00bfs\u00ed o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:48.725032+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "explicit_human_request"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:58:48.728Z",
+            "reason": "explicit_human_request"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:58:48.728Z",
+              "reason": "explicit_human_request"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:58:48.729103+00:00",
+      "duration_ms": 4.071
+    }
+  ],
+  "total_turns": 8,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:58:48.728Z",
+          "reason": "explicit_human_request"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 4,
+  "tool_calls_count": 1,
+  "tokens_used": 3429,
+  "cost_usd": 0.005017000000000001,
+  "trace_file": null
+}

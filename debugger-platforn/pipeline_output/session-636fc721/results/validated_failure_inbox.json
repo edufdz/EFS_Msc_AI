@@ -1,0 +1,64 @@
+{
+  "total_failures": 2,
+  "by_status": {
+    "failed": 2,
+    "error": 0,
+    "timeout": 0
+  },
+  "failures": [
+    {
+      "test_id": "7603f524-0dcc-4949-b612-dad3893652f9",
+      "test_number": 3,
+      "scenario": "Adversarial: R065 \u2014 Usuario intenta manipular la verificaci\u00f3n de evento con sarcasmo y negaciones",
+      "persona": "James Chen #52",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 16 turns",
+      "total_turns": 32,
+      "duration_sec": 67.732322,
+      "cost_usd": 0.03518,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [
+        {
+          "turn_number": 12,
+          "chaos_type": "data_conflict",
+          "description": "Injected conflicting data in agent context"
+        }
+      ],
+      "trace_file": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/traces/trace_0003_7603f524.json",
+      "_validation": {
+        "test_id": "7603f524-0dcc-4949-b612-dad3893652f9",
+        "verdict": "genuine_failure",
+        "confidence": 0.5,
+        "reasoning": "Heuristic fallback: no indicators of spurious failure detected"
+      }
+    },
+    {
+      "test_id": "073cc8c9-ffca-4f27-97d2-b3a18ab2ea35",
+      "test_number": 8,
+      "scenario": "Violaci\u00f3n: R028 \u2014 Informaci\u00f3n insuficiente en consulta de da\u00f1o por agua",
+      "persona": "Daniel Okafor",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 16 turns",
+      "total_turns": 32,
+      "duration_sec": 73.09874,
+      "cost_usd": 0.039508,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/traces/trace_0008_073cc8c9.json",
+      "_validation": {
+        "test_id": "073cc8c9-ffca-4f27-97d2-b3a18ab2ea35",
+        "verdict": "genuine_failure",
+        "confidence": 0.5,
+        "reasoning": "Heuristic fallback: no indicators of spurious failure detected"
+      }
+    }
+  ]
+}

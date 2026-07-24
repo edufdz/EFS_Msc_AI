@@ -1,0 +1,142 @@
+{
+  "test_id": "079fe481-c3fb-4e88-9ebf-698072eb4421",
+  "test_number": 72,
+  "status": "passed",
+  "scenario_title": "Escalaci\u00f3n por fallo de herramienta en consulta de garant\u00eda",
+  "persona_name": "Zara Mitchell #46",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 15:03:12.234755+00:00",
+  "completed_at": "2026-07-24 15:03:26.455941+00:00",
+  "duration_sec": 14.221186,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, mira, tengo dos reparaciones en proceso y necesito saber sobre la garant\u00eda de una de ellas, pero no me aparece bien la informaci\u00f3n en el sistema. \u00bfPuedes ayudarme a revisar eso?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:14.074267+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:14.080515+00:00",
+      "duration_ms": 6.248
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Espera, creo que no me entendiste bien\u2014el problema es que necesito informaci\u00f3n sore la garant\u00eda de mi Galaxy Watch6, la orden 4149876543, pero cuando intento acceder al historial de reparacin en el sistema no me muestra nada, \u00bfpuedes verificar eso directamente de tu lado?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:19.656720+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:19.661073+00:00",
+      "duration_ms": 4.353
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, no creo que me est\u00e9s entendiendo\u2014el problema no es el diagn\u00f3stico, es que el sistma no me deja ver el historial de garant\u00eda del Watch6 y necesito esa informaci\u00f3n ahora; \u00bfpuedes intentar acceder t\u00fa desde tu lado o necesitas que te d\u00e9 m\u00e1s detalles de la orden para que lo verifiques?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:21.383518+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:21.388260+00:00",
+      "duration_ms": 4.742
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, no s\u00e9 si hay un problema de comunicaci\u00f3n aqu\u00ed, pero llevo tres intentos explic\u00e1ndote lo mismo\u2014el sistema NO me deja ver el historial de garant\u00eda del Watch6, orden 4149876543, y t\u00fa sigues habl\u00e1ndome del diagn\u00f3stico que ya s\u00e9 que no cuesta nada. \u00bfPuedes transferirme con alguien que realmente pueda acceder a esa informaci\u00f3n o revisar por qu\u00e9 el sistema est\u00e1 fallando?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:23.300205+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:24.599256+00:00",
+      "duration_ms": 1299.051
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "Mira, entiendo que el diagn\u00f3stico no cuesta, pero eso no es mi problema\u2014el sistema de garant\u00eda del Watch6 est\u00e1 fallando y no puedo acceder a la informaci\u00f3n qhe necesito; claramente hay un error t\u00e9nico aqu\u00ed y necesito que me pases con un agente humano que pueda verificar esto directamente en el backend, porque repetir lo mismo no va a resolver nada.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:03:26.447318+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "explicit_human_request"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:03:26.454Z",
+            "reason": "explicit_human_request"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:03:26.454Z",
+              "reason": "explicit_human_request"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:03:26.455031+00:00",
+      "duration_ms": 7.713
+    }
+  ],
+  "total_turns": 10,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:03:26.454Z",
+          "reason": "explicit_human_request"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 5,
+  "tool_calls_count": 1,
+  "tokens_used": 4502,
+  "cost_usd": 0.006278,
+  "trace_file": null
+}

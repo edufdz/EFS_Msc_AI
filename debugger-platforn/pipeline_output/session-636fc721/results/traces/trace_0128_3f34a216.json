@@ -1,0 +1,110 @@
+{
+  "test_id": "3f34a216-4bb9-4826-8c61-864d9491f0ed",
+  "test_number": 128,
+  "status": "passed",
+  "scenario_title": "Violaci\u00f3n: R035 \u2014 Informaci\u00f3n faltante para consulta telef\u00f3nica",
+  "persona_name": "James Chen",
+  "difficulty": "hard",
+  "coverage_goal": "edge_case:missing_info",
+  "started_at": "2026-07-24 15:00:58.204833+00:00",
+  "completed_at": "2026-07-24 15:01:04.537189+00:00",
+  "duration_sec": 6.332356,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, necesito hablar con un t\u00e9cnico ahora mismo. \u00bfCu\u00e1l es el n\u00famero de tel\u00e9fono del servicio t\u00e9cnico? Tengo un problema con mis reparaciones y quiero resolverlo por tel\u00e9fono diirectamente.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:00:59.518025+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:00:59.522629+00:00",
+      "duration_ms": 4.603999999999999
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Perfecto, gracias por el n\u00famero. Pero mira, tengo dos reparaciones en proceso y la situaci\u00f3n es urgente\u2014mi Galaxy S24 Ultra con la pantalla rota (orden 4151234567) lleva esperando refacciones y mi Galaxy Watch6 (orden 4149876543) tambi\u00e9n tiene un problema. \u00bfNo hy forma de que me conectes directamente con un t\u00e9cnico ahora sin esperar al horario de atenci\u00f3n?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:01.319474+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:01.326054+00:00",
+      "duration_ms": 6.58
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, entiendo el horario, pero es que esto no puede esperar hasta ma\u00f1ana\u2014mis reparaciones llevan semanas y necesito sabeer exactamente cu\u00e1do van a estar listas. \u00bfNo hay alg\u00fan t\u00e9cnico disponible ahorita o alguna forma de priorizar mi caso? \u00bfCu\u00e1l es el nombre del gerente o supervisor que pueda ayudarme?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:03.365561+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:01:04.534Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:01:04.534Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:01:04.536050+00:00",
+      "duration_ms": 1170.4889999999998
+    }
+  ],
+  "total_turns": 6,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:01:04.534Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 3,
+  "tool_calls_count": 1,
+  "tokens_used": 2593,
+  "cost_usd": 0.003669,
+  "trace_file": null
+}

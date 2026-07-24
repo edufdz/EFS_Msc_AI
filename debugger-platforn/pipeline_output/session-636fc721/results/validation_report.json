@@ -1,0 +1,13 @@
+{
+  "summary": {
+    "total_failures_reviewed": 2,
+    "total_passes_reviewed": 8,
+    "genuine_failures": 2,
+    "persona_incompetence_filtered": 0,
+    "chaos_induced_filtered": 0,
+    "false_successes_caught": 0
+  },
+  "persona_failures": [],
+  "chaos_failures": [],
+  "false_successes": []
+}

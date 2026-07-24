@@ -1,0 +1,78 @@
+{
+  "test_id": "c9aa91a9-7aae-4eb7-a3bc-cbf1fb23bd8d",
+  "test_number": 142,
+  "status": "passed",
+  "scenario_title": "Cumplimiento: R056 \u2014 Cambio de intenci\u00f3n durante la conversaci\u00f3n",
+  "persona_name": "Sofia Rivera",
+  "difficulty": "hard",
+  "coverage_goal": "edge_case:interruption",
+  "started_at": "2026-07-24 15:01:22.553074+00:00",
+  "completed_at": "2026-07-24 15:01:27.069385+00:00",
+  "duration_sec": 4.516311,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, mira, necesito hablar sorbe mi cuentta porque crfo que tengo que actualizar mi direcci\u00f3n... bueno, espera, d\u00e9jame pensar un segundo, \u00bft\u00fa tienes mi direcci\u00f3n ah\u00ed en el sistema o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:24.109792+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "S\u00ed, tengo tu direcci\u00f3n registrada en el sistema para la orden de recolecci\u00f3n y entrega a domicilio (Galaxy S24 Ultra).\nSi necesitas **cambiarla**, un agente humano debe hacerlo. Te paso con alguien que lo resuelva.\n\u00bfCu\u00e1l es la direcci\u00f3n correcta que necesitas registrar?",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "Auto-escalado: address change"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:01:27.068Z",
+            "reason": "Auto-escalado: address change"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:01:27.068Z",
+              "reason": "Auto-escalado: address change"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:01:27.068998+00:00",
+      "duration_ms": 2959.206
+    }
+  ],
+  "total_turns": 2,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:01:27.068Z",
+          "reason": "Auto-escalado: address change"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 1,
+  "tool_calls_count": 1,
+  "tokens_used": 516,
+  "cost_usd": 0.0007639999999999999,
+  "trace_file": null
+}

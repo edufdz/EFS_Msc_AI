@@ -1,0 +1,158 @@
+{
+  "test_id": "0fdf3f83-5dde-4847-93e1-718345d47bbd",
+  "test_number": 34,
+  "status": "passed",
+  "scenario_title": "Cumplimiento R075 \u2014 Informaci\u00f3n faltante en consulta de cotizaci\u00f3n",
+  "persona_name": "Aisha Williams",
+  "difficulty": "medium",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 15:04:09.747173+00:00",
+  "completed_at": "2026-07-24 15:04:21.340613+00:00",
+  "duration_sec": 11.59344,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, mira, necesito un presupuesto pra una reparaci\u00f3n pero no tengo el n\u00famero de orden a mano. \u00bfPuedes ayudarme a encontrarlo en el sistema?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:11.013111+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:11.017226+00:00",
+      "duration_ms": 4.114999999999999
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Mira, entiendo que me des el \u00fanmero de tel\u00e9fono, pero yo estoy aqu\u00ed ahora y necesito el presupuesto hoy. \u00bfNo puedes buscar mis \u00f3rdenes directamente en el sistema con mi nombre o n\u00famero de tel\u00e9fono? Tengo dos reparaciones en poceso y realmente necesito saber el costo de una de ellas.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:12.776907+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:12.781014+00:00",
+      "duration_ms": 4.107
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, te estoy dando la misma informaci\u00f3n tres veces y sigue sin funcionar. Tengo el nombre Valeria Mendoza Garc\u00eda y mi n\u00famero de tel\u00e9\u00e9fono es 5551234567 \u2014 \u00bfno puedes simplemente buscar mis \u00f3rdenes con eso en lugar de solo darme un n\u00famero de tel\u00e9fono que ya conozco?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:14.656966+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:14.660865+00:00",
+      "duration_ms": 3.899
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, ya te di mi nombre y tel\u00e9fono \u2014 Valeria Mendoza Garc\u00eda, 5551234567. Entiendo quue necesitas informaci\u00f3n, pero \u00bfde verdad no puedes buxcar mis \u00f3rdenes directamente en el sistema ahora mismo? Esto es frustrante, llevo esperando respuesta desde hace d\u00edas.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:16.215175+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:16.220075+00:00",
+      "duration_ms": 4.8999999999999995
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "Mira, estoy d\u00e1ndote exactamente lo que me pides \u2014 mi nombre es Valeria Mendoza Garc\u00eda y mi tel\u00e9fono es 5551234567. Pero no entiendo por qu\u00e9 no pueds buscar mis r\u00f3denes directamente en tu sistema ahora mismo si ya tengo esa informaci\u00f3n. \u00bfDe verdad tengo que colgar y llamar por tel\u00e9fono cuando estoy aqu\u00ed hablando contigo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:18.031662+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:18.036886+00:00",
+      "duration_ms": 5.224
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1Esto es inaceptable! Llevo cinco minutos d\u00e1ndote mi nombre y tel\u00e9fono y sigues repiti\u00e9ndome lo mksmo como si fuera un robot. Tengo dos \u00f3rdenes activas \u2014 la 4151234567 para mi Galaxy S24 Ultra y la 4149876543 para mi Galaxy Watch6 \u2014 y necesito el presupuesto de la primera AHORA, no ma\u00f1ana cuando llame a un tel\u00e9fono que ya prob\u00e9 y nadie contesta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:04:21.334364+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:04:21.339Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:04:21.339Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:04:21.339838+00:00",
+      "duration_ms": 5.473999999999999
+    }
+  ],
+  "total_turns": 12,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:04:21.339Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 6,
+  "tool_calls_count": 1,
+  "tokens_used": 6988,
+  "cost_usd": 0.009176,
+  "trace_file": null
+}

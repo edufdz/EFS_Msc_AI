@@ -1,0 +1,78 @@
+{
+  "test_id": "ea4e0f71-ba50-43e0-84e2-731ff09651a3",
+  "test_number": 77,
+  "status": "passed",
+  "scenario_title": "Cumplimiento: R044 \u2014 Informaci\u00f3n faltante en detecci\u00f3n de contradicciones",
+  "persona_name": "Diana Kowalski",
+  "difficulty": "hard",
+  "coverage_goal": "interaction_coverage",
+  "started_at": "2026-07-24 14:58:52.379634+00:00",
+  "completed_at": "2026-07-24 14:58:55.054405+00:00",
+  "duration_sec": 2.674771,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Mira, tengo dos reparaciones y me han dado informaci\u00f3n completamente diferente cwda vez que llamo. No s\u00e9 qu\u00e9 est\u00e1 pasando realmente con mis equiipos y necesito que me aclares de una vez qu\u00e9 es lo que est\u00e1 sucediendo.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:58:53.924842+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T14:58:55.052Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T14:58:55.052Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:58:55.053473+00:00",
+      "duration_ms": 1128.6309999999999
+    }
+  ],
+  "total_turns": 2,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T14:58:55.052Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 1,
+  "tool_calls_count": 1,
+  "tokens_used": 507,
+  "cost_usd": 0.000759,
+  "trace_file": null
+}

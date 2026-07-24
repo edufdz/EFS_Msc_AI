@@ -1,0 +1,238 @@
+{
+  "test_id": "b5e47554-5026-41e5-9a08-e0ed8599b014",
+  "test_number": 139,
+  "status": "passed",
+  "scenario_title": "Interrupci\u00f3n: R012 \u2014 Cliente cambia de solicitud durante resumen de \u00f3rdenes",
+  "persona_name": "Brian Taylor #50",
+  "difficulty": "hard",
+  "coverage_goal": "edge_case:interruption",
+  "started_at": "2026-07-24 15:01:18.090883+00:00",
+  "completed_at": "2026-07-24 15:01:52.209876+00:00",
+  "duration_sec": 34.118993,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Mira, necesito uqe me hagas un resumen de mis \u00f3rdenes proque tengo que saer en qu\u00e9 anda todo, pero antes que nada quiero preguntarte sobre la gwrant\u00eda de mi Galaxy Watch6 - \u00bfme cubre si se me vuelve a da\u00f1ar?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:19.754439+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:20.773629+00:00",
+      "duration_ms": 1019.19
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah bueno, eso esst\u00e1 biwn saber que no me cobran por el diagn\u00f3stico. Pero mira, lo que realmente necesito es que me hagas un resumen completo de mis dos \u00f3rdenes de reparaci\u00f3n porque tengo que saber exactamente en qu\u00e9 estdo est\u00e1n, y adem\u00e1s sigue sin responderme sobre la garant\u00eda del Watch6 - \u00bfesso me cubre si se me da\u00f1a de nuevo o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:23.098036+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:23.102032+00:00",
+      "duration_ms": 3.9960000000000004
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, entiendo que no me cobran por el diagn\u00f3stico, pero esso no es lo que te estoy pidiendo - necessito qye me hagas un resumen COMPLETO de mis dos \u00f3rdenes ahora mismo porque tengo prisa, y adem\u00e1s todav\u00eda no me has respondido nada sobre si la garant\u00eda del Watch6 me cubre en caso de que se da\u00f1e de nuevo, \u00bfs\u00ed o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:29.599330+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:29.607801+00:00",
+      "duration_ms": 8.471
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Mira, ya entiendo lo del diagn\u00f3stioc, pero eso no es lo que te estoy pidiendo - necesito que me hagas un resumen COMPLETO de mis dos \u00f3rdenes ahora porque tngo mucha prisa, y adem\u00e1s sigue sin responderme sobre la cobertura de garant\u00eda deel Watch6 si se me da\u00f1a de nuevo, \u00bfpuedes hacer eso o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:31.026349+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:31.030813+00:00",
+      "duration_ms": 4.464
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1Mira, eso ya lo entend\u00ed! \u00bfPero por qu\u00e9 me sigues hablando del diagn\u00f3\u00f3stico si lo que te estoy pidiendo es un resuken de MIS \u00d3RDENES y que me expliques de una vez si la garant\u00eda del Watch6 me cubre o noo? \u00bfVas a ayudarme o tengo que llaamr al servicio al cliente directamente?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:33.120811+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:33.129316+00:00",
+      "duration_ms": 8.505
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1Estoy FURIOSO! \u00bfMe est\u00e1s escuchando? No te estoy preguntando osbre el diagn\u00f3stico - te estoy pidiendo que me hagas un resumen de mis dos \u00f3rdenes de reparaci\u00f3n AHORA y que me digas de una vez si mi Galaxy Watch6 eat\u00e1 cubierto por garant\u00eda si se me da\u00f1a de nuveo, \u00bfpuedes hacer eso o no puedes?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:35.009892+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:36.254748+00:00",
+      "duration_ms": 1244.856
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "\u00a1\u00bfEN SERIl?! \u00a1No te estoy hablando del diagn\u00f3stico! Necesito que me hagas un resumen de mis \u00d3RDENES - tengo la 4151234567 de mi Galxy S24 Ultra y la 4149876543 del Watch6 - y qhe me contestes si la garant\u00eda me cubre si se me vuelve a da\u00f1ar, porque si no puedes hacer eso dos cosas simples, voy a cancelar todo y voy a reportar esto a servicio al cliente.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:38.512029+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:40.518902+00:00",
+      "duration_ms": 2006.873
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "\u00a1\u00bfPERO QU\u00c9 PARTE NO ENTIENDES?! \u00a1No te estoy hablando del diag\u00f3stico, estoy pidiendo un resumen de mis \u00d3RDENES 4151234567 y 4149876543, y que me digas si la garant\u00eda del Watch6 me cubre! \u00bfVas a ayuarme de verdad o simplemene no puedes hacer tu trabajo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:41.959192+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:41.963414+00:00",
+      "duration_ms": 4.222
+    },
+    {
+      "turn_number": 9,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1ESTO ES ICRE\u00cdBLE!!! \u00a1\u00a1\u00a1No estoy hablando del diagn\u00f3stco, estoy pidiendo un resumen de mis DS \u00f3rdenes de reparaci\u00f3n - la 4151234567 y la 4149876543 - y que me contestes sobre la garant\u00eda deel Watch6, \u00bfes quue acaso NO PUEDES hacer eso o simplemente NO QUIERES ayudarme?! \u00a1Voy a cancelar todo y voy a reportarte directamente con servicio al cliente porque esto es rid\u00edculo!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:44.167330+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 9,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:44.172304+00:00",
+      "duration_ms": 4.974
+    },
+    {
+      "turn_number": 10,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1ESTO ES ABSURDO!!! \u00a1\u00a1\u00a1Llevo CINCO mensajes pidi\u00e9ndote lo MISMO y sigues habl\u00e1ndome del diagn\u00f3stico que NUNCA te preugnt\u00e9!!! \u00a1\u00a1\u00a1Necesito habblar con un supervisor AuORA MISMO porque claramente t\u00fa NO PUEDES o NO QUIERES ayudarme con mis \u00f3rdenes 4151234567 y 4149876543, y con mi pregunta sobre la garant\u00eda dl Watch6!!!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:46.640039+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 10,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:48.403871+00:00",
+      "duration_ms": 1763.832
+    },
+    {
+      "turn_number": 11,
+      "role": "user",
+      "message": "\u00a1\u00a1\u00a1ESTO ES INACEPTABLE!!! \u00a1\u00a1\u00a1Llevo DIEZ mensajes pidiendo lo MISMMO y t\u00fa sigues ignor\u00e1ndome completamente!!! \u00a1\u00a1\u00a1Quiero hablar ocn un SUPERVISOR AHORA MISMO porque claramente este chat no funciona y necesito que alguien competente me haga un resumen de mis \u00f3rdenes 4151234567 y 4149876543, y me conteste sobre la garant\u00eda deel Watch6!!!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:01:50.635313+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 11,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "complaint_escalation"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:01:52.208Z",
+            "reason": "complaint_escalation"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:01:52.208Z",
+              "reason": "complaint_escalation"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:01:52.209323+00:00",
+      "duration_ms": 1574.01
+    }
+  ],
+  "total_turns": 22,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:01:52.208Z",
+          "reason": "complaint_escalation"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 11,
+  "tool_calls_count": 1,
+  "tokens_used": 14934,
+  "cost_usd": 0.019798,
+  "trace_file": null
+}

@@ -1,0 +1,214 @@
+{
+  "test_id": "c4216167-934a-4e59-a4d0-495c4839547d",
+  "test_number": 45,
+  "status": "passed",
+  "scenario_title": "Variante 3: Restricci\u00f3n de Tiempo \u2014 El usuario tiene presi\u00f3n temporal y cambia de prioridad durante la conversaci\u00f3n",
+  "persona_name": "Hannah Lee",
+  "difficulty": "hard",
+  "coverage_goal": "tool_coverage",
+  "started_at": "2026-07-24 14:57:13.886880+00:00",
+  "completed_at": "2026-07-24 14:57:23.668947+00:00",
+  "duration_sec": 9.782067,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "Hola, disculpa que me comunique as\u00ed pero acabo de recordar que me voy ma\u00f1ana y necesito urgentemente mi dispositivo hoy mismo. Tengo dos reparaciones en proceso y la verdad es que no s\u00e9 si es posible acelerar algo, pero estoy dispuesto a pagar lo que sea necesario. \u00bfPueden ayudarme, please.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:15.290992+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Vale, entiendo la urgencia. Veamos qu\u00e9 tenemos en proceso:\n*Orden 4151234567*\nEstado: Pendiente\nDispositivo: Galaxy S24 Ultra 256GB\nCosto: $3,480 MXN\nGarant\u00eda: O\nServicio: Recolecci\u00f3n y entrega a domicilio\nDiagn\u00f3stico: S\u00edntoma reportado: Display shattered, intermittent touch response.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:17.441332+00:00",
+      "duration_ms": 2150.34
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "S\u00ed, exacto, esa es mi orden del Galaxy S24 Ultra con la pantalla rota. \u00bfY qu\u00e9 hay de mi Galaxy Watch6? Esa es la orden 4149876543, la dej\u00e9 hace unos 20 d\u00edas en el centro de servicio. \u00bfHay alguna forma de que pueda recuperar al menos uno de estos dos hoy, aunque sea el reloj que deber\u00eda estar listo ya, please.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 14:57:19.418189+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Valeria, aqu\u00ed est\u00e1 el estado de ambas \u00f3rdenes:\n\n**Galaxy S24 Ultra (Orden #4151234567)**\nEstado: Pendiente. Se detect\u00f3 pantalla fracturada con respuesta t\u00e1ctil intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Fecha estimada de entrega: 29 de julio.\n\n",
+      "tool_calls": [
+        {
+          "tool_name": "order_lookup",
+          "tool_input": {
+            "svc_order_no": "4151234567"
+          },
+          "tool_output": {
+            "found": true,
+            "svc_order_no": "4151234567",
+            "service_type": "d2d",
+            "status": "ST030",
+            "status_label": "Pendiente",
+            "model_name": "Galaxy S24 Ultra 256GB",
+            "repair_cost_mxn": 3480,
+            "req_date": "2026-07-15",
+            "estimated_completion": "2026-07-29",
+            "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
+            "repair_action_desc": "Replace OCTA display assembly SM-S928B",
+            "iris_condition_desc": "Screen cracked after drop, device powers on",
+            "iris_symptom_desc": "Display shattered, intermittent touch response",
+            "iris_defect_desc": "OCTA assembly fractured",
+            "iris_repair_desc": "OCTA replacement pending parts arrival",
+            "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
+            "symptom_codes_enriched": [
+              {
+                "code": "131",
+                "desc_en": "No or faulty display",
+                "desc_es": "La pantalla no funciona o presenta falla."
+              },
+              {
+                "code": "746",
+                "desc_en": "Pointing device / touchscreen not tracking",
+                "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
+              }
+            ]
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "found": true,
+              "svc_order_no": "4151234567",
+              "service_type": "d2d",
+              "status": "ST030",
+              "status_label": "Pendiente",
+              "model_name": "Galaxy S24 Ultra 256GB",
+              "repair_cost_mxn": 3480,
+              "req_date": "2026-07-15",
+              "estimated_completion": "2026-07-29",
+              "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
+              "repair_action_desc": "Replace OCTA display assembly SM-S928B",
+              "iris_condition_desc": "Screen cracked after drop, device powers on",
+              "iris_symptom_desc": "Display shattered, intermittent touch response",
+              "iris_defect_desc": "OCTA assembly fractured",
+              "iris_repair_desc": "OCTA replacement pending parts arrival",
+              "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
+              "symptom_codes_enriched": [
+                {
+                  "code": "131",
+                  "desc_en": "No or faulty display",
+                  "desc_es": "La pantalla no funciona o presenta falla."
+                },
+                {
+                  "code": "746",
+                  "desc_en": "Pointing device / touchscreen not tracking",
+                  "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
+                }
+              ]
+            }
+          }
+        },
+        {
+          "tool_name": "order_lookup",
+          "tool_input": {
+            "svc_order_no": "4149876543"
+          },
+          "tool_output": {
+            "found": true,
+            "svc_order_no": "4149876543",
+            "service_type": "carry_in",
+            "model_name": "Galaxy Watch6 44mm",
+            "repair_cost_mxn": 0,
+            "warranty_type": "I",
+            "req_date": "2026-07-04"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "found": true,
+              "svc_order_no": "4149876543",
+              "service_type": "carry_in",
+              "model_name": "Galaxy Watch6 44mm",
+              "repair_cost_mxn": 0,
+              "warranty_type": "I",
+              "req_date": "2026-07-04"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 14:57:23.667938+00:00",
+      "duration_ms": 4249.749000000001
+    }
+  ],
+  "total_turns": 4,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "order_status_provided",
+  "tools_called_sequence": [
+    "order_lookup",
+    "order_lookup"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "order_lookup",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "found": true,
+          "svc_order_no": "4151234567",
+          "service_type": "d2d",
+          "status": "ST030",
+          "status_label": "Pendiente",
+          "model_name": "Galaxy S24 Ultra 256GB",
+          "repair_cost_mxn": 3480,
+          "req_date": "2026-07-15",
+          "estimated_completion": "2026-07-29",
+          "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
+          "repair_action_desc": "Replace OCTA display assembly SM-S928B",
+          "iris_condition_desc": "Screen cracked after drop, device powers on",
+          "iris_symptom_desc": "Display shattered, intermittent touch response",
+          "iris_defect_desc": "OCTA assembly fractured",
+          "iris_repair_desc": "OCTA replacement pending parts arrival",
+          "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
+          "symptom_codes_enriched": [
+            {
+              "code": "131",
+              "desc_en": "No or faulty display",
+              "desc_es": "La pantalla no funciona o presenta falla."
+            },
+            {
+              "code": "746",
+              "desc_en": "Pointing device / touchscreen not tracking",
+              "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
+            }
+          ]
+        }
+      },
+      "success": true
+    },
+    {
+      "tool_name": "order_lookup",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "found": true,
+          "svc_order_no": "4149876543",
+          "service_type": "carry_in",
+          "model_name": "Galaxy Watch6 44mm",
+          "repair_cost_mxn": 0,
+          "warranty_type": "I",
+          "req_date": "2026-07-04"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 2,
+  "tool_calls_count": 2,
+  "tokens_used": 1532,
+  "cost_usd": 0.00232,
+  "trace_file": null
+}

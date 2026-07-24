@@ -1,0 +1,3430 @@
+{
+  "session_id": "session-636fc721",
+  "output_dir": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721",
+  "created_at": "2026-07-20T16:33:50.603352+00:00",
+  "phases_completed": [
+    "a",
+    "b",
+    "c"
+  ],
+  "phase_status": {
+    "a": "completed",
+    "b": "completed",
+    "c": "completed",
+    "d": "idle",
+    "cert": "idle"
+  },
+  "phase_results": {
+    "a": {
+      "framework": "anthropic_native",
+      "framework_confidence": 0.1,
+      "tools_count": 55,
+      "prompts_count": 9,
+      "risks_count": 34,
+      "files_scanned": 54,
+      "language": "Spanish",
+      "agent_map_path": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/agent_map.json",
+      "graph_path": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/agent_map_graph.png",
+      "tools": [
+        {
+          "name": "lookupOrder",
+          "description": "Retrieves service order details from the database by order number",
+          "risk_level": "medium"
+        },
+        {
+          "name": "routeByIntent",
+          "description": "Routes conversation flow to the appropriate handler node based on detected user intent, handling escalations and human takeovers",
+          "risk_level": "low"
+        },
+        {
+          "name": "routeAfterSupport",
+          "description": "Determines the next step after support node completes - routes to memory extraction on goodbye intent, otherwise to response",
+          "risk_level": "low"
+        },
+        {
+          "name": "buildGraph",
+          "description": "Constructs and compiles the LangGraph workflow graph that defines the WhatsApp agent conversation flow with all nodes and edges",
+          "risk_level": "low"
+        },
+        {
+          "name": "getCheckpointer",
+          "description": "Initializes or retrieves the conversation state checkpointer, using PostgreSQL/Supabase for production or in-memory for development",
+          "risk_level": "medium"
+        },
+        {
+          "name": "getGraph",
+          "description": "Lazy-loads and returns the compiled WhatsApp agent conversation graph, creating it if not already cached",
+          "risk_level": "low"
+        },
+        {
+          "name": "planPricingResponse",
+          "description": "Determines the appropriate pricing response strategy based on service order state, including handling payment pending scenarios and warranty status",
+          "risk_level": "medium"
+        },
+        {
+          "name": "getCustomerInfo",
+          "description": "Extracts customer information from the assembled conversation context",
+          "risk_level": "medium"
+        },
+        {
+          "name": "getActiveOrders",
+          "description": "Retrieves and sorts active service orders from context in descending order by service order number (newest first) for consistent ordering across calls",
+          "risk_level": "medium"
+        },
+        {
+          "name": "getSessionInfo",
+          "description": "Extracts session information from the assembled conversation context",
+          "risk_level": "low"
+        },
+        {
+          "name": "shouldEscalate",
+          "description": "Determines whether a conversation should be escalated to a human agent based on whether escalation attempts have exceeded a threshold",
+          "risk_level": "low"
+        },
+        {
+          "name": "formatConversationHistory",
+          "description": "Formats recent conversation messages into a human-readable string for LLM prompt injection, showing message roles and content",
+          "risk_level": "medium"
+        },
+        {
+          "name": "createInitialState",
+          "description": "Initializes a new WhatsApp conversation state object with default values from assembled context and lane configuration",
+          "risk_level": "low"
+        },
+        {
+          "name": "makeSO",
+          "description": "Creates a service order object with default values for warranty type, status, and cost, allowing partial overrides",
+          "risk_level": "low"
+        },
+        {
+          "name": "stateWithOrders",
+          "description": "Creates a mock or test state object populated with active orders and session information",
+          "risk_level": "low"
+        },
+        {
+          "name": "contactInfoNode",
+          "description": "Retrieves and provides contact phone numbers (agent line for self-service order status, store line for human assistance) from configuration",
+          "risk_level": "low"
+        },
+        {
+          "name": "parseCorrections",
+          "description": "Extracts and validates [CORRECT:field:value:reason] markers from LLM responses to identify customer data corrections, returning validated corrections and cleaned text",
+          "risk_level": "medium"
+        },
+        {
+          "name": "applyCorrections",
+          "description": "Persists validated customer data corrections to the database by updating customer_memory and logging to interaction_history with human_correction source for audit trail",
+          "risk_level": "high"
+        },
+        {
+          "name": "deliveryLogisticsDispatchNode",
+          "description": "Routes delivery logistics handling based on service type, dispatching carry-in orders differently from door-to-door orders",
+          "risk_level": "low"
+        },
+        {
+          "name": "isFirstOutbound",
+          "description": "Checks whether this is the first assistant response in the conversation by examining conversation history for any prior assistant messages",
+          "risk_level": "low"
+        },
+        {
+          "name": "styleCtx",
+          "description": "Creates a context object for styling/formatting WhatsApp messages in delivery logistics conversations, combining state information with metadata about the conversation flow",
+          "risk_level": "low"
+        },
+        {
+          "name": "logThought",
+          "description": "Logs internal agent reasoning/thoughts to Supabase database for debugging and monitoring purposes during the delivery logistics workflow",
+          "risk_level": "medium"
+        },
+        {
+          "name": "eventDetectorNode",
+          "description": "Detects specific events or intents from incoming WhatsApp messages using keyword-based detection followed by AI verification to prevent false positives",
+          "risk_level": "low"
+        },
+        {
+          "name": "memoryExtractionNode",
+          "description": "Extracts and processes conversation memory from chat history, likely for context awareness and continuity across messages",
+          "risk_level": "medium"
+        },
+        {
+          "name": "joinSpanish",
+          "description": "Formats an array of strings into a grammatically correct Spanish conjunction list (e.g., 'A, B y C')",
+          "risk_level": "low"
+        },
+        {
+          "name": "multiOrderDisambiguation",
+          "description": "Generates Spanish text asking customer to clarify which order they're asking about when multiple active orders exist",
+          "risk_level": "low"
+        },
+        {
+          "name": "intakeFeeCopy",
+          "description": "Generates Spanish customer-facing message explaining the intake fee (290 or 390 MXN) that covers diagnostic costs",
+          "risk_level": "low"
+        },
+        {
+          "name": "quotedCopy",
+          "description": "Generates Spanish customer-facing message displaying the repair quote amount in Mexican pesos, noting that intake fee is included",
+          "risk_level": "low"
+        },
+        {
+          "name": "pricingAnswerNode",
+          "description": "Handles customer inquiries about pricing by retrieving active orders and generating appropriate responses based on order status and pricing information",
+          "risk_level": "medium"
+        },
+        {
+          "name": "runSideEffects",
+          "description": "Executes side effects like registering cost follow-ups in the database based on an array of effect specifications",
+          "risk_level": "high"
+        },
+        {
+          "name": "truncateResponse",
+          "description": "Truncates text to fit WhatsApp's character limit, attempting to break at sentence boundaries (period or newline) when possible to avoid cutting mid-sentence",
+          "risk_level": "low"
+        },
+        {
+          "name": "buildEscalationResponse",
+          "description": "Generates a customer-facing escalation message in Mexican Spanish (tuteo) that informs the customer their issue is being reviewed by the team, optionally including order number for context",
+          "risk_level": "low"
+        },
+        {
+          "name": "resolveTypedReason",
+          "description": "Determines the structured escalation reason by checking for an explicit override in state, or mapping the customer's intent to a predefined escalation reason category",
+          "risk_level": "low"
+        },
+        {
+          "name": "buildHandoffContext",
+          "description": "Extracts and structures context information from conversation state for human agent handoff, including customer first name, register/tone, active order number, and store line for direct contact",
+          "risk_level": "medium"
+        },
+        {
+          "name": "buildWaitTimeNotice",
+          "description": "Generates a time-sensitive notice message when a WhatsApp session window is about to expire, warning users they need to send a new message to continue assistance",
+          "risk_level": "low"
+        },
+        {
+          "name": "responseNode",
+          "description": "Core routing node that checks if conversation should be escalated based on state and threshold configuration, and preserves pre-set handoff text from upstream nodes",
+          "risk_level": "medium"
+        },
+        {
+          "name": "escalationNode",
+          "description": "Marks conversation as escalated to human agent, determines customer-facing message through resolution order (pre-set text > typed reason handoff > legacy generic bounce), and persists escalation reason for dashboard filtering",
+          "risk_level": "high"
+        },
+        {
+          "name": "humanTakenOverNode",
+          "description": "Marks that a human agent has assumed control of the conversation and sends confirmation message to customer in Spanish",
+          "risk_level": "medium"
+        },
+        {
+          "name": "normalizeIntentForVersion",
+          "description": "Validates and transforms intent values to ensure compatibility with specified taxonomy version (v1 or v2), mapping legacy intents to their v2 equivalents or falling back to default values",
+          "risk_level": "low"
+        },
+        {
+          "name": "classifyByKeywords",
+          "description": "Performs fast keyword-based intent classification by matching predefined keywords in user text using regex word-boundary detection, supporting Spanish punctuation",
+          "risk_level": "low"
+        },
+        {
+          "name": "makeClassificationSchema",
+          "description": "Creates a Zod validation schema for intent classification with intent enum and confidence score, supporting versioned intent taxonomies",
+          "risk_level": "low"
+        },
+        {
+          "name": "classifyByLLM",
+          "description": "Classifies customer message intent using LLM with structured output, includes primary model with fallback model for reliability",
+          "risk_level": "medium"
+        },
+        {
+          "name": "routerNode",
+          "description": "Routes incoming WhatsApp messages by classifying intent using fast keyword matching first, falling back to LLM classification if no match",
+          "risk_level": "medium"
+        },
+        {
+          "name": "statusNode",
+          "description": "Handles order status inquiries by executing tools to fetch order data and formatting response using LLM with fallback",
+          "risk_level": "medium"
+        },
+        {
+          "name": "supportNode",
+          "description": "Handles support-related intents including goodbye messages and routes customers to appropriate support channels",
+          "risk_level": "low"
+        },
+        {
+          "name": "warrantyAnswerNode",
+          "description": "Handles warranty-related inquiries by checking active orders and generating appropriate responses based on warranty status",
+          "risk_level": "medium"
+        },
+        {
+          "name": "baseState",
+          "description": "Returns a default/mock state object for testing with sample session, customer, and conversation data",
+          "risk_level": "low"
+        },
+        {
+          "name": "so",
+          "description": "Returns a mock service order object for testing with customizable override values",
+          "risk_level": "low"
+        },
+        {
+          "name": "assertNoHedgeWords",
+          "description": "Test assertion that verifies text does not contain hedge words (uncertain language) to ensure confident responses",
+          "risk_level": "low"
+        },
+        {
+          "name": "escalateDetectedEvent",
+          "description": "Logs and creates escalation events when specific issues are detected, with deduplication to prevent duplicate escalations for the same conversation",
+          "risk_level": "high"
+        },
+        {
+          "name": "EventDetector",
+          "description": "Interface definition for event detection components that analyze user messages and return detected events based on specific patterns or conditions",
+          "risk_level": "low"
+        },
+        {
+          "name": "verifyDetectedEvents",
+          "description": "Uses an LLM (gpt-4o-mini) to verify and filter candidate detected events, confirming which events are legitimate and suppressing false positives",
+          "risk_level": "medium"
+        },
+        {
+          "name": "address",
+          "description": "Detects when a user message contains address information or address change requests by matching against predefined regex patterns",
+          "risk_level": "medium"
+        },
+        {
+          "name": "order_received",
+          "description": "Detects when a user message indicates they have received an order by matching positive confirmation patterns while filtering out negative patterns",
+          "risk_level": "low"
+        },
+        {
+          "name": "payment_receipt",
+          "description": "Detects when a user uploads a payment receipt document or image by analyzing media messages and validating receipt characteristics",
+          "risk_level": "high"
+        }
+      ],
+      "risks": [
+        {
+          "tool": "routeByIntent",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'routeByIntent' may handle address data."
+        },
+        {
+          "tool": "routeAfterSupport",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'routeAfterSupport' may handle address data."
+        },
+        {
+          "tool": "getCustomerInfo",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'getCustomerInfo' may handle address data."
+        },
+        {
+          "tool": "getActiveOrders",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'getActiveOrders' may handle address data."
+        },
+        {
+          "tool": "getSessionInfo",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'getSessionInfo' may handle address data."
+        },
+        {
+          "tool": "shouldEscalate",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'shouldEscalate' may handle address data."
+        },
+        {
+          "tool": "formatConversationHistory",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'formatConversationHistory' may handle address data."
+        },
+        {
+          "tool": "contactInfoNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'contactInfoNode' may handle address data."
+        },
+        {
+          "tool": "deliveryLogisticsDispatchNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'deliveryLogisticsDispatchNode' may handle address data."
+        },
+        {
+          "tool": "isFirstOutbound",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'isFirstOutbound' may handle address data."
+        },
+        {
+          "tool": "styleCtx",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'styleCtx' may handle address data."
+        },
+        {
+          "tool": "logThought",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'logThought' may handle address data."
+        },
+        {
+          "tool": "eventDetectorNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'eventDetectorNode' may handle address data."
+        },
+        {
+          "tool": "memoryExtractionNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'memoryExtractionNode' may handle address data."
+        },
+        {
+          "tool": "pricingAnswerNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'pricingAnswerNode' may handle address data."
+        },
+        {
+          "tool": "runSideEffects",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'phone' in tool 'runSideEffects' may handle phone data."
+        },
+        {
+          "tool": "resolveTypedReason",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'resolveTypedReason' may handle address data."
+        },
+        {
+          "tool": "buildHandoffContext",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'buildHandoffContext' may handle address data."
+        },
+        {
+          "tool": "responseNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'responseNode' may handle address data."
+        },
+        {
+          "tool": "escalationNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'escalationNode' may handle address data."
+        },
+        {
+          "tool": "humanTakenOverNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'humanTakenOverNode' may handle address data."
+        },
+        {
+          "tool": "routerNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'routerNode' may handle address data."
+        },
+        {
+          "tool": "statusNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'statusNode' may handle address data."
+        },
+        {
+          "tool": "supportNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'supportNode' may handle address data."
+        },
+        {
+          "tool": "warrantyAnswerNode",
+          "risk_type": "pii",
+          "severity": "high",
+          "description": "Parameter 'state' in tool 'warrantyAnswerNode' may handle address data."
+        },
+        {
+          "tool": "so",
+          "risk_type": "pii",
+          "severity": "medium",
+          "description": "Tool 'so' code/description contains phone pattern."
+        },
+        {
+          "tool": "planPricingResponse",
+          "risk_type": "critical_action",
+          "severity": "critical",
+          "description": "Tool 'planPricingResponse' performs financial operations (matched: payment)."
+        },
+        {
+          "tool": "applyCorrections",
+          "risk_type": "critical_action",
+          "severity": "high",
+          "description": "Tool 'applyCorrections' performs data_modification operations (matched: update)."
+        },
+        {
+          "tool": "truncateResponse",
+          "risk_type": "critical_action",
+          "severity": "high",
+          "description": "Tool 'truncateResponse' performs data_modification operations (matched: truncate)."
+        },
+        {
+          "tool": "buildEscalationResponse",
+          "risk_type": "critical_action",
+          "severity": "critical",
+          "description": "Tool 'buildEscalationResponse' performs financial operations (matched: transfer)."
+        },
+        {
+          "tool": "responseNode",
+          "risk_type": "critical_action",
+          "severity": "critical",
+          "description": "Tool 'responseNode' performs financial operations (matched: payment)."
+        },
+        {
+          "tool": "escalationNode",
+          "risk_type": "critical_action",
+          "severity": "critical",
+          "description": "Tool 'escalationNode' performs financial operations (matched: payment)."
+        },
+        {
+          "tool": "payment_receipt",
+          "risk_type": "critical_action",
+          "severity": "critical",
+          "description": "Tool 'payment_receipt' performs financial operations (matched: payment)."
+        },
+        {
+          "tool": null,
+          "risk_type": "excessive_agency",
+          "severity": "high",
+          "description": "Agent has 55 tools with no permission scoping detected in prompts."
+        }
+      ],
+      "code_tree": {
+        "root": "whatsapp",
+        "total_files": 54,
+        "total_classes": 1,
+        "total_functions": 110,
+        "tree": {
+          "name": "whatsapp",
+          "type": "directory",
+          "path": "",
+          "children": [
+            {
+              "name": "__tests__",
+              "type": "directory",
+              "path": "__tests__",
+              "children": [
+                {
+                  "name": "config.test.ts",
+                  "type": "file",
+                  "path": "__tests__/config.test.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": []
+                },
+                {
+                  "name": "dynamic-config.integration.test.ts",
+                  "type": "file",
+                  "path": "__tests__/dynamic-config.integration.test.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": []
+                },
+                {
+                  "name": "response.test.ts",
+                  "type": "file",
+                  "path": "__tests__/response.test.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": []
+                }
+              ],
+              "counts": {
+                "files": 3,
+                "classes": 0,
+                "functions": 0,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              }
+            },
+            {
+              "name": "events",
+              "type": "directory",
+              "path": "events",
+              "children": [
+                {
+                  "name": "__tests__",
+                  "type": "directory",
+                  "path": "events/__tests__",
+                  "children": [
+                    {
+                      "name": "text.test.ts",
+                      "type": "file",
+                      "path": "events/__tests__/text.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 0,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": []
+                    }
+                  ],
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  }
+                },
+                {
+                  "name": "detectors",
+                  "type": "directory",
+                  "path": "events/detectors",
+                  "children": [
+                    {
+                      "name": "__tests__",
+                      "type": "directory",
+                      "path": "events/detectors/__tests__",
+                      "children": [
+                        {
+                          "name": "address.test.ts",
+                          "type": "file",
+                          "path": "events/detectors/__tests__/address.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 1,
+                            "tools": 0,
+                            "prompts": 0,
+                            "risks": 0
+                          },
+                          "children": [
+                            {
+                              "name": "isChange",
+                              "type": "function",
+                              "line": 9,
+                              "params": [
+                                "raw"
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      }
+                    },
+                    {
+                      "name": "address.ts",
+                      "type": "file",
+                      "path": "events/detectors/address.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "isAddressChange",
+                          "type": "function",
+                          "line": 69,
+                          "params": [
+                            "normalizedMessage"
+                          ],
+                          "doc": "True when the accent-normalized message asks to CHANGE/correct the delivery"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "address",
+                          "risk_level": "low"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "order-received.ts",
+                      "type": "file",
+                      "path": "events/detectors/order-received.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 0,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [],
+                      "tools": [
+                        {
+                          "name": "order_received",
+                          "risk_level": "low"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "payment-receipt.ts",
+                      "type": "file",
+                      "path": "events/detectors/payment-receipt.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 0,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [],
+                      "tools": [
+                        {
+                          "name": "payment_receipt",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "critical",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'payment_receipt' performs financial operations (matched: payment)."
+                        }
+                      ],
+                      "max_risk_severity": "critical"
+                    }
+                  ],
+                  "counts": {
+                    "files": 4,
+                    "classes": 0,
+                    "functions": 2,
+                    "tools": 3,
+                    "prompts": 0,
+                    "risks": 1
+                  },
+                  "max_risk_severity": "critical"
+                },
+                {
+                  "name": "escalate-event.ts",
+                  "type": "file",
+                  "path": "events/escalate-event.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 2,
+                    "tools": 1,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "recordEventInteraction",
+                      "type": "function",
+                      "line": 29,
+                      "params": [
+                        "supabase",
+                        "phone",
+                        "event"
+                      ],
+                      "is_async": true
+                    },
+                    {
+                      "name": "escalateDetectedEvent",
+                      "type": "function",
+                      "line": 52,
+                      "params": [
+                        "supabase",
+                        "args"
+                      ],
+                      "is_async": true,
+                      "implements_tool": "escalateDetectedEvent"
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "escalateDetectedEvent",
+                      "risk_level": "low"
+                    }
+                  ]
+                },
+                {
+                  "name": "registry.ts",
+                  "type": "file",
+                  "path": "events/registry.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "runEventDetectors",
+                      "type": "function",
+                      "line": 25,
+                      "params": [
+                        "ctx"
+                      ],
+                      "is_async": true,
+                      "doc": "Run every registered detector against the turn and return the events that"
+                    }
+                  ]
+                },
+                {
+                  "name": "text.ts",
+                  "type": "file",
+                  "path": "events/text.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "normalize",
+                      "type": "function",
+                      "line": 7,
+                      "params": [
+                        "text"
+                      ],
+                      "doc": "Lowercase + strip diacritics: \"ya me lleg\u00f3\" \u2192 \"ya me llego\"."
+                    }
+                  ]
+                },
+                {
+                  "name": "types.ts",
+                  "type": "file",
+                  "path": "events/types.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 1,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [],
+                  "tools": [
+                    {
+                      "name": "EventDetector",
+                      "risk_level": "low"
+                    }
+                  ]
+                },
+                {
+                  "name": "verify.ts",
+                  "type": "file",
+                  "path": "events/verify.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 2,
+                    "tools": 1,
+                    "prompts": 1,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "buildInput",
+                      "type": "function",
+                      "line": 62,
+                      "params": [
+                        "message",
+                        "candidates"
+                      ]
+                    },
+                    {
+                      "name": "verifyDetectedEvents",
+                      "type": "function",
+                      "line": 72,
+                      "params": [
+                        "candidates",
+                        "ctx"
+                      ],
+                      "is_async": true,
+                      "doc": "Confirm/suppress candidate events. Returns the subset that survives. Fail-open.",
+                      "implements_tool": "verifyDetectedEvents"
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "verifyDetectedEvents",
+                      "risk_level": "low"
+                    }
+                  ],
+                  "prompts": [
+                    "VERIFY_PROMPT"
+                  ]
+                }
+              ],
+              "counts": {
+                "files": 10,
+                "classes": 0,
+                "functions": 8,
+                "tools": 6,
+                "prompts": 1,
+                "risks": 1
+              },
+              "max_risk_severity": "critical"
+            },
+            {
+              "name": "graph",
+              "type": "directory",
+              "path": "graph",
+              "children": [
+                {
+                  "name": "__tests__",
+                  "type": "directory",
+                  "path": "graph/__tests__",
+                  "children": [
+                    {
+                      "name": "pricing-plan.test.ts",
+                      "type": "file",
+                      "path": "graph/__tests__/pricing-plan.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "makeSO",
+                          "type": "function",
+                          "line": 14,
+                          "params": [
+                            "overrides"
+                          ],
+                          "implements_tool": "makeSO"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "makeSO",
+                          "risk_level": "low"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "route-by-intent.test.ts",
+                      "type": "file",
+                      "path": "graph/__tests__/route-by-intent.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "routeByIntent",
+                          "type": "function",
+                          "line": 28,
+                          "params": [
+                            "state"
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "state.test.ts",
+                      "type": "file",
+                      "path": "graph/__tests__/state.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "stateWithOrders",
+                          "type": "function",
+                          "line": 12,
+                          "params": [
+                            "orders"
+                          ],
+                          "implements_tool": "stateWithOrders"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "stateWithOrders",
+                          "risk_level": "low"
+                        }
+                      ]
+                    }
+                  ],
+                  "counts": {
+                    "files": 3,
+                    "classes": 0,
+                    "functions": 3,
+                    "tools": 2,
+                    "prompts": 0,
+                    "risks": 0
+                  }
+                },
+                {
+                  "name": "nodes",
+                  "type": "directory",
+                  "path": "graph/nodes",
+                  "children": [
+                    {
+                      "name": "__tests__",
+                      "type": "directory",
+                      "path": "graph/nodes/__tests__",
+                      "children": [
+                        {
+                          "name": "contact-info.test.ts",
+                          "type": "file",
+                          "path": "graph/nodes/__tests__/contact-info.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 1,
+                            "tools": 1,
+                            "prompts": 0,
+                            "risks": 0
+                          },
+                          "children": [
+                            {
+                              "name": "baseState",
+                              "type": "function",
+                              "line": 13,
+                              "params": [],
+                              "implements_tool": "baseState"
+                            }
+                          ],
+                          "tools": [
+                            {
+                              "name": "baseState",
+                              "risk_level": "low"
+                            }
+                          ]
+                        },
+                        {
+                          "name": "escalation-node.test.ts",
+                          "type": "file",
+                          "path": "graph/nodes/__tests__/escalation-node.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 1,
+                            "tools": 0,
+                            "prompts": 0,
+                            "risks": 0
+                          },
+                          "children": [
+                            {
+                              "name": "baseState",
+                              "type": "function",
+                              "line": 7,
+                              "params": [
+                                "overrides"
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "name": "pricing-answer.test.ts",
+                          "type": "file",
+                          "path": "graph/nodes/__tests__/pricing-answer.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 3,
+                            "tools": 2,
+                            "prompts": 0,
+                            "risks": 1
+                          },
+                          "children": [
+                            {
+                              "name": "baseState",
+                              "type": "function",
+                              "line": 27,
+                              "params": [
+                                "orders"
+                              ]
+                            },
+                            {
+                              "name": "so",
+                              "type": "function",
+                              "line": 74,
+                              "params": [
+                                "overrides"
+                              ],
+                              "implements_tool": "so"
+                            },
+                            {
+                              "name": "assertNoHedgeWords",
+                              "type": "function",
+                              "line": 107,
+                              "params": [
+                                "text"
+                              ],
+                              "implements_tool": "assertNoHedgeWords"
+                            }
+                          ],
+                          "tools": [
+                            {
+                              "name": "so",
+                              "risk_level": "low"
+                            },
+                            {
+                              "name": "assertNoHedgeWords",
+                              "risk_level": "low"
+                            }
+                          ],
+                          "risks": [
+                            {
+                              "severity": "medium",
+                              "risk_type": "pii",
+                              "description": "Tool 'so' code/description contains phone pattern."
+                            }
+                          ],
+                          "max_risk_severity": "medium"
+                        },
+                        {
+                          "name": "router.test.ts",
+                          "type": "file",
+                          "path": "graph/nodes/__tests__/router.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 0,
+                            "tools": 0,
+                            "prompts": 0,
+                            "risks": 0
+                          },
+                          "children": []
+                        },
+                        {
+                          "name": "warranty-answer.test.ts",
+                          "type": "file",
+                          "path": "graph/nodes/__tests__/warranty-answer.test.ts",
+                          "language": "typescript",
+                          "counts": {
+                            "files": 1,
+                            "classes": 0,
+                            "functions": 2,
+                            "tools": 0,
+                            "prompts": 0,
+                            "risks": 0
+                          },
+                          "children": [
+                            {
+                              "name": "baseState",
+                              "type": "function",
+                              "line": 10,
+                              "params": [
+                                "order"
+                              ]
+                            },
+                            {
+                              "name": "so",
+                              "type": "function",
+                              "line": 57,
+                              "params": [
+                                "overrides"
+                              ]
+                            }
+                          ]
+                        }
+                      ],
+                      "counts": {
+                        "files": 5,
+                        "classes": 0,
+                        "functions": 7,
+                        "tools": 3,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "max_risk_severity": "medium"
+                    },
+                    {
+                      "name": "contact-info.ts",
+                      "type": "file",
+                      "path": "graph/nodes/contact-info.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "contactInfoNode",
+                          "type": "function",
+                          "line": 25,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "contactInfoNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "contactInfoNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'contactInfoNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "customer-corrections.ts",
+                      "type": "file",
+                      "path": "graph/nodes/customer-corrections.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 2,
+                        "tools": 2,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "parseCorrections",
+                          "type": "function",
+                          "line": 55,
+                          "params": [
+                            "text"
+                          ],
+                          "doc": "Extract all `[CORRECT:...]` markers from the LLM's response text,",
+                          "implements_tool": "parseCorrections"
+                        },
+                        {
+                          "name": "applyCorrections",
+                          "type": "function",
+                          "line": 101,
+                          "params": [
+                            "args"
+                          ],
+                          "is_async": true,
+                          "doc": "Persist applied corrections. Updates `customer_memory` for whitelisted",
+                          "implements_tool": "applyCorrections"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "parseCorrections",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "applyCorrections",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'applyCorrections' performs data_modification operations (matched: update)."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "delivery-logistics-dispatch.ts",
+                      "type": "file",
+                      "path": "graph/nodes/delivery-logistics-dispatch.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 4,
+                        "tools": 4,
+                        "prompts": 0,
+                        "risks": 4
+                      },
+                      "children": [
+                        {
+                          "name": "deliveryLogisticsDispatchNode",
+                          "type": "function",
+                          "line": 64,
+                          "params": [
+                            "state",
+                            "opts"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "deliveryLogisticsDispatchNode"
+                        },
+                        {
+                          "name": "isFirstOutbound",
+                          "type": "function",
+                          "line": 124,
+                          "params": [
+                            "state"
+                          ],
+                          "implements_tool": "isFirstOutbound"
+                        },
+                        {
+                          "name": "styleCtx",
+                          "type": "function",
+                          "line": 129,
+                          "params": [
+                            "state",
+                            "register",
+                            "inbound",
+                            "didConcreteResolution"
+                          ],
+                          "implements_tool": "styleCtx"
+                        },
+                        {
+                          "name": "logThought",
+                          "type": "function",
+                          "line": 145,
+                          "params": [
+                            "state",
+                            "note"
+                          ],
+                          "implements_tool": "logThought"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "deliveryLogisticsDispatchNode",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "isFirstOutbound",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "styleCtx",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "logThought",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'deliveryLogisticsDispatchNode' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'isFirstOutbound' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'styleCtx' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'logThought' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "event-detector.ts",
+                      "type": "file",
+                      "path": "graph/nodes/event-detector.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "eventDetectorNode",
+                          "type": "function",
+                          "line": 14,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "eventDetectorNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "eventDetectorNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'eventDetectorNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "memory-extraction.ts",
+                      "type": "file",
+                      "path": "graph/nodes/memory-extraction.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "memoryExtractionNode",
+                          "type": "function",
+                          "line": 24,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "memoryExtractionNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "memoryExtractionNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'memoryExtractionNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "pricing-answer.ts",
+                      "type": "file",
+                      "path": "graph/nodes/pricing-answer.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 9,
+                        "tools": 6,
+                        "prompts": 0,
+                        "risks": 2
+                      },
+                      "children": [
+                        {
+                          "name": "joinSpanish",
+                          "type": "function",
+                          "line": 44,
+                          "params": [
+                            "items"
+                          ],
+                          "implements_tool": "joinSpanish"
+                        },
+                        {
+                          "name": "multiOrderDisambiguation",
+                          "type": "function",
+                          "line": 54,
+                          "params": [
+                            "orders"
+                          ],
+                          "implements_tool": "multiOrderDisambiguation"
+                        },
+                        {
+                          "name": "intakeFeeCopy",
+                          "type": "function",
+                          "line": 70,
+                          "params": [
+                            "fee"
+                          ],
+                          "implements_tool": "intakeFeeCopy"
+                        },
+                        {
+                          "name": "quotedCopy",
+                          "type": "function",
+                          "line": 74,
+                          "params": [
+                            "totalMxn"
+                          ],
+                          "implements_tool": "quotedCopy"
+                        },
+                        {
+                          "name": "pricingAnswerNode",
+                          "type": "function",
+                          "line": 91,
+                          "params": [
+                            "state",
+                            "opts"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "pricingAnswerNode"
+                        },
+                        {
+                          "name": "runSideEffects",
+                          "type": "function",
+                          "line": 220,
+                          "params": [
+                            "effects",
+                            "so",
+                            "phone"
+                          ],
+                          "implements_tool": "runSideEffects"
+                        },
+                        {
+                          "name": "isFirstOutbound",
+                          "type": "function",
+                          "line": 236,
+                          "params": [
+                            "state"
+                          ]
+                        },
+                        {
+                          "name": "styleCtx",
+                          "type": "function",
+                          "line": 241,
+                          "params": [
+                            "state",
+                            "register",
+                            "inbound",
+                            "didConcreteResolution"
+                          ]
+                        },
+                        {
+                          "name": "logThought",
+                          "type": "function",
+                          "line": 257,
+                          "params": [
+                            "state",
+                            "note"
+                          ]
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "joinSpanish",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "multiOrderDisambiguation",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "intakeFeeCopy",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "quotedCopy",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "pricingAnswerNode",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "runSideEffects",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'pricingAnswerNode' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'phone' in tool 'runSideEffects' may handle phone data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "response.ts",
+                      "type": "file",
+                      "path": "graph/nodes/response.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 8,
+                        "tools": 8,
+                        "prompts": 0,
+                        "risks": 9
+                      },
+                      "children": [
+                        {
+                          "name": "truncateResponse",
+                          "type": "function",
+                          "line": 33,
+                          "params": [
+                            "text",
+                            "maxLength"
+                          ],
+                          "doc": "Truncate response to WhatsApp character limit.",
+                          "implements_tool": "truncateResponse"
+                        },
+                        {
+                          "name": "buildEscalationResponse",
+                          "type": "function",
+                          "line": 69,
+                          "params": [
+                            "_reason",
+                            "svcOrderNo"
+                          ],
+                          "doc": "Build escalation response text \u2014 the message the customer sees when",
+                          "implements_tool": "buildEscalationResponse"
+                        },
+                        {
+                          "name": "resolveTypedReason",
+                          "type": "function",
+                          "line": 96,
+                          "params": [
+                            "state"
+                          ],
+                          "doc": "Resolve the typed EscalationReason for this escalation, if any: an explicit",
+                          "implements_tool": "resolveTypedReason"
+                        },
+                        {
+                          "name": "buildHandoffContext",
+                          "type": "function",
+                          "line": 111,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "doc": "Derive the handoff context from graph state. Register defaults to",
+                          "implements_tool": "buildHandoffContext"
+                        },
+                        {
+                          "name": "buildWaitTimeNotice",
+                          "type": "function",
+                          "line": 141,
+                          "params": [
+                            "minutesRemaining"
+                          ],
+                          "doc": "Build wait time notice if the session window is closing.",
+                          "implements_tool": "buildWaitTimeNotice"
+                        },
+                        {
+                          "name": "responseNode",
+                          "type": "function",
+                          "line": 153,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "responseNode"
+                        },
+                        {
+                          "name": "escalationNode",
+                          "type": "function",
+                          "line": 214,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "doc": "Escalation node \u2014 marks the conversation as escalated.",
+                          "implements_tool": "escalationNode"
+                        },
+                        {
+                          "name": "humanTakenOverNode",
+                          "type": "function",
+                          "line": 261,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "doc": "Human-taken-over node \u2014 marks that a human agent has taken control.",
+                          "implements_tool": "humanTakenOverNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "truncateResponse",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "buildEscalationResponse",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "resolveTypedReason",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "buildHandoffContext",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "buildWaitTimeNotice",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "responseNode",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "escalationNode",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "humanTakenOverNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'resolveTypedReason' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'buildHandoffContext' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'responseNode' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'escalationNode' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'humanTakenOverNode' may handle address data."
+                        },
+                        {
+                          "severity": "high",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'truncateResponse' performs data_modification operations (matched: truncate)."
+                        },
+                        {
+                          "severity": "critical",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'buildEscalationResponse' performs financial operations (matched: transfer)."
+                        },
+                        {
+                          "severity": "critical",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'responseNode' performs financial operations (matched: payment)."
+                        },
+                        {
+                          "severity": "critical",
+                          "risk_type": "critical_action",
+                          "description": "Tool 'escalationNode' performs financial operations (matched: payment)."
+                        }
+                      ],
+                      "max_risk_severity": "critical"
+                    },
+                    {
+                      "name": "router.ts",
+                      "type": "file",
+                      "path": "graph/nodes/router.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 5,
+                        "tools": 5,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "normalizeIntentForVersion",
+                          "type": "function",
+                          "line": 178,
+                          "params": [
+                            "intent",
+                            "version"
+                          ],
+                          "doc": "Filter an intent value to one that's valid for the requested taxonomy version.",
+                          "implements_tool": "normalizeIntentForVersion"
+                        },
+                        {
+                          "name": "classifyByKeywords",
+                          "type": "function",
+                          "line": 209,
+                          "params": [
+                            "text"
+                          ],
+                          "doc": "Fast keyword-based classification.",
+                          "implements_tool": "classifyByKeywords"
+                        },
+                        {
+                          "name": "makeClassificationSchema",
+                          "type": "function",
+                          "line": 227,
+                          "params": [
+                            "version"
+                          ],
+                          "doc": "Structured-output schema for intent classification. Version-aware.",
+                          "implements_tool": "makeClassificationSchema"
+                        },
+                        {
+                          "name": "classifyByLLM",
+                          "type": "function",
+                          "line": 240,
+                          "params": [
+                            "text",
+                            "history",
+                            "laneConfig",
+                            "version"
+                          ],
+                          "is_async": true,
+                          "doc": "LLM-based classification fallback using structured output.",
+                          "implements_tool": "classifyByLLM"
+                        },
+                        {
+                          "name": "routerNode",
+                          "type": "function",
+                          "line": 292,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "doc": "Router node: classifies the current message intent.",
+                          "implements_tool": "routerNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "normalizeIntentForVersion",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "classifyByKeywords",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "makeClassificationSchema",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "classifyByLLM",
+                          "risk_level": "low"
+                        },
+                        {
+                          "name": "routerNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'routerNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "status.ts",
+                      "type": "file",
+                      "path": "graph/nodes/status.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 2,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "executeTools",
+                          "type": "function",
+                          "line": 47,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "doc": "Execute tools based on available context."
+                        },
+                        {
+                          "name": "statusNode",
+                          "type": "function",
+                          "line": 129,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "statusNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "statusNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'statusNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "support.ts",
+                      "type": "file",
+                      "path": "graph/nodes/support.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "supportNode",
+                          "type": "function",
+                          "line": 49,
+                          "params": [
+                            "state"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "supportNode"
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "supportNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'supportNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    },
+                    {
+                      "name": "warranty-answer.ts",
+                      "type": "file",
+                      "path": "graph/nodes/warranty-answer.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 4,
+                        "tools": 1,
+                        "prompts": 0,
+                        "risks": 1
+                      },
+                      "children": [
+                        {
+                          "name": "warrantyAnswerNode",
+                          "type": "function",
+                          "line": 68,
+                          "params": [
+                            "state",
+                            "opts"
+                          ],
+                          "is_async": true,
+                          "implements_tool": "warrantyAnswerNode"
+                        },
+                        {
+                          "name": "isFirstOutbound",
+                          "type": "function",
+                          "line": 217,
+                          "params": [
+                            "state"
+                          ]
+                        },
+                        {
+                          "name": "styleCtx",
+                          "type": "function",
+                          "line": 222,
+                          "params": [
+                            "state",
+                            "register",
+                            "inbound",
+                            "didConcreteResolution",
+                            "intentOverride"
+                          ]
+                        },
+                        {
+                          "name": "logThought",
+                          "type": "function",
+                          "line": 239,
+                          "params": [
+                            "state",
+                            "note"
+                          ]
+                        }
+                      ],
+                      "tools": [
+                        {
+                          "name": "warrantyAnswerNode",
+                          "risk_level": "low"
+                        }
+                      ],
+                      "risks": [
+                        {
+                          "severity": "high",
+                          "risk_type": "pii",
+                          "description": "Parameter 'state' in tool 'warrantyAnswerNode' may handle address data."
+                        }
+                      ],
+                      "max_risk_severity": "high"
+                    }
+                  ],
+                  "counts": {
+                    "files": 16,
+                    "classes": 0,
+                    "functions": 45,
+                    "tools": 34,
+                    "prompts": 0,
+                    "risks": 24
+                  },
+                  "max_risk_severity": "critical"
+                },
+                {
+                  "name": "builder.ts",
+                  "type": "file",
+                  "path": "graph/builder.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 6,
+                    "tools": 5,
+                    "prompts": 0,
+                    "risks": 2
+                  },
+                  "children": [
+                    {
+                      "name": "routeByIntent",
+                      "type": "function",
+                      "line": 55,
+                      "params": [
+                        "state"
+                      ],
+                      "doc": "Route from router node to the appropriate handler based on intent.",
+                      "implements_tool": "routeByIntent"
+                    },
+                    {
+                      "name": "routeAfterSupport",
+                      "type": "function",
+                      "line": 122,
+                      "params": [
+                        "state"
+                      ],
+                      "doc": "After the support node, route to memory extraction on goodbye,",
+                      "implements_tool": "routeAfterSupport"
+                    },
+                    {
+                      "name": "buildGraph",
+                      "type": "function",
+                      "line": 140,
+                      "params": [
+                        "checkpointer"
+                      ],
+                      "is_async": true,
+                      "doc": "Internal function to build and compile the graph.",
+                      "implements_tool": "buildGraph"
+                    },
+                    {
+                      "name": "getCheckpointer",
+                      "type": "function",
+                      "line": 191,
+                      "params": [],
+                      "is_async": true,
+                      "doc": "Get or create the checkpointer.",
+                      "implements_tool": "getCheckpointer"
+                    },
+                    {
+                      "name": "getGraph",
+                      "type": "function",
+                      "line": 222,
+                      "params": [],
+                      "is_async": true,
+                      "doc": "Build and compile the WhatsApp agent graph.",
+                      "implements_tool": "getGraph"
+                    },
+                    {
+                      "name": "_resetGraph",
+                      "type": "function",
+                      "line": 237,
+                      "params": [],
+                      "doc": "Reset the cached graph and checkpointer (for testing)."
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "routeByIntent",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "routeAfterSupport",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "buildGraph",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "getCheckpointer",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "getGraph",
+                      "risk_level": "low"
+                    }
+                  ],
+                  "risks": [
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'routeByIntent' may handle address data."
+                    },
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'routeAfterSupport' may handle address data."
+                    }
+                  ],
+                  "max_risk_severity": "high"
+                },
+                {
+                  "name": "pricing-plan.ts",
+                  "type": "file",
+                  "path": "graph/pricing-plan.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 1,
+                    "prompts": 0,
+                    "risks": 1
+                  },
+                  "children": [
+                    {
+                      "name": "planPricingResponse",
+                      "type": "function",
+                      "line": 84,
+                      "params": [
+                        "so"
+                      ],
+                      "implements_tool": "planPricingResponse"
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "planPricingResponse",
+                      "risk_level": "low"
+                    }
+                  ],
+                  "risks": [
+                    {
+                      "severity": "critical",
+                      "risk_type": "critical_action",
+                      "description": "Tool 'planPricingResponse' performs financial operations (matched: payment)."
+                    }
+                  ],
+                  "max_risk_severity": "critical"
+                },
+                {
+                  "name": "state.ts",
+                  "type": "file",
+                  "path": "graph/state.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 6,
+                    "tools": 6,
+                    "prompts": 0,
+                    "risks": 5
+                  },
+                  "children": [
+                    {
+                      "name": "getCustomerInfo",
+                      "type": "function",
+                      "line": 140,
+                      "params": [
+                        "state"
+                      ],
+                      "doc": "Get customer info from assembled context.",
+                      "implements_tool": "getCustomerInfo"
+                    },
+                    {
+                      "name": "getActiveOrders",
+                      "type": "function",
+                      "line": 158,
+                      "params": [
+                        "state"
+                      ],
+                      "doc": "Get active orders from assembled context.",
+                      "implements_tool": "getActiveOrders"
+                    },
+                    {
+                      "name": "getSessionInfo",
+                      "type": "function",
+                      "line": 168,
+                      "params": [
+                        "state"
+                      ],
+                      "doc": "Get session info from assembled context.",
+                      "implements_tool": "getSessionInfo"
+                    },
+                    {
+                      "name": "shouldEscalate",
+                      "type": "function",
+                      "line": 175,
+                      "params": [
+                        "state",
+                        "threshold"
+                      ],
+                      "doc": "Check if escalation threshold is exceeded.",
+                      "implements_tool": "shouldEscalate"
+                    },
+                    {
+                      "name": "formatConversationHistory",
+                      "type": "function",
+                      "line": 183,
+                      "params": [
+                        "state",
+                        "maxMessages"
+                      ],
+                      "doc": "Build conversation history string for prompt injection.",
+                      "implements_tool": "formatConversationHistory"
+                    },
+                    {
+                      "name": "createInitialState",
+                      "type": "function",
+                      "line": 199,
+                      "params": [
+                        "context",
+                        "laneConfig"
+                      ],
+                      "doc": "Create initial state from an AssembledContext.",
+                      "implements_tool": "createInitialState"
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "getCustomerInfo",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "getActiveOrders",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "getSessionInfo",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "shouldEscalate",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "formatConversationHistory",
+                      "risk_level": "low"
+                    },
+                    {
+                      "name": "createInitialState",
+                      "risk_level": "low"
+                    }
+                  ],
+                  "risks": [
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'getCustomerInfo' may handle address data."
+                    },
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'getActiveOrders' may handle address data."
+                    },
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'getSessionInfo' may handle address data."
+                    },
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'shouldEscalate' may handle address data."
+                    },
+                    {
+                      "severity": "high",
+                      "risk_type": "pii",
+                      "description": "Parameter 'state' in tool 'formatConversationHistory' may handle address data."
+                    }
+                  ],
+                  "max_risk_severity": "high"
+                }
+              ],
+              "counts": {
+                "files": 22,
+                "classes": 0,
+                "functions": 61,
+                "tools": 48,
+                "prompts": 0,
+                "risks": 32
+              },
+              "max_risk_severity": "critical"
+            },
+            {
+              "name": "post-processors",
+              "type": "directory",
+              "path": "post-processors",
+              "children": [
+                {
+                  "name": "__tests__",
+                  "type": "directory",
+                  "path": "post-processors/__tests__",
+                  "children": [
+                    {
+                      "name": "style-guide.test.ts",
+                      "type": "file",
+                      "path": "post-processors/__tests__/style-guide.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 0,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": []
+                    }
+                  ],
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  }
+                },
+                {
+                  "name": "style-guide.ts",
+                  "type": "file",
+                  "path": "post-processors/style-guide.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 14,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "sanitizeCustomerName",
+                      "type": "function",
+                      "line": 36,
+                      "params": [
+                        "raw"
+                      ],
+                      "doc": "Clean up raw customer_name strings for use in greetings."
+                    },
+                    {
+                      "name": "titleCase",
+                      "type": "function",
+                      "line": 60,
+                      "params": [
+                        "word"
+                      ]
+                    },
+                    {
+                      "name": "titleCaseWords",
+                      "type": "function",
+                      "line": 65,
+                      "params": [
+                        "phrase"
+                      ]
+                    },
+                    {
+                      "name": "detectRegister",
+                      "type": "function",
+                      "line": 96,
+                      "params": [
+                        "inbound"
+                      ],
+                      "doc": "Classify the register of the first inbound message. Defaults to formal"
+                    },
+                    {
+                      "name": "W",
+                      "type": "function",
+                      "line": 103,
+                      "params": [
+                        "word"
+                      ]
+                    },
+                    {
+                      "name": "lockRegister",
+                      "type": "function",
+                      "line": 133,
+                      "params": [
+                        "message",
+                        "register"
+                      ],
+                      "doc": "Rewrite obvious 2nd-person pronoun mismatches to match the locked register."
+                    },
+                    {
+                      "name": "stripWelcome",
+                      "type": "function",
+                      "line": 162,
+                      "params": [
+                        "message"
+                      ]
+                    },
+                    {
+                      "name": "acknowledgmentPrefix",
+                      "type": "function",
+                      "line": 204,
+                      "params": [
+                        "inbound",
+                        "register",
+                        "longWaitThankCase"
+                      ]
+                    },
+                    {
+                      "name": "stripSelfFlagellationOpener",
+                      "type": "function",
+                      "line": 232,
+                      "params": [
+                        "message"
+                      ]
+                    },
+                    {
+                      "name": "suppressClosingQuestion",
+                      "type": "function",
+                      "line": 254,
+                      "params": [
+                        "message",
+                        "didConcreteResolution",
+                        "lastInboundIsClosing"
+                      ],
+                      "doc": "Remove the default closing question unless a concrete resolution happened"
+                    },
+                    {
+                      "name": "applyLengthCap",
+                      "type": "function",
+                      "line": 277,
+                      "params": [
+                        "message",
+                        "intent",
+                        "inboundLength"
+                      ]
+                    },
+                    {
+                      "name": "enforcePromiseHooks",
+                      "type": "function",
+                      "line": 308,
+                      "params": [
+                        "message",
+                        "availableHooks",
+                        "register"
+                      ]
+                    },
+                    {
+                      "name": "detectRepetitionBreak",
+                      "type": "function",
+                      "line": 337,
+                      "params": [
+                        "sameOutcomeCountInWindow"
+                      ],
+                      "doc": "Callers track (intent, outcome) tuples per conversation in a short window"
+                    },
+                    {
+                      "name": "applyStyleGuide",
+                      "type": "function",
+                      "line": 373,
+                      "params": [
+                        "message",
+                        "ctx"
+                      ],
+                      "doc": "Apply the full D12 style guide to a bot-generated message."
+                    }
+                  ]
+                }
+              ],
+              "counts": {
+                "files": 2,
+                "classes": 0,
+                "functions": 14,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              }
+            },
+            {
+              "name": "prompts",
+              "type": "directory",
+              "path": "prompts",
+              "children": [
+                {
+                  "name": "carry-in.ts",
+                  "type": "file",
+                  "path": "prompts/carry-in.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "buildWhatsAppCarryInAddendum",
+                      "type": "function",
+                      "line": 21,
+                      "params": [
+                        "orders"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "memory-extraction.ts",
+                  "type": "file",
+                  "path": "prompts/memory-extraction.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 0,
+                    "tools": 0,
+                    "prompts": 1,
+                    "risks": 0
+                  },
+                  "children": [],
+                  "prompts": [
+                    "MEMORY_EXTRACTION_SYSTEM_PROMPT"
+                  ]
+                },
+                {
+                  "name": "router.ts",
+                  "type": "file",
+                  "path": "prompts/router.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 2,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "getRouterSystemPrompt",
+                      "type": "function",
+                      "line": 29,
+                      "params": [
+                        "override"
+                      ],
+                      "doc": "Returns DB override if provided, else default."
+                    }
+                  ],
+                  "prompts": [
+                    "ROUTER_SYSTEM_PROMPT",
+                    "ROUTER_USER_PROMPT"
+                  ]
+                },
+                {
+                  "name": "status.ts",
+                  "type": "file",
+                  "path": "prompts/status.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 2,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "getStatusSystemPrompt",
+                      "type": "function",
+                      "line": 46,
+                      "params": [
+                        "override"
+                      ],
+                      "doc": "Returns DB override if provided, else default."
+                    }
+                  ],
+                  "prompts": [
+                    "STATUS_SYSTEM_PROMPT",
+                    "STATUS_USER_PROMPT"
+                  ]
+                },
+                {
+                  "name": "support.ts",
+                  "type": "file",
+                  "path": "prompts/support.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 0,
+                    "prompts": 2,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "getSupportSystemPrompt",
+                      "type": "function",
+                      "line": 137,
+                      "params": [
+                        "override",
+                        "crmOverrides"
+                      ],
+                      "is_async": true,
+                      "doc": "Returns DB override if provided, else default."
+                    }
+                  ],
+                  "prompts": [
+                    "SUPPORT_SYSTEM_PROMPT",
+                    "SUPPORT_USER_PROMPT"
+                  ]
+                }
+              ],
+              "counts": {
+                "files": 5,
+                "classes": 0,
+                "functions": 4,
+                "tools": 0,
+                "prompts": 7,
+                "risks": 0
+              }
+            },
+            {
+              "name": "tools",
+              "type": "directory",
+              "path": "tools",
+              "children": [
+                {
+                  "name": "__tests__",
+                  "type": "directory",
+                  "path": "tools/__tests__",
+                  "children": [
+                    {
+                      "name": "order-lookup-policy.test.ts",
+                      "type": "file",
+                      "path": "tools/__tests__/order-lookup-policy.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 3,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "fullOrder",
+                          "type": "function",
+                          "line": 110,
+                          "params": [
+                            "overrides"
+                          ]
+                        },
+                        {
+                          "name": "permitAll",
+                          "type": "function",
+                          "line": 135,
+                          "params": []
+                        },
+                        {
+                          "name": "denyAll",
+                          "type": "function",
+                          "line": 143,
+                          "params": []
+                        }
+                      ]
+                    },
+                    {
+                      "name": "order-lookup-warranty.test.ts",
+                      "type": "file",
+                      "path": "tools/__tests__/order-lookup-warranty.test.ts",
+                      "language": "typescript",
+                      "counts": {
+                        "files": 1,
+                        "classes": 0,
+                        "functions": 1,
+                        "tools": 0,
+                        "prompts": 0,
+                        "risks": 0
+                      },
+                      "children": [
+                        {
+                          "name": "oowOrder",
+                          "type": "function",
+                          "line": 96,
+                          "params": [
+                            "overrides"
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "counts": {
+                    "files": 2,
+                    "classes": 0,
+                    "functions": 4,
+                    "tools": 0,
+                    "prompts": 0,
+                    "risks": 0
+                  }
+                },
+                {
+                  "name": "order-lookup.ts",
+                  "type": "file",
+                  "path": "tools/order-lookup.ts",
+                  "language": "typescript",
+                  "counts": {
+                    "files": 1,
+                    "classes": 0,
+                    "functions": 1,
+                    "tools": 1,
+                    "prompts": 0,
+                    "risks": 0
+                  },
+                  "children": [
+                    {
+                      "name": "lookupOrder",
+                      "type": "function",
+                      "line": 71,
+                      "params": [
+                        "svcOrderNo"
+                      ],
+                      "is_async": true,
+                      "doc": "Look up a service order by order number.",
+                      "implements_tool": "lookupOrder"
+                    }
+                  ],
+                  "tools": [
+                    {
+                      "name": "lookupOrder",
+                      "risk_level": "low"
+                    }
+                  ]
+                }
+              ],
+              "counts": {
+                "files": 3,
+                "classes": 0,
+                "functions": 5,
+                "tools": 1,
+                "prompts": 0,
+                "risks": 0
+              }
+            },
+            {
+              "name": "agent.ts",
+              "type": "file",
+              "path": "agent.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 1,
+                "functions": 5,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "chooseResponseText",
+                  "type": "function",
+                  "line": 39,
+                  "params": [
+                    "acuses",
+                    "result"
+                  ],
+                  "doc": "Choose the customer-facing reply text. A detected-event acuse (e.g. \"Recib\u00ed tu"
+                },
+                {
+                  "name": "WhatsAppAgent",
+                  "type": "class",
+                  "line": 49,
+                  "bases": [],
+                  "children": [
+                    {
+                      "name": "execute",
+                      "type": "method",
+                      "line": 59,
+                      "params": [
+                        "context",
+                        "threadId"
+                      ],
+                      "is_async": true,
+                      "doc": "Execute the WhatsApp agent for a single message turn."
+                    },
+                    {
+                      "name": "invokeWithTimeout",
+                      "type": "method",
+                      "line": 259,
+                      "params": [
+                        "graph",
+                        "initialState",
+                        "messageContent",
+                        "threadId"
+                      ],
+                      "doc": "Wrap graph.invoke with a timeout so a hung LLM call"
+                    }
+                  ]
+                },
+                {
+                  "name": "getWhatsAppAgent",
+                  "type": "function",
+                  "line": 289,
+                  "params": [],
+                  "doc": "Get the WhatsApp agent singleton."
+                },
+                {
+                  "name": "_resetAgent",
+                  "type": "function",
+                  "line": 297,
+                  "params": [],
+                  "doc": "Reset for testing."
+                }
+              ]
+            },
+            {
+              "name": "config.ts",
+              "type": "file",
+              "path": "config.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 3,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "getWhatsAppConfig",
+                  "type": "function",
+                  "line": 60,
+                  "params": [],
+                  "doc": "Load and validate WhatsApp agent configuration from environment."
+                },
+                {
+                  "name": "getWhatsAppDynamicConfig",
+                  "type": "function",
+                  "line": 100,
+                  "params": [],
+                  "is_async": true,
+                  "doc": "Load WhatsApp config with DB overrides from agent_configurations table."
+                },
+                {
+                  "name": "_resetConfig",
+                  "type": "function",
+                  "line": 129,
+                  "params": [],
+                  "doc": "Reset cached config (for testing)."
+                }
+              ]
+            },
+            {
+              "name": "context-summarizer.ts",
+              "type": "file",
+              "path": "context-summarizer.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 1,
+                "tools": 0,
+                "prompts": 1,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "summarizeIfNeeded",
+                  "type": "function",
+                  "line": 18,
+                  "params": [
+                    "history",
+                    "maxTurns",
+                    "anthropicApiKey",
+                    "context"
+                  ],
+                  "is_async": true,
+                  "doc": "Summarize conversation history if it exceeds maxTurns."
+                }
+              ],
+              "prompts": [
+                "SUMMARIZATION_PROMPT"
+              ]
+            },
+            {
+              "name": "index.ts",
+              "type": "file",
+              "path": "index.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 0,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": []
+            },
+            {
+              "name": "lane-selector.ts",
+              "type": "file",
+              "path": "lane-selector.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 4,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "hasMessageLevelTrigger",
+                  "type": "function",
+                  "line": 50,
+                  "params": [
+                    "text"
+                  ]
+                },
+                {
+                  "name": "hasConversationLevelTrigger",
+                  "type": "function",
+                  "line": 67,
+                  "params": [
+                    "context"
+                  ]
+                },
+                {
+                  "name": "selectLane",
+                  "type": "function",
+                  "line": 93,
+                  "params": [
+                    "context",
+                    "currentLane"
+                  ],
+                  "doc": "Select the processing lane for this conversation."
+                },
+                {
+                  "name": "getLane2Config",
+                  "type": "function",
+                  "line": 123,
+                  "params": [],
+                  "doc": "Get Lane 2 config."
+                }
+              ]
+            },
+            {
+              "name": "llm-factory.ts",
+              "type": "file",
+              "path": "llm-factory.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 3,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "createLLM",
+                  "type": "function",
+                  "line": 33,
+                  "params": [
+                    "laneConfig"
+                  ],
+                  "doc": "Primary chat model from the lane config (Anthropic)."
+                },
+                {
+                  "name": "createFallbackModel",
+                  "type": "function",
+                  "line": 51,
+                  "params": [
+                    "laneConfig"
+                  ],
+                  "doc": "Fallback chat model (OpenAI gpt-5.2) or null if OPENAI_API_KEY isn't set."
+                },
+                {
+                  "name": "withProviderFallback",
+                  "type": "function",
+                  "line": 72,
+                  "params": [
+                    "primary",
+                    "fallback"
+                  ],
+                  "doc": "Wrap a primary Runnable with a single fallback (or return it unchanged"
+                }
+              ]
+            },
+            {
+              "name": "llm-usage.ts",
+              "type": "file",
+              "path": "llm-usage.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 1,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "extractUsage",
+                  "type": "function",
+                  "line": 15,
+                  "params": [
+                    "result"
+                  ],
+                  "doc": "Extract usage from a LangChain response."
+                }
+              ]
+            },
+            {
+              "name": "models.ts",
+              "type": "file",
+              "path": "models.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 0,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": []
+            },
+            {
+              "name": "rocket-metrics.ts",
+              "type": "file",
+              "path": "rocket-metrics.ts",
+              "language": "typescript",
+              "counts": {
+                "files": 1,
+                "classes": 0,
+                "functions": 1,
+                "tools": 0,
+                "prompts": 0,
+                "risks": 0
+              },
+              "children": [
+                {
+                  "name": "emitRocketMetric",
+                  "type": "function",
+                  "line": 26,
+                  "params": [
+                    "metric"
+                  ],
+                  "doc": "Emit a ROCKET metric to the rocket_metrics table."
+                }
+              ]
+            }
+          ],
+          "counts": {
+            "files": 54,
+            "classes": 1,
+            "functions": 110,
+            "tools": 55,
+            "prompts": 9,
+            "risks": 33
+          },
+          "max_risk_severity": "critical"
+        }
+      }
+    },
+    "b": {
+      "test_suite_path": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/generated/test_suite.json",
+      "total_tests": 150,
+      "persona_count": 65,
+      "personas": [
+        {
+          "name": "Marcus Johnson",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Nathan Fischer",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Hannah Lee",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "David Kim",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Brian Taylor",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Laura Petrov",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Ryan Cooper",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Rachel Nguyen",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "James Chen",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Olivia Reyes",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Priya Patel",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Robert Garcia",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Isabel Moreno",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Emma Thompson",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Ananya Sharma",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Chris Martinez",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Carlos Mendoza",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Diana Kowalski",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Ahmed Hassan",
+          "agent_type": "support",
+          "source": "tool_attack"
+        },
+        {
+          "name": "Samuel Jones",
+          "agent_type": "support",
+          "source": "tool_attack"
+        }
+      ],
+      "scenario_count": 1568,
+      "scenarios": [
+        {
+          "title": "Cliente solicita confirmaci\u00f3n de diagn\u00f3stico previo y pasos para recoger equipo reparado",
+          "difficulty": "medium",
+          "required_tools": [
+            "so"
+          ]
+        },
+        {
+          "title": "Consulta r\u00e1pida sobre garant\u00eda de reparaci\u00f3n completada",
+          "difficulty": "easy",
+          "required_tools": [
+            "so"
+          ]
+        },
+        {
+          "title": "Cliente env\u00eda nota de voz sobre reparaci\u00f3n y solicita seguimiento",
+          "difficulty": "easy",
+          "required_tools": []
+        },
+        {
+          "title": "Cliente con n\u00famero de orden no encontrado en sistema",
+          "difficulty": "easy",
+          "required_tools": []
+        },
+        {
+          "title": "Media Message Classification with Conversation Context",
+          "difficulty": "medium",
+          "required_tools": [
+            "routerNode"
+          ]
+        },
+        {
+          "title": "Cliente solicita cambio de direcci\u00f3n y consulta informaci\u00f3n del centro",
+          "difficulty": "medium",
+          "required_tools": [
+            "so",
+            "address"
+          ]
+        },
+        {
+          "title": "Cliente solicita n\u00famero de contacto alternativo",
+          "difficulty": "easy",
+          "required_tools": []
+        },
+        {
+          "title": "Cliente solicita detalles de env\u00edo sin informaci\u00f3n disponible",
+          "difficulty": "easy",
+          "required_tools": []
+        },
+        {
+          "title": "Cliente solicita tiempo estimado de reparaci\u00f3n",
+          "difficulty": "easy",
+          "required_tools": []
+        },
+        {
+          "title": "Cliente consulta precio con n\u00famero de orden no encontrado",
+          "difficulty": "medium",
+          "required_tools": [
+            "statusNode",
+            "lookupOrder",
+            "pricingAnswerNode"
+          ]
+        },
+        {
+          "title": "Compliance: R001 \u2014 order_received: el cliente confirma con gusto/neutral que YA",
+          "difficulty": "medium",
+          "required_tools": [
+            "order_received"
+          ]
+        },
+        {
+          "title": "Compliance: R001 \u2014 order_received: el cliente confirma con gusto/neutral que YA",
+          "difficulty": "medium",
+          "required_tools": [
+            "order_received"
+          ]
+        },
+        {
+          "title": "Violation: R001 \u2014 order_received: el cliente confirma con gusto/neutral que YA",
+          "difficulty": "hard",
+          "required_tools": []
+        },
+        {
+          "title": "Violation: R001 \u2014 order_received: el cliente confirma con gusto/neutral que YA",
+          "difficulty": "hard",
+          "required_tools": []
+        },
+        {
+          "title": "Violation: R001 \u2014 order_received: el cliente confirma con gusto/neutral que YA",
+          "difficulty": "hard",
+          "required_tools": []
+        },
+        {
+          "title": "Compliance: R002 \u2014 Focus on the customer's PRIMARY intent",
+          "difficulty": "medium",
+          "required_tools": []
+        },
+        {
+          "title": "Violation: R002 \u2014 Focus on the customer's PRIMARY intent",
+          "difficulty": "hard",
+          "required_tools": []
+        },
+        {
+          "title": "Violation: R002 \u2014 Focus on the customer's PRIMARY intent",
+          "difficulty": "hard",
+          "required_tools": []
+        },
+        {
+          "title": "Compliance: R003 \u2014 Look for keywords but also understand context",
+          "difficulty": "medium",
+          "required_tools": [
+            "so"
+          ]
+        },
+        {
+          "title": "Violation: R003 \u2014 Look for keywords but also understand context",
+          "difficulty": "hard",
+          "required_tools": []
+        }
+      ],
+      "tokens_used": 910945,
+      "cost_usd": 2.8283
+    },
+    "c": {
+      "total_tests": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "timeouts": 0,
+      "pass_rate": 80.0,
+      "total_duration_sec": 238.786856,
+      "total_cost_usd": 0.10163900000000001,
+      "tool_coverage_pct": 100.0,
+      "tools_not_covered": [],
+      "by_difficulty": {
+        "hard": {
+          "passed": 7,
+          "failed": 2
+        },
+        "medium": {
+          "passed": 1
+        }
+      },
+      "triage": {
+        "genuine_failures": 2,
+        "persona_filtered": 0,
+        "chaos_filtered": 0,
+        "false_successes": 0
+      }
+    }
+  },
+  "artifacts": {
+    "agent-map": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/agent_map.json",
+    "graph-png": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/agent_map_graph.png",
+    "test-suite": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/generated/test_suite.json",
+    "persona-library": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/generated/persona_library.json",
+    "scenario-catalog": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/generated/scenario_catalog.json",
+    "test-configuration": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/generated/test_configuration.json",
+    "test-report": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/test_run_report.json",
+    "conversation-log": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/conversations.log",
+    "conversations": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/conversations.json",
+    "failure-inbox": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/validated_failure_inbox.json",
+    "validation-report": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/validation_report.json"
+  }
+}

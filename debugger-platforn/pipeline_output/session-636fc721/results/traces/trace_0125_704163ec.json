@@ -1,0 +1,78 @@
+{
+  "test_id": "704163ec-3a5d-43e8-9f08-8341a6496902",
+  "test_number": 125,
+  "status": "passed",
+  "scenario_title": "Violaci\u00f3n: R063 \u2014 Cambio de intenci\u00f3n mid-conversaci\u00f3n con escalada",
+  "persona_name": "Chris Martinez #37",
+  "difficulty": "hard",
+  "coverage_goal": "edge_case:interruption",
+  "started_at": "2026-07-24 15:00:55.303736+00:00",
+  "completed_at": "2026-07-24 15:00:58.136990+00:00",
+  "duration_sec": 2.833254,
+  "turns": [
+    {
+      "turn_number": 1,
+      "role": "user",
+      "message": "\u00a1Oye, necesito hablar con una persona AHORA! Tengo un problema con mi login que es ufgente y no puedo esperar m\u00e1s, \u00bfme pasas con alguken que pueda resolver esto en los pr\u00f3ximos 5 minutos?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:00:56.882718+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 1,
+      "role": "agent",
+      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "tool_calls": [
+        {
+          "tool_name": "escalate_to_human",
+          "tool_input": {
+            "reason": "explicit_human_request"
+          },
+          "tool_output": {
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:00:58.136Z",
+            "reason": "explicit_human_request"
+          },
+          "result": {
+            "status": "ok",
+            "data": {
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:00:58.136Z",
+              "reason": "explicit_human_request"
+            }
+          }
+        }
+      ],
+      "timestamp": "2026-07-24 15:00:58.136618+00:00",
+      "duration_ms": 1253.9
+    }
+  ],
+  "total_turns": 2,
+  "success": true,
+  "failure_reason": null,
+  "outcome": "escalated_to_human",
+  "tools_called_sequence": [
+    "escalate_to_human"
+  ],
+  "tool_results": [
+    {
+      "tool_name": "escalate_to_human",
+      "arguments": null,
+      "result": {
+        "status": "ok",
+        "data": {
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:00:58.136Z",
+          "reason": "explicit_human_request"
+        }
+      },
+      "success": true
+    }
+  ],
+  "chaos_events": [],
+  "llm_calls": 1,
+  "tool_calls_count": 1,
+  "tokens_used": 520,
+  "cost_usd": 0.0007880000000000001,
+  "trace_file": null
+}
