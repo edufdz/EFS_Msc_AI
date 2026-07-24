@@ -87,6 +87,9 @@ export const getPhaseCTraces = (sessionId: string) =>
 export const getDefaultPersonaContext = () =>
   request<{ context: string | null }>('/api/phase-c/persona-context-default')
 
+export const getDefaultAgentEndpoint = () =>
+  request<{ endpoint: string | null }>('/api/phase-c/default-endpoint')
+
 // Artifacts — trigger a browser download of a session artifact (JSON/log/png)
 export const downloadArtifact = (sessionId: string, artifactType: string) => {
   const a = document.createElement('a')

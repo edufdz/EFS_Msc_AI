@@ -29,7 +29,7 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
     """Run Phase C asynchronously."""
     import random as _random
 
-    from src.endpoints_config import apply_endpoints_to_agent_map
+    from src.endpoints_config import apply_endpoints_to_agent_map, apply_execution_overlay
     from src.execution.agent_connector import APIAgentConnector, MockAgentConnector, VictoriaConnector
     from src.execution.aggregator import ResultsAggregator
     from src.execution.persona_context import analyze_persona_context
@@ -69,6 +69,13 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
         agent_map = json.load(f)
 
     apply_endpoints_to_agent_map(agent_map, str(agent_map_path))
+
+    # Phase A maps have no terminal outcomes, so no test can ever pass against
+    # a live agent. Merge execution fields from the execution map declared in
+    # agent_endpoints.json (terminal_outcomes, confirmation_phrases, ...).
+    merged_keys = apply_execution_overlay(agent_map, str(agent_map_path))
+    if merged_keys:
+        emitter.emit("preparing", f"Merged execution fields into agent map: {', '.join(merged_keys)}", 5)
 
     # Override with user-provided endpoint from the UI
     if req.agent_endpoint:
@@ -295,6 +302,20 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
         "triage": triage_summary,
     }
     return result
+
+
+@router.get("/default-endpoint")
+async def get_default_endpoint():
+    """Default agent endpoint from agent_endpoints.json — pre-fills the UI field."""
+    from src.endpoints_config import load_endpoints
+
+    path = PROJECT_ROOT / "agent_endpoints.json"
+    if path.is_file():
+        try:
+            return {"endpoint": load_endpoints(path).get("default")}
+        except Exception:
+            pass
+    return {"endpoint": None}
 
 
 @router.get("/persona-context-default")

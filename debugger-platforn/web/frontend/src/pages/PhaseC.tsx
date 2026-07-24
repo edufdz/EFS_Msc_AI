@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useStore } from '../store'
 import { usePhaseRunner } from '../hooks/usePhaseRunner'
-import { getPhaseCStatus, getPhaseCTraces, getDefaultPersonaContext, downloadArtifact, resetPhase as apiResetPhase } from '../api/client'
+import { getPhaseCStatus, getPhaseCTraces, getDefaultPersonaContext, getDefaultAgentEndpoint, downloadArtifact, resetPhase as apiResetPhase } from '../api/client'
 import ExecutionControls from '../components/phase-c/ExecutionControls'
 import PersonaContextInput from '../components/phase-c/PersonaContextInput'
 import LlmProviderSelect from '../components/shared/LlmProviderSelect'
@@ -36,7 +36,7 @@ export default function PhaseC() {
   const [language, setLanguage] = useState('')
   const [personaContext, setPersonaContext] = useState('')
   const [validate, setValidate] = useState(true)
-  const [agentEndpoint, setAgentEndpoint] = useState('http://localhost:3099')
+  const [agentEndpoint, setAgentEndpoint] = useState('')
   const [llmProvider, setLlmProvider] = useState('')
   const [llmModel, setLlmModel] = useState('')
   const [llmBaseUrl, setLlmBaseUrl] = useState('')
@@ -56,6 +56,13 @@ export default function PhaseC() {
     getDefaultPersonaContext()
       .then((r) => {
         if (r.context) setPersonaContext((prev) => prev || r.context!)
+      })
+      .catch(() => {})
+    // Pre-fill the agent endpoint from agent_endpoints.json (was a hardcoded
+    // :3099 that pointed at nothing)
+    getDefaultAgentEndpoint()
+      .then((r) => {
+        if (r.endpoint) setAgentEndpoint((prev) => prev || r.endpoint!)
       })
       .catch(() => {})
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -253,7 +260,7 @@ export default function PhaseC() {
           type="text"
           value={agentEndpoint}
           onChange={(e) => setAgentEndpoint(e.target.value)}
-          placeholder="http://localhost:3099"
+          placeholder="http://localhost:3098"
           className="w-full px-3 py-2 bg-bg border border-border rounded-lg text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
         />
       </div>

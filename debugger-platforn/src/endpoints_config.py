@@ -76,3 +76,45 @@ def apply_endpoints_to_agent_map(
     endpoint = resolve_api_endpoint(agent_map, agent_map_file_path)
     if endpoint is not None:
         agent_map["api_endpoint"] = endpoint
+
+
+# Runtime execution fields the oracle/runner read from the agent map.
+# Phase A research maps don't have them, and without terminal_outcomes no
+# test can ever pass against a live agent (every run ends vacuous).
+EXECUTION_KEYS = ("terminal_outcomes", "confirmation_phrases", "tool_chains", "runtime_tools")
+
+
+def apply_execution_overlay(
+    agent_map: Dict[str, Any],
+    agent_map_file_path: str,
+) -> list:
+    """
+    If agent_map lacks terminal_outcomes, merge the execution fields from the
+    execution map referenced in agent_endpoints.json ("execution_map", or
+    "execution_map_by_agent_id" keyed by agent_id; paths relative to the
+    endpoints file). Mutates agent_map in place; returns the merged key names
+    (empty if nothing was merged).
+    """
+    if agent_map.get("terminal_outcomes"):
+        return []
+    endpoints_path = _find_endpoints_file(agent_map_file_path)
+    if not endpoints_path:
+        return []
+    data = load_endpoints(endpoints_path)
+    by_id = data.get("execution_map_by_agent_id") or {}
+    ref = by_id.get(str(agent_map.get("agent_id"))) or data.get("execution_map")
+    if not ref:
+        return []
+    exec_path = Path(ref)
+    if not exec_path.is_absolute():
+        exec_path = endpoints_path.parent / exec_path
+    if not exec_path.is_file():
+        return []
+    with open(exec_path) as f:
+        exec_map = json.load(f)
+    merged = []
+    for key in EXECUTION_KEYS:
+        if not agent_map.get(key) and exec_map.get(key):
+            agent_map[key] = exec_map[key]
+            merged.append(key)
+    return merged
