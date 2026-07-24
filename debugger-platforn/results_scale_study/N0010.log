@@ -1,0 +1,61 @@
+╭──────────────────────────────────────────────────────────────────────────────╮
+│ Phase C: Test Execution Engine                                               │
+│ Execute test suite with live monitoring and trace collection                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Pre-made persona context found (persona_context_default.txt — fake customer data). Use it? (Y=use / n=none / c=custom) [Y]: Persona context loaded.
+Context analyzed.
+                      Execution Plan                       
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Setting              ┃ Value                            ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Agent type           │ support                          │
+├──────────────────────┼──────────────────────────────────┤
+│ Test cases           │ 10                               │
+├──────────────────────┼──────────────────────────────────┤
+│ Workers              │ 6                                │
+├──────────────────────┼──────────────────────────────────┤
+│ Connector            │ API (http://localhost:3098)      │
+├──────────────────────┼──────────────────────────────────┤
+│ AI personas          │ yes                              │
+├──────────────────────┼──────────────────────────────────┤
+│ Persona model        │ anthropic/claude-haiku-4-5       │
+├──────────────────────┼──────────────────────────────────┤
+│ GAN mode             │ off                              │
+├──────────────────────┼──────────────────────────────────┤
+│ Language             │ Spanish                          │
+├──────────────────────┼──────────────────────────────────┤
+│ Traces               │ results_scale_study/N0010/traces │
+├──────────────────────┼──────────────────────────────────┤
+│ Output dir           │ results_scale_study/N0010        │
+├──────────────────────┼──────────────────────────────────┤
+│ Persona context      │ yes                              │
+└──────────────────────┴──────────────────────────────────┘
+
+
+Generating reports...
+
+╭────────────────────────────── Test Run Results ──────────────────────────────╮
+│   Total tests:   10                                                          │
+│   Passed:        10                                                          │
+│   Failed:        0                                                           │
+│   Errors:        0                                                           │
+│   Timeouts:      0                                                           │
+│   Pass rate:     100.0%                                                      │
+│                                                                              │
+│   Duration:      151.0s  (avg 15.10s/test)                                   │
+│   Cost:          $0.050                                                      │
+│   Tool coverage: 100.0%  (0 tools missed)                                    │
+╰──────────────────────────────────────────────────────────────────────────────╯
+                  By Difficulty                   
+┏━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━━┓
+┃ Difficulty ┃ Passed ┃ Failed ┃ Error ┃ Timeout ┃
+┡━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━━┩
+│ medium     │   1    │   0    │   0   │    0    │
+├────────────┼────────┼────────┼───────┼─────────┤
+│ hard       │   9    │   0    │   0   │    0    │
+└────────────┴────────┴────────┴───────┴─────────┘
+
+Output files:
+  Report:        results_scale_study/N0010/test_run_report.json
+  Failure inbox: results_scale_study/N0010/failure_inbox.json
+  Conversations: results_scale_study/N0010/conversations.json

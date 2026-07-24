@@ -1,0 +1,309 @@
+{
+  "min_score": 3.0,
+  "reachable_real_categories": [
+    "comprehension",
+    "resolution",
+    "data_gap",
+    "loop_stall",
+    "missed_escalation",
+    "silent_abandonment",
+    "hallucination"
+  ],
+  "reachable_support": [
+    "comprehension_failure",
+    "data_gap",
+    "escalation_failure",
+    "hallucination",
+    "infinite_loop",
+    "premature_exit",
+    "resolution_failure"
+  ],
+  "split_half_noise_floor_real": {
+    "mean": 0.0050093809062742144,
+    "p95": 0.01076448130462528
+  },
+  "per_batch": {
+    "10": {
+      "conversations": 10,
+      "failures": 3,
+      "failure_rate": 0.3,
+      "production_categories_found": [
+        "loop_stall",
+        "resolution"
+      ],
+      "n_categories_found": 2,
+      "coverage_of_reachable_real": 0.2857,
+      "jsd_vs_real": {
+        "point": 0.21273912290316715,
+        "ci_low": 0.18006027650454962,
+        "ci_high": 0.501997048938178
+      },
+      "duration_sec": 151.045652,
+      "persona_cost_usd": 0.050066,
+      "pass_rate_oracle": 100.0
+    },
+    "50": {
+      "conversations": 50,
+      "failures": 12,
+      "failure_rate": 0.24,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.2544772784051681,
+        "ci_low": 0.191610576600514,
+        "ci_high": 0.45243121320142393
+      },
+      "duration_sec": 596.999711,
+      "persona_cost_usd": 0.28487,
+      "pass_rate_oracle": 96.0
+    },
+    "100": {
+      "conversations": 100,
+      "failures": 24,
+      "failure_rate": 0.24,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.2320639458475881,
+        "ci_low": 0.19370960267177006,
+        "ci_high": 0.3297061072388019
+      },
+      "duration_sec": 1333.323667,
+      "persona_cost_usd": 0.639893,
+      "pass_rate_oracle": 95.0
+    },
+    "200": {
+      "conversations": 200,
+      "failures": 43,
+      "failure_rate": 0.215,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution"
+      ],
+      "n_categories_found": 4,
+      "coverage_of_reachable_real": 0.5714,
+      "jsd_vs_real": {
+        "point": 0.24726012360984823,
+        "ci_low": 0.20671151366866525,
+        "ci_high": 0.31854772041347673
+      },
+      "duration_sec": 2284.340156,
+      "persona_cost_usd": 0.962337,
+      "pass_rate_oracle": 98.5
+    },
+    "400": {
+      "conversations": 400,
+      "failures": 90,
+      "failure_rate": 0.225,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.24773838023224198,
+        "ci_low": 0.21277573163367386,
+        "ci_high": 0.29260058499826674
+      },
+      "duration_sec": 5197.435684,
+      "persona_cost_usd": 2.396427,
+      "pass_rate_oracle": 95.5
+    },
+    "800": {
+      "conversations": 800,
+      "failures": 219,
+      "failure_rate": 0.2737,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.2245353093720021,
+        "ci_low": 0.20083362025497298,
+        "ci_high": 0.25929522089410495
+      },
+      "duration_sec": 10385.255859,
+      "persona_cost_usd": 5.0442730000000005,
+      "pass_rate_oracle": 95.875
+    },
+    "1000": {
+      "conversations": 1000,
+      "failures": 232,
+      "failure_rate": 0.232,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.24196930565460045,
+        "ci_low": 0.2164542376582419,
+        "ci_high": 0.27638547822300535
+      },
+      "duration_sec": 13472.260082,
+      "persona_cost_usd": 6.474717,
+      "pass_rate_oracle": 95.39999999999999
+    }
+  },
+  "cumulative_pooled": {
+    "10": {
+      "conversations": 10,
+      "failures": 3,
+      "failure_rate": 0.3,
+      "production_categories_found": [
+        "loop_stall",
+        "resolution"
+      ],
+      "n_categories_found": 2,
+      "coverage_of_reachable_real": 0.2857,
+      "jsd_vs_real": {
+        "point": 0.21273912290316715,
+        "ci_low": 0.18006027650454962,
+        "ci_high": 0.501997048938178
+      }
+    },
+    "60": {
+      "conversations": 60,
+      "failures": 15,
+      "failure_rate": 0.25,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.2098546098146054,
+        "ci_low": 0.17559745081780753,
+        "ci_high": 0.3440939252442808
+      }
+    },
+    "160": {
+      "conversations": 160,
+      "failures": 39,
+      "failure_rate": 0.2437,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.22104131905391977,
+        "ci_low": 0.18337499207464567,
+        "ci_high": 0.29154965552020984
+      }
+    },
+    "360": {
+      "conversations": 360,
+      "failures": 82,
+      "failure_rate": 0.2278,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.22506603578606638,
+        "ci_low": 0.19317015234694018,
+        "ci_high": 0.27317844194699714
+      }
+    },
+    "760": {
+      "conversations": 760,
+      "failures": 172,
+      "failure_rate": 0.2263,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.23634797526820955,
+        "ci_low": 0.2104837113383639,
+        "ci_high": 0.2721937839659707
+      }
+    },
+    "1560": {
+      "conversations": 1560,
+      "failures": 391,
+      "failure_rate": 0.2506,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.22961139510734724,
+        "ci_low": 0.20741978319347038,
+        "ci_high": 0.2572965712115742
+      }
+    },
+    "2560": {
+      "conversations": 2560,
+      "failures": 623,
+      "failure_rate": 0.2434,
+      "production_categories_found": [
+        "hallucination",
+        "loop_stall",
+        "missed_escalation",
+        "resolution",
+        "silent_abandonment"
+      ],
+      "n_categories_found": 5,
+      "coverage_of_reachable_real": 0.7143,
+      "jsd_vs_real": {
+        "point": 0.23325148724445444,
+        "ci_low": 0.21150117522206136,
+        "ci_high": 0.2567606917603603
+      }
+    }
+  }
+}

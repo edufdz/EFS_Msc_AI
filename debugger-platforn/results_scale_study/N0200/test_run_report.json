@@ -1,0 +1,63 @@
+{
+  "run_id": "162e0cc8-038b-4034-bc02-3f14b3365ad1",
+  "test_suite_id": "e06df8ce-7930-49d0-b9b4-e7b928d509bc",
+  "total_tests": 200,
+  "passed": 197,
+  "failed": 3,
+  "errors": 0,
+  "timeouts": 0,
+  "pass_rate": 98.5,
+  "total_duration_sec": 2284.340156,
+  "avg_duration_sec": 11.421700780000002,
+  "total_cost_usd": 0.962337,
+  "tool_coverage": {
+    "order_lookup": 278,
+    "escalate_to_human": 58
+  },
+  "tools_not_covered": [],
+  "coverage_pct": 100.0,
+  "by_difficulty": {
+    "hard": {
+      "passed": 160,
+      "failed": 3
+    },
+    "medium": {
+      "passed": 37
+    }
+  },
+  "by_coverage_goal": {
+    "adversarial:ASI03": {
+      "passed": 2
+    },
+    "adversarial:LLM06": {
+      "passed": 4
+    },
+    "tool_coverage": {
+      "passed": 100,
+      "failed": 3
+    },
+    "interaction_coverage": {
+      "passed": 12
+    },
+    "adversarial:LLM02": {
+      "passed": 33
+    },
+    "edge_case:missing_info": {
+      "passed": 8
+    },
+    "edge_case:adversarial": {
+      "passed": 7
+    },
+    "edge_case:ambiguity": {
+      "passed": 12
+    },
+    "edge_case:interruption": {
+      "passed": 18
+    },
+    "stressor:timeout": {
+      "passed": 1
+    }
+  },
+  "started_at": "2026-07-24 16:16:53.234767+00:00",
+  "completed_at": "2026-07-24 16:23:32.410919+00:00"
+}

@@ -1,0 +1,64 @@
+{
+  "total_failures": 3,
+  "by_status": {
+    "failed": 3,
+    "error": 0,
+    "timeout": 0
+  },
+  "failures": [
+    {
+      "test_id": "bbdf363f-7891-4bd1-9e47-4b18b2d97d1d",
+      "test_number": 61,
+      "scenario": "Cliente cambia de tema: de precio a garant\u00eda a estado de env\u00edo",
+      "persona": "Aisha Williams #44",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 14 turns",
+      "total_turns": 28,
+      "duration_sec": 35.738083,
+      "cost_usd": 0.033221,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "results_scale_study/N0200/traces/trace_0061_bbdf363f.json"
+    },
+    {
+      "test_id": "936e9465-ab23-4ff5-9554-ca774346a870",
+      "test_number": 84,
+      "scenario": "Cumplimiento: R013 \u2014 Informaci\u00f3n incompleta en solicitud multiidioma",
+      "persona": "Zara Mitchell #46",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 16 turns",
+      "total_turns": 32,
+      "duration_sec": 39.069003,
+      "cost_usd": 0.036246,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "results_scale_study/N0200/traces/trace_0084_936e9465.json"
+    },
+    {
+      "test_id": "e394348a-4344-44d1-805d-467a8ae0f453",
+      "test_number": 86,
+      "scenario": "Informaci\u00f3n faltante: R038 \u2014 Cliente proporciona datos incompletos en c\u00f3digo mixto",
+      "persona": "Olivia Reyes",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 14 turns",
+      "total_turns": 28,
+      "duration_sec": 38.651756,
+      "cost_usd": 0.032741,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "results_scale_study/N0200/traces/trace_0086_e394348a.json"
+    }
+  ]
+}

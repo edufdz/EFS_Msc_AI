@@ -1,0 +1,66 @@
+╭──────────────────────────────────────────────────────────────────────────────╮
+│ Phase C: Test Execution Engine                                               │
+│ Execute test suite with live monitoring and trace collection                 │
+╰──────────────────────────────────────────────────────────────────────────────╯
+Pre-made persona context found (persona_context_default.txt — fake customer data). Use it? (Y=use / n=none / c=custom) [Y]: Persona context loaded.
+Context analyzed.
+                      Execution Plan                       
+┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃ Setting              ┃ Value                            ┃
+┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│ Agent type           │ support                          │
+├──────────────────────┼──────────────────────────────────┤
+│ Test cases           │ 200                              │
+├──────────────────────┼──────────────────────────────────┤
+│ Workers              │ 6                                │
+├──────────────────────┼──────────────────────────────────┤
+│ Connector            │ API (http://localhost:3098)      │
+├──────────────────────┼──────────────────────────────────┤
+│ AI personas          │ yes                              │
+├──────────────────────┼──────────────────────────────────┤
+│ Persona model        │ anthropic/claude-haiku-4-5       │
+├──────────────────────┼──────────────────────────────────┤
+│ GAN mode             │ off                              │
+├──────────────────────┼──────────────────────────────────┤
+│ Language             │ Spanish                          │
+├──────────────────────┼──────────────────────────────────┤
+│ Traces               │ results_scale_study/N0200/traces │
+├──────────────────────┼──────────────────────────────────┤
+│ Output dir           │ results_scale_study/N0200        │
+├──────────────────────┼──────────────────────────────────┤
+│ Persona context      │ yes                              │
+└──────────────────────┴──────────────────────────────────┘
+
+
+Generating reports...
+
+╭────────────────────────────── Test Run Results ──────────────────────────────╮
+│   Total tests:   200                                                         │
+│   Passed:        197                                                         │
+│   Failed:        3                                                           │
+│   Errors:        0                                                           │
+│   Timeouts:      0                                                           │
+│   Pass rate:     98.5%                                                       │
+│                                                                              │
+│   Duration:      2284.3s  (avg 11.42s/test)                                  │
+│   Cost:          $0.962                                                      │
+│   Tool coverage: 100.0%  (0 tools missed)                                    │
+╰──────────────────────────────────────────────────────────────────────────────╯
+                  By Difficulty                   
+┏━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━━━┓
+┃ Difficulty ┃ Passed ┃ Failed ┃ Error ┃ Timeout ┃
+┡━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━━━┩
+│ medium     │   37   │   0    │   0   │    0    │
+├────────────┼────────┼────────┼───────┼─────────┤
+│ hard       │  160   │   3    │   0   │    0    │
+└────────────┴────────┴────────┴───────┴─────────┘
+
+Failure inbox: 3 failures
+  #61 Cliente cambia de tema: de precio a → Persona gave up after 14 turns
+  #84 Cumplimiento: R013 — Información in → Persona gave up after 16 turns
+  #86 Información faltante: R038 — Client → Persona gave up after 14 turns
+
+Output files:
+  Report:        results_scale_study/N0200/test_run_report.json
+  Failure inbox: results_scale_study/N0200/failure_inbox.json
+  Conversations: results_scale_study/N0200/conversations.json

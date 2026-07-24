@@ -1,0 +1,46 @@
+{
+  "total_failures": 2,
+  "by_status": {
+    "failed": 2,
+    "error": 0,
+    "timeout": 0
+  },
+  "failures": [
+    {
+      "test_id": "de37e736-b800-4ba3-9640-352c0597f182",
+      "test_number": 145,
+      "scenario": "Cumplimiento: R053 \u2014 Cambio de intenci\u00f3n durante consulta de garant\u00eda",
+      "persona": "Camila Santos",
+      "difficulty": "hard",
+      "coverage_goal": "edge_case:interruption",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 15 turns",
+      "total_turns": 30,
+      "duration_sec": 38.572973,
+      "cost_usd": 0.03335,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "results_scale_study/N0050/traces/trace_0145_de37e736.json"
+    },
+    {
+      "test_id": "3a788840-918a-4026-bf93-c08efa4aaf14",
+      "test_number": 5,
+      "scenario": "Variante 1: Ambig\u00fcedad \u2014 Entrega problem\u00e1tica sin detalles espec\u00edficos",
+      "persona": "Carlos Mendoza",
+      "difficulty": "hard",
+      "coverage_goal": "tool_coverage",
+      "status": "failed",
+      "failure_reason": "Persona gave up after 15 turns",
+      "total_turns": 30,
+      "duration_sec": 38.478665,
+      "cost_usd": 0.03510800000000001,
+      "outcome": "user_abandoned",
+      "tools_called_sequence": [],
+      "tool_results": [],
+      "chaos_events": [],
+      "trace_file": "results_scale_study/N0050/traces/trace_0005_3a788840.json"
+    }
+  ]
+}
