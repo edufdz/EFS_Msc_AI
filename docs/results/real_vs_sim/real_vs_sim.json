@@ -1,0 +1,358 @@
+{
+  "taxonomy_version": "1.0-frozen-2026-07-14",
+  "min_score": 3.0,
+  "scorer": "src/production/scoring.py (identical for both corpora; no LLM)",
+  "sim_sources": [
+    "results_tech_repair_live_v4/conversations.json",
+    "pipeline_output/session-636fc721/results/conversations.json",
+    "/private/tmp/claude-501/-Users-eduardo7-Desktop-dos-agent-debugger-MSC-AI-Project-debugger-platforn/5a2f8237-c6c7-47f7-b7ba-29a369aca51a/scratchpad/sim_runAB_conversations.json"
+  ],
+  "corpus_sizes": {
+    "real_conversations": 1299,
+    "real_failures": 376,
+    "real_failure_rate": 0.2895,
+    "sim_conversations": 390,
+    "sim_failures": 82,
+    "sim_failure_rate": 0.2103
+  },
+  "reachability_matrix": {
+    "comprehension": {
+      "reachability": "partial",
+      "rationale": "customer-repeat signal observable; intent/confidence telemetry does not exist in sim",
+      "real_count": 153,
+      "sim_count": 0,
+      "status": "reachable_missed",
+      "shared_category": "comprehension_failure"
+    },
+    "resolution": {
+      "reachability": "reachable",
+      "rationale": "personas ask for humans; escalation observable",
+      "real_count": 221,
+      "sim_count": 22,
+      "status": "reachable_found",
+      "shared_category": "resolution_failure"
+    },
+    "data_gap": {
+      "reachability": "partial",
+      "rationale": "single fake customer bounds the reachable data-gap space",
+      "real_count": 48,
+      "sim_count": 0,
+      "status": "reachable_missed",
+      "shared_category": "data_gap"
+    },
+    "loop_stall": {
+      "reachability": "reachable",
+      "rationale": "turn counts and repeated agent messages observable",
+      "real_count": 256,
+      "sim_count": 66,
+      "status": "reachable_found",
+      "shared_category": "infinite_loop"
+    },
+    "delivery_infra": {
+      "reachability": "unreachable",
+      "rationale": "no WhatsApp transport layer in simulation",
+      "real_count": 14,
+      "sim_count": 0,
+      "status": "unreachable",
+      "shared_category": "delivery_failure"
+    },
+    "missed_escalation": {
+      "reachability": "reachable",
+      "rationale": "frustration wording and escalation both observable",
+      "real_count": 11,
+      "sim_count": 19,
+      "status": "reachable_found",
+      "shared_category": "escalation_failure"
+    },
+    "silent_abandonment": {
+      "reachability": "reachable",
+      "rationale": "persona abandonment maps to expiry without closure",
+      "real_count": 9,
+      "sim_count": 10,
+      "status": "reachable_found",
+      "shared_category": "premature_exit"
+    },
+    "hallucination": {
+      "reachability": "reachable",
+      "rationale": "customer-pushback wording observable",
+      "real_count": 13,
+      "sim_count": 2,
+      "status": "reachable_found",
+      "shared_category": "hallucination"
+    }
+  },
+  "category_coverage": {
+    "reachable_real_categories": [
+      "comprehension",
+      "resolution",
+      "data_gap",
+      "loop_stall",
+      "missed_escalation",
+      "silent_abandonment",
+      "hallucination"
+    ],
+    "reproduced_in_sim": [
+      "resolution",
+      "loop_stall",
+      "missed_escalation",
+      "silent_abandonment",
+      "hallucination"
+    ],
+    "coverage": 0.7143
+  },
+  "distribution_comparison": {
+    "support_reachable": [
+      "comprehension_failure",
+      "data_gap",
+      "escalation_failure",
+      "hallucination",
+      "infinite_loop",
+      "premature_exit",
+      "resolution_failure"
+    ],
+    "jsd_reachable_support": {
+      "point": 0.2391952889947066,
+      "ci_low": 0.2010483916493629,
+      "ci_high": 0.29794417814247687
+    },
+    "jsd_full_support": {
+      "support": [
+        "comprehension_failure",
+        "data_gap",
+        "delivery_failure",
+        "escalation_failure",
+        "hallucination",
+        "infinite_loop",
+        "premature_exit",
+        "resolution_failure"
+      ],
+      "point": 0.24698946132285715,
+      "ci_low": 0.20840578089250938,
+      "ci_high": 0.3056581175403946
+    },
+    "split_half_noise_floor_real": {
+      "mean": 0.0050093809062742144,
+      "p95": 0.01076448130462528
+    },
+    "jsd_real_vs_uniform_baseline": 0.2014,
+    "note": "JSD in bits, bounded [0,1]. Compare real-vs-sim against the noise floor (lower bound) and the uniform baseline (upper anchor)."
+  },
+  "per_category_rates": {
+    "real_production_vocab": {
+      "loop_stall": {
+        "count": 256,
+        "rate_of_failures": 0.6809,
+        "wilson_95": [
+          0.6321,
+          0.7259
+        ]
+      },
+      "resolution": {
+        "count": 221,
+        "rate_of_failures": 0.5878,
+        "wilson_95": [
+          0.5374,
+          0.6364
+        ]
+      },
+      "comprehension": {
+        "count": 153,
+        "rate_of_failures": 0.4069,
+        "wilson_95": [
+          0.3584,
+          0.4573
+        ]
+      },
+      "data_gap": {
+        "count": 48,
+        "rate_of_failures": 0.1277,
+        "wilson_95": [
+          0.0977,
+          0.1652
+        ]
+      },
+      "delivery_infra": {
+        "count": 14,
+        "rate_of_failures": 0.0372,
+        "wilson_95": [
+          0.0223,
+          0.0615
+        ]
+      },
+      "hallucination": {
+        "count": 13,
+        "rate_of_failures": 0.0346,
+        "wilson_95": [
+          0.0203,
+          0.0582
+        ]
+      },
+      "missed_escalation": {
+        "count": 11,
+        "rate_of_failures": 0.0293,
+        "wilson_95": [
+          0.0164,
+          0.0516
+        ]
+      },
+      "silent_abandonment": {
+        "count": 9,
+        "rate_of_failures": 0.0239,
+        "wilson_95": [
+          0.0126,
+          0.0449
+        ]
+      }
+    },
+    "sim_production_vocab": {
+      "loop_stall": {
+        "count": 66,
+        "rate_of_failures": 0.8049,
+        "wilson_95": [
+          0.7063,
+          0.8762
+        ]
+      },
+      "resolution": {
+        "count": 22,
+        "rate_of_failures": 0.2683,
+        "wilson_95": [
+          0.1844,
+          0.373
+        ]
+      },
+      "missed_escalation": {
+        "count": 19,
+        "rate_of_failures": 0.2317,
+        "wilson_95": [
+          0.1537,
+          0.3338
+        ]
+      },
+      "silent_abandonment": {
+        "count": 10,
+        "rate_of_failures": 0.122,
+        "wilson_95": [
+          0.0676,
+          0.2101
+        ]
+      },
+      "hallucination": {
+        "count": 2,
+        "rate_of_failures": 0.0244,
+        "wilson_95": [
+          0.0067,
+          0.0846
+        ]
+      }
+    },
+    "real_shared_taxonomy": {
+      "infinite_loop": {
+        "count": 256,
+        "rate_of_failures": 0.6809,
+        "wilson_95": [
+          0.6321,
+          0.7259
+        ]
+      },
+      "resolution_failure": {
+        "count": 221,
+        "rate_of_failures": 0.5878,
+        "wilson_95": [
+          0.5374,
+          0.6364
+        ]
+      },
+      "comprehension_failure": {
+        "count": 153,
+        "rate_of_failures": 0.4069,
+        "wilson_95": [
+          0.3584,
+          0.4573
+        ]
+      },
+      "data_gap": {
+        "count": 48,
+        "rate_of_failures": 0.1277,
+        "wilson_95": [
+          0.0977,
+          0.1652
+        ]
+      },
+      "delivery_failure": {
+        "count": 14,
+        "rate_of_failures": 0.0372,
+        "wilson_95": [
+          0.0223,
+          0.0615
+        ]
+      },
+      "hallucination": {
+        "count": 13,
+        "rate_of_failures": 0.0346,
+        "wilson_95": [
+          0.0203,
+          0.0582
+        ]
+      },
+      "escalation_failure": {
+        "count": 11,
+        "rate_of_failures": 0.0293,
+        "wilson_95": [
+          0.0164,
+          0.0516
+        ]
+      },
+      "premature_exit": {
+        "count": 9,
+        "rate_of_failures": 0.0239,
+        "wilson_95": [
+          0.0126,
+          0.0449
+        ]
+      }
+    },
+    "sim_shared_taxonomy": {
+      "infinite_loop": {
+        "count": 66,
+        "rate_of_failures": 0.8049,
+        "wilson_95": [
+          0.7063,
+          0.8762
+        ]
+      },
+      "resolution_failure": {
+        "count": 22,
+        "rate_of_failures": 0.2683,
+        "wilson_95": [
+          0.1844,
+          0.373
+        ]
+      },
+      "escalation_failure": {
+        "count": 19,
+        "rate_of_failures": 0.2317,
+        "wilson_95": [
+          0.1537,
+          0.3338
+        ]
+      },
+      "premature_exit": {
+        "count": 10,
+        "rate_of_failures": 0.122,
+        "wilson_95": [
+          0.0676,
+          0.2101
+        ]
+      },
+      "hallucination": {
+        "count": 2,
+        "rate_of_failures": 0.0244,
+        "wilson_95": [
+          0.0067,
+          0.0846
+        ]
+      }
+    }
+  }
+}
