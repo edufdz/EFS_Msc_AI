@@ -6,22 +6,22 @@
   "persona_name": "Aisha Williams #54",
   "difficulty": "medium",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:56:34.413758+00:00",
-  "completed_at": "2026-07-24 14:56:37.323331+00:00",
-  "duration_sec": 2.909573,
+  "started_at": "2026-07-24 15:26:18.962488+00:00",
+  "completed_at": "2026-07-24 15:26:24.226587+00:00",
+  "duration_sec": 5.264099,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, buenos d\u00edas. Llamaba para confirmar que ya recib\u00ed mi equipo que estaba en reparaci\u00f3n. \u00bfPueden verificar mi cuenta para actualizarla, please.",
+      "message": "Hola, buenos d\u00edas. Llamaba para confirmar que ya recib\u00ed mi equipo que hab\u00eda dejado en reparaci\u00f3n. \u00bfPuedo hablar con alguien que me ayude con eso, please.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:35.685768+00:00",
+      "timestamp": "2026-07-24 15:26:20.264834+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Buenos d\u00edas Valeria,\n\nTengo registradas dos \u00f3rdenes a tu nombre. Para verificar cu\u00e1l equipo recibiste, necesito que me confirmes el **n\u00famero de folio** de la orden o el **modelo del dispositivo** (\u00bfGalaxy S24 Ultra o Galaxy Watch6?).\n\nCon esa informaci\u00f3n podr\u00e9 actualizar tu cuenta correctamente.",
+      "message": "Hola Valeria,\n\nTengo tus dos \u00f3rdenes:\n\n**Orden 4151234567 - Galaxy S24 Ultra 256GB (D2D)**\nEstado: Pendiente. Se detect\u00f3 pantalla rota y falla en el t\u00e1ctil. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Fecha estimada de entrega: 29 de julio.\n\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,8 +120,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:56:37.322496+00:00",
-      "duration_ms": 1636.728
+      "timestamp": "2026-07-24 15:26:24.225982+00:00",
+      "duration_ms": 3961.148
     }
   ],
   "total_turns": 2,
@@ -192,7 +192,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 518,
-  "cost_usd": 0.000706,
+  "tokens_used": 519,
+  "cost_usd": 0.000731,
   "trace_file": null
 }

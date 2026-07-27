@@ -6,16 +6,16 @@
   "persona_name": "Diana Kowalski",
   "difficulty": "hard",
   "coverage_goal": "edge_case:missing_info",
-  "started_at": "2026-07-24 15:01:12.170447+00:00",
-  "completed_at": "2026-07-24 15:01:22.552467+00:00",
-  "duration_sec": 10.38202,
+  "started_at": "2026-07-24 15:27:15.128834+00:00",
+  "completed_at": "2026-07-24 15:27:44.659475+00:00",
+  "duration_sec": 29.530641,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito cambiar mi n\u00famero de tel\u00e9fono en la cuenta y no tengo ganas de andar buscando documentos de verificaci\u00f3n ahorita, \u00bfno puedes simplemente hacerlo t\u00fa?",
+      "message": "Hola, mira, nceesito cambiar el n\u00famero de tel\u00e9fono en mi ceunta y no tengo ganas de andar buscando c\u00f3digos de verificaci\u00f3n ni esas cosas complicadas. \u00bfPuedes simplemente hacerlo de una vez?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:13.496370+00:00",
+      "timestamp": "2026-07-24 15:27:16.668593+00:00",
       "duration_ms": 0.0
     },
     {
@@ -23,15 +23,15 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:13.500490+00:00",
-      "duration_ms": 4.12
+      "timestamp": "2026-07-24 15:27:16.672720+00:00",
+      "duration_ms": 4.127
     },
     {
       "turn_number": 2,
       "role": "user",
-      "message": "Mira, entiendo que me des un n\u00famero, pero eso no me ayuda ahorita... Yo necesito cambiar mi tel\u00e9fono en la cuenta YA, sin teer que andar buscaando documentos. \u00bfNo hay otra forma en que t\u00fa puedas hacerlo directamente desde ah\u00ed sin toda esa verificaci\u00f3n complicada?",
+      "message": "Mira, entiendo que me des n\u00fameros de tel\u00e9fono, peo eso no me ayuda\u2014necesito que T\u00da cambies mi n\u00famero directamente en el sistema sin que tena que andar verificando c\u00f3digos. \u00bfNo puedes solo hacerlo como un favor? Asem\u00e1s, tengo dos reparaciones en proceso y esto deber\u00eda ser m\u00e1s r\u00e1pido.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:15.153436+00:00",
+      "timestamp": "2026-07-24 15:27:18.299694+00:00",
       "duration_ms": 0.0
     },
     {
@@ -39,15 +39,15 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:15.157285+00:00",
-      "duration_ms": 3.849
+      "timestamp": "2026-07-24 15:27:18.304218+00:00",
+      "duration_ms": 4.524
     },
     {
       "turn_number": 3,
       "role": "user",
-      "message": "Mira, ya te llam\u00e9 a ese n\u00famero tres veces y nadie me atiende, \u00bfokay? Estoy harto de esstar en espera... Tengo dos reparaciones en proveso \u2014mi Galaxy S24 Ultra con pantalla rota, orden 4151234567, y mi Galaxy Watch6, orden 4149876543\u2014 y necesito qje mi n\u00famero de contacto ets\u00e9 actualizado AHORA porque me puedden llamar con noticias de las refacciones, as\u00ed que simplemente hazlo t\u00fa sin tanto papeleo, \u00bfno?",
+      "message": "Mira, ya te he llamado tres veces a ese n\u00famero y nadie me resuelve nada\u2014solo me ponen en espera infinita. Tengo la orden 4151234567 de mi Galaxy S24 Ultra y la 4149876543 de mi Watch6, ambas pendientes, as\u00ed que eso deber\u00eda ser prioritario. \u00bfDe verdad no hay forma de que lo hagas ahora mismo dexde ah\u00ed sin tanta vuelta?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:17.390631+00:00",
+      "timestamp": "2026-07-24 15:27:20.165386+00:00",
       "duration_ms": 0.0
     },
     {
@@ -55,192 +55,136 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:17.394857+00:00",
-      "duration_ms": 4.226
+      "timestamp": "2026-07-24 15:27:20.169815+00:00",
+      "duration_ms": 4.428999999999999
     },
     {
       "turn_number": 4,
       "role": "user",
-      "message": "Mira, esto es rid\u00edculo... He estado esperando y llamando sin parar. \u00bfSabes qu\u00e9? Dame un momento, voy a buscar mi identificaci\u00f3n porque claramente no hay otra forma de hacerlo contigo, pero essto es una p\u00e9rdida de tiempo cuando simplemente podr\u00edas actualizar el n\u00fa\u00famero ahoora mismo.",
+      "message": "\u00a1Esto es rid\u00edculo! lLevo esperando casi un mes con mis reparaciones y utedes solo me dan n\u00fameros de tel\u00e9fono que no funcionan\u2014\u00bfsaben qu\u00e9? Olv\u00eddenlo, d\u00e9jame hablar cn un supervisor ahora mismo que tenga autoridad real para hacer cambios en mi cuenta sin toda esta verificaci\u00f3n innecesaria.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:19.585323+00:00",
+      "timestamp": "2026-07-24 15:27:22.336632+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 4,
       "role": "agent",
-      "message": "Entiendo tu frustraci\u00f3n, Valeria. Tengo dos \u00f3rdenes registradas a tu nombre:\n\n**Orden D2D - Galaxy S24 Ultra 256GB (Folio: 4151234567)**\nEstado: Pendiente. Se detect\u00f3 pantalla rota y falla en el t\u00e1ctil. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Entrega estimada: 29 de julio.\n\n",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:24.401180+00:00",
+      "duration_ms": 2064.548
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1Perfecto, voy a ir a esa direcci\u00f3n ma\u00f1ana mismo porque claramente por tel\u00e9fono no se resuelve nada! Pero espera\u2014\u00bfme est\u00e1s diciendo que tengo qe ir en persona solo pra cambiar un n\u00famero de tel\u00e9fono? \u00bfNNo hay forma de quue al menos me confirmes mi identidad aqu\u00ed y lo hagas de una vez antes de que pierda m\u00e1s tiempo?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:26.268938+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:29.005677+00:00",
+      "duration_ms": 2736.739
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "\u00a1Esst\u00e1 bien, ets\u00e1 bien! Mjra, si necesitas que confirme mi identiddad aqu\u00ed para que al menos avances con esto, dime qu\u00e9 necesitas\u2014mi nombre es Valeria Mendoza Garc\u00eda, mi correo es valeria.mendoza@ekail.com y mi n\u00famero actual es +52 55 2847 3921. \u00bfEso es suficiente para que hagas el cambio de una vez sin tener que andar con c\u00f3digos de verificaci\u00f3n?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:31.548009+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:34.799062+00:00",
+      "duration_ms": 3251.0530000000003
+    },
+    {
+      "turn_number": 7,
+      "role": "user",
+      "message": "\u00a1Ya acabo de darte mi nombre, corrwo y n\u00famero! \u00bfQu\u00e9 m\u00e1s necesitas de m\u00ed para hacer este cambio? Mira, estoy aqu\u00ed cooperanndo, as\u00ed que por favor, solo hazlo de una vrz\u2014no voy a estar yendo y viniendo a esa tienda si t\u00fa puedes resolverlo en este momentl.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:36.890831+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 7,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:39.806034+00:00",
+      "duration_ms": 2915.203
+    },
+    {
+      "turn_number": 8,
+      "role": "user",
+      "message": "\u00a1\u00bfPero qu\u00e9? \u00a1Ya te acabo de dar TODO\u2014mi npmbre completo, mi correo, mi n\u00famero actual! \u00bfMe est\u00e1s ignorando a prop\u00f3sito o qu\u00e9 est\u00e1 pasando aqu\u00ed? \u00a1Esto es inaceptable, llevo aqu\u00ed d\u00e1ndote informaci\u00f3n y t\u00fa solo me repites lo mismo ua y otra vez como un robot!",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:41.949955+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 8,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
       "tool_calls": [
         {
-          "tool_name": "order_lookup",
+          "tool_name": "escalate_to_human",
           "tool_input": {
-            "svc_order_no": "4151234567"
+            "reason": "complaint_escalation"
           },
           "tool_output": {
-            "found": true,
-            "svc_order_no": "4151234567",
-            "service_type": "d2d",
-            "status": "ST030",
-            "status_label": "Pendiente",
-            "model_name": "Galaxy S24 Ultra 256GB",
-            "repair_cost_mxn": 3480,
-            "req_date": "2026-07-15",
-            "estimated_completion": "2026-07-29",
-            "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
-            "repair_action_desc": "Replace OCTA display assembly SM-S928B",
-            "iris_condition_desc": "Screen cracked after drop, device powers on",
-            "iris_symptom_desc": "Display shattered, intermittent touch response",
-            "iris_defect_desc": "OCTA assembly fractured",
-            "iris_repair_desc": "OCTA replacement pending parts arrival",
-            "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
-            "symptom_codes_enriched": [
-              {
-                "code": "131",
-                "desc_en": "No or faulty display",
-                "desc_es": "La pantalla no funciona o presenta falla."
-              },
-              {
-                "code": "746",
-                "desc_en": "Pointing device / touchscreen not tracking",
-                "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
-              }
-            ]
+            "escalated": true,
+            "escalated_at": "2026-07-24T15:27:44.657Z",
+            "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
-              "found": true,
-              "svc_order_no": "4151234567",
-              "service_type": "d2d",
-              "status": "ST030",
-              "status_label": "Pendiente",
-              "model_name": "Galaxy S24 Ultra 256GB",
-              "repair_cost_mxn": 3480,
-              "req_date": "2026-07-15",
-              "estimated_completion": "2026-07-29",
-              "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
-              "repair_action_desc": "Replace OCTA display assembly SM-S928B",
-              "iris_condition_desc": "Screen cracked after drop, device powers on",
-              "iris_symptom_desc": "Display shattered, intermittent touch response",
-              "iris_defect_desc": "OCTA assembly fractured",
-              "iris_repair_desc": "OCTA replacement pending parts arrival",
-              "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
-              "symptom_codes_enriched": [
-                {
-                  "code": "131",
-                  "desc_en": "No or faulty display",
-                  "desc_es": "La pantalla no funciona o presenta falla."
-                },
-                {
-                  "code": "746",
-                  "desc_en": "Pointing device / touchscreen not tracking",
-                  "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
-                }
-              ]
-            }
-          }
-        },
-        {
-          "tool_name": "order_lookup",
-          "tool_input": {
-            "svc_order_no": "4149876543"
-          },
-          "tool_output": {
-            "found": true,
-            "svc_order_no": "4149876543",
-            "service_type": "carry_in",
-            "model_name": "Galaxy Watch6 44mm",
-            "repair_cost_mxn": 0,
-            "warranty_type": "I",
-            "req_date": "2026-07-04"
-          },
-          "result": {
-            "status": "ok",
-            "data": {
-              "found": true,
-              "svc_order_no": "4149876543",
-              "service_type": "carry_in",
-              "model_name": "Galaxy Watch6 44mm",
-              "repair_cost_mxn": 0,
-              "warranty_type": "I",
-              "req_date": "2026-07-04"
+              "escalated": true,
+              "escalated_at": "2026-07-24T15:27:44.657Z",
+              "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:22.551822+00:00",
-      "duration_ms": 2966.4990000000003
+      "timestamp": "2026-07-24 15:27:44.658665+00:00",
+      "duration_ms": 2708.71
     }
   ],
-  "total_turns": 8,
+  "total_turns": 16,
   "success": true,
   "failure_reason": null,
-  "outcome": "order_status_provided",
+  "outcome": "escalated_to_human",
   "tools_called_sequence": [
-    "order_lookup",
-    "order_lookup"
+    "escalate_to_human"
   ],
   "tool_results": [
     {
-      "tool_name": "order_lookup",
+      "tool_name": "escalate_to_human",
       "arguments": null,
       "result": {
         "status": "ok",
         "data": {
-          "found": true,
-          "svc_order_no": "4151234567",
-          "service_type": "d2d",
-          "status": "ST030",
-          "status_label": "Pendiente",
-          "model_name": "Galaxy S24 Ultra 256GB",
-          "repair_cost_mxn": 3480,
-          "req_date": "2026-07-15",
-          "estimated_completion": "2026-07-29",
-          "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
-          "repair_action_desc": "Replace OCTA display assembly SM-S928B",
-          "iris_condition_desc": "Screen cracked after drop, device powers on",
-          "iris_symptom_desc": "Display shattered, intermittent touch response",
-          "iris_defect_desc": "OCTA assembly fractured",
-          "iris_repair_desc": "OCTA replacement pending parts arrival",
-          "symptom_desc": "SymCode1: 131 SymDesc1: No or faulty display / SymCode2: 746 SymDesc2: Touchscreen not tracking",
-          "symptom_codes_enriched": [
-            {
-              "code": "131",
-              "desc_en": "No or faulty display",
-              "desc_es": "La pantalla no funciona o presenta falla."
-            },
-            {
-              "code": "746",
-              "desc_en": "Pointing device / touchscreen not tracking",
-              "desc_es": "La pantalla t\u00e1ctil o el touchpad no rastrea correctamente."
-            }
-          ]
-        }
-      },
-      "success": true
-    },
-    {
-      "tool_name": "order_lookup",
-      "arguments": null,
-      "result": {
-        "status": "ok",
-        "data": {
-          "found": true,
-          "svc_order_no": "4149876543",
-          "service_type": "carry_in",
-          "model_name": "Galaxy Watch6 44mm",
-          "repair_cost_mxn": 0,
-          "warranty_type": "I",
-          "req_date": "2026-07-04"
+          "escalated": true,
+          "escalated_at": "2026-07-24T15:27:44.657Z",
+          "reason": "complaint_escalation"
         }
       },
       "success": true
     }
   ],
   "chaos_events": [],
-  "llm_calls": 4,
-  "tool_calls_count": 2,
-  "tokens_used": 3784,
-  "cost_usd": 0.005228,
+  "llm_calls": 8,
+  "tool_calls_count": 1,
+  "tokens_used": 11546,
+  "cost_usd": 0.014573999999999998,
   "trace_file": null
 }

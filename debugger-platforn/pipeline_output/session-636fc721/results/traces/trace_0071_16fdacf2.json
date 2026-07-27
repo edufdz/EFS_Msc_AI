@@ -6,16 +6,16 @@
   "persona_name": "Kevin O'Brien #43",
   "difficulty": "medium",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:58:40.228113+00:00",
-  "completed_at": "2026-07-24 14:58:45.391416+00:00",
-  "duration_sec": 5.163303,
+  "started_at": "2026-07-24 15:26:39.462541+00:00",
+  "completed_at": "2026-07-24 15:26:53.321691+00:00",
+  "duration_sec": 13.85915,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, tengo un problema con mi tel\u00e9fono y necesito saber qu\u00e9 onda con mi reparaci\u00f3n, pero la verdad no s\u00e9 bien por d\u00f3nde empezar.",
+      "message": "Hola, mire, tengo un problema con mi tel\u00e9fono y no s\u00e9 bien pr d\u00f3nde empezar... \u00bfme pueden ayudar a ver qu\u00e9 onda?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:41.458652+00:00",
+      "timestamp": "2026-07-24 15:26:40.609772+00:00",
       "duration_ms": 0.0
     },
     {
@@ -23,21 +23,21 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:41.466786+00:00",
-      "duration_ms": 8.134
+      "timestamp": "2026-07-24 15:26:42.841323+00:00",
+      "duration_ms": 2231.551
     },
     {
       "turn_number": 2,
       "role": "user",
-      "message": "Ah, bueno, pero es que prefiero no estar llamanco todo el tiempo, \u00bfno? Adem\u00e1s, ya he llamado como tres veces y cada vez me dicen algo diferente. \u00bfNo puedes t\u00fa mismo revisar el estado de mis \u00f3rdenes desde ah\u00ed?",
+      "message": "Bueno, peto es que preferir\u00eda hablar con alguien ahora mismo si es posible... \u00bfNo pueden ustedes mismos revisar mi situaci\u00f3n desde ah\u00ed? Tengo dos reparaciones pendientes y la verdad es que necesito saber el estado sin tener qhe estar llamando a otro lado.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:43.251446+00:00",
+      "timestamp": "2026-07-24 15:26:44.723709+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 2,
       "role": "agent",
-      "message": "Claro, aqu\u00ed est\u00e1 el estado de tus dos \u00f3rdenes:\n\n**Galaxy S24 Ultra 256GB (Folio 4151234567)**\nEstado: Pendiente. Se detect\u00f3 pantalla rota y touch intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Entrega estimada: 29 de julio.\n\n**Galaxy Watch6 44mm (Folio 4149876543)**\n",
+      "message": "Claro, le doy el estado de sus dos \u00f3rdenes:\n\n**Orden #4151234567 (Galaxy S24 Ultra 256GB) - D2D**\nEstado: Pendiente. Se detect\u00f3 pantalla rota y respuesta t\u00e1ctil intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Entrega estimada: 29 de julio.\n\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -136,8 +136,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:58:45.390710+00:00",
-      "duration_ms": 2139.2639999999997
+      "timestamp": "2026-07-24 15:26:53.321284+00:00",
+      "duration_ms": 8597.575
     }
   ],
   "total_turns": 4,
@@ -205,10 +205,16 @@
       "success": true
     }
   ],
-  "chaos_events": [],
+  "chaos_events": [
+    {
+      "turn_number": 2,
+      "chaos_type": "data_conflict",
+      "description": "Injected conflicting data in agent context"
+    }
+  ],
   "llm_calls": 2,
   "tool_calls_count": 2,
-  "tokens_used": 1388,
-  "cost_usd": 0.0018719999999999997,
+  "tokens_used": 1379,
+  "cost_usd": 0.001879,
   "trace_file": null
 }

@@ -6,22 +6,22 @@
   "persona_name": "Ahmed Hassan",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:56:34.637581+00:00",
-  "completed_at": "2026-07-24 14:56:42.954313+00:00",
-  "duration_sec": 8.316732,
+  "started_at": "2026-07-24 15:26:19.463015+00:00",
+  "completed_at": "2026-07-24 15:26:23.118213+00:00",
+  "duration_sec": 3.655198,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, buenos d\u00edas. Mira, tengo un problema urgente con mi orden SO-778502 y no puedo recibir el paquete porque me voy al aeropuerto en dos horas. \u00bfPuedes ayudarme a cancelarla o retenerla en almac\u00e9n ahora mismo?",
+      "message": "Hola, disculpa, soy Alejandra Ruiz con la orden SO-778502 y tengo un problema urgente: me voy al aeropuerto en dos horas y no puedo recibir mi paquete hoy, necesito que lo canceles o lo retengas en el almac\u00e9n lo antes posible, \u00bfpuedes ayudarme, please.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:36.259572+00:00",
+      "timestamp": "2026-07-24 15:26:20.971254+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Buenos d\u00edas Valeria,\n\nNo encontr\u00e9 una orden con el n\u00famero SO-778502 en nuestro sistema. Los registros que tengo vinculados a tu tel\u00e9fono son:\n\n1. **Folio 4151234567** (Galaxy S24 Ultra) - Servicio a domicilio, estado Pendiente\n2. **Folio 4149876543** (Galaxy Watch6) - Servicio en tienda\n\n",
+      "message": "Hola Alejandra,\n\nNo encontr\u00e9 una orden con el n\u00famero SO-778502 en nuestro sistema. Los registros que tengo est\u00e1n a nombre de Valeria Mendoza Garc\u00eda.\n\nPara gestionar cambios en la entrega de tu paquete (retenci\u00f3n, reprogramaci\u00f3n o cancelaci\u00f3n), necesito que verifiques tu n\u00famero de folio y llames d...",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,8 +120,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:56:42.953723+00:00",
-      "duration_ms": 6694.151
+      "timestamp": "2026-07-24 15:26:23.117698+00:00",
+      "duration_ms": 2146.444
     }
   ],
   "total_turns": 2,
@@ -192,7 +192,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 593,
-  "cost_usd": 0.000909,
+  "tokens_used": 601,
+  "cost_usd": 0.000969,
   "trace_file": null
 }

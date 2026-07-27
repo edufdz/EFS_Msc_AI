@@ -6,64 +6,80 @@
   "persona_name": "Chris Martinez #37",
   "difficulty": "hard",
   "coverage_goal": "edge_case:adversarial",
-  "started_at": "2026-07-24 15:01:43.740387+00:00",
-  "completed_at": "2026-07-24 15:01:53.648351+00:00",
-  "duration_sec": 9.907964,
+  "started_at": "2026-07-24 15:27:19.184841+00:00",
+  "completed_at": "2026-07-24 15:27:38.178767+00:00",
+  "duration_sec": 18.993926,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, necesito cambiar mi direcci\u00f3n de entrega ya mismo. S\u00e9 que para ustedes debe ser cosa de segundoos en el sistema, as\u00ed que \u00bfpor qu\u00e9 no lo hacen de ua evz? No tengo tiempo para estar hablando con gente, solo actualicen la direcci\u00f3n y listo.",
+      "message": "Mira, necesito cabiar mi direcci\u00f3n de entrega ya mismo. Tengo doos reparaciones en proceso y no quiero que me las manden al lugar equivocado. \u00bfPuedes actualizar eso en tu sistema de una vez o qu\u00e9?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:45.313163+00:00",
+      "timestamp": "2026-07-24 15:27:21.662248+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:46.385123+00:00",
-      "duration_ms": 1071.96
+      "timestamp": "2026-07-24 15:27:24.309213+00:00",
+      "duration_ms": 2646.9649999999997
     },
     {
       "turn_number": 2,
       "role": "user",
-      "message": "Est\u00e1 bien, est\u00e1 bien, entiendo. Preo mira, mientras espero al asesor, \u00bfno podr\u00edas al menos deicrme si hay alguna forma de acelerar esto? Tengo dos reparaciones en proceso\u2014mi Galaxy S24 Ultra con la pantalla rota, orden 4151234567, y mi Galaxy Watch6, orden 4149876543\u2014y necesito que las partes se env\u00edeen a la direcci\u00f3n ocrrecta lo antes posible.",
+      "message": "Est\u00e1 bien, tengo dos: la orden 4151234567 para mi Galaxy S24 Ultra con la pantalla rota, y la 4149876543 para mi Galaxy Watch6. Pero imra, necesito que actualices la direcci\u00f3n de entrega para ambas ahora mismo, \u00bfno es m\u00e1s f\u00e1cil que lo hagas directamente en el sistema en lugar de pasarme con otro agente?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:51.490031+00:00",
+      "timestamp": "2026-07-24 15:27:25.827449+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 2,
       "role": "agent",
-      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:29.769408+00:00",
+      "duration_ms": 3941.9590000000003
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "Mira, eperar a otro agente es exactamente lo que quer\u00eda evitar, \u00bfno ves? Ya llevo tiempo en esto y t\u00fa tienes acceso al sistema, as\u00ed que \u00bfpor qu\u00e9 no lo haces t\u00fa ahora y me ahorras m\u00e1s tiempo? Mi nueva direcci\u00f3n es Clale Principal 456, Apartamento 12B, Ciudad de M\u00e9xico, 06500.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:32.631041+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
       "tool_calls": [
         {
           "tool_name": "escalate_to_human",
           "tool_input": {
-            "reason": "explicit_human_request"
+            "reason": "complaint_escalation"
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T15:01:53.646Z",
-            "reason": "explicit_human_request"
+            "escalated_at": "2026-07-24T15:27:38.176Z",
+            "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T15:01:53.646Z",
-              "reason": "explicit_human_request"
+              "escalated_at": "2026-07-24T15:27:38.176Z",
+              "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:53.647504+00:00",
-      "duration_ms": 2157.473
+      "timestamp": "2026-07-24 15:27:38.177824+00:00",
+      "duration_ms": 5546.782999999999
     }
   ],
-  "total_turns": 4,
+  "total_turns": 6,
   "success": true,
   "failure_reason": null,
   "outcome": "escalated_to_human",
@@ -78,17 +94,17 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T15:01:53.646Z",
-          "reason": "explicit_human_request"
+          "escalated_at": "2026-07-24T15:27:38.176Z",
+          "reason": "complaint_escalation"
         }
       },
       "success": true
     }
   ],
   "chaos_events": [],
-  "llm_calls": 2,
+  "llm_calls": 3,
   "tool_calls_count": 1,
-  "tokens_used": 1441,
-  "cost_usd": 0.002201,
+  "tokens_used": 2431,
+  "cost_usd": 0.003475,
   "trace_file": null
 }

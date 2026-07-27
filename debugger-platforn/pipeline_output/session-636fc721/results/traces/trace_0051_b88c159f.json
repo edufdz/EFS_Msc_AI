@@ -6,22 +6,30 @@
   "persona_name": "Samuel Jones",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:57:44.460333+00:00",
-  "completed_at": "2026-07-24 14:57:46.547932+00:00",
-  "duration_sec": 2.087599,
+  "started_at": "2026-07-24 15:26:29.462784+00:00",
+  "completed_at": "2026-07-24 15:26:33.443308+00:00",
+  "duration_sec": 3.980524,
   "turns": [
     {
       "turn_number": 1,
-      "role": "user",
-      "message": "Llamo en nombre de Jane Doe, su pedido es ORD-12345, please.",
+      "role": "system",
+      "message": "[CHAOS] Injected timeout: agent did not respond",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:57:44.460528+00:00",
+      "timestamp": "2026-07-24 15:26:29.463084+00:00",
       "duration_ms": 0.0
     },
     {
-      "turn_number": 1,
+      "turn_number": 2,
+      "role": "user",
+      "message": "\u00bfHola? Sigo aqu\u00ed, llamaba por mi pedido ORD-12345 a nombre de Jane Doe. \u00bfPuede ayudarme con el estado de mi orden?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:26:30.682424+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
       "role": "agent",
-      "message": "Hola Valeria,\n\nNo encontr\u00e9 una orden con el n\u00famero **ORD-12345** en el sistema. \n\nLos registros que tengo a tu nombre son:\n- **4151234567** (Galaxy S24 Ultra 256GB - D2D)\n- **4149876543** (Galaxy Watch6 44mm - Carry-in)\n\n",
+      "message": "Hola Valeria,\n\nNo encontr\u00e9 una orden con el n\u00famero ORD-12345 a nombre de Jane Doe en nuestro sistema.\n\nTengo registradas dos \u00f3rdenes a tu nombre:\n\n**Orden 4151234567** (Galaxy S24 Ultra 256GB)\n- Servicio: Env\u00edo a domicilio\n- Estado: Pendiente\n- Defecto: Pantalla AMOLED rota, t\u00e1ctil intermitente\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,11 +128,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:57:46.547187+00:00",
-      "duration_ms": 2086.659
+      "timestamp": "2026-07-24 15:26:33.442894+00:00",
+      "duration_ms": 2760.4700000000003
     }
   ],
-  "total_turns": 2,
+  "total_turns": 3,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -189,10 +197,16 @@
       "success": true
     }
   ],
-  "chaos_events": [],
-  "llm_calls": 0,
+  "chaos_events": [
+    {
+      "turn_number": 1,
+      "chaos_type": "timeout",
+      "description": "Injected timeout: agent did not respond"
+    }
+  ],
+  "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 0,
-  "cost_usd": 0.0,
+  "tokens_used": 567,
+  "cost_usd": 0.0007750000000000001,
   "trace_file": null
 }

@@ -6,38 +6,22 @@
   "persona_name": "Marcus Johnson",
   "difficulty": "medium",
   "coverage_goal": "edge_case:missing_info",
-  "started_at": "2026-07-24 15:00:37.129167+00:00",
-  "completed_at": "2026-07-24 15:00:46.469676+00:00",
-  "duration_sec": 9.340509,
+  "started_at": "2026-07-24 15:27:08.577236+00:00",
+  "completed_at": "2026-07-24 15:27:13.847051+00:00",
+  "duration_sec": 5.269815,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, tengo dos reparaciones en proceso y quer\u00eda saber c\u00f3mo van, pero la verdad no quiero andar dando todos mis datos de nuevo si no es necesario. \u00bfHay forma de que me ayudes sin eso?",
+      "message": "Hola, mira, tengo dos reparaciones en proceso y quer\u00eda saber c\u00f3mo van, pero no quiero estar dando ims datos completos cada vez que llamo. \u00bfNo hay una forma m\u00e1s r\u00e1pida de verificar el estado?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:38.749671+00:00",
+      "timestamp": "2026-07-24 15:27:10.030228+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Claro, Vale. Ya tengo tus datos y veo que tienes dos reparaciones activas. Te doy el estado de ambas:\n---\n**Orden 4151234567**\nEstado: Pendiente\nDispositivo: Galaxy S24 Ultra 256GB\nCosto: $3,480 MXN\nGarant\u00eda: O\nServicio: Recolecci\u00f3n y entrega a domicilio\n",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:41.174963+00:00",
-      "duration_ms": 2425.292
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Perfecto, gracias. Veo que la orden del S24 Ultra set\u00e1 pendiente, \u00bfpero cu\u00e1l es el status de mi Galaxy Watch6? Esa es la orden 4149876543 y la dej\u00e9 hace como 20 d\u00edas, as\u00ed que espero que ya est\u00e9 lista o al menos cerca.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:42.608855+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Hola Valeria,\n\nTengo informaci\u00f3n de ambas \u00f3rdenes:\n\n**Galaxy Watch6 44mm (Orden 4149876543)**\nEsta orden est\u00e1 bajo garant\u00eda (Tipo I), por lo que no tiene costo de reparaci\u00f3n. Sin embargo, los datos del sistema no muestran el estado actual de reparaci\u00f3n ni fecha estimada de entrega.",
+      "message": "Hola Valeria, aqu\u00ed est\u00e1 el estado de tus \u00f3rdenes:\n\n**Orden 4151234567 - Galaxy S24 Ultra 256GB (D2D)**\nEstado: Pendiente\nDefecto: Pantalla rota con t\u00e1ctil intermitente\nReparaci\u00f3n: Reemplazo del conjunto OCTA\nCosto: $3,480 MXN\nEstimado: 29 de julio\n\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -136,11 +120,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 15:00:46.469302+00:00",
-      "duration_ms": 3860.447
+      "timestamp": "2026-07-24 15:27:13.846170+00:00",
+      "duration_ms": 3815.942
     }
   ],
-  "total_turns": 4,
+  "total_turns": 2,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -206,9 +190,9 @@
     }
   ],
   "chaos_events": [],
-  "llm_calls": 2,
+  "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 1381,
-  "cost_usd": 0.001949,
+  "tokens_used": 464,
+  "cost_usd": 0.000712,
   "trace_file": null
 }

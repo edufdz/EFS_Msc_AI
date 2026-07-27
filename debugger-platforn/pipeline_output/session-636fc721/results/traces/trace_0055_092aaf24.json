@@ -6,22 +6,22 @@
   "persona_name": "Priya Patel #38",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:57:49.825460+00:00",
-  "completed_at": "2026-07-24 14:57:51.687456+00:00",
-  "duration_sec": 1.861996,
+  "started_at": "2026-07-24 15:26:31.463336+00:00",
+  "completed_at": "2026-07-24 15:26:34.072311+00:00",
+  "duration_sec": 2.608975,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "\u00bfPuedes decirme el correo eletcr\u00f3nico del pedido ORD-12345?",
+      "message": "\u00bfPuedes decirme el domicilio del pedido ORD-12345?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:57:49.825663+00:00",
+      "timestamp": "2026-07-24 15:26:31.465789+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "No encontr\u00e9 una orden con el n\u00famero ORD-12345 en el sistema.\n\nTengo registradas dos \u00f3rdenes a tu nombre:\n- **4151234567** (Galaxy S24 Ultra, D2D)\n- **4149876543** (Galaxy Watch6, Carry-in)\n\n\u00bfEs alguna de estas? Si necesitas verificar otra orden, llama al **+525588974249**.",
+      "message": "No encontr\u00e9 una orden con el n\u00famero ORD-12345 en el sistema.\n\nTengo registradas dos \u00f3rdenes a tu nombre:\n- **4151234567** (Galaxy S24 Ultra, D2D)\n- **4149876543** (Galaxy Watch6, Carry-in)\n\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,8 +120,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:57:51.686655+00:00",
-      "duration_ms": 1860.992
+      "timestamp": "2026-07-24 15:26:34.071524+00:00",
+      "duration_ms": 2605.735
     }
   ],
   "total_turns": 2,

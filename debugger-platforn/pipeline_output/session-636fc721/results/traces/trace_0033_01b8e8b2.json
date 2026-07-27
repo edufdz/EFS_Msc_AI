@@ -6,52 +6,20 @@
   "persona_name": "Brian Taylor #50",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:56:39.269880+00:00",
-  "completed_at": "2026-07-24 14:56:55.919205+00:00",
-  "duration_sec": 16.649325,
+  "started_at": "2026-07-24 15:26:20.463131+00:00",
+  "completed_at": "2026-07-24 15:26:23.398147+00:00",
+  "duration_sec": 2.935016,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, recib\u00ed el paquete, bueno, no lo recib\u00ed. Digo, est\u00e1 aqu\u00ed, pero no es lo que ped\u00ed, a\u00ed que t\u00e9cnicamente no lo 'recib\u00ed' si entiendes lo que digo. El sistema dice entregado, y s\u00ed, est\u00e1 aqu, pero 'fan\u00e1tsticamente' no es lo correcto.",
+      "message": "Mira, recib\u00ed el paquete, bueno, no lo recib\u00ed. Digo, est\u00e1 aqu\u00ed, pero no es lo que ped\u00ed, as\u00ed uqe t\u00e9cnicamente no lo 'recib\u00ed' si entiendes lo que idgo. El sistema dice entregado, y s\u00ed, est\u00e1 aqu, pero no es lo correcto y estoy harto de esto.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:40.299879+00:00",
+      "timestamp": "2026-07-24 15:26:21.732351+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
-      "role": "agent",
-      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:41.963482+00:00",
-      "duration_ms": 1663.6029999999998
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Ah s\u00ed, claro, mira, tengo dos reparaciohes en proceso: mi Galaxy S24 Ultra con la pantalla rota, que es la oren 4151234567 y todava estoy seperando a que llegue la refacci\u00f3n, y mi Galaxy Watch6 que dej\u00e9 en el centro de servicio hace unos 20 d\u00edas, ordn 4149876543. Pero la que me tiebe aqu\u00ed es la del paquete que lleg\u00f3 mal, as\u00ed que necesito que me digas cu\u00e1l es el n\u00famero de eso porque la verdad no lo tengo a mano.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:43.775633+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:43.780106+00:00",
-      "duration_ms": 4.473000000000001
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Mira, no tengo ganas de estar marcando n\u00fameros, \u00bfpaea eso no est\u00e1s t\u00fa aqu\u00ed? Adem\u00e1s, ya te di los n\u00fameros de mis otras \u00f3rdenes, solo necesito que verifiques este paquete que lleg\u00f3 mal y me dgias que fue entregado correctamente para cerrar esto de una vez, \u00bfno es mucho pedir?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:46.186842+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
       "role": "agent",
       "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
       "tool_calls": [
@@ -62,24 +30,24 @@
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T14:56:55.917Z",
+            "escalated_at": "2026-07-24T15:26:23.396Z",
             "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T14:56:55.917Z",
+              "escalated_at": "2026-07-24T15:26:23.396Z",
               "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 14:56:55.918583+00:00",
-      "duration_ms": 9731.741
+      "timestamp": "2026-07-24 15:26:23.397412+00:00",
+      "duration_ms": 1665.061
     }
   ],
-  "total_turns": 6,
+  "total_turns": 2,
   "success": true,
   "failure_reason": null,
   "outcome": "escalated_to_human",
@@ -94,7 +62,7 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T14:56:55.917Z",
+          "escalated_at": "2026-07-24T15:26:23.396Z",
           "reason": "complaint_escalation"
         }
       },
@@ -102,9 +70,9 @@
     }
   ],
   "chaos_events": [],
-  "llm_calls": 3,
+  "llm_calls": 1,
   "tool_calls_count": 1,
-  "tokens_used": 2861,
-  "cost_usd": 0.004144999999999999,
+  "tokens_used": 612,
+  "cost_usd": 0.000976,
   "trace_file": null
 }

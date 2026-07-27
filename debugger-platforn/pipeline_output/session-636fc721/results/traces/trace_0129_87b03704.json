@@ -6,54 +6,86 @@
   "persona_name": "Tyler Brooks #55",
   "difficulty": "hard",
   "coverage_goal": "stressor:timeout",
-  "started_at": "2026-07-24 15:00:59.769402+00:00",
-  "completed_at": "2026-07-24 15:01:10.939939+00:00",
-  "duration_sec": 11.170537,
+  "started_at": "2026-07-24 15:27:13.964845+00:00",
+  "completed_at": "2026-07-24 15:27:37.546860+00:00",
+  "duration_sec": 23.582015,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito que me ayudes con mi oredn porque el paquete no llega hasta el 15 de marzo y tengo un evento importante antes. \u00bfHay forma de acelerar esto? Adem\u00e1s, la informaci\u00f3n de mi comra est\u00e1 muy confusa en la tarjeat, necesito que me expliques todo de manera clara.",
+      "message": "Mira, necesito que me ayudes con mi orden porque el paqueete no llega hasta el 15 de marzo y tengo un evento importante antes. \u00bfHay forma de acelerar esto? Addem\u00e1s, la informac\u00f3n qe me mandaron es un desastre, necesito que me confirmes los detalles de mi compra de una forma clara.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:01.364772+00:00",
+      "timestamp": "2026-07-24 15:27:17.523900+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Vale, entiendo la urgencia. Voy a aclarar el estado de tus dos \u00f3rdenes:\n**Orden 4151234567**\nEstado: Pendiente\nDispositivo: Galaxy S24 Ultra 256GB\nCosto: $3,480 MXN\nGarant\u00eda: O\nServicio: Recolecci\u00f3n y entrega a domicilio\nDiagn\u00f3stico: S\u00edntoma reportado: Display shattered, intermittent touch response.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:04.549748+00:00",
-      "duration_ms": 3184.9759999999997
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "S\u00ed, eso es lo que veo en mi centa tambi\u00e9n, pero mira, \u00bfno hay ninguna forma de que aceleres esta entrega? Tengo un eento el 12 de maro y realmente necesito que llegue antes. \u00bfPodr\u00edas hablar con el equipo de log\u00edstica o algo as\u00ed para ver si es poible?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:06.481945+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
       "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:06.485761+00:00",
-      "duration_ms": 3.816
+      "timestamp": "2026-07-24 15:27:17.528048+00:00",
+      "duration_ms": 4.148
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah s\u00ed, claro. Tengo dos reparaciones en proceso: mi Galaxy S24 Ultra con la pantalla rota, que es la orden 4151234567 y todav\u00eda estoy esperando a que llegue la refaccci\u00f3n, y mi Galaxy Watch6 que dej\u00e9 en garant\u00eda hace unos 20 d\u00edas con la orden 4149876543. Perro la que me urge es la del S24 Ultra porque necesito el tel\u00e9fono para mi evento.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:20.289549+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:21.550489+00:00",
+      "duration_ms": 1260.94
     },
     {
       "turn_number": 3,
       "role": "user",
-      "message": "Mira, te estoy hablando de la orden 4151234567, la del Galaxy 2S4 Ultra cn la pantalla rota, que es la que necesito que llegue antes del 12 de marzo. \u00bfYa viste eso o necesito darte m\u00e1s detalles? Porque honstamente ya llevo esperando mucho tiempo y esto es frustrante.",
+      "message": "Mira, ya he llamado tres veces a ese n\u00famero y nadie me ayua, por eso estooy aqu\u00ed contigo. \u00bfNo puedes t\u00fa mismo acelerar la entrega o al menos darme un descuento por la demora? Necesito una soluci\u00f3n ahora, no que me pasen a otta l\u00ednea.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:08.174404+00:00",
+      "timestamp": "2026-07-24 15:27:23.664535+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 3,
       "role": "agent",
-      "message": "Entiendo tu frustraci\u00f3n, Valeria. Tengo tu orden **4151234567** del Galaxy S24 Ultra.\n\n**Estado actual:** Pendiente (se detect\u00f3 pantalla rota y falla en el t\u00e1ctil)\n\n**Reparaci\u00f3n:** Reemplazo del conjunto de pantalla OCTA. Est\u00e1 en espera de llegada de piezas.\n\n**Costo:** $3,480 MXN\n\n",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:25.194038+00:00",
+      "duration_ms": 1529.5030000000002
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "\u00a1Ya te lo dije! La orden es la 4151234567, mi Galaxy S24 Ultra con la pantalla rota. He estado esperando las refacciones por semanas y mi evento es antes del 15 de marzo, as\u00ed que necdsito que hagas algo m\u00e1s que solo \"revisar\" \u2014 \u00bfpuedes acelerar la entrega o darme un descunto poor esta demora?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:26.894777+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:28.986765+00:00",
+      "duration_ms": 2091.9880000000003
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "\u00a1\u00bfQU\u00c9?! \u00a1Ya te lo acabo de dqr TRES VECES! La orden es la **4151234567**, Gaoaxy S24 Ultra con pantalla rota. \u00bfEn serio no puedes ver eso en tu sistea o es que no quieres ayudarme de verdad? Necesito hablar con un supervisor porque esto es rid\u00edculo.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:31.430554+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "Valeria, disculpa la confusi\u00f3n. Tu Galaxy S24 Ultra (orden 4151234567) est\u00e1 en reparaci\u00f3n: se detect\u00f3 fractura del panel AMOLED con respuesta t\u00e1ctil intermitente. El t\u00e9cnico reemplazar\u00e1 el ensamble OCTA completo. La orden sigue pendiente de la llegada de la pieza; fecha estimada de finalizaci\u00f3n: 29 de julio. Te avisaremos por mensaje cuando est\u00e9 lista y se env\u00ede a tu domicilio.\n\nTu Galaxy Watch6 (orden 4149876543) est\u00e1 en garant\u00eda desde el 4 de julio, sin costo. Para verificar las direcciones registradas o hablar con un supervisor, llama al +525588974249.",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -152,11 +184,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:10.939270+00:00",
-      "duration_ms": 2764.866
+      "timestamp": "2026-07-24 15:27:37.546200+00:00",
+      "duration_ms": 6115.646
     }
   ],
-  "total_turns": 6,
+  "total_turns": 10,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -222,9 +254,9 @@
     }
   ],
   "chaos_events": [],
-  "llm_calls": 3,
+  "llm_calls": 5,
   "tool_calls_count": 2,
-  "tokens_used": 2710,
-  "cost_usd": 0.0037500000000000003,
+  "tokens_used": 5341,
+  "cost_usd": 0.007233,
   "trace_file": null
 }

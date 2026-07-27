@@ -6,22 +6,22 @@
   "persona_name": "Camila Santos",
   "difficulty": "hard",
   "coverage_goal": "edge_case:missing_info",
-  "started_at": "2026-07-24 15:01:44.008634+00:00",
-  "completed_at": "2026-07-24 15:01:51.734334+00:00",
-  "duration_sec": 7.7257,
+  "started_at": "2026-07-24 15:27:19.531737+00:00",
+  "completed_at": "2026-07-24 15:27:25.407571+00:00",
+  "duration_sec": 5.875834,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, llam\u00e9 la semana pasada sobre mi reparaci\u00f3n y me dijeron que estaba lista el jueves, pero nadie me ha llamado. \u00bfQu\u00e9 pas\u00f3 con mi orden? Pens\u00e9 que ya deber\u00eda estar lista.",
+      "message": "Hola, llam\u00e9 la semana pasada sobre una reparaci\u00f3n que me dijeron que estaba lista el jueves, pero nadie me ha llamado. \u00bfQu\u00e9 pas\u00f3 con mi orden? Adem\u00e1s, esperaba que por la demora me hicieran alg\u00fan descuento.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:45.475557+00:00",
+      "timestamp": "2026-07-24 15:27:20.774082+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Hola Valeria, tienes dos \u00f3rdenes activas:\n\n**Orden 4151234567 (Galaxy S24 Ultra)** \u2013 Servicio D2D\nEstado: Pendiente\nSe detect\u00f3 pantalla fracturada con respuesta t\u00e1ctil intermitente. Se reemplazar\u00e1 el ensamble OCTA completo. Est\u00e1 pendiente la llegada de la pieza. Fecha estimada: 29 de julio. Costo: $3,480 MXN. Ser\u00e1 enviado a tu domicilio registrado.\n\n**Orden 4149876543 (Galaxy Watch6 44mm)** \u2013 Servicio Carry-in\nIngres\u00f3 el 4 de julio. Garant\u00eda interna (warranty_type: I). Costo: $0. Debes recogerlo en tienda (Polanco, lunes a s\u00e1bado 10:00-19:00).\n\nPara m\u00e1s detalles: +525588974249.",
+      "message": "Hola Valeria,\n\nTienes dos \u00f3rdenes en proceso:\n\n**Galaxy S24 Ultra (4151234567)** - D2D\nEstado: Pendiente. Se detect\u00f3 pantalla rota con respuesta t\u00e1ctil intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Fecha estimada: 29 de julio.\n\n**Galaxy Watch6 (4149876543)** - Carry-in\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,8 +120,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:51.733732+00:00",
-      "duration_ms": 6258.174999999999
+      "timestamp": "2026-07-24 15:27:25.407059+00:00",
+      "duration_ms": 4632.977000000001
     }
   ],
   "total_turns": 2,
@@ -192,7 +192,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 506,
-  "cost_usd": 0.00075,
+  "tokens_used": 512,
+  "cost_usd": 0.0008,
   "trace_file": null
 }

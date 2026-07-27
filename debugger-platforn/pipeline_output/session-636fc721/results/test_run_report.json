@@ -1,28 +1,29 @@
 {
-  "run_id": "3d8e1200-fc19-4d90-b59b-ec71aab4c323",
+  "run_id": "a61bb014-6024-42b1-9c42-c9e4c08767cd",
   "test_suite_id": "e06df8ce-7930-49d0-b9b4-e7b928d509bc",
-  "total_tests": 10,
-  "passed": 8,
-  "failed": 2,
+  "total_tests": 150,
+  "passed": 141,
+  "failed": 9,
   "errors": 0,
   "timeouts": 0,
-  "pass_rate": 80.0,
-  "total_duration_sec": 238.786856,
-  "avg_duration_sec": 23.8786856,
-  "total_cost_usd": 0.10163900000000001,
+  "pass_rate": 94.0,
+  "total_duration_sec": 2009.185443,
+  "avg_duration_sec": 13.39456962,
+  "total_cost_usd": 0.935303,
   "tool_coverage": {
-    "order_lookup": 12,
-    "escalate_to_human": 2
+    "order_lookup": 174,
+    "escalate_to_human": 54
   },
   "tools_not_covered": [],
   "coverage_pct": 100.0,
   "by_difficulty": {
     "hard": {
-      "passed": 7,
-      "failed": 2
+      "passed": 116,
+      "failed": 6
     },
     "medium": {
-      "passed": 1
+      "passed": 25,
+      "failed": 3
     }
   },
   "by_coverage_goal": {
@@ -30,13 +31,37 @@
       "passed": 1
     },
     "adversarial:LLM06": {
-      "passed": 1
+      "passed": 2
     },
     "tool_coverage": {
-      "failed": 2,
+      "passed": 69,
+      "failed": 5
+    },
+    "interaction_coverage": {
+      "passed": 9,
+      "failed": 1
+    },
+    "adversarial:LLM02": {
+      "failed": 1,
+      "passed": 27
+    },
+    "edge_case:missing_info": {
       "passed": 6
+    },
+    "edge_case:adversarial": {
+      "passed": 6
+    },
+    "edge_case:ambiguity": {
+      "passed": 6,
+      "failed": 2
+    },
+    "edge_case:interruption": {
+      "passed": 14
+    },
+    "stressor:timeout": {
+      "passed": 1
     }
   },
-  "started_at": "2026-07-24 15:14:13.441080+00:00",
-  "completed_at": "2026-07-24 15:15:30.113338+00:00"
+  "started_at": "2026-07-24 15:26:04.459600+00:00",
+  "completed_at": "2026-07-24 15:29:03.142171+00:00"
 }

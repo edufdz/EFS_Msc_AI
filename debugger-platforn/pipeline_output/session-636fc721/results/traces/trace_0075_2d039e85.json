@@ -6,38 +6,22 @@
   "persona_name": "Rachel Nguyen",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:58:48.730178+00:00",
-  "completed_at": "2026-07-24 14:58:56.999052+00:00",
-  "duration_sec": 8.268874,
+  "started_at": "2026-07-24 15:26:47.198982+00:00",
+  "completed_at": "2026-07-24 15:26:52.193109+00:00",
+  "duration_sec": 4.994127,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, tengo varios pedidos en proceso y me apareci\u00f3 un cargo de $47.99 que no me cuadra. No estoy seguro cu\u00e1l de mis \u00f3rdenes fue, pero creo que me cobraron de m\u00e1s. \u00bfPuedes revisar mi cuenta y decirme qu\u00e9 onda?",
+      "message": "Hola, mira, tengo varios pedidos de reparaci\u00f3n en procceso y me apareci\u00f3 un cargo de $47.99 que no me queda claro de cu\u00e1l orden es. \u00bfMe puedes ayudar a ver qu\u00e9 pas\u00f3 y si me cobraron de m\u00e1s?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:50.198253+00:00",
+      "timestamp": "2026-07-24 15:26:48.652083+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Hola Vale, entiendo tu preocupaci\u00f3n. Veo que tienes dos \u00f3rdenes activas:\n*Orden 4151234567*\nEstado: Pendiente\nDispositivo: Galaxy S24 Ultra 256GB\nCosto: $3,480 MXN\nGarant\u00eda: O\nServicio: Recolecci\u00f3n y entrega a domicilio\nDiagn\u00f3stico: S\u00edntoma reportado: Display shattered, intermittent touch response.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:52.403597+00:00",
-      "duration_ms": 2205.344
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "S\u00ed, esa es una de mis \u00f3rdenes, pero mira, el cargo de $47.99 que veo en mi tarjeta no coincide con los $3,480 de esa reparaci\u00f3n. \u00bfEse minto ya se cobr\u00f3 completo o todav\u00eda falta? Porque necesito saber si ese cargo extra fue un eror o si es algo relacionado con la otra orden del Watch.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:54.036460+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Valeria, tienes dos \u00f3rdenes con nosotros. Para aclarar el cargo de tu tarjeta, necesito saber de cu\u00e1l orden est\u00e1s hablando:\n\n**Orden 4151234567** (Galaxy S24 Ultra)\n- Servicio: Env\u00edo a domicilio\n- Estado: Pendiente\n- Costo de reparaci\u00f3n: $3,480 MXN\n",
+      "message": "Hola Valeria,\n\nTengo 2 \u00f3rdenes a su nombre. Para ayudarte con el cargo de $47.99, necesito saber de cu\u00e1l orden preguntas:\n\n**#4151234567** (Galaxy S24 Ultra 256GB)\n- Servicio: Env\u00edo a domicilio\n- Estado: Pendiente\n- Costo de reparaci\u00f3n: $3,480 MXN\n- Entrega estimada: 29 de julio\n\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -136,11 +120,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:58:56.998364+00:00",
-      "duration_ms": 2961.904
+      "timestamp": "2026-07-24 15:26:52.192261+00:00",
+      "duration_ms": 3540.178
     }
   ],
-  "total_turns": 4,
+  "total_turns": 2,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -206,9 +190,9 @@
     }
   ],
   "chaos_events": [],
-  "llm_calls": 2,
+  "llm_calls": 1,
   "tool_calls_count": 2,
-  "tokens_used": 1586,
-  "cost_usd": 0.002306,
+  "tokens_used": 535,
+  "cost_usd": 0.000815,
   "trace_file": null
 }

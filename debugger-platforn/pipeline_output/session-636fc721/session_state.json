@@ -3387,29 +3387,30 @@
       "cost_usd": 2.8283
     },
     "c": {
-      "total_tests": 10,
-      "passed": 8,
-      "failed": 2,
+      "total_tests": 150,
+      "passed": 141,
+      "failed": 9,
       "errors": 0,
       "timeouts": 0,
-      "pass_rate": 80.0,
-      "total_duration_sec": 238.786856,
-      "total_cost_usd": 0.10163900000000001,
+      "pass_rate": 94.0,
+      "total_duration_sec": 2009.185443,
+      "total_cost_usd": 0.935303,
       "tool_coverage_pct": 100.0,
       "tools_not_covered": [],
       "by_difficulty": {
         "hard": {
-          "passed": 7,
-          "failed": 2
+          "passed": 116,
+          "failed": 6
         },
         "medium": {
-          "passed": 1
+          "passed": 25,
+          "failed": 3
         }
       },
       "triage": {
-        "genuine_failures": 2,
+        "genuine_failures": 7,
         "persona_filtered": 0,
-        "chaos_filtered": 0,
+        "chaos_filtered": 2,
         "false_successes": 0
       }
     }

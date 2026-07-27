@@ -6,48 +6,96 @@
   "persona_name": "Sofia Rivera",
   "difficulty": "hard",
   "coverage_goal": "edge_case:interruption",
-  "started_at": "2026-07-24 15:01:22.553074+00:00",
-  "completed_at": "2026-07-24 15:01:27.069385+00:00",
-  "duration_sec": 4.516311,
+  "started_at": "2026-07-24 15:27:16.490787+00:00",
+  "completed_at": "2026-07-24 15:27:36.831902+00:00",
+  "duration_sec": 20.341115,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito hablar sorbe mi cuentta porque crfo que tengo que actualizar mi direcci\u00f3n... bueno, espera, d\u00e9jame pensar un segundo, \u00bft\u00fa tienes mi direcci\u00f3n ah\u00ed en el sistema o no?",
+      "message": "Hola, mira, necesito hablar de mi cuenta porque quiero cambiar mi direcci\u00f3n de entrega... bueno, espera, d\u00e9jame pensar un segundo. En realidad creo que est\u00e1 bien como est\u00e1, pero qeur\u00eda confirmar qhe la tienes correcta en el sistema.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:24.109792+00:00",
+      "timestamp": "2026-07-24 15:27:18.459824+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "S\u00ed, tengo tu direcci\u00f3n registrada en el sistema para la orden de recolecci\u00f3n y entrega a domicilio (Galaxy S24 Ultra).\nSi necesitas **cambiarla**, un agente humano debe hacerlo. Te paso con alguien que lo resuelva.\n\u00bfCu\u00e1l es la direcci\u00f3n correcta que necesitas registrar?",
+      "message": "Sobre tu direcci\u00f3n de entrega, un asesor la confirma contigo en breve.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:20.422210+00:00",
+      "duration_ms": 1962.386
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah bueno, est\u00e1 bien entonces. Pero mira, mientras tanto \u00bfpodr\u00edas decirme cu\u00e1l direci\u00f3n tienes registrada para mis reparaciones? Es que tengo dps \u00f3rdenes activas y quiero asegurarme de que todo lleegue al lugar correcto.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:21.855639+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:25.949922+00:00",
+      "duration_ms": 4094.283
+    },
+    {
+      "turn_number": 3,
+      "role": "user",
+      "message": "S\u00ed, claro, tengo dos reparaciones en proceso: mi Galaxy S24 Ultra con la pantalla rota, que es la orden 4151234567 y todav\u00eda eetoy esperando a que llegue la refacci\u00f3n, y mi Galaxy Watch6 que dej\u00e9 en garant\u00eda hace unos 20 d\u00edas con la orden 4149876543. \u00bfCu\u00e1l direcci\u00f3n tiejes registrada para esas dos \u00f3rdnees?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:27.475608+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 3,
+      "role": "agent",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:30.141960+00:00",
+      "duration_ms": 2666.352
+    },
+    {
+      "turn_number": 4,
+      "role": "user",
+      "message": "Espera, \u00bfdiagn\u00f3stico? Yo no estoy preguntando por eso, te estoy pidiendo que me confirmes la direcci\u00f3n que tienen registrada para mis dos \u00f3rdenes, la dl S4 Uktra y la del Watch6. \u00bfPor qu\u00e9 no me est\u00e1s respondiendo eso directamente?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:31.773846+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 4,
+      "role": "agent",
+      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
       "tool_calls": [
         {
           "tool_name": "escalate_to_human",
           "tool_input": {
-            "reason": "Auto-escalado: address change"
+            "reason": "complaint_escalation"
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T15:01:27.068Z",
-            "reason": "Auto-escalado: address change"
+            "escalated_at": "2026-07-24T15:27:36.830Z",
+            "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T15:01:27.068Z",
-              "reason": "Auto-escalado: address change"
+              "escalated_at": "2026-07-24T15:27:36.830Z",
+              "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:27.068998+00:00",
-      "duration_ms": 2959.206
+      "timestamp": "2026-07-24 15:27:36.831665+00:00",
+      "duration_ms": 5057.819
     }
   ],
-  "total_turns": 2,
+  "total_turns": 8,
   "success": true,
   "failure_reason": null,
   "outcome": "escalated_to_human",
@@ -62,17 +110,17 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T15:01:27.068Z",
-          "reason": "Auto-escalado: address change"
+          "escalated_at": "2026-07-24T15:27:36.830Z",
+          "reason": "complaint_escalation"
         }
       },
       "success": true
     }
   ],
   "chaos_events": [],
-  "llm_calls": 1,
+  "llm_calls": 4,
   "tool_calls_count": 1,
-  "tokens_used": 516,
-  "cost_usd": 0.0007639999999999999,
+  "tokens_used": 3358,
+  "cost_usd": 0.00465,
   "trace_file": null
 }

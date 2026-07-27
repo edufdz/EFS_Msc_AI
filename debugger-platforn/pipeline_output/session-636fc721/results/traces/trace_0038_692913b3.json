@@ -6,22 +6,38 @@
   "persona_name": "Chris Martinez #37",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:57:01.493328+00:00",
-  "completed_at": "2026-07-24 14:57:07.416057+00:00",
-  "duration_sec": 5.922729,
+  "started_at": "2026-07-24 15:26:22.963173+00:00",
+  "completed_at": "2026-07-24 15:26:31.065986+00:00",
+  "duration_sec": 8.102813,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, necesito saber exactzmente cu\u00e1ndo va a llegar mi repuesto parra el Galaxy S24 Ultra, la orden 4151234567. No me des vueltas, dime una fecha concreta porwue ya llevo demasiado tiempo esperando.",
+      "message": "Mira, necesito saber exactamente cu\u00e1ndo llega la refacci\u00f3n para mi Galaxy 2S4 Ultra, la orden 415123467. Llevo esperando demasiado tiempo y necesito una fecha espec\u00edfica ahora mismo.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:57:04.659803+00:00",
+      "timestamp": "2026-07-24 15:26:24.867500+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Entiendo tu urgencia, Valeria. Tu orden **4151234567** (Galaxy S24 Ultra 256GB) est\u00e1 en estado **Pendiente**.\n\n**Diagn\u00f3stico:** Pantalla AMOLED rota con falla en el t\u00e1ctil.\n**Reparaci\u00f3n:** Reemplazo del conjunto de pantalla OCTA.\n**Costo:** $3,480 MXN\n",
+      "message": "Entiendo la espera, d\u00e9jeme revisar. Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:26:24.872764+00:00",
+      "duration_ms": 5.263999999999999
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Claro, es la orden 4151234567, la del Galaxy S4 Ultra con la pantalla rota. Mira, ya te dije que llevo esperando mucho tiempo, \u00bfentonces s\u00ed pueeds decirme cu\u00e1ndo exactamente llega la refacci\u00f3n o no?",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:26:27.690863+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Entiendo tu preocupaci\u00f3n, Valeria. Tu orden **4151234567** (Galaxy S24 Ultra) est\u00e1 en estado **Pendiente** porque estamos esperando la llegada de la refacci\u00f3n para el ensamble OCTA.\n\n**Detalles de la reparaci\u00f3n:**\n- Defecto: Pantalla rota, respuesta t\u00e1ctil intermitente\n",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,11 +136,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:57:07.415434+00:00",
-      "duration_ms": 2755.6310000000003
+      "timestamp": "2026-07-24 15:26:31.065554+00:00",
+      "duration_ms": 3374.691
     }
   ],
-  "total_turns": 2,
+  "total_turns": 4,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -189,10 +205,16 @@
       "success": true
     }
   ],
-  "chaos_events": [],
-  "llm_calls": 1,
+  "chaos_events": [
+    {
+      "turn_number": 1,
+      "chaos_type": "malformed_response",
+      "description": "Injected malformed response from agent"
+    }
+  ],
+  "llm_calls": 2,
   "tool_calls_count": 2,
-  "tokens_used": 491,
-  "cost_usd": 0.0007509999999999999,
+  "tokens_used": 1304,
+  "cost_usd": 0.001828,
   "trace_file": null
 }

@@ -6,16 +6,16 @@
   "persona_name": "Ryan Cooper #34",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:58:03.335464+00:00",
-  "completed_at": "2026-07-24 14:58:05.243907+00:00",
-  "duration_sec": 1.908443,
+  "started_at": "2026-07-24 15:26:35.963456+00:00",
+  "completed_at": "2026-07-24 15:26:38.813550+00:00",
+  "duration_sec": 2.850094,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, llevo esperando demasiado tiempo y estoy harto de esto. Necestio hablar con un supervisor ahora mismo, no tengo paciencia para explicar todo de nuevo.",
+      "message": "Mira, llevo esperando demasiado tiempo y francamente estoy harto. Necesito hablar cn un supervisor ahora mismo, no tengo paciencia para explicar todo de nuevo.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:58:04.401164+00:00",
+      "timestamp": "2026-07-24 15:26:37.899100+00:00",
       "duration_ms": 0.0
     },
     {
@@ -30,21 +30,21 @@
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T14:58:05.242Z",
+            "escalated_at": "2026-07-24T15:26:38.812Z",
             "reason": "explicit_human_request"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T14:58:05.242Z",
+              "escalated_at": "2026-07-24T15:26:38.812Z",
               "reason": "explicit_human_request"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 14:58:05.243343+00:00",
-      "duration_ms": 842.179
+      "timestamp": "2026-07-24 15:26:38.812889+00:00",
+      "duration_ms": 913.789
     }
   ],
   "total_turns": 2,
@@ -62,7 +62,7 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T14:58:05.242Z",
+          "escalated_at": "2026-07-24T15:26:38.812Z",
           "reason": "explicit_human_request"
         }
       },
@@ -72,7 +72,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 1,
-  "tokens_used": 492,
-  "cost_usd": 0.000688,
+  "tokens_used": 487,
+  "cost_usd": 0.000683,
   "trace_file": null
 }

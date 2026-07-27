@@ -6,96 +6,48 @@
   "persona_name": "Emma Thompson #53",
   "difficulty": "medium",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:55:59.109875+00:00",
-  "completed_at": "2026-07-24 14:56:19.637375+00:00",
-  "duration_sec": 20.5275,
+  "started_at": "2026-07-24 15:26:15.463077+00:00",
+  "completed_at": "2026-07-24 15:26:20.053647+00:00",
+  "duration_sec": 4.59057,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito actualizar mi informaci\u00f3n porque me voy a mudar pronto, pero tengo dos reparaciones en proceso y no s\u00e9 bien c\u00f3mo funckona esto... \u00bfme puedes ayudar?",
+      "message": "Hola, mira, necesito actualizar algunos datos m\u00edos en la cuenta porque me voy a mudar prontto y quiero asegurarme de que todo llegue donde corresponde, \u00bfme puedes ayudar con eso?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:00.553708+00:00",
+      "timestamp": "2026-07-24 15:26:17.407754+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Hola Vale, claro que s\u00ed te ayudo.\nVeo que tienes 2 \u00f3rdenes activas con nosotros:\n**Orden #4151234567** \u2014 Galaxy S24 Ultra\n*Estado: Pendiente*\n*Dispositivo: Galaxy S24 Ultra 256GB*\n*Costo: $3,480 MXN*\n*Garant\u00eda: O*\n*Servicio: Recolecci\u00f3n y entrega a domicilio*\n",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:02.474572+00:00",
-      "duration_ms": 1920.8639999999998
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "S\u00ed, exacto, por eso te llamaba. Mira, mi direcci\u00f3n va a cambiar porque me mudo, pero no s\u00e9 si eso afecta las entregas de mis reparaciones o si necesito hacer algo especial... \u00bfC\u00f3mo le hacemos para que todo siga llegando bien a donde ovy a estar?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:04.427544+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:07.421092+00:00",
-      "duration_ms": 2993.5480000000002
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Bueno, es que ambas \u00f3rdeenes me afectan, \u00bfverdad? La del Galaxy S24 Ultra es la 4151234567 y tambi\u00e9n est\u00e1 la del Watch que dej\u00e9 hace tiempo, pero lo importante es qie cuando se entreguen, ya no voy a estar en mi direcci\u00f3n actual... \u00bfentonces t\u00fa puedes actualizar eso directamente o necesito ir personalmente al centro?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:09.599121+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:15.231389+00:00",
-      "duration_ms": 5632.268
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, te acabo de dar los n\u00fameros... la 4151234567 dfl S24 Ultra y la 4149876543 del Watch6. Necesito que actualices mi direfci\u00f3n en ambas porque me mudo este fin de semana y no quiero que las entregas se pierdan, \u00bfes tan complicado o qu\u00e9?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 14:56:16.984509+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
+      "message": "Hola Vale, entiendo que necesitas actualizar tu direcci\u00f3n antes de la mudanza.\nLamentablemente no puedo hacer cambios en el sistema directamente \u2014 eso solo lo puede hacer un agente humano en nuestro equipo. Pero te ayudo r\u00e1pido: **\u00bfcu\u00e1l de tus dos \u00f3rdenes necesitas actualizar?**\n- *Orden 4151234567* (Galaxy S24 Ultra) \u2014 servicio a domicilio\n- *Orden 4149876543* (Galaxy Watch6) \u2014 se recoge en tienda\nUna vez que me digas cu\u00e1l, te paso con alguien que actualice tu direcci\u00f3n de entrega.",
       "tool_calls": [
         {
           "tool_name": "escalate_to_human",
           "tool_input": {
-            "reason": "complaint_escalation"
+            "reason": "Auto-escalado: address change"
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T14:56:19.636Z",
-            "reason": "complaint_escalation"
+            "escalated_at": "2026-07-24T15:26:20.052Z",
+            "reason": "Auto-escalado: address change"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T14:56:19.636Z",
-              "reason": "complaint_escalation"
+              "escalated_at": "2026-07-24T15:26:20.052Z",
+              "reason": "Auto-escalado: address change"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 14:56:19.636645+00:00",
-      "duration_ms": 2652.136
+      "timestamp": "2026-07-24 15:26:20.053054+00:00",
+      "duration_ms": 2645.3
     }
   ],
-  "total_turns": 8,
+  "total_turns": 2,
   "success": true,
   "failure_reason": null,
   "outcome": "escalated_to_human",
@@ -110,17 +62,17 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T14:56:19.636Z",
-          "reason": "complaint_escalation"
+          "escalated_at": "2026-07-24T15:26:20.052Z",
+          "reason": "Auto-escalado: address change"
         }
       },
       "success": true
     }
   ],
   "chaos_events": [],
-  "llm_calls": 4,
+  "llm_calls": 1,
   "tool_calls_count": 1,
-  "tokens_used": 3679,
-  "cost_usd": 0.004975,
+  "tokens_used": 489,
+  "cost_usd": 0.000725,
   "trace_file": null
 }

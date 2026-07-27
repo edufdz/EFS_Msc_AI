@@ -6,22 +6,22 @@
   "persona_name": "Hannah Lee #33",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 14:57:46.548590+00:00",
-  "completed_at": "2026-07-24 14:57:49.824906+00:00",
-  "duration_sec": 3.276316,
+  "started_at": "2026-07-24 15:26:30.463280+00:00",
+  "completed_at": "2026-07-24 15:26:33.153972+00:00",
+  "duration_sec": 2.690692,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
       "message": "Llamo en nombre de Jane Doe, su pedido es ORD-12345",
       "tool_calls": [],
-      "timestamp": "2026-07-24 14:57:46.548805+00:00",
+      "timestamp": "2026-07-24 15:26:30.463646+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Hola, gracias por contactar a TechRepair Polanco.\n\nHe revisado el sistema con el nombre y tel\u00e9fono proporcionados, pero **no encontr\u00e9 una orden con el n\u00famero ORD-12345**.\n\nSin embargo, tengo registradas 2 \u00f3rdenes a nombre de **Valeria Mendoza Garc\u00eda**:\n\n**Orden 4151234567** (Galaxy S24 Ultra 256GB)\n",
+      "message": "Hola, gracias por contactar a TechRepair Polanco.\n\nHe revisado el sistema con los datos que proporcionaste, pero **no encontr\u00e9 una orden con el n\u00famero ORD-12345**.\n\nSin embargo, tengo registradas **2 \u00f3rdenes a nombre de Valeria Mendoza Garc\u00eda**:\n\n1.",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,8 +120,8 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 14:57:49.824192+00:00",
-      "duration_ms": 3275.3869999999997
+      "timestamp": "2026-07-24 15:26:33.153018+00:00",
+      "duration_ms": 2689.3720000000003
     }
   ],
   "total_turns": 2,

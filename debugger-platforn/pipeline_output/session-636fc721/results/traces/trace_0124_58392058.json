@@ -6,22 +6,38 @@
   "persona_name": "Diana Kowalski",
   "difficulty": "hard",
   "coverage_goal": "edge_case:interruption",
-  "started_at": "2026-07-24 15:00:53.227157+00:00",
-  "completed_at": "2026-07-24 15:00:57.731191+00:00",
-  "duration_sec": 4.504034,
+  "started_at": "2026-07-24 15:27:11.302898+00:00",
+  "completed_at": "2026-07-24 15:27:21.859519+00:00",
+  "duration_sec": 10.556621,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, llam\u00e9 porque recib\u00ed mi pedido pero lleg\u00f3 tdoo ma, nada de lo que ped\u00ed est\u00e1 correcto y francamente estoy muy molesta con esto. \u00bfPuedes ayuudarme a resolver esto de una vez?",
+      "message": "Mira, llam\u00e9 porque supuestamente mi pedido ya hab\u00eda llegado, pero acabo de revisar y me mandaron las cosas equivocadas. Necesito que me expliques qu\u00e9 pas\u00f3 coon mi orden porque eto es rid\u00edculo.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:54.720006+00:00",
+      "timestamp": "2026-07-24 15:27:12.823332+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 1,
       "role": "agent",
-      "message": "Entiendo tu frustraci\u00f3n, Valeria. Sin embargo, veo que tienes dos \u00f3rdenes de reparaci\u00f3n en nuestro sistema:\n\n**Orden D2D - Galaxy S24 Ultra 256GB (Folio: 4151234567)**\nEstado: Pendiente. Se detect\u00f3 pantalla rota con respuesta t\u00e1ctil intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA.",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:14.322358+00:00",
+      "duration_ms": 1499.026
+    },
+    {
+      "turn_number": 2,
+      "role": "user",
+      "message": "Ah s\u00ed, claro. La orden que me lleg\u00f3 mal es la 4151234567, la de mi Galaxy S24 Ultra. Me amndaron unos cristales que no son ls correctos para la pantalla, as\u00ed que necesito que me expliques c\u00f3mo vamos a resolver esto porque ya llevo esperndo demasiado tiempo.",
+      "tool_calls": [],
+      "timestamp": "2026-07-24 15:27:17.055210+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 2,
+      "role": "agent",
+      "message": "Entiendo tu situaci\u00f3n. Seg\u00fan el sistema, tu orden **4151234567** (Galaxy S24 Ultra 256GB) est\u00e1 en estado **Pendiente** desde el 15 de julio.\n\n**Diagn\u00f3stico:** Pantalla AMOLED rota con falla en el t\u00e1ctil.\n**Reparaci\u00f3n:** Se requiere reemplazar el conjunto de pantalla OCTA (SM-S928B).",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -120,11 +136,11 @@
           }
         }
       ],
-      "timestamp": "2026-07-24 15:00:57.730766+00:00",
-      "duration_ms": 3010.7599999999998
+      "timestamp": "2026-07-24 15:27:21.859129+00:00",
+      "duration_ms": 4803.919
     }
   ],
-  "total_turns": 2,
+  "total_turns": 4,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -190,9 +206,9 @@
     }
   ],
   "chaos_events": [],
-  "llm_calls": 1,
+  "llm_calls": 2,
   "tool_calls_count": 2,
-  "tokens_used": 483,
-  "cost_usd": 0.000723,
+  "tokens_used": 1284,
+  "cost_usd": 0.001848,
   "trace_file": null
 }

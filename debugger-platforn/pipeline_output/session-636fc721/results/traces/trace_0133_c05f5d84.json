@@ -6,16 +6,16 @@
   "persona_name": "Brian Taylor #50",
   "difficulty": "hard",
   "coverage_goal": "edge_case:interruption",
-  "started_at": "2026-07-24 15:01:07.218021+00:00",
-  "completed_at": "2026-07-24 15:01:10.024884+00:00",
-  "duration_sec": 2.806863,
+  "started_at": "2026-07-24 15:27:14.327036+00:00",
+  "completed_at": "2026-07-24 15:27:15.981995+00:00",
+  "duration_sec": 1.654959,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Mira, llevo esperando ntoicias de mi orden #12345 y no tengo ni isea de d\u00f3nde est\u00e1, as\u00ed que necesito que alguien me diga qu\u00e9 pas\u00f3 CON MI PEDIDO AHORA IMSMO, y despu\u00e9s de eso quiero hablar con un supervisor porque esto es inaceptable.",
+      "message": "Mira, llevo esperando noticias de mi orden #12345 y francamente estoy harto de no saber nada. Neecesito hablar con un supervisor AHORA porque esto es inaceptable, pero primero verifica d\u00f3nde est\u00e1 mi pedido, \u00bfs\u00ed?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:10.019798+00:00",
+      "timestamp": "2026-07-24 15:27:15.973284+00:00",
       "duration_ms": 0.0
     },
     {
@@ -30,21 +30,21 @@
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T15:01:10.023Z",
+            "escalated_at": "2026-07-24T15:27:15.980Z",
             "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T15:01:10.023Z",
+              "escalated_at": "2026-07-24T15:27:15.980Z",
               "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:10.024172+00:00",
-      "duration_ms": 4.3740000000000006
+      "timestamp": "2026-07-24 15:27:15.981085+00:00",
+      "duration_ms": 7.801
     }
   ],
   "total_turns": 2,
@@ -62,7 +62,7 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T15:01:10.023Z",
+          "escalated_at": "2026-07-24T15:27:15.980Z",
           "reason": "complaint_escalation"
         }
       },
@@ -72,7 +72,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 1,
-  "tokens_used": 544,
-  "cost_usd": 0.000864,
+  "tokens_used": 532,
+  "cost_usd": 0.000824,
   "trace_file": null
 }

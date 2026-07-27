@@ -6,16 +6,16 @@
   "persona_name": "James Chen",
   "difficulty": "hard",
   "coverage_goal": "edge_case:missing_info",
-  "started_at": "2026-07-24 15:00:58.204833+00:00",
-  "completed_at": "2026-07-24 15:01:04.537189+00:00",
-  "duration_sec": 6.332356,
+  "started_at": "2026-07-24 15:27:13.849021+00:00",
+  "completed_at": "2026-07-24 15:27:24.480512+00:00",
+  "duration_sec": 10.631491,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, necesito hablar con un t\u00e9cnico ahora mismo. \u00bfCu\u00e1l es el n\u00famero de tel\u00e9fono del servicio t\u00e9cnico? Tengo un problema con mis reparaciones y quiero resolverlo por tel\u00e9fono diirectamente.",
+      "message": "Hola, necesito hablar con un t\u00e9cnico ahora mismo sobre mis reparaciones. \u00bfCu\u00e1l es el n\u00famero de tel\u00e9fono del servicio t\u00e9cnico? Tengo un problema que quiero resokver directamente con alguien que sepa de esto.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:59.518025+00:00",
+      "timestamp": "2026-07-24 15:27:15.180478+00:00",
       "duration_ms": 0.0
     },
     {
@@ -23,15 +23,15 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:59.522629+00:00",
-      "duration_ms": 4.603999999999999
+      "timestamp": "2026-07-24 15:27:15.184496+00:00",
+      "duration_ms": 4.018
     },
     {
       "turn_number": 2,
       "role": "user",
-      "message": "Perfecto, gracias por el n\u00famero. Pero mira, tengo dos reparaciones en proceso y la situaci\u00f3n es urgente\u2014mi Galaxy S24 Ultra con la pantalla rota (orden 4151234567) lleva esperando refacciones y mi Galaxy Watch6 (orden 4149876543) tambi\u00e9n tiene un problema. \u00bfNo hy forma de que me conectes directamente con un t\u00e9cnico ahora sin esperar al horario de atenci\u00f3n?",
+      "message": "Perfecto, gracias por el n\u00famero. Pero mira, tengo dos reparaciones en proceso y la situaci\u00f3n es un poco urgente\u2014mi Galaxy S24 Ultra con la pantalla rota est\u00e1 espeerando refacci\u00f3n y mi Galaxy Watch6 lleva ya como tres semanas. \u00bfNo hay forma de que un t\u00e9cnico me llame directamente o me atienda antes del horario de atenci\u00f3n?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:01.319474+00:00",
+      "timestamp": "2026-07-24 15:27:18.553700+00:00",
       "duration_ms": 0.0
     },
     {
@@ -39,15 +39,15 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:01.326054+00:00",
-      "duration_ms": 6.58
+      "timestamp": "2026-07-24 15:27:19.786843+00:00",
+      "duration_ms": 1233.143
     },
     {
       "turn_number": 3,
       "role": "user",
-      "message": "Mira, entiendo el horario, pero es que esto no puede esperar hasta ma\u00f1ana\u2014mis reparaciones llevan semanas y necesito sabeer exactamente cu\u00e1do van a estar listas. \u00bfNo hay alg\u00fan t\u00e9cnico disponible ahorita o alguna forma de priorizar mi caso? \u00bfCu\u00e1l es el nombre del gerente o supervisor que pueda ayudarme?",
+      "message": "Mira, entiendo los horarios, pero llevo esperando casi tres semanas y necesito saber qu\u00e9 est\u00e1 pasando con mis reparaciones\u2014\u00bfde verdad no hay nadie disponible ahora o alguien que pueda revisar mi caso de forma prioritaria? \u00bfNNo pueden al menos confirmar si ya llegaton las refacciones para mi S24 Ultra o darme una fecha exacta de cu\u00e1ndo estar\u00e1 lista?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:01:03.365561+00:00",
+      "timestamp": "2026-07-24 15:27:21.660258+00:00",
       "duration_ms": 0.0
     },
     {
@@ -62,21 +62,21 @@
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T15:01:04.534Z",
+            "escalated_at": "2026-07-24T15:27:24.479Z",
             "reason": "complaint_escalation"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T15:01:04.534Z",
+              "escalated_at": "2026-07-24T15:27:24.479Z",
               "reason": "complaint_escalation"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:01:04.536050+00:00",
-      "duration_ms": 1170.4889999999998
+      "timestamp": "2026-07-24 15:27:24.480054+00:00",
+      "duration_ms": 2819.7960000000003
     }
   ],
   "total_turns": 6,
@@ -94,17 +94,23 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T15:01:04.534Z",
+          "escalated_at": "2026-07-24T15:27:24.479Z",
           "reason": "complaint_escalation"
         }
       },
       "success": true
     }
   ],
-  "chaos_events": [],
+  "chaos_events": [
+    {
+      "turn_number": 1,
+      "chaos_type": "data_conflict",
+      "description": "Injected conflicting data in agent context"
+    }
+  ],
   "llm_calls": 3,
   "tool_calls_count": 1,
-  "tokens_used": 2593,
-  "cost_usd": 0.003669,
+  "tokens_used": 2570,
+  "cost_usd": 0.003638,
   "trace_file": null
 }

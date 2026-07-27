@@ -6,16 +6,16 @@
   "persona_name": "Chris Martinez #37",
   "difficulty": "hard",
   "coverage_goal": "edge_case:interruption",
-  "started_at": "2026-07-24 15:00:55.303736+00:00",
-  "completed_at": "2026-07-24 15:00:58.136990+00:00",
-  "duration_sec": 2.833254,
+  "started_at": "2026-07-24 15:27:11.371658+00:00",
+  "completed_at": "2026-07-24 15:27:14.326173+00:00",
+  "duration_sec": 2.954515,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "\u00a1Oye, necesito hablar con una persona AHORA! Tengo un problema con mi login que es ufgente y no puedo esperar m\u00e1s, \u00bfme pasas con alguken que pueda resolver esto en los pr\u00f3ximos 5 minutos?",
+      "message": "\u00a1Hola! Mira, tengo un problema cn mi login que es URGENTE, necesito hablar con un humano ahora mismo porque tengo solo 5 minutos para resolver esto. \u00bfMe pueds ayudar o me pasas cpn alguien que s\u00ed pueda?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:00:56.882718+00:00",
+      "timestamp": "2026-07-24 15:27:12.751675+00:00",
       "duration_ms": 0.0
     },
     {
@@ -30,21 +30,21 @@
           },
           "tool_output": {
             "escalated": true,
-            "escalated_at": "2026-07-24T15:00:58.136Z",
+            "escalated_at": "2026-07-24T15:27:14.324Z",
             "reason": "explicit_human_request"
           },
           "result": {
             "status": "ok",
             "data": {
               "escalated": true,
-              "escalated_at": "2026-07-24T15:00:58.136Z",
+              "escalated_at": "2026-07-24T15:27:14.324Z",
               "reason": "explicit_human_request"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:00:58.136618+00:00",
-      "duration_ms": 1253.9
+      "timestamp": "2026-07-24 15:27:14.325645+00:00",
+      "duration_ms": 1573.97
     }
   ],
   "total_turns": 2,
@@ -62,7 +62,7 @@
         "status": "ok",
         "data": {
           "escalated": true,
-          "escalated_at": "2026-07-24T15:00:58.136Z",
+          "escalated_at": "2026-07-24T15:27:14.324Z",
           "reason": "explicit_human_request"
         }
       },
@@ -72,7 +72,7 @@
   "chaos_events": [],
   "llm_calls": 1,
   "tool_calls_count": 1,
-  "tokens_used": 520,
-  "cost_usd": 0.0007880000000000001,
+  "tokens_used": 522,
+  "cost_usd": 0.0008179999999999999,
   "trace_file": null
 }
