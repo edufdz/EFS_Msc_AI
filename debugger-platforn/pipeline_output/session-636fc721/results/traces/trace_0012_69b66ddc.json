@@ -1,266 +1,34 @@
 {
   "test_id": "69b66ddc-b693-4466-9bc3-7820aa0cf984",
   "test_number": 12,
-  "status": "failed",
+  "status": "error",
   "scenario_title": "Variante 3: Restricci\u00f3n de tiempo \u2014 Usuario bajo presi\u00f3n urgente",
   "persona_name": "Laura Petrov",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:09.962934+00:00",
-  "completed_at": "2026-07-24 15:26:51.610760+00:00",
-  "duration_sec": 41.647826,
+  "started_at": "2026-07-29 15:56:35.118866+00:00",
+  "completed_at": "2026-07-29 15:56:36.502173+00:00",
+  "duration_sec": 1.383307,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, miren que mi televisor se da\u00f1\u00f3 hoy y tengo garant\u00eda, \u00bfpueden venir a repararlo lo antes posible? Idealmente en la pr\u00f3xima hora, \u00bfes factible? Adem\u00e1s, \u00bfd\u00f3nde exactamente est\u00e1n ubicados ustedes?",
+      "message": "Hola, miren que mi televisor se da\u00f1\u00f3 hoy y tengo garant\u00eda, \u00bfpueden venir a repararlo lo antes posible? \u00bfEn qu\u00e9 horario podr\u00edan pasar? Necesito que sea urgente porque lo uso todos los d\u00edas, please.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.894532+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 1,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.900263+00:00",
-      "duration_ms": 5.731
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Ah bueno, eso est\u00e1 bien que no cobre el diagn\u00f3stico. Pero mira, lo que realmente necesito es saber si pueden enviar a un t\u00e9cnico hoy mismo a mi casa, porque el televisor se me da\u00f1\u00f3 esta ma\u00f1ana y no puedo estar sin \u00e9l. \u00bfCu\u00e1l es su direcci\u00f3n o de d\u00f3nde operan ustedes para saber si llegan hasta mi zona, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:13.881430+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.012718+00:00",
-      "duration_ms": 2131.288
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Perfecto, gracias por la informaci\u00f3n. Voy a llamar ahorita mismo al n\u00famero que me dieron para ver si pueden enviar a alguien hoy, pero d\u00edgame, \u00bfustedes manejan reparaciones a domicilio o tengo que llevar el televisor hasta la sucursal en Calz. Gral, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.489884+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.130193+00:00",
-      "duration_ms": 640.309
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, ya entiendo que tengo que llamar, pero es que estoy aqu\u00ed ahora mismo hablando contigo y necesito saber si ustedes hacen reparaciones en casa o no, porque si tengo que cargar este televisor hasta Calz. Gral. me va a tomar m\u00e1s tiempo. \u00bfMe puedes responder eso directamente, por favor?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.492891+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.495922+00:00",
-      "duration_ms": 3.0309999999999997
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "Mira, entiendo que tengo que llamar, pero es que ya son las 6 de la tarde y el horario de atenci\u00f3n termina a las 7, as\u00ed que si llamo ahora mismo probablemente me atiendan cuando ya est\u00e9n cerrando. \u00bfNo hay forma de que t\u00fa mismo registres mi caso como urgente o al menos me digas si hacen servicio a domicilio s\u00ed o no? Esto es frustrante, hermano, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.622843+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:24.720169+00:00",
-      "duration_ms": 1097.326
-    },
-    {
-      "turn_number": 6,
-      "role": "user",
-      "message": "Est\u00e1 bien, est\u00e1 bien, voy a llamar ahora mismo, pero por favor, cuando hable con ellos diles que es URGENTE, que mi televisor se da\u00f1\u00f3 hoy y necesito que vengan a casa si es posible, \u00bfok? Mi n\u00famero es +525551234890 por si acaso necesitan contactarme directamente, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:26.549980+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 6,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:26.555396+00:00",
-      "duration_ms": 5.4159999999999995
-    },
-    {
-      "turn_number": 7,
-      "role": "user",
-      "message": "Mira, ya voy a llamar, pero esto es rid\u00edculo\u2014llevo aqu\u00ed hablando contigo y no me has ayudado en nada. \u00bfAl menos puedes anotar mi n\u00famero +525551234890 para que cuando llame, ya tengan mi caso registrado como URGENTE? Por favor, necesito que esto se agilice, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:28.372145+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 7,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:28.377786+00:00",
-      "duration_ms": 5.641
-    },
-    {
-      "turn_number": 8,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, est\u00e1 BIEN! Voy a llamar ahora mismo, pero te digo que esto es una p\u00e9rdida de tiempo\u2014llevo media hora aqu\u00ed hablando contigo y no me has resuelto nada. Voy a llamar al n\u00famero que me diste, pero espero que cuando llegue a hablar con alguien de verdad, me puedan ayudar de inmediato porque mi televisor se da\u00f1\u00f3 HOY y no puedo esperar m\u00e1s, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:30.137612+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 8,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:30.142046+00:00",
-      "duration_ms": 4.433999999999999
-    },
-    {
-      "turn_number": 9,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, est\u00e1 BIEN! Ya voy a llamar ahora mismo, pero de verdad espero que cuando me atiendan puedan resolver esto r\u00e1pido porque llevo media hora aqu\u00ed y nada. Gracias por el n\u00famero, voy a intentar.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:31.394150+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 9,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:31.400285+00:00",
-      "duration_ms": 6.135
-    },
-    {
-      "turn_number": 10,
-      "role": "user",
-      "message": "Mira, ya entiendo, voy a llamar ahora mismo al +525588974249, pero antes de que cuelgue\u2014\u00bfal menos puedes confirmar que mi caso va a estar marcado como URGENTE cuando llame? Porque honestamente estoy al borde de la paciencia y necesito que esto se resuelva hoy mismo, por favor.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:33.701750+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 10,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:33.709198+00:00",
-      "duration_ms": 7.4479999999999995
-    },
-    {
-      "turn_number": 11,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, est\u00e1 BIEN! Ya voy a llamar ahora mismo, pero mira\u2014acabo de darme cuenta de que tengo dos reparaciones en proceso: mi Galaxy S24 Ultra con la pantalla rota, que es la orden 4151234567 y todav\u00eda estoy esperando a que llegue la refacci\u00f3n, y mi Galaxy Watch6 que dej\u00e9 en garant\u00eda hace unos 20 d\u00edas con la orden 4149876543\u2014\u00bfesto va a afectar que me atiendan r\u00e1pido para el televisor o qu\u00e9, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:36.157054+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 11,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:36.161360+00:00",
-      "duration_ms": 4.306
-    },
-    {
-      "turn_number": 12,
-      "role": "user",
-      "message": "\u00a1Ay, por favor! Mira, ya entiendo que tengo que llamar, pero es que son casi las 7 de la noche y cierran en una hora\u2014\u00bfde verdad no hay forma de que T\u00da registres mi caso como urgente ahora mismo para que cuando llame no pierda m\u00e1s tiempo? Esto es incre\u00edble, llevo aqu\u00ed media hora y nada se resuelve.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:38.078636+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 12,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:38.085285+00:00",
-      "duration_ms": 6.649
-    },
-    {
-      "turn_number": 13,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 BIEN, ya voy a llamar al n\u00famero! Pero mira, cuando llame diles que es Valeria Mendoza Garc\u00eda, que mi televisor se da\u00f1\u00f3 HOY y que es URGENTE\u2014espero que al menos por tel\u00e9fono puedan ayudarme m\u00e1s r\u00e1pido que aqu\u00ed, porque honestamente esto ha sido una p\u00e9rdida de tiempo total.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:39.972316+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 13,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:39.976345+00:00",
-      "duration_ms": 4.029
-    },
-    {
-      "turn_number": 14,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, YA voy a llamar! Pero mira, una \u00faltima cosa\u2014\u00bfme puedes al menos decir si ese n\u00famero que me diste es para consultas generales o si hay una extensi\u00f3n espec\u00edfica para casos URGENTES de reparaci\u00f3n a domicilio? Porque no quiero perder tiempo esperando en l\u00ednea si me van a transferir a otro lado.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:42.582142+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 14,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:47.656289+00:00",
-      "duration_ms": 5074.147
-    },
-    {
-      "turn_number": 15,
-      "role": "user",
-      "message": "\u00a1Ay, Dios m\u00edo! Mira, ya entiendo, voy a llamar AHORA MISMO al +525588974249, pero te digo que esto es absolutamente frustrante\u2014llevo aqu\u00ed media hora y lo \u00fanico que me has dado es un n\u00famero de tel\u00e9fono que ya deber\u00eda tener. \u00a1Espero que cuando hable con alguien de verdad puedan resolver esto porque mi televisor se da\u00f1\u00f3 HOY y no puedo esperar m\u00e1s!",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:49.504540+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 15,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:51.610395+00:00",
-      "duration_ms": 2105.855
+      "timestamp": "2026-07-29 15:56:36.499309+00:00",
+      "duration_ms": 2.765
     }
   ],
-  "total_turns": 30,
+  "total_turns": 1,
   "success": false,
-  "failure_reason": "Persona gave up after 15 turns",
-  "outcome": "user_abandoned",
+  "failure_reason": "Agent error: Cannot connect to host localhost:3098 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 3098, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 3098)]",
+  "outcome": null,
   "tools_called_sequence": [],
   "tool_results": [],
   "chaos_events": [],
-  "llm_calls": 15,
+  "llm_calls": 1,
   "tool_calls_count": 0,
-  "tokens_used": 28665,
-  "cost_usd": 0.03454499999999999,
+  "tokens_used": 522,
+  "cost_usd": 0.000794,
   "trace_file": null
 }

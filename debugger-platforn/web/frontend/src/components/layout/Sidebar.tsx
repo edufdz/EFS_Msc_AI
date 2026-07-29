@@ -57,7 +57,7 @@ export default function Sidebar() {
         className="px-5 py-4 border-b border-border cursor-pointer"
         onClick={() => navigate('/')}
       >
-        <h1 className="text-lg font-semibold tracking-tight text-pearl">Plavio</h1>
+        <h1 className="text-lg font-semibold tracking-tight text-pearl">Agent-Testing Platform</h1>
         <p className="text-[11px] text-text-muted mt-0.5 uppercase tracking-wider">Trust your AI workforce</p>
       </div>
 

@@ -1,142 +1,34 @@
 {
   "test_id": "ae1fdcae-473e-434a-ae9d-73791588d9a3",
   "test_number": 26,
-  "status": "passed",
+  "status": "error",
   "scenario_title": "Correcci\u00f3n de informaci\u00f3n de cliente incorrecta",
   "persona_name": "Diana Kowalski",
   "difficulty": "medium",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:16.962197+00:00",
-  "completed_at": "2026-07-24 15:26:28.444889+00:00",
-  "duration_sec": 11.482692,
+  "started_at": "2026-07-29 15:56:42.121610+00:00",
+  "completed_at": "2026-07-29 15:56:43.498875+00:00",
+  "duration_sec": 1.377265,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito cambiar mi n\u00famero de tel\u00e9fono en la cusnta porque ya no uso ese n\u00famero y no quiero perder las notificaciones de miis reparaciones. \u00bfEs r\u00e1pido esto o me va a tomar todo el d\u00eda?",
+      "message": "Hola, mira, necesito acmbiar mi n\u00famero de tel\u00e9fono y direcci\u00f3n en mi cuenta porque me acabo de mudar y no quiero perder mis \u00f3rdenes de reparaci\u00f3n. \u00bfPuedes ayudarme con eo r\u00e1pido?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.540367+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 1,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.544223+00:00",
-      "duration_ms": 3.856
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Espera, espera... eso es solo para consultar el estado, pero yo necesito actualiazr mi contacto ahora mismo en el sistema. \u00bfNo puedes hacer eso desde ah\u00ed? Miraa, tengo dos reeparaciones en proceso y si no cambio el n\u00famero pronto ovy a perder las notificaciones, as\u00ed que necesito que me ayudes de una vez.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:20.255315+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.609663+00:00",
-      "duration_ms": 1354.3480000000002
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Mira, no estoy pidiendo que consultes el estado, \u00a1ya te lo dije! Necesito hablar con aguien que PUEDA actualizaar mi n\u00famero en el sistema AHORA, no ma\u00f1ana o en dos horas. \u00bfMe pasas con un supervisor o alguien que reamlente pueda hacer esto, o voy a tener que ir personalmente a la tienda?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.474309+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.479748+00:00",
-      "duration_ms": 5.439
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "\u00a1Esto es rid\u00edculo! Llevo tres mensajes dici\u00e9ndote que NO quuiero consultar el estado, que necesito ACTUALIZzR mi contacto, y t\u00fa isgues d\u00e1ndome lo mismo. Mira, voy a ir personalmente a la tienda porque claramente aqu\u00ed no puedo resolver nada\u2014\u00bfa qu\u00e9 hora cierran exactamente hoy?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.614043+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.620880+00:00",
-      "duration_ms": 6.837000000000001
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "\u00a1Ya basta! Est\u00e1 claro que este chatbot no sirve para nada. Mira, voy a ir a la tienda hoy mismo, pero antes dime: \u00bfa qu\u00e9 hoora exactamente cierran? Porque si me dices qe a las 19:00 y llego a las 18:50, voy a explotar.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:27.356753+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
-      "tool_calls": [
-        {
-          "tool_name": "escalate_to_human",
-          "tool_input": {
-            "reason": "complaint_escalation"
-          },
-          "tool_output": {
-            "escalated": true,
-            "escalated_at": "2026-07-24T15:26:28.443Z",
-            "reason": "complaint_escalation"
-          },
-          "result": {
-            "status": "ok",
-            "data": {
-              "escalated": true,
-              "escalated_at": "2026-07-24T15:26:28.443Z",
-              "reason": "complaint_escalation"
-            }
-          }
-        }
-      ],
-      "timestamp": "2026-07-24 15:26:28.444385+00:00",
-      "duration_ms": 1087.6319999999998
+      "timestamp": "2026-07-29 15:56:43.496074+00:00",
+      "duration_ms": 2.711
     }
   ],
-  "total_turns": 10,
-  "success": true,
-  "failure_reason": null,
-  "outcome": "escalated_to_human",
-  "tools_called_sequence": [
-    "escalate_to_human"
-  ],
-  "tool_results": [
-    {
-      "tool_name": "escalate_to_human",
-      "arguments": null,
-      "result": {
-        "status": "ok",
-        "data": {
-          "escalated": true,
-          "escalated_at": "2026-07-24T15:26:28.443Z",
-          "reason": "complaint_escalation"
-        }
-      },
-      "success": true
-    }
-  ],
+  "total_turns": 1,
+  "success": false,
+  "failure_reason": "Agent error: Cannot connect to host localhost:3098 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 3098, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 3098)]",
+  "outcome": null,
+  "tools_called_sequence": [],
+  "tool_results": [],
   "chaos_events": [],
-  "llm_calls": 5,
-  "tool_calls_count": 1,
-  "tokens_used": 5176,
-  "cost_usd": 0.006916,
+  "llm_calls": 1,
+  "tool_calls_count": 0,
+  "tokens_used": 461,
+  "cost_usd": 0.000725,
   "trace_file": null
 }

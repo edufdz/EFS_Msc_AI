@@ -6,16 +6,16 @@
   "persona_name": "Rachel Nguyen",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:05.962630+00:00",
-  "completed_at": "2026-07-24 15:26:37.833693+00:00",
-  "duration_sec": 31.871063,
+  "started_at": "2026-07-29 15:58:52.533284+00:00",
+  "completed_at": "2026-07-29 15:59:17.120395+00:00",
+  "duration_sec": 24.587111,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, tengo dos n\u00fameros: 45892 y TRK987654. No s\u00e9 cu\u00e1l es mi n\u00famero de orden y cu\u00e1l es el de seguimiento. Intent\u00e9 buscar ambos en su sitio pero nada aparece. \u00bfCu\u00e1l deber\u00eda usar para rastrear mi compra de hace nua semana?",
+      "message": "Hola, tengo dos n\u00fameros: 45892 y TRK987654. No s\u00e9 cu\u00e1l es mi n\u00famero de orden y cu\u00e1l es el de seguimiento. Intent\u00e9 buscar ambos en su sitio pero nada aparece. \u00bfCu\u00e1l deber\u00eda usar praa rastrear mi compra de hace una semana?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:06.982718+00:00",
+      "timestamp": "2026-07-29 15:58:53.552118+00:00",
       "duration_ms": 0.0
     },
     {
@@ -23,15 +23,15 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:06.990688+00:00",
-      "duration_ms": 7.97
+      "timestamp": "2026-07-29 15:58:53.563618+00:00",
+      "duration_ms": 11.5
     },
     {
       "turn_number": 2,
       "role": "user",
-      "message": "Espera, pero yo necesito saber ahora cu\u00e1l de estos dos n\u00fameros usar para rastrear mi compra, no quiero esperar a llamar ma\u00f1ana. \u00bfNo puedes simplemente verificr en el sistema cu\u00e1l es el n\u00famero de orden y cu\u00e1l es el de seguimiento para estos dos n\u00fameros que tengo?",
+      "message": "Entiendo, pero espere... esos n\u00fameros que mencion\u00e9, \u00bfno deber\u00eda poder buscarlos directamente en el sitio web isn tener que llamar? Adem\u00e1s, ya intent\u00e9 llamar hace dos d\u00edas y me dijeron que me contactar\u00edan, pero nada. \u00bfUsted no puede simplemente verificar en el sistema cu\u00e1l de los dos n\u00fameros es el correcto para rastrear mi compra?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:08.975781+00:00",
+      "timestamp": "2026-07-29 15:58:55.567741+00:00",
       "duration_ms": 0.0
     },
     {
@@ -39,181 +39,69 @@
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:08.981516+00:00",
-      "duration_ms": 5.734999999999999
+      "timestamp": "2026-07-29 15:58:55.578891+00:00",
+      "duration_ms": 11.15
     },
     {
       "turn_number": 3,
       "role": "user",
-      "message": "Mira, entiendo que necesito llamar, peo \u00bfno es un poco absurdo que tu sistema no pueda simpplemente decirme cu\u00e1l de estos dos n\u00fameros corresponde a mi orden? Tengo prisa y uno de estos n\u00fameros es de una reparaci\u00f3n que dej\u00e9 hace semanas, as\u00ed que al menos dime: \u00bfel 45892 o el TRK987654 es el que deber\u00eda usar para rastrear mis reparaciones?",
+      "message": "Mira, ya llam\u00e9 a ese n\u00famero hace dos d\u00edas y nadie me ha devuelto la llamada, as\u00ed que no voy a perder m\u00e1s tiempo llamando de nuevo. \u00bfNo tienes acceso al sistema ah\u00ed mismo para verificar estos n\u00fameros y decirme cu\u00e1l usar? Esto es frustrante porque solo necesito saber si es 4582 o TRK987654 para rastrear mi compra.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.024832+00:00",
+      "timestamp": "2026-07-29 15:58:57.290427+00:00",
       "duration_ms": 0.0
     },
     {
       "turn_number": 3,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.030140+00:00",
-      "duration_ms": 5.308
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, esto es frustrante, llevo esperando respuesta desde hace d\u00edas y solo me das el mismo n\u00famero de tel\u00e9fono una y otra vez. Tengo dos reparaciones en proceso: mi Glaxy S24 Ultra con la pantalla rota, que es la orden 4151234567 y todav\u00eda estoy ewperando a qe llegue la refacci\u00f3n, y mi Galaxy Watch6 que dej\u00e9 en garant\u00eda hace unos 20 d\u00edas con la orden 4149876543. \u00bfNo puedes al menos verificar el estado de estas \u00f3rdenes directamente en tu sistema en lugar de decirme que llame ma\u00f1ana?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:14.166754+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:14.173408+00:00",
-      "duration_ms": 6.654
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "Mira, ya te di mis n\u00fameros de orden: 4151234567 y 4149876543. \u00bfDe verdad no puedes acceder a eso en tu sistema para decirme al menos si ya lleg\u00f3 la refacci\u00f3n del S24 Ultra o en qu\u00e9 estado est\u00e1 el Watch6? Esto es rid\u00edculo, llevo m\u00e1s de una semana esperando y solo me das el mismo n\u00fajero de tel\u00e9fono.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:15.976412+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.778282+00:00",
-      "duration_ms": 801.87
-    },
-    {
-      "turn_number": 6,
-      "role": "user",
-      "message": "Est\u00e1 bien, entiendo que necesito llamar, pero al menos dime: \u00bfes posible que alguien verifique mi caso antes de que llame ma\u00f1ana? Tengo mucha prisa porque una de esas reparaciones ya lleva m\u00e1s de tres semanas y realmente necesito saber si la refacci\u00f3n lleg\u00f3 o cu\u00e1ndo estar\u00e1 lista.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.412130+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 6,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.416311+00:00",
-      "duration_ms": 4.181
-    },
-    {
-      "turn_number": 7,
-      "role": "user",
-      "message": "Est\u00e1 bien, voy a llamar ma\u00f1ana, pero necesito confirmar una cosa: \u00bfel horario de 10:00-19:00 es en horario de la Ciudad de M\u00e9xico? Y dime, \u00bfcu\u00e1ndo exactamente deber\u00eda llamar para que alguien ya haya revisado mi caso y upeda darme una respuesta directa sin tener que esperar m\u00e1s?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.977497+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 7,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.982295+00:00",
-      "duration_ms": 4.798
-    },
-    {
-      "turn_number": 8,
-      "role": "user",
-      "message": "\u00a1Esto es completamente inceptable! Llevo d\u00edas esperando y ustedes solo me dan el mismo n\u00famero una y otra vez sin resolver nada. \u00bfDe verdad no hay otra forma de qye alguien revise mi caso ahora mismo en lugar de hacerme esperar hasta ma\u00f1ana?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.483487+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 8,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.486897+00:00",
-      "duration_ms": 3.4099999999999997
-    },
-    {
-      "turn_number": 9,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, voy a llamar ma\u00f1ana! Pero antes de colgar, \u00bfppuedo al menos dejar un mensaje o una nota en mi cuenta para que cuando llame, ya tengan revisado mi caso y no tenga que explicar toso de nuevo? Realmente necesito saber el estado de esas dos reparaciones lo antes posible.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.284191+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 9,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.287719+00:00",
-      "duration_ms": 3.528
-    },
-    {
-      "turn_number": 10,
-      "role": "user",
-      "message": "\u00a1Ya! Est\u00e1 claro que no puedo resolver esto por aqu\u00ed. Voy a llamar ma\u00f1ana a primera hora, pero francamente esto es inacceptable \u2013 llevo m\u00e1s de tres semanas esperando y nadie me da respuestas directas. \u00bfAl menos puedo dejar mis n\u00fameros de orden (4151234567 y 4149876543) registrados aqu\u00ed para que revisen mi caso antes de que llame?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.089143+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 10,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.093943+00:00",
-      "duration_ms": 4.8
-    },
-    {
-      "turn_number": 11,
-      "role": "user",
-      "message": "\u00a1Est\u00e1 bien, voy a llamar ma\u00f1ana! Pero dime, \u00bfesa direccci\u00f3n de la tienda que mencionaste est\u00e1 completa? Solo vi \"Calz. Gral.\" y necesito la direcci\u00f3n completa para ir en persona si es necesario, porque francamente no puedo esperar m\u00e1s por tel\u00e9fono.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:27.089998+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 11,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:28.069121+00:00",
-      "duration_ms": 979.1229999999999
-    },
-    {
-      "turn_number": 12,
-      "role": "user",
-      "message": "\u00a1Mira, la direcci\u00f3n est\u00e1 incompleta! Solo dice \"Calz. Gral.\" y necesito la direcci\u00f3n completa porque voy a ir en persona ma\u00f1ana temprano si es necesario\u2014no puedo seguir esperando por tel\u00e9fono cuando llevo m\u00e1s de tres semanas. \u00bfMe das la direcci\u00f3n completa o al menos el nombre de la toenda para poder buscarla?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:29.735591+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 12,
       "role": "agent",
       "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral. Mariano Escobedo 476, Chapultepec Morales, Anzures, Miguel Hidalgo, 11590 Ciudad de M\u00e9xico, CDMX.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:30.953727+00:00",
-      "duration_ms": 1218.1360000000002
+      "timestamp": "2026-07-29 15:59:00.096556+00:00",
+      "duration_ms": 2806.129
     },
     {
-      "turn_number": 13,
+      "turn_number": 4,
       "role": "user",
-      "message": "\u00a1Finalmente! Gracias por la direcci\u00f3n completa. Voy a ir ma\u00f1ana temprano a Calz. Gral. Mariano Escobedo 476 para que revisen personalmente mis \u00f3rdenes 4151234567 y 4149876543, porque francamente ya no puedo esperar m\u00e1s por tel\u00e9fono\u2014llevo m\u00e1s de tres semanas y necesito saber si la refacci\u00f3n del S24 Ultrra lleg\u00f3 o cu\u00e1ndo estar\u00e1 listto el Watch6.",
+      "message": "Est\u00e1 bien, entiendo que tengo que llamar, pero mire... ya pas\u00f3 una semana desde mi compra y nadie me ha dado respuesta. \u00bfNo podr\u00eda al menos decirme si uno de estos n\u00fameros es un n\u00famero de orden de TechRepair y el otro es de seguimiengo de env\u00edo? Solo eso, para saber qu\u00e9 estoy biscando.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:33.363251+00:00",
+      "timestamp": "2026-07-29 15:59:01.829149+00:00",
       "duration_ms": 0.0
     },
     {
-      "turn_number": 13,
+      "turn_number": 4,
       "role": "agent",
-      "message": "Entendido, Valeria. Aqu\u00ed est\u00e1 el estado de tus \u00f3rdenes:\n\n**Orden 4151234567 - Galaxy S24 Ultra 256GB (D2D)**\nEstado: Pendiente. Se detect\u00f3 pantalla rota y respuesta t\u00e1ctil intermitente. Se realizar\u00e1 reemplazo del conjunto OCTA. Costo: $3,480 MXN. Fecha estimada de finalizaci\u00f3n: 29 de julio.\n\n",
+      "message": "Veo que tienes m\u00e1s de una orden con nosotros. \u00bfMe compartes el n\u00famero de folio de la que quieres consultar? As\u00ed te doy la informaci\u00f3n correcta.",
+      "tool_calls": [],
+      "timestamp": "2026-07-29 15:59:03.980715+00:00",
+      "duration_ms": 2151.566
+    },
+    {
+      "turn_number": 5,
+      "role": "user",
+      "message": "Ah, bueno... tengo dos reparaciones en proceso: mi Galaxy S24 Ultra con la pantalla rota, que es la oden 4151234567 y todav\u00eda estoy espearndo a que llegue la refacci\u00f3n, y mi Galaxy Watch6 uqe dej\u00e9 en garant\u00eda hace unos 20 d\u00edas, orden 4149876543. Pero estos n\u00fameros que mencion\u00e9 al principio, 45892 y TRK987654, no coinciden con ninguno de esos, as\u00ed que no s\u00e9 de d\u00f3nde salieron.",
+      "tool_calls": [],
+      "timestamp": "2026-07-29 15:59:06.540555+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 5,
+      "role": "agent",
+      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
+      "tool_calls": [],
+      "timestamp": "2026-07-29 15:59:08.331694+00:00",
+      "duration_ms": 1791.1390000000001
+    },
+    {
+      "turn_number": 6,
+      "role": "user",
+      "message": "Espera, \u00bfdiagn\u00f3stico? Yo no estoy hablando de un diagn\u00f3stico, estoy hablando de mi Galaxy S24 Ultra que ya tiene la orden 4151234567 y lleva una semana esperando la refacci\u00f3n. \u00bfAcaso no tienen esa informaci\u00f3n en el sistema o qu\u00e9 est\u00e1 pasando aqu\u00ed?",
+      "tool_calls": [],
+      "timestamp": "2026-07-29 15:59:09.820331+00:00",
+      "duration_ms": 0.0
+    },
+    {
+      "turn_number": 6,
+      "role": "agent",
+      "message": "Hola Valeria, s\u00ed tengo toda la informaci\u00f3n de tu Galaxy S24 Ultra en el sistema:\n\n**Orden #4151234567 - Galaxy S24 Ultra 256GB (D2D)**\n- Ingres\u00f3: 20 de julio\n- Estado: Pendiente\n- Diagn\u00f3stico: Pantalla fracturada tras ca\u00edda, ensamble OCTA fracturado, respuesta t\u00e1ctil intermitente\n- Reparaci\u00f3n: Reemplazo de ensamble OCTA completo (modelo SM-S928B)\n- **Estatus actual: Esperando llegada de refacci\u00f3n**\n- Fecha estimada de finalizaci\u00f3n: 3 de agosto\n- Costo: $3,480 MXN\n- El equipo ser\u00e1 enviado a tu domicilio registrado una vez completada la reparaci\u00f3n\n\nLa refacci\u00f3n est\u00e1 en tr\u00e1nsito.",
       "tool_calls": [
         {
           "tool_name": "order_lookup",
@@ -228,8 +116,8 @@
             "status_label": "Pendiente",
             "model_name": "Galaxy S24 Ultra 256GB",
             "repair_cost_mxn": 3480,
-            "req_date": "2026-07-15",
-            "estimated_completion": "2026-07-29",
+            "req_date": "2026-07-20",
+            "estimated_completion": "2026-08-03",
             "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
             "repair_action_desc": "Replace OCTA display assembly SM-S928B",
             "iris_condition_desc": "Screen cracked after drop, device powers on",
@@ -260,8 +148,8 @@
               "status_label": "Pendiente",
               "model_name": "Galaxy S24 Ultra 256GB",
               "repair_cost_mxn": 3480,
-              "req_date": "2026-07-15",
-              "estimated_completion": "2026-07-29",
+              "req_date": "2026-07-20",
+              "estimated_completion": "2026-08-03",
               "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
               "repair_action_desc": "Replace OCTA display assembly SM-S928B",
               "iris_condition_desc": "Screen cracked after drop, device powers on",
@@ -296,7 +184,7 @@
             "model_name": "Galaxy Watch6 44mm",
             "repair_cost_mxn": 0,
             "warranty_type": "I",
-            "req_date": "2026-07-04"
+            "req_date": "2026-07-09"
           },
           "result": {
             "status": "ok",
@@ -307,16 +195,16 @@
               "model_name": "Galaxy Watch6 44mm",
               "repair_cost_mxn": 0,
               "warranty_type": "I",
-              "req_date": "2026-07-04"
+              "req_date": "2026-07-09"
             }
           }
         }
       ],
-      "timestamp": "2026-07-24 15:26:37.833204+00:00",
-      "duration_ms": 4469.953
+      "timestamp": "2026-07-29 15:59:17.119128+00:00",
+      "duration_ms": 7298.7970000000005
     }
   ],
-  "total_turns": 26,
+  "total_turns": 12,
   "success": true,
   "failure_reason": null,
   "outcome": "order_status_provided",
@@ -338,8 +226,8 @@
           "status_label": "Pendiente",
           "model_name": "Galaxy S24 Ultra 256GB",
           "repair_cost_mxn": 3480,
-          "req_date": "2026-07-15",
-          "estimated_completion": "2026-07-29",
+          "req_date": "2026-07-20",
+          "estimated_completion": "2026-08-03",
           "defect_desc": "Cracked AMOLED panel, touch IC intermittent",
           "repair_action_desc": "Replace OCTA display assembly SM-S928B",
           "iris_condition_desc": "Screen cracked after drop, device powers on",
@@ -375,16 +263,16 @@
           "model_name": "Galaxy Watch6 44mm",
           "repair_cost_mxn": 0,
           "warranty_type": "I",
-          "req_date": "2026-07-04"
+          "req_date": "2026-07-09"
         }
       },
       "success": true
     }
   ],
   "chaos_events": [],
-  "llm_calls": 13,
+  "llm_calls": 6,
   "tool_calls_count": 2,
-  "tokens_used": 24950,
-  "cost_usd": 0.03011,
+  "tokens_used": 7349,
+  "cost_usd": 0.009705,
   "trace_file": null
 }

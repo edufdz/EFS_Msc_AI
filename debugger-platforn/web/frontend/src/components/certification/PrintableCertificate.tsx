@@ -37,7 +37,7 @@ export default function PrintableCertificate({ report, onClose }: PrintableCerti
         useCORS: true,
       })
       const link = document.createElement('a')
-      link.download = `plavio-cert-${report.certification_id}.png`
+      link.download = `agent-testing-platform-cert-${report.certification_id}.png`
       link.href = canvas.toDataURL('image/png')
       link.click()
     } catch (err) {
@@ -83,7 +83,7 @@ export default function PrintableCertificate({ report, onClose }: PrintableCerti
         <div className="px-16 py-12 flex flex-col items-center text-center min-h-[1060px]">
           {/* Header */}
           <div className="mb-2">
-            <div className="text-sm tracking-[0.3em] uppercase text-text-muted font-medium">Plavio Agent Debugger</div>
+            <div className="text-sm tracking-[0.3em] uppercase text-text-muted font-medium">Agent-Testing Platform</div>
           </div>
 
           <div className="w-32 border-t my-4" style={{ borderColor: tierInfo.color }} />
@@ -161,7 +161,7 @@ export default function PrintableCertificate({ report, onClose }: PrintableCerti
 
           {/* Watermark text */}
           <div className="text-[10px] text-text-muted tracking-wider">
-            Verified by Plavio Agent Certification System
+            Verified by Agent-Testing Platform Certification System
           </div>
         </div>
       </div>

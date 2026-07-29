@@ -195,7 +195,10 @@ def _build_nx_graph(agent_map: dict) -> nx.DiGraph:
 
 # ── PNG Renderer ────────────────────────────────────────────────────────────
 
-def _render_png(agent_map: dict, output_path: str) -> str:
+def _render_png(agent_map: dict, output_path: str, *, dpi: int = 150,
+                title_framework: bool = True, font_scale: float = 1.0,
+                spread: float = 1.0, max_per_row: int = 8,
+                legend_scale: float = 1.0) -> str:
     g = _build_nx_graph(agent_map)
     if not g.nodes:
         return output_path
@@ -205,14 +208,14 @@ def _render_png(agent_map: dict, output_path: str) -> str:
         ntype = data.get("type", "tool")
         data["subset"] = LAYER_MAP.get(ntype, 2)
     _spread_workflow_layers(g)
-    _wrap_wide_layers(g)
+    _wrap_wide_layers(g, max_per_row=max_per_row)
 
     n_tools = sum(1 for _, d in g.nodes(data=True) if d.get("type") == "tool")
     layer_counts: dict[int, int] = {}
     for _, d in g.nodes(data=True):
         layer_counts[d["subset"]] = layer_counts.get(d["subset"], 0) + 1
     widest = max(layer_counts.values())
-    fig_w = max(16, widest * 4.0)
+    fig_w = max(16, widest * 4.0) * spread
     fig_h = max(10, len(layer_counts) * 1.8)
     # Node boxes are sized in axis units while text is in points, so widening
     # the figure must shrink the boxes proportionally or they overlap.
@@ -275,14 +278,14 @@ def _render_png(agent_map: dict, output_path: str) -> str:
         label = _node_label(data)
         ntype = data.get("type", "")
 
-        font_size = 14 if ntype == "agent" else 10
+        font_size = (14 if ntype == "agent" else 10) * font_scale
         font_weight = "bold" if ntype in ("agent", "orchestrator") else "normal"
 
         # Box dimensions scale with label
         lines = label.split("\n")
         max_chars = max(len(l) for l in lines)
-        box_w = max(0.10, max_chars * 0.009 + 0.03) * scale_x
-        box_h = max(0.05, len(lines) * 0.03 + 0.01) * scale_y
+        box_w = max(0.10, max_chars * 0.009 + 0.03) * scale_x * font_scale
+        box_h = max(0.05, len(lines) * 0.03 + 0.01) * scale_y * font_scale
 
         bbox = FancyBboxPatch(
             (x - box_w / 2, y - box_h / 2), box_w, box_h,
@@ -304,8 +307,12 @@ def _render_png(agent_map: dict, output_path: str) -> str:
     meta = agent_map.get("metadata", {})
     framework = meta.get("framework", "unknown")
     agent_name = meta.get("name", "Agent")
-    title = f"{agent_name} ({framework}) — {n_tools} tools"
-    ax.set_title(title, color=TEXT_COLOR, fontsize=16, fontweight="bold", pad=20)
+    if title_framework:
+        title = f"{agent_name} ({framework}) — {n_tools} tools"
+    else:
+        title = f"{agent_name} — {n_tools} tools"
+    ax.set_title(title, color=TEXT_COLOR, fontsize=16 * font_scale,
+                 fontweight="bold", pad=20)
 
     # Legend
     legend_items = [
@@ -322,13 +329,17 @@ def _render_png(agent_map: dict, output_path: str) -> str:
     ]
     legend = ax.legend(
         handles=legend_items, loc="upper right",
-        fontsize=8, facecolor="#1e293b", edgecolor="#334155",
+        fontsize=8 * font_scale * legend_scale,
+        facecolor="#1e293b", edgecolor="#334155",
         labelcolor=TEXT_COLOR, framealpha=0.9,
+        handlelength=1.6, handleheight=1.0,
+        borderpad=0.6 * legend_scale ** 0.5,
+        labelspacing=0.5,
     )
-    legend.get_frame().set_linewidth(0.5)
+    legend.get_frame().set_linewidth(0.5 * legend_scale)
 
     plt.tight_layout()
-    plt.savefig(output_path, dpi=150, facecolor=BG_COLOR, bbox_inches="tight", pad_inches=0.5)
+    plt.savefig(output_path, dpi=dpi, facecolor=BG_COLOR, bbox_inches="tight", pad_inches=0.5)
     plt.close(fig)
     return output_path
 

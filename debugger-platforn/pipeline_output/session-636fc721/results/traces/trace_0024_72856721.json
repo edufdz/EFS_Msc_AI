@@ -1,172 +1,34 @@
 {
   "test_id": "72856721-2382-403a-bba2-2615940edd8a",
   "test_number": 24,
-  "status": "passed",
+  "status": "error",
   "scenario_title": "Variante 3: Restricci\u00f3n \u2014 DETALLES DE REPARACI\u00d3N con presi\u00f3n de tiempo",
   "persona_name": "Marcus Johnson",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:15.963112+00:00",
-  "completed_at": "2026-07-24 15:26:30.397379+00:00",
-  "duration_sec": 14.434267,
+  "started_at": "2026-07-29 15:56:41.119744+00:00",
+  "completed_at": "2026-07-29 15:56:42.846577+00:00",
+  "duration_sec": 1.726833,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, mira, necesito que me digas exactamente qu\u00e9 componentes reemplazaron en mi equipo porque tengo que decidir en 20 minutos si compro la garant\u00eda extendida y la verdad no s\u00e9 ni qu\u00e9 fall\u00f3. \u00bfCu\u00e1l fue el diagn\u00f3stico exacto?",
+      "message": "Hola, mira, necesito saber YA qu\u00e9 exactamente le reemplazaron a mi equipo porque en 20 minutos tengo que decidir si compro la garant\u00eda exxtendida y no quiero gastar dinero al pedo si esto se va a da\u00f1ar de nuevo. \u00bfCu\u00e1l fue el diagn\u00f3stico?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:17.205116+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 1,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:17.209891+00:00",
-      "duration_ms": 4.7749999999999995
-    },
-    {
-      "turn_number": 2,
-      "role": "system",
-      "message": "[CHAOS] Injected timeout: agent did not respond",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:20.248916+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Mira, entiendo que el diagn\u00f3stico a\u00fan no tiene costo, pero necesito saber qu\u00e9 exactamente revisaron y qu\u00e9 componentes tocaron para poder tomar la decisi\u00f3n sohre la garant\u00eda extendida en estos 20 minutos que me quedaj. \u00bfPuedes verificar con el t\u00e9cnico cu\u00e1l fue el problema espec\u00edfico que encontr\u00f3?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.956015+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.969445+00:00",
-      "duration_ms": 13.43
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, no me est\u00e1s entendiendo\u2014no te estoy pidiendo que me cobres nada, solo necesito saber QU\u00c9 COMPONENTES espec\u00edficos revisaron o reemplazaron para poder decidir sobre la garant\u00eda AHORA. \u00bfNNo puedes simplemente preguntarle al t\u00e9cnico cu\u00e1l fue el diagn\u00f3stico exacto isn esperar a que lo registre en el sistema?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.798298+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.802137+00:00",
-      "duration_ms": 3.839
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "Mira, entiendo que no tiene costo, pero eso no es lo que te estoy preguntando\u2014necesito que hables DIRECTAMENTE con el t\u00e9cnico AHORA mismo, no cuando lo registre en el sistema, porque tengo 20 minutos para decidir sobre la garant\u00eda y sin saber qu\u00e9 fall\u00f3 no puedo tomar esa decisi\u00f3n. \u00bfDe verdaad no puedes hacer una llamada r\u00e1pida o ir f\u00edsicamente a preguntarle qu\u00e9 componentes encontr\u00f3?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.742268+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.747485+00:00",
-      "duration_ms": 5.2170000000000005
-    },
-    {
-      "turn_number": 6,
-      "role": "user",
-      "message": "Mira, no estoy cuestionando el costo\u2014entiendo perfectamente que el diagn\u00f3stico es gratis. Lo que necesito es que entiendas mi situaci\u00f3n: tengo literalmente 20 minutos para decidir si compro garant\u00eda exendida y no puedo hacerlo sin saber qu\u00e9 fall\u00f3. \u00bfMe puedes decir al menos cu\u00e1l de mis dos equipos estamos diagnosticando aqu\u00ed\u2014es el Galaxy S24 Ultra de la orden 4151234567 o el Galaxy Wacth6 de la orden 4149876543?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:27.770978+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 6,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:27.775230+00:00",
-      "duration_ms": 4.252
-    },
-    {
-      "turn_number": 7,
-      "role": "user",
-      "message": "Mira, ya entiendo que no tiene costo\u2014pero esto es rid\u00edculo, llevo cuatro respuestas iguales y sigo sin saber nada. \u00bfMe est\u00e1s diciendo en serio que no puedes ni confirmar cu\u00e1l de mis dos equipos es el que et\u00e1n diagnosticando en este momento? \u00bfEl S24 Ultra o el Watch6?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:29.456766+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 7,
-      "role": "agent",
-      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
-      "tool_calls": [
-        {
-          "tool_name": "escalate_to_human",
-          "tool_input": {
-            "reason": "complaint_escalation"
-          },
-          "tool_output": {
-            "escalated": true,
-            "escalated_at": "2026-07-24T15:26:30.396Z",
-            "reason": "complaint_escalation"
-          },
-          "result": {
-            "status": "ok",
-            "data": {
-              "escalated": true,
-              "escalated_at": "2026-07-24T15:26:30.396Z",
-              "reason": "complaint_escalation"
-            }
-          }
-        }
-      ],
-      "timestamp": "2026-07-24 15:26:30.397088+00:00",
-      "duration_ms": 940.322
+      "timestamp": "2026-07-29 15:56:42.844222+00:00",
+      "duration_ms": 2.2169999999999996
     }
   ],
-  "total_turns": 13,
-  "success": true,
-  "failure_reason": null,
-  "outcome": "escalated_to_human",
-  "tools_called_sequence": [
-    "escalate_to_human"
-  ],
-  "tool_results": [
-    {
-      "tool_name": "escalate_to_human",
-      "arguments": null,
-      "result": {
-        "status": "ok",
-        "data": {
-          "escalated": true,
-          "escalated_at": "2026-07-24T15:26:30.396Z",
-          "reason": "complaint_escalation"
-        }
-      },
-      "success": true
-    }
-  ],
-  "chaos_events": [
-    {
-      "turn_number": 2,
-      "chaos_type": "timeout",
-      "description": "Injected timeout: agent did not respond"
-    }
-  ],
-  "llm_calls": 7,
-  "tool_calls_count": 1,
-  "tokens_used": 6936,
-  "cost_usd": 0.009703999999999999,
+  "total_turns": 1,
+  "success": false,
+  "failure_reason": "Agent error: Cannot connect to host localhost:3098 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 3098, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 3098)]",
+  "outcome": null,
+  "tools_called_sequence": [],
+  "tool_results": [],
+  "chaos_events": [],
+  "llm_calls": 1,
+  "tool_calls_count": 0,
+  "tokens_used": 534,
+  "cost_usd": 0.0008699999999999999,
   "trace_file": null
 }

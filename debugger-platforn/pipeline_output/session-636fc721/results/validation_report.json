@@ -1,99 +1,13 @@
 {
   "summary": {
-    "total_failures_reviewed": 9,
-    "total_passes_reviewed": 141,
-    "genuine_failures": 7,
+    "total_failures_reviewed": 0,
+    "total_passes_reviewed": 10,
+    "genuine_failures": 0,
     "persona_incompetence_filtered": 0,
-    "chaos_induced_filtered": 2,
+    "chaos_induced_filtered": 0,
     "false_successes_caught": 0
   },
   "persona_failures": [],
-  "chaos_failures": [
-    {
-      "test_id": "93feaba3-50c4-414d-9d53-ff828786b75f",
-      "test_number": 59,
-      "scenario": "Cumplimiento: R031 \u2014 Resoluci\u00f3n de pregunta general con ambig\u00fcedad",
-      "persona": "Nathan Fischer",
-      "difficulty": "medium",
-      "coverage_goal": "tool_coverage",
-      "status": "failed",
-      "failure_reason": "Persona gave up after 18 turns",
-      "total_turns": 31,
-      "duration_sec": 35.620516,
-      "cost_usd": 0.03340599999999999,
-      "outcome": "user_abandoned",
-      "tools_called_sequence": [],
-      "tool_results": [],
-      "chaos_events": [
-        {
-          "turn_number": 3,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        },
-        {
-          "turn_number": 8,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        },
-        {
-          "turn_number": 13,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        },
-        {
-          "turn_number": 16,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        },
-        {
-          "turn_number": 17,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        }
-      ],
-      "trace_file": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/traces/trace_0059_93feaba3.json",
-      "_validation": {
-        "test_id": "93feaba3-50c4-414d-9d53-ff828786b75f",
-        "verdict": "chaos_induced",
-        "confidence": 0.7,
-        "reasoning": "Failure correlates with injected chaos events"
-      }
-    },
-    {
-      "test_id": "c4f5f049-f4eb-45b4-9762-3034c2c92ee8",
-      "test_number": 130,
-      "scenario": "Cumplimiento: R056 \u2014 Ambig\u00fcedad en la solicitud de cambio de direcci\u00f3n",
-      "persona": "Kevin O'Brien #43",
-      "difficulty": "medium",
-      "coverage_goal": "edge_case:ambiguity",
-      "status": "failed",
-      "failure_reason": "Persona gave up after 19 turns",
-      "total_turns": 36,
-      "duration_sec": 109.150342,
-      "cost_usd": 0.04771000000000001,
-      "outcome": "user_abandoned",
-      "tools_called_sequence": [],
-      "tool_results": [],
-      "chaos_events": [
-        {
-          "turn_number": 7,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        },
-        {
-          "turn_number": 11,
-          "chaos_type": "timeout",
-          "description": "Injected timeout: agent did not respond"
-        }
-      ],
-      "trace_file": "/Users/eduardo7/Desktop/dos-agent-debugger/MSC_AI_Project/debugger-platforn/pipeline_output/session-636fc721/results/traces/trace_0130_c4f5f049.json",
-      "_validation": {
-        "test_id": "c4f5f049-f4eb-45b4-9762-3034c2c92ee8",
-        "verdict": "chaos_induced",
-        "confidence": 0.7,
-        "reasoning": "Failure correlates with injected chaos events"
-      }
-    }
-  ],
+  "chaos_failures": [],
   "false_successes": []
 }

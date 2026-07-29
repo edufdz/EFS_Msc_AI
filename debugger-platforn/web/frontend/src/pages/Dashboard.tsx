@@ -6,8 +6,8 @@ import { useStore } from '../store'
 import ProgressStepper from '../components/shared/ProgressStepper'
 import type { CertificationReport, CertificationTier } from '../api/types'
 
-const PHASE_KEYS = ['a', 'b', 'c', 'd', 'cert'] as const
-const PHASE_LABELS: Record<string, string> = { a: 'A', b: 'B', c: 'C', d: 'D', cert: 'Cert' }
+const PHASE_KEYS = ['a', 'b', 'c'] as const
+const PHASE_LABELS: Record<string, string> = { a: 'A', b: 'B', c: 'C' }
 
 const TIER_COLORS: Record<string, { bg: string; text: string }> = {
   platinum: { bg: 'bg-blue-100', text: 'text-blue-700' },
@@ -74,14 +74,9 @@ export default function Dashboard() {
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Hero card */}
       <div className="bg-bg-card border border-border rounded-xl p-10 text-center">
-        <h1 className="text-2xl font-semibold tracking-tight text-pearl mb-3">
-          Plavio Agent Debugger
+        <h1 className="text-2xl font-semibold tracking-tight text-pearl mb-8">
+          Agent-Testing Platform
         </h1>
-        <p className="text-smoke mb-8 max-w-lg mx-auto text-sm leading-relaxed">
-          Analyze agent codebases, generate comprehensive test suites, execute them
-          with live monitoring, diagnose failures, and certify your agents.
-        </p>
-
         {sessionId ? (
           <div className="space-y-5">
             <ProgressStepper />
@@ -113,7 +108,7 @@ export default function Dashboard() {
             {sessions.map((s) => {
               const certResult = s.phase_results?.cert as unknown as CertificationReport | undefined
               const hasCert = s.phases_completed.includes('cert') && certResult
-              const completedCount = s.phases_completed.length
+              const completedCount = PHASE_KEYS.filter((p) => s.phases_completed.includes(p)).length
 
               return (
                 <div
@@ -145,7 +140,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex items-center gap-3 text-xs text-text-muted mt-0.5">
                         <span>{new Date(s.created_at).toLocaleString()}</span>
-                        <span>{completedCount}/5 phases</span>
+                        <span>{completedCount}/3 phases</span>
                         {hasCert && (
                           <span className="font-mono">Score: {certResult.overall_score.toFixed(1)}</span>
                         )}

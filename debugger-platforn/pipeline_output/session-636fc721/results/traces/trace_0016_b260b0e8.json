@@ -1,190 +1,34 @@
 {
   "test_id": "b260b0e8-6c88-425e-b74f-f444dd58e89b",
   "test_number": 16,
-  "status": "passed",
+  "status": "error",
   "scenario_title": "Variante 1: Ambig\u00fcedad \u2014 El cliente no especifica qu\u00e9 tipo de contacto necesita",
   "persona_name": "Brian Taylor #41",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:11.962964+00:00",
-  "completed_at": "2026-07-24 15:26:29.499188+00:00",
-  "duration_sec": 17.536224,
+  "started_at": "2026-07-29 15:56:37.118747+00:00",
+  "completed_at": "2026-07-29 15:56:39.116617+00:00",
+  "duration_sec": 1.99787,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, buenos d\u00edas. Tengo una pregunta sobre mi orden y posiblemente un problema de garant\u00eda, pero no estoy seguro a qui\u00e9n dirigirme por correo. \u00bfCu\u00e1l ser\u00eda el mejor email para contactarlos?",
+      "message": "Hola, buenos d\u00edas. Mire, tengo una pregunta sobre mi orden pero tambi\u00e9n podr\u00eda ser un tema de garant\u00eda, y la verdad no s\u00e9 bien a qui\u00e9n dirigirme por correo. \u00bfMe podr\u00eda decir cu\u00e1l es el mejor email para escribir?",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:15.081050+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 1,
-      "role": "agent",
-      "message": "El diagn\u00f3stico a\u00fan no tiene costo. Te aviso por aqu\u00ed cuando el t\u00e9cnico lo registre.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:15.088057+00:00",
-      "duration_ms": 7.007000000000001
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Ah, est\u00e1 bien, gracias por avisarme. Pero mi pregunta principal es: \u00bfcu\u00e1l es el correo de contacto que debo usar para escribirles directamente? Tengo dos reparaciones en proceso y quer\u00eda confirmar el estado de ambas por email, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.561494+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.565462+00:00",
-      "duration_ms": 3.968
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Entiendo, gracias por los n\u00fameros de tel\u00e9fono. Pero preferir\u00eda comunicarme por correo electr\u00f3nico si es posible, ya que tengo dos reparaciones en curso y me gustar\u00eda dejar constancia escrita de mis consultas. \u00bfTienen un email de soporte al cliente donde pueda escribir sobre mis \u00f3rdenes 4151234567 y 4149876543, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.212757+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.220973+00:00",
-      "duration_ms": 8.216
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, aprecio la informaci\u00f3n, pero ya llam\u00e9 y me dijeron que por tel\u00e9fono no pueden darme detalles espec\u00edficos de ambas reparaciones juntas. \u00bfNo hay un correo de soporte o un formulario en l\u00ednea donde pueda escribir directamente? Necesito dejar constancia escrita de mis consultas sobre estas dos \u00f3rdenes.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.855576+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.861378+00:00",
-      "duration_ms": 5.802
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "Mira, entiendo que me das el tel\u00e9fono, pero ya he llamado varias veces y cada vez me dicen algo diferente. Necesito un correo electr\u00f3nico o un formulario en l\u00ednea para dejar constancia escrita de mis consultas sobre mis dos \u00f3rdenes\u2014la 4151234567 de mi Galaxy S24 Ultra y la 4149876543 de mi Galaxy Watch6. \u00bfDe verdad no hay otra opci\u00f3n que no sea llamar, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:22.074230+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:22.078642+00:00",
-      "duration_ms": 4.412
-    },
-    {
-      "turn_number": 6,
-      "role": "user",
-      "message": "Mira, entiendo el horario y el tel\u00e9fono, pero ya he llamado varias veces y no me dan soluciones\u2014solo me pasan de un lado a otro. Necesito un correo electr\u00f3nico o un formulario en l\u00ednea, \u00bfno hay absolutamente ninguna otra forma de contactarlos por escrito? Esto es frustrante, realmente necesito dejar constancia de mis consultas sobre estas dos reparaciones, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.703285+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 6,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:23.707606+00:00",
-      "duration_ms": 4.321000000000001
-    },
-    {
-      "turn_number": 7,
-      "role": "user",
-      "message": "Mira, ya entiendo el tel\u00e9fono, pero llevo d\u00edas llamando y no avanzo\u2014me pasan de un departamento a otro sin resolver nada. \u00bfNo me puedes pasar directamente con un supervisor o gerente que tenga acceso a un correo de soporte? Necesito una soluci\u00f3n diferente porque esto no est\u00e1 funcionando, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:25.881461+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 7,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:27.884906+00:00",
-      "duration_ms": 2003.4450000000002
-    },
-    {
-      "turn_number": 8,
-      "role": "user",
-      "message": "Mira, entiendo que me das el mismo n\u00famero de tel\u00e9fono una y otra vez, pero eso no es una soluci\u00f3n\u2014ya he llamado m\u00faltiples veces y me tienen dando vueltas. \u00bfHay alg\u00fan gerente o supervisor disponible AHORA que pueda ayudarme con un correo de soporte o escalar esto de otra forma, porque francamente esto es inaceptable, please.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:29.494494+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 8,
-      "role": "agent",
-      "message": "Un asesor del equipo toma su caso directamente en los pr\u00f3ximos minutos para darle seguimiento puntual y resolver la situaci\u00f3n. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
-      "tool_calls": [
-        {
-          "tool_name": "escalate_to_human",
-          "tool_input": {
-            "reason": "complaint_escalation"
-          },
-          "tool_output": {
-            "escalated": true,
-            "escalated_at": "2026-07-24T15:26:29.498Z",
-            "reason": "complaint_escalation"
-          },
-          "result": {
-            "status": "ok",
-            "data": {
-              "escalated": true,
-              "escalated_at": "2026-07-24T15:26:29.498Z",
-              "reason": "complaint_escalation"
-            }
-          }
-        }
-      ],
-      "timestamp": "2026-07-24 15:26:29.498741+00:00",
-      "duration_ms": 4.247
+      "timestamp": "2026-07-29 15:56:39.113899+00:00",
+      "duration_ms": 2.618
     }
   ],
-  "total_turns": 16,
-  "success": true,
-  "failure_reason": null,
-  "outcome": "escalated_to_human",
-  "tools_called_sequence": [
-    "escalate_to_human"
-  ],
-  "tool_results": [
-    {
-      "tool_name": "escalate_to_human",
-      "arguments": null,
-      "result": {
-        "status": "ok",
-        "data": {
-          "escalated": true,
-          "escalated_at": "2026-07-24T15:26:29.498Z",
-          "reason": "complaint_escalation"
-        }
-      },
-      "success": true
-    }
-  ],
+  "total_turns": 1,
+  "success": false,
+  "failure_reason": "Agent error: Cannot connect to host localhost:3098 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 3098, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 3098)]",
+  "outcome": null,
+  "tools_called_sequence": [],
+  "tool_results": [],
   "chaos_events": [],
-  "llm_calls": 8,
-  "tool_calls_count": 1,
-  "tokens_used": 10065,
-  "cost_usd": 0.012989,
+  "llm_calls": 1,
+  "tool_calls_count": 0,
+  "tokens_used": 512,
+  "cost_usd": 0.000788,
   "trace_file": null
 }

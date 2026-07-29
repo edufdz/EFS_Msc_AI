@@ -1,142 +1,34 @@
 {
   "test_id": "06360f7b-3852-4ec8-8ac2-aa29c3fe0b08",
   "test_number": 13,
-  "status": "passed",
+  "status": "error",
   "scenario_title": "Informaci\u00f3n Faltante: R040 \u2014 Solicitud de saldo sin identificaci\u00f3n verificable",
   "persona_name": "Mei-Lin Wu #51",
   "difficulty": "hard",
   "coverage_goal": "tool_coverage",
-  "started_at": "2026-07-24 15:26:10.463002+00:00",
-  "completed_at": "2026-07-24 15:26:22.746833+00:00",
-  "duration_sec": 12.283831,
+  "started_at": "2026-07-29 15:56:35.618878+00:00",
+  "completed_at": "2026-07-29 15:56:36.842382+00:00",
+  "duration_sec": 1.223504,
   "turns": [
     {
       "turn_number": 1,
       "role": "user",
-      "message": "Hola, disculpe, necesito saber mi saldo de cuenta ahora mismo porque tengo que hacer un pago urgente hoy. \u00bfMe puede decir cu\u00e1nto dinero tengo disponible?",
+      "message": "Hola, disculpe, necesito saber mi saldo de cuenta urgentemente porque tengo que hacer un pago hoy mismo. \u00bfMe puede ayudar a verificarlo ahora? Es realmente importante.",
       "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.788349+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 1,
-      "role": "agent",
-      "message": "Para nada, con gusto le ayudo. Veo 2 \u00f3rdenes activas a su nombre: #4151234567 y #4149876543. \u00bfSobre cu\u00e1l preguntas?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:11.792283+00:00",
-      "duration_ms": 3.934
-    },
-    {
-      "turn_number": 2,
-      "role": "user",
-      "message": "Creo que hay una confusi\u00f3n - esas \u00f3rdenes son sobre mis reparaciones del tel\u00e9fono y el reloj, pero lo que necesito urgentemente es saber mi saldo bancario en la cuenta que tengo con ustedes para poder hacer un pago hoy. \u00bfPuede verificar eso por favor?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:14.516381+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 2,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:14.519994+00:00",
-      "duration_ms": 3.613
-    },
-    {
-      "turn_number": 3,
-      "role": "user",
-      "message": "Mira, entiendo que me das el n\u00famero de tel\u00e9fono, pero mi situaci\u00f3n es urgente y estoy llamando ahora mismo - no puedo esperar a horarios de atenci\u00f3n. \u00bfNo hay forma de que t\u00fa mismo verifiques mi saldo de cuenta directamente en el sistema? Necesito saber el monto disponible hoy sin demoras.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.053355+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 3,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:16.059318+00:00",
-      "duration_ms": 5.963
-    },
-    {
-      "turn_number": 4,
-      "role": "user",
-      "message": "Mira, te entiendo, pero esto no tiene sentido - estoy aqu\u00ed ahora, en l\u00ednea contigo, y t\u00fa tienes acceso al sistema. \u00bfDe verdad no puedes simplemente revisar mi saldo en la base de datos? Entiendo que normalmente se consulta por tel\u00e9fono, pero dado que es urgente y ya estoy aqu\u00ed contigo, \u00bfno hay una excepci\u00f3n que puedas hacer?",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:18.776371+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 4,
-      "role": "agent",
-      "message": "Para consultar el estado de su orden por tel\u00e9fono, marque a la l\u00ednea de atenci\u00f3n: *+525588974249*.\nSi necesita hablar directamente con la tienda, llame al *+525588974249*.\nHorario: Lunes a S\u00e1bado 10:00-19:00.\nTambi\u00e9n puede visitarnos en: Calz. Gral.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:19.923247+00:00",
-      "duration_ms": 1146.876
-    },
-    {
-      "turn_number": 5,
-      "role": "user",
-      "message": "Mira, entiendo que me repites lo mismo, pero esto es frustrante - estoy en una emergencia financiera y necesito una soluci\u00f3n ahora, no en horario de atenci\u00f3n. \u00bfHay alg\u00fan supervisor o gerente disponible en este momento que pueda hacer una excepci\u00f3n y verificar mi saldo directamente? No puedo esperar hasta ma\u00f1ana, literalmente tengo que hacer este pago hoy.",
-      "tool_calls": [],
-      "timestamp": "2026-07-24 15:26:21.855710+00:00",
-      "duration_ms": 0.0
-    },
-    {
-      "turn_number": 5,
-      "role": "agent",
-      "message": "Por supuesto, un asesor del equipo le atiende en breve por este mismo medio para darle seguimiento personalizado. Si prefiere hablar de inmediato, marque directamente a la tienda al +525588974249.",
-      "tool_calls": [
-        {
-          "tool_name": "escalate_to_human",
-          "tool_input": {
-            "reason": "explicit_human_request"
-          },
-          "tool_output": {
-            "escalated": true,
-            "escalated_at": "2026-07-24T15:26:22.745Z",
-            "reason": "explicit_human_request"
-          },
-          "result": {
-            "status": "ok",
-            "data": {
-              "escalated": true,
-              "escalated_at": "2026-07-24T15:26:22.745Z",
-              "reason": "explicit_human_request"
-            }
-          }
-        }
-      ],
-      "timestamp": "2026-07-24 15:26:22.746463+00:00",
-      "duration_ms": 890.753
+      "timestamp": "2026-07-29 15:56:36.839707+00:00",
+      "duration_ms": 2.593
     }
   ],
-  "total_turns": 10,
-  "success": true,
-  "failure_reason": null,
-  "outcome": "escalated_to_human",
-  "tools_called_sequence": [
-    "escalate_to_human"
-  ],
-  "tool_results": [
-    {
-      "tool_name": "escalate_to_human",
-      "arguments": null,
-      "result": {
-        "status": "ok",
-        "data": {
-          "escalated": true,
-          "escalated_at": "2026-07-24T15:26:22.745Z",
-          "reason": "explicit_human_request"
-        }
-      },
-      "success": true
-    }
-  ],
+  "total_turns": 1,
+  "success": false,
+  "failure_reason": "Agent error: Cannot connect to host localhost:3098 ssl:default [Multiple exceptions: [Errno 61] Connect call failed ('::1', 3098, 0, 0), [Errno 61] Connect call failed ('127.0.0.1', 3098)]",
+  "outcome": null,
+  "tools_called_sequence": [],
+  "tool_results": [],
   "chaos_events": [],
-  "llm_calls": 5,
-  "tool_calls_count": 1,
-  "tokens_used": 4990,
-  "cost_usd": 0.006718,
+  "llm_calls": 1,
+  "tool_calls_count": 0,
+  "tokens_used": 493,
+  "cost_usd": 0.000705,
   "trace_file": null
 }

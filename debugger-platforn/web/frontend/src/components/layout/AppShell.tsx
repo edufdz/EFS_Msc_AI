@@ -15,7 +15,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
         {/* Top bar */}
         <header className="flex items-center justify-between px-6 h-12 bg-bg-surface border-b border-border flex-shrink-0">
           <div className="flex items-center gap-4">
-            <span className="font-semibold text-[15px] tracking-tight text-pearl">Plavio</span>
+            <span className="font-semibold text-[15px] tracking-tight text-pearl">Agent-Testing Platform</span>
             {sessionId && (
               <span className="font-mono text-xs text-text-muted">{sessionId}</span>
             )}
