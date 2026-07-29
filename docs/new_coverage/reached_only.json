@@ -1,0 +1,51 @@
+{
+  "source": "../docs/results/real_vs_sim/real_vs_sim.json",
+  "taxonomy_version": "1.0-frozen-2026-07-14",
+  "reached_categories": [
+    "infinite_loop",
+    "resolution_failure",
+    "hallucination",
+    "escalation_failure",
+    "premature_exit"
+  ],
+  "unreached_categories": [
+    "comprehension_failure",
+    "data_gap"
+  ],
+  "real_counts": {
+    "infinite_loop": 256,
+    "resolution_failure": 221,
+    "hallucination": 13,
+    "escalation_failure": 11,
+    "premature_exit": 9,
+    "comprehension_failure": 153,
+    "data_gap": 48
+  },
+  "sim_counts": {
+    "infinite_loop": 66,
+    "resolution_failure": 22,
+    "hallucination": 2,
+    "escalation_failure": 19,
+    "premature_exit": 10,
+    "comprehension_failure": 0,
+    "data_gap": 0
+  },
+  "real_total_flags_5": 510,
+  "sim_total_flags_5": 119,
+  "real_shares_5": {
+    "infinite_loop": 0.502,
+    "resolution_failure": 0.4333,
+    "hallucination": 0.0255,
+    "escalation_failure": 0.0216,
+    "premature_exit": 0.0176
+  },
+  "sim_shares_5": {
+    "infinite_loop": 0.5546,
+    "resolution_failure": 0.1849,
+    "hallucination": 0.0168,
+    "escalation_failure": 0.1597,
+    "premature_exit": 0.084
+  },
+  "jsd_5_support_bits": 0.0985,
+  "note": "Shares renormalised over category flags on the 5-category reached support; flags are multi-label, so shares describe flag composition, not conversation composition."
+}
