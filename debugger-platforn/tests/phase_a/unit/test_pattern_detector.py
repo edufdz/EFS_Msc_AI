@@ -188,3 +188,40 @@ class TestFrameworkDetection:
         fw, conf = detect_framework(symbols)
         assert fw == "langchain"
         assert conf > 0.0
+
+    def test_typescript_langgraph_detected(self, tmp_path):
+        """A TS LangGraph agent must not be misread as a provider-SDK agent.
+
+        The langgraph signature was Python-only ("from langgraph.graph
+        import"), so the deployed agent under study -- TypeScript LangGraph --
+        scored zero and lost to anthropic_native on the bare substring
+        "anthropic" inside "@langchain/anthropic", at 0.1 confidence.
+        """
+        src = tmp_path / "builder.ts"
+        src.write_text(
+            'import { END, START, StateGraph } from "@langchain/langgraph";\n'
+            'import { ChatAnthropic } from "@langchain/anthropic";\n'
+            'import { AIMessage } from "@langchain/core/messages";\n'
+            'const graph = new StateGraph(State)\n'
+            '  .addNode("router", routerNode)\n'
+            '  .addEdge(START, "router");\n',
+            encoding="utf-8",
+        )
+        from src.analysis.static_analyzer import analyze_files
+        fw, conf = detect_framework(analyze_files([str(src)]))
+        assert fw == "langgraph", f"got {fw} at {conf}"
+        assert conf > 0.0
+
+    def test_langgraph_beats_langchain_on_specificity(self, tmp_path):
+        """LangGraph apps import @langchain/core too; the specific answer wins."""
+        src = tmp_path / "app.ts"
+        src.write_text(
+            'import { StateGraph } from "@langchain/langgraph";\n'
+            'import { ChatOpenAI } from "@langchain/openai";\n'
+            'import { ChatAnthropic } from "@langchain/anthropic";\n'
+            'import { AIMessage } from "@langchain/core/messages";\n',
+            encoding="utf-8",
+        )
+        from src.analysis.static_analyzer import analyze_files
+        fw, _ = detect_framework(analyze_files([str(src)]))
+        assert fw == "langgraph"

@@ -233,6 +233,15 @@ def detect_framework(all_symbols: list[FileSymbols]) -> tuple[str, float]:
     if best_score == 0:
         return "custom", 0.0
 
+    # Prefer a specialisation over its parent. A LangGraph app necessarily
+    # imports @langchain/core and a provider adapter, so on raw count it can
+    # outscore the framework that actually describes its architecture.
+    for fw, sig in FRAMEWORK_SIGNATURES.items():
+        parent = sig.get("specialises")
+        if parent and parent == best_fw and scores.get(fw, 0) > 0:
+            best_fw, best_score = fw, max(scores[fw], best_score)
+            break
+
     # Normalize confidence (arbitrary cap at 20)
     confidence = min(best_score / 20.0, 1.0)
     return best_fw, confidence
