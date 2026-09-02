@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 load_dotenv(PROJECT_ROOT / ".env")
 
 from web.api.config import CORS_ORIGINS
-from web.api.routes import sessions, filesystem, phase_a, phase_b, phase_c, phase_d, certification, artifacts, research
+from web.api.routes import sessions, filesystem, phase_a, phase_b, phase_c, phase_d, certification, artifacts, research, services
 from web.api.ws import ws_endpoint
 
 app = FastAPI(
@@ -48,6 +48,7 @@ app.include_router(phase_d.router)
 app.include_router(certification.router)
 app.include_router(artifacts.router)
 app.include_router(research.router)
+app.include_router(services.router)
 
 
 # WebSocket endpoint

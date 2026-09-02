@@ -1,5 +1,39 @@
 # How to Run the Agent Debugger Platform
 
+## Quick start — one command
+
+```bash
+./dev.sh
+```
+
+Starts everything, streams all logs into one terminal with a per-service
+prefix, and opens the debugger UI. **Ctrl+C stops all of it.**
+
+| | |
+|---|---|
+| **Debugger UI** | http://localhost:5173 |
+| Debugger API | http://localhost:8000 |
+| **Anonymisation UI** | http://localhost:5174 — also linked from the debugger sidebar |
+| Anonymisation API | http://localhost:8100 |
+| **Live agent** (Phase C target) | http://localhost:3098 |
+
+The debugger sidebar shows a live dot for the agent and the anonymiser, so you
+can see at a glance what is up.
+
+```bash
+./dev.sh --check      # preflight only: tools, venvs, deps, port conflicts
+./dev.sh --no-agent   # skip the live agent (no ANTHROPIC_API_KEY needed)
+DEV_OPEN=0 ./dev.sh   # do not auto-open the browser
+```
+
+Preflight runs first and refuses to start on a port clash or a missing venv,
+naming the exact command to fix each problem. Missing `node_modules` are
+installed automatically.
+
+The rest of this guide covers running the pieces individually.
+
+---
+
 This guide covers running the full platform: the web UI (FastAPI backend + React frontend), the sample agent used for testing, and the CLI pipeline.
 
 ## Prerequisites
@@ -239,14 +273,14 @@ silent default.
 
 ```bash
 cd anonymization/backend
-./venv/bin/python -m uvicorn app:app --port 8077
+./venv/bin/python -m uvicorn app:app --port 8100
 ```
 
 `GET /api/health`, `POST /api/anonymize` and `POST /api/anonymize/preview` take
 a file upload (`.txt` or `.json`):
 
 ```bash
-curl -s -X POST http://localhost:8077/api/anonymize -F "file=@conversation.txt"
+curl -s -X POST http://localhost:8100/api/anonymize -F "file=@conversation.txt"
 ```
 
 Frontend review surface:

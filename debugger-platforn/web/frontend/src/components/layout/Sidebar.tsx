@@ -1,7 +1,42 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useStore } from '../../store'
 import { saveSession } from '../../api/client'
+
+type ServiceInfo = { name: string; url: string; online: boolean; start_hint: string }
+type ServicesStatus = { agent: ServiceInfo; anonymiser: ServiceInfo }
+
+/** Poll the sibling services the demo depends on.
+ *
+ *  The probe runs on the backend: the live agent and the anonymisation API are
+ *  different origins, so polling them straight from the browser would be
+ *  blocked by CORS.
+ */
+function useServices(intervalMs = 10000) {
+  const [services, setServices] = useState<ServicesStatus | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+    const poll = async () => {
+      try {
+        const res = await fetch('/api/services/status')
+        if (!res.ok) return
+        const data = (await res.json()) as ServicesStatus
+        if (!cancelled) setServices(data)
+      } catch {
+        /* backend down; leave the last known state */
+      }
+    }
+    poll()
+    const id = setInterval(poll, intervalMs)
+    return () => {
+      cancelled = true
+      clearInterval(id)
+    }
+  }, [intervalMs])
+
+  return services
+}
 
 const phases = [
   { key: 'a' as const, label: 'Phase A', sub: 'Analyze', path: '/phase-a' },
@@ -33,6 +68,8 @@ export default function Sidebar() {
   const resetSession = useStore((s) => s.resetSession)
 
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved'>('idle')
+  const services = useServices()
+  const anonymiser = services?.anonymiser
 
   const statuses = { a: phaseA, b: phaseB, c: phaseC, d: phaseD, cert: certStatus }
 
@@ -116,6 +153,55 @@ export default function Sidebar() {
           </button>
         </div>
       </div>
+
+      {/* Anonymisation system — separate app, opened in its own tab */}
+      <div className="px-3 pb-2">
+        <div className="border-t border-border pt-3">
+          <button
+            onClick={() => window.open(anonymiser?.url ?? 'http://localhost:5174', '_blank', 'noopener')}
+            title={
+              anonymiser && !anonymiser.online
+                ? `Not running. Start it with:\n${anonymiser.start_hint}`
+                : 'Open the anonymisation system in a new tab'
+            }
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-text-dim hover:bg-bg-card hover:text-text-primary transition-all duration-200"
+          >
+            <span className="w-5 h-5 rounded-full bg-border flex items-center justify-center text-text-muted shrink-0">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+            </span>
+            <div className="min-w-0">
+              <div className="text-sm font-medium flex items-center gap-1.5">
+                Anonymisation
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50">
+                  <path d="M7 17L17 7M17 7H8M17 7v9" />
+                </svg>
+              </div>
+              <div className="text-[11px] text-text-muted">
+                {anonymiser ? (anonymiser.online ? 'Strip PII from exports' : 'Not running') : 'Strip PII from exports'}
+              </div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Service health — makes it obvious during a demo what is actually up */}
+      {services && (
+        <div className="px-5 pb-3 space-y-1.5">
+          {[services.agent, services.anonymiser].map((svc) => (
+            <div key={svc.name} className="flex items-center gap-2" title={svc.online ? svc.url : svc.start_hint}>
+              <div
+                className={`w-1.5 h-1.5 rounded-full shrink-0 transition-colors ${
+                  svc.online ? 'bg-pearl animate-pulse-accent' : 'bg-text-muted opacity-40'
+                }`}
+              />
+              <span className="text-[10px] text-text-muted truncate">{svc.name}</span>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Bottom actions */}
       <div className="px-3 pb-4 space-y-2">
