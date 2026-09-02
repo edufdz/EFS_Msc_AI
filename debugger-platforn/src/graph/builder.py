@@ -29,17 +29,19 @@ from config.framework_signatures import (
     SPANISH_INDICATORS, ENGLISH_INDICATORS, PORTUGUESE_INDICATORS,
     PORTUGUESE_CHARS, SPANISH_FORMALITY_USTED, SPANISH_FORMALITY_TU,
     DOMAIN_INDICATORS, INDUSTRY_INDICATORS, CHANNEL_INDICATORS,
+    score_language,
 )
 
 
 def _score_language(text: str, words: list[str], extra_chars: list[str] | None = None) -> int:
-    """Count how many indicator words/chars appear in the text."""
-    score = 0
-    for word in words:
-        score += len(re.findall(r'\b' + re.escape(word) + r'\b', text))
-    for char in (extra_chars or []):
-        score += text.count(char)
-    return score
+    """Count how many indicator words/chars appear in the text.
+
+    Thin alias for the shared scorer so this module and the per-rule detector in
+    src/patterns/rule_extractor.py cannot drift apart again — they previously
+    used different matching rules and wrote contradictory guardrail-language
+    verdicts into the same agent map.
+    """
+    return score_language(text, words, extra_chars)
 
 
 def _detect_language_metadata(
@@ -575,7 +577,6 @@ def generate_agent_map(
         by_category[r.category] = by_category.get(r.category, 0) + 1
 
     # Detect guardrail language
-    all_rule_text = " ".join(r.text for r in guardrail_graph.rules)
     rule_languages = [r.language for r in guardrail_graph.rules]
     guardrail_lang = max(set(rule_languages), key=rule_languages.count) if rule_languages else "English"
 

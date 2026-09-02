@@ -7,7 +7,46 @@ from src.patterns.rule_extractor import (
     PolicyGraph,
     extract_rules_from_text,
     extract_rules_from_prompts,
+    _detect_rule_language,
 )
+
+
+class TestRuleLanguageDetection:
+    """Regression: short Spanish rules were defaulting to English.
+
+    The detector required two hits from a twelve-word Spanish list within a
+    single short rule, so ordinary Spanish guardrails scored one and fell
+    through to English — mislabelling 40 of the 79 rules extracted from the
+    deployed agent and inverting the agent map's guardrail-language verdict.
+    """
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "NUNCA determines garantía por tu cuenta. Solo reporta lo que dice el sistema",
+            "Presenta la información de forma clara y organizada",
+            "Si el cliente tiene múltiples órdenes, resume cada una",
+            "Responde en el mismo idioma del cliente",
+            "Máximo 300 caracteres",
+            "NUNCA inventes tiempos estimados de reparación o entrega",
+        ],
+    )
+    def test_short_spanish_rules_detected(self, text):
+        assert _detect_rule_language(text) == "Spanish"
+
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "Never share customer data with third parties",
+            "You must always confirm the order status before replying",
+            "Only respond with information available in the system",
+        ],
+    )
+    def test_english_rules_still_detected(self, text):
+        assert _detect_rule_language(text) == "English"
+
+    def test_unscoreable_text_defaults_to_english(self):
+        assert _detect_rule_language("12345 !!!") == "English"
 
 
 class TestRuleExtraction:

@@ -13,6 +13,12 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
+from config.framework_signatures import (
+    ENGLISH_INDICATORS,
+    SPANISH_INDICATORS,
+    score_language,
+)
+
 
 # ---------------------------------------------------------------------------
 # Data model
@@ -192,16 +198,49 @@ def _extract_conditions(text: str) -> list[str]:
 # Language detection (lightweight)
 # ---------------------------------------------------------------------------
 
-_SPANISH_INDICATORS = [
+# Imperative/policy vocabulary specific to rule text, on top of the shared
+# domain word lists in config.framework_signatures.
+_SPANISH_RULE_WORDS = [
     "debes", "debe", "nunca", "siempre", "prohibido", "obligatorio",
-    "usuario", "cliente", "agente", "si no", "cuando",
+    "usuario", "cliente", "agente", "si no", "cuando", "que", "para",
+    "con", "del", "los", "las", "una", "está", "esta", "puedes",
+    "menciones", "responde", "solo", "sin", "más", "cada", "forma",
+    # Vocabulary that actually occurs in this class of rule. Short rules such
+    # as "Máximo 300 caracteres" carry no signal without these and fall to the
+    # English tie-break.
+    "máximo", "mínimo", "caracteres", "mensaje", "respuesta", "número",
+    "sistema", "indica", "reporta", "envía", "aplica", "recuerda",
 ]
+_ENGLISH_RULE_WORDS = [
+    "must", "never", "always", "should", "shall", "forbidden", "required",
+    "the", "you", "and", "for", "with", "when", "if not", "user",
+    "customer", "agent", "only", "each", "reply", "respond",
+]
+
+# Characters that occur in Spanish but not in English. A single one of these
+# is strong evidence on its own, which matters because guardrail rules are
+# short single sentences where word-frequency signal is thin.
+_SPANISH_ONLY_CHARS = "¿¡ñáéíóúüÑÁÉÍÓÚÜ"
 
 
 def _detect_rule_language(text: str) -> str:
-    lower = text.lower()
-    spanish_hits = sum(1 for kw in _SPANISH_INDICATORS if kw in lower)
-    return "Spanish" if spanish_hits >= 2 else "English"
+    """Classify a single guardrail rule as Spanish or English.
+
+    Scores both languages and takes the larger, rather than testing Spanish
+    alone against a fixed threshold. The previous implementation required two
+    hits from a twelve-word Spanish list within one short rule, so ordinary
+    Spanish rules ("NUNCA determines garantía por tu cuenta.") scored one and
+    silently fell through to the English default. That mislabelled 40 of the
+    79 rules extracted from the deployed agent and inverted the map's
+    guardrail-language verdict.
+
+    Ties resolve to English, which is the conservative default for text with no
+    usable signal either way.
+    """
+    spanish = score_language(text, _SPANISH_RULE_WORDS + SPANISH_INDICATORS,
+                             _SPANISH_ONLY_CHARS)
+    english = score_language(text, _ENGLISH_RULE_WORDS + ENGLISH_INDICATORS)
+    return "Spanish" if spanish > english else "English"
 
 
 # ---------------------------------------------------------------------------

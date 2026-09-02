@@ -4,6 +4,53 @@ Each framework has import patterns, decorators, class names, and function patter
 that help identify which agent framework a codebase uses.
 """
 
+import re
+import unicodedata
+
+
+def _fold(s: str) -> str:
+    """Lowercase and strip diacritics."""
+    return "".join(
+        c for c in unicodedata.normalize("NFD", s.lower())
+        if unicodedata.category(c) != "Mn"
+    )
+
+
+def score_language(
+    text: str,
+    words: list[str],
+    extra_chars: str | list[str] | None = None,
+    fold_accents: bool = True,
+) -> int:
+    """Count indicator words and characters appearing in *text*.
+
+    Word matching is anchored on word boundaries. Substring matching is not an
+    option here: "con" occurs inside "conversation" and "los" inside
+    "disclose", so an unanchored scorer reports English rule text as Spanish.
+
+    ``fold_accents`` strips diacritics from both sides before matching, so
+    "informacion" still scores against "información". Typed Spanish drops
+    accents constantly; without folding, the word lists carry no weight on
+    unaccented text and the verdict falls back to whatever ``extra_chars``
+    contributes — which for unaccented text is nothing.
+
+    ``extra_chars`` is always counted against the original text, so accented
+    orthography remains available as a positive signal.
+
+    This is the single language scorer for the project. Phase A previously had
+    two — a bulk one over concatenated guardrail text and a per-rule one — and
+    they disagreed, writing contradictory verdicts into the same agent map.
+    """
+    haystack = _fold(text) if fold_accents else text.lower()
+    score = 0
+    for word in words:
+        needle = _fold(word) if fold_accents else word.lower()
+        score += len(re.findall(r"\b" + re.escape(needle) + r"\b", haystack))
+    for char in (extra_chars or []):
+        score += text.count(char)
+    return score
+
+
 FRAMEWORK_SIGNATURES = {
     "langchain": {
         "imports": [
@@ -15,6 +62,9 @@ FRAMEWORK_SIGNATURES = {
             "from langchain_core import",
             "from langchain_openai import",
             "from langchain_anthropic import",
+            "@langchain/core",
+            "@langchain/openai",
+            "@langchain/anthropic",
         ],
         "decorators": ["tool", "chain"],
         "classes": [
@@ -33,10 +83,21 @@ FRAMEWORK_SIGNATURES = {
             "from langgraph.graph import",
             "from langgraph.prebuilt import",
             "from langgraph.checkpoint import",
+            # JS/TS. Without these a TypeScript LangGraph agent is invisible to
+            # detection and loses to whichever provider SDK it happens to import.
+            "@langchain/langgraph",
+            "@langchain/langgraph-checkpoint",
         ],
         "decorators": [],
+        # LangGraph apps import @langchain/core and a provider adapter too, so
+        # on raw score they look like LangChain. LangGraph is the more specific
+        # and more useful answer: it is what determines the architecture.
+        "specialises": "langchain",
         "classes": ["StateGraph", "MessageGraph", "Graph"],
-        "functions": ["add_node", "add_edge", "add_conditional_edges", "compile"],
+        "functions": [
+            "add_node", "add_edge", "add_conditional_edges", "compile",
+            "addNode", "addEdge", "addConditionalEdges",
+        ],
     },
 
     "openai_native": {
