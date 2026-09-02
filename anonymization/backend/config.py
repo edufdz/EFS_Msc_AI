@@ -10,6 +10,16 @@ load_dotenv()
 SPACY_MODEL = os.getenv("SPACY_MODEL", "es_core_news_lg")
 BRAND_CONFIG_PATH = os.getenv("BRAND_CONFIG_PATH", "brand_terms.json")
 
+# Horizontal whitespace, for use *inside* character classes (where `[^\S\n]`
+# cannot be nested). Plain " \t" is not enough: WhatsApp and iOS exports carry
+# NBSP and narrow-NBSP inside addresses, and omitting them truncates the match
+# and leaves the rest of the address in cleartext.
+#
+# Strictly horizontal: \r, \v and \f are line terminators and must stay out,
+# or a line-final address swallows the following turn label -- the exact bug
+# this pattern is shaped to avoid.
+_H_SPACE = " \t\xa0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000"
+
 # ---------------------------------------------------------------------------
 # Regex patterns — keyed by PII category, ordered by specificity
 # ---------------------------------------------------------------------------
@@ -53,10 +63,26 @@ PII_PATTERNS: dict[str, list[re.Pattern]] = {
         re.compile(r"\b\d{4}[-\s]\d{4}[-\s]\d{4}[-\s]\d{4}\b"),
     ],
     "ADDRESS": [
+        # Horizontal whitespace only ([^\S\n]): an address must never run past the
+        # end of its line, or it swallows the next turn's "Cliente:"/"Agente:" label
+        # and destroys the conversation structure the scorer depends on.
+        #
+        # Two things this pattern must tolerate, because production WhatsApp text
+        # does both constantly and missing either leaks a real address:
+        #   * dropped accents — "codigo postal" is as common as "código postal";
+        #   * ":" / ";" separators — "Código Postal: 93400" is the format the
+        #     deployment's own address-collection template emits.
         re.compile(
-            r"(?i)(?:calle|av(?:enida)?|blvd|boulevard|col(?:onia)?|c\.?\s?p\.?|"
-            r"código\s*postal|paseo|camino|cerrada|privada|circuito)"
-            r"\.?\s+[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9\s,#\.°\-]{5,80}",
+            r"(?i)(?:calle|av(?:enida)?|blvd|boulevard|col(?:onia)?|c\.?[^\S\n]?p\.?|"
+            r"c[oó]digo[^\S\n]*postal|paseo|camino|cerrada|privada|circuito)"
+            r"[\.:;]?[^\S\n]+[A-ZÁÉÍÓÚÜÑa-záéíóúüñ0-9" + _H_SPACE + r",#\.:;°\-]{5,80}",
+        ),
+        # Bare Mexican postal code introduced by a keyword. The general pattern
+        # above needs 5+ trailing characters, so a line ending "C.P. 03100" or
+        # "Codigo postal: 28019" falls through it entirely.
+        re.compile(
+            r"(?i)(?:c\.?[^\S\n]?p\.?|c[oó]digo[^\S\n]*postal)"
+            r"[\.:;]?[^\S\n]*\d{5}\b",
         ),
     ],
     "URL": [

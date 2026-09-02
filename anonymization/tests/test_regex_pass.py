@@ -164,6 +164,73 @@ class TestAddressAnonymization:
         result = regex_anonymize(text, tracker)
         assert "C.P. 03100" not in result
 
+    @pytest.mark.parametrize(
+        "text",
+        [
+            "Codigo postal; 94340",           # unaccented + semicolon
+            "Código Postal: 93400",           # accented + colon
+            "Codigo postal: 28019",           # line-final, nothing after
+            "Codigo Postal 82139",            # no separator at all
+            "codigo postal 94330, colonia: fraccionamiento las haciendas",
+            "El C.P. 03100, Ciudad de México",
+            "CP 06000 Centro",
+        ],
+    )
+    def test_postal_codes_never_survive(self, text):
+        """Regression: real postal codes leaked through the ADDRESS pattern.
+
+        Two gaps combined. The keyword alternation required the accented
+        "código", and the separator after it allowed only "." or whitespace —
+        so ":" and ";" (the format the deployment's own address template emits)
+        failed to match. 248 of 631 address-bearing messages in the production
+        corpus still carried a bare 4-5 digit number as a result.
+        """
+        result = regex_anonymize(text, PlaceholderTracker())
+        assert not re.search(r"\d{4,5}", result), f"postal code leaked: {result!r}"
+        assert "[ADDRESS_" in result
+
+    @pytest.mark.parametrize("sep", ["\n", "\r", "\r\n", "\v", "\f"])
+    def test_address_does_not_cross_any_line_terminator(self, sep):
+        """CR, VT and FF are line terminators too, not horizontal whitespace.
+
+        Word/RTF exports use \\v as a soft break and old Mac exports use \\r;
+        if either sits in the address character class, a line-final address
+        swallows every following turn.
+        """
+        text = (
+            f"Cliente: Vivo en Av. Insurgentes Sur 1234.{sep}"
+            f"Agente: Gracias.{sep}"
+            "Cliente: ok"
+        )
+        result = regex_anonymize(text, PlaceholderTracker())
+        assert result.count("Agente:") == text.count("Agente:")
+        assert result.count("Cliente:") == text.count("Cliente:")
+
+    def test_address_survives_unicode_spaces(self):
+        """NBSP/narrow-NBSP inside an address must not truncate the match."""
+        text = "Av. Insurgentes Sur 1234 Ciudad de Mexico"
+        result = regex_anonymize(text, PlaceholderTracker())
+        assert "Ciudad de Mexico" not in result
+
+    def test_address_does_not_cross_newline(self):
+        """An address ending a line must not swallow the next turn's label.
+
+        Regression: the ADDRESS character class used \\s, which matches newlines,
+        so a line-final address consumed the following "Agente:" label and
+        destroyed the conversation structure the downstream scorer relies on.
+        """
+        tracker = PlaceholderTracker()
+        text = (
+            "Cliente: Vivo en Av. Insurgentes Sur 1234, Ciudad de Mexico.\n"
+            "Agente: Perfecto, gracias.\n"
+            "Cliente: Otra cosa."
+        )
+        result = regex_anonymize(text, tracker)
+        assert "Insurgentes Sur 1234" not in result
+        assert result.count("Agente:") == text.count("Agente:")
+        assert result.count("Cliente:") == text.count("Cliente:")
+        assert result.count("\n") == text.count("\n")
+
 
 # ---------------------------------------------------------------------------
 # CURP and RFC
