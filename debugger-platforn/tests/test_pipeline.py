@@ -137,6 +137,9 @@ def test_execute_with_improve(tmp_path):
         "--improve",
         "--skip-ai",
         "--seed", "1",
+        # Non-interactive runs must state the persona-context choice; the
+        # interactive prompt cannot run under CliRunner.
+        "--no-persona-context",
     ])
 
     assert result.exit_code == 0, f"execute_tests failed: {result.output}"
@@ -188,6 +191,9 @@ def test_pipeline_stop_after(tmp_path):
         "--count", "5",
         "--stop-after", "c",
         "--seed", "42",
+        # Non-interactive runs must state the persona-context choice; the
+        # interactive prompt cannot run under CliRunner.
+        "--no-persona-context",
     ])
 
     assert result.exit_code == 0, f"run_pipeline failed: {result.output}"

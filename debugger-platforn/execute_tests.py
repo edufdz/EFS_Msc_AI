@@ -45,7 +45,11 @@ from src.endpoints_config import apply_endpoints_to_agent_map
 from src.execution.agent_connector import APIAgentConnector, MockAgentConnector, VictoriaConnector
 from src.execution.aggregator import ResultsAggregator
 from src.execution.monitor import RealTimeMonitor
-from src.execution.persona_context import analyze_persona_context, prompt_for_persona_context
+from src.execution.persona_context import (
+    PersonaContextError,
+    analyze_persona_context,
+    resolve_persona_context,
+)
 from src.execution.runner import TestExecutionEngine
 
 console = Console()
@@ -178,9 +182,18 @@ def _print_final_report(report, inbox, output_dir):
 @click.option("--critic-provider", default="anthropic", help="LLM provider for Critic agent: anthropic (default), groq, together, fireworks, openai, custom")
 @click.option("--critic-api-key", default=None, help="API key for critic provider")
 @click.option("--critic-base-url", default=None, help="Base URL for custom critic provider")
+@click.option("--persona-context", "use_persona_context", is_flag=True, default=False,
+              help="Use the default fake-customer persona context (config/persona_context_default.txt)")
+@click.option("--persona-context-file", default=None, type=click.Path(exists=True),
+              help="Use persona context from this file")
+@click.option("--no-persona-context", is_flag=True, default=False,
+              help="Run without persona context (explicit, scriptable)")
 def main(
     test_suite_file: str,
     agent_map_file: str,
+    use_persona_context: bool,
+    persona_context_file: str | None,
+    no_persona_context: bool,
     output: str,
     workers: int,
     count: int,
@@ -287,8 +300,20 @@ def main(
     output_dir.mkdir(parents=True, exist_ok=True)
     traces_dir = str(output_dir / "traces") if traces else None
 
-    # Optional context for personas (inline text or path to file)
-    persona_context = prompt_for_persona_context()
+    # Optional context for personas (inline text or path to file).
+    # Whether context is loaded materially changes conversation shape, so a
+    # scripted run must state it rather than inheriting the interactive
+    # default: on a non-TTY the prompt below hits EOF and silently yields
+    # "no context", which is not a choice anyone made.
+    try:
+        persona_context = resolve_persona_context(
+            use_default=use_persona_context,
+            context_file=persona_context_file,
+            no_context=no_persona_context,
+        )
+    except PersonaContextError as exc:
+        raise click.ClickException(str(exc)) from exc
+
     persona_context_analyzed = None
     if persona_context:
         console.print("[dim]Persona context loaded.[/dim]")

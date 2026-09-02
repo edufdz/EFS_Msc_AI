@@ -110,9 +110,18 @@ def _transition_panel(from_phase: str, to_phase: str, artifact: str, path: str):
 # Control
 @click.option("--stop-after", default="e", type=click.Choice(["a", "b", "c", "d", "cert", "e"], case_sensitive=False),
               help="Stop after this phase (default: e = run all)")
+@click.option("--persona-context", "use_persona_context", is_flag=True, default=False,
+              help="Use the default fake-customer persona context")
+@click.option("--persona-context-file", default=None, type=click.Path(exists=True),
+              help="Use persona context from this file")
+@click.option("--no-persona-context", is_flag=True, default=False,
+              help="Run without persona context (explicit, scriptable)")
 def main(
     repo_path: str,
     output_dir: str,
+    use_persona_context: bool,
+    persona_context_file: str | None,
+    no_persona_context: bool,
     skip_ai: bool,
     language: str | None,
     seed: int | None,
@@ -315,7 +324,11 @@ def main(
     _phase_banner("Phase C: Test Execution", "Execute test suite with live monitoring")
 
     from src.execution.agent_connector import MockAgentConnector, APIAgentConnector
-    from src.execution.persona_context import analyze_persona_context, prompt_for_persona_context
+    from src.execution.persona_context import (
+        PersonaContextError,
+        analyze_persona_context,
+        resolve_persona_context,
+    )
     from src.execution.runner import TestExecutionEngine
     from src.execution.monitor import RealTimeMonitor
     from src.execution.aggregator import ResultsAggregator
@@ -344,8 +357,18 @@ def main(
 
     traces_dir = str(results_dir / "traces")
 
-    # Optional context for personas (inline text or path to file)
-    persona_context = prompt_for_persona_context()
+    # Optional context for personas (inline text or path to file).
+    # Phase C sits after A and B, so a silent EOF default here would waste the
+    # AI spend of two completed phases on a run nobody configured.
+    try:
+        persona_context = resolve_persona_context(
+            use_default=use_persona_context,
+            context_file=persona_context_file,
+            no_context=no_persona_context,
+        )
+    except PersonaContextError as exc:
+        raise click.ClickException(str(exc)) from exc
+
     persona_context_analyzed = None
     if persona_context:
         console.print("[dim]Persona context loaded.[/dim]")

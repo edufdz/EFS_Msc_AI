@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import os
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -95,6 +96,77 @@ def load_default_persona_context() -> str | None:
     except Exception:
         pass
     return None
+
+
+class PersonaContextError(Exception):
+    """Raised when the persona-context choice is unusable or unstated."""
+
+
+def resolve_persona_context(
+    use_default: bool = False,
+    context_file: str | Path | None = None,
+    no_context: bool = False,
+) -> str | None:
+    """Resolve the persona context for a run, or raise.
+
+    Whether context is loaded materially changes conversation shape, so a
+    non-interactive run must state the choice rather than inherit one: on a
+    non-TTY the interactive prompt hits EOF and silently yields "no context",
+    which is not a choice anyone made.
+
+    Every execution entry point should call this rather than reaching for
+    ``prompt_for_persona_context`` directly, so the precedence rules and the
+    non-TTY behaviour stay in one place.
+    """
+    chosen = [
+        name
+        for name, given in (
+            ("--persona-context", use_default),
+            ("--persona-context-file", context_file is not None),
+            ("--no-persona-context", no_context),
+        )
+        if given
+    ]
+    if len(chosen) > 1:
+        # Silently letting one win by branch order would reintroduce the exact
+        # unannounced default this function exists to prevent.
+        raise PersonaContextError(
+            f"Conflicting persona-context options: {', '.join(chosen)}. Pass exactly one."
+        )
+
+    if no_context:
+        return None
+
+    if context_file is not None:
+        path = Path(context_file)
+        try:
+            text = path.read_text(encoding="utf-8", errors="replace").strip()
+        except OSError as exc:
+            raise PersonaContextError(f"Could not read persona context file {path}: {exc}") from exc
+        if not text:
+            raise PersonaContextError(f"Persona context file {path} is empty.")
+        return text
+
+    if use_default:
+        text = load_default_persona_context()
+        if not text:
+            raise PersonaContextError(
+                f"--persona-context requested but no usable default context was found at "
+                f"{DEFAULT_CONTEXT_FILE}. Pass --persona-context-file PATH instead."
+            )
+        return text
+
+    stdin = getattr(sys, "stdin", None)
+    if stdin is None or not hasattr(stdin, "isatty") or not stdin.isatty():
+        raise PersonaContextError(
+            "Persona context is unset and stdin is not a terminal, so the "
+            "interactive prompt cannot run.\n"
+            "Choose explicitly:\n"
+            "  --persona-context             use the default fake-customer context\n"
+            "  --persona-context-file PATH   use your own context file\n"
+            "  --no-persona-context          run without any persona context"
+        )
+    return prompt_for_persona_context()
 
 
 def prompt_for_persona_context() -> str | None:
