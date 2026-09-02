@@ -32,7 +32,20 @@ class AgentConnector(ABC):
 
     @abstractmethod
     async def reset(self) -> None:
-        """Reset conversation / session state."""
+        """Reset conversation / session state (per conversation)."""
+
+    async def reset_backend(self) -> bool:
+        """Reset the agent's backing datastore (per run, not per test).
+
+        Distinct from ``reset``: that starts a new conversation, this returns
+        the agent's data layer to its seeded state. Called once before a batch,
+        never per test -- workers run concurrently, so a mid-run reset would
+        wipe state out from under in-flight conversations.
+
+        Returns True if a reset was actually performed. Default: no backend to
+        reset, so nothing happens.
+        """
+        return False
 
 
 # ──────────────────────────────────────────────────────────────────
@@ -273,6 +286,32 @@ class APIAgentConnector(AgentConnector):
 
     async def reset(self) -> None:
         self.session_id = str(uuid.uuid4())
+
+    async def reset_backend(self) -> bool:
+        """POST /reset to restore the agent's seeded database.
+
+        Without this the fake database accumulates escalations, interaction
+        history and CRM mutations across every test in a batch, so a run's
+        later tests see state its earlier tests created. Best-effort: an agent
+        that does not expose /reset is not an error.
+        """
+        import aiohttp
+
+        if not self.endpoint:
+            return False
+        headers: Dict[str, str] = {"Content-Type": "application/json"}
+        if self.api_key:
+            headers["Authorization"] = f"Bearer {self.api_key}"
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.post(
+                    f"{self.endpoint}/reset",
+                    headers=headers,
+                    timeout=aiohttp.ClientTimeout(total=30),
+                ) as resp:
+                    return resp.status == 200
+        except Exception:
+            return False
 
 
 # ──────────────────────────────────────────────────────────────────

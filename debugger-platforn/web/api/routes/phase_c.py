@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import shutil
 import sys
 import traceback
 from datetime import datetime, timezone
@@ -25,6 +26,43 @@ if str(PROJECT_ROOT) not in sys.path:
 router = APIRouter(prefix="/api/phase-c", tags=["phase-c"])
 
 
+def _archive_previous_results(output_dir: Path) -> Path | None:
+    """Move a completed previous run aside instead of overwriting it.
+
+    Phase C always writes to ``<session>/results``, so re-running from the web
+    interface used to overwrite conversations.json, test_run_report.json,
+    failure_inbox.json and every trace of the previous run. That is not
+    hypothetical: it destroyed the exports of a 200-conversation run once, and
+    they had to be recovered from committed traces.
+
+    ``results/`` stays the "latest run" path so every existing artifact pointer
+    and the traces route keep working; the prior run is preserved alongside it
+    as ``results_<timestamp>``. Returns the archive path, or None if there was
+    nothing worth keeping.
+    """
+    if not output_dir.exists():
+        return None
+    # Only archive a run that actually produced something.
+    if not any((output_dir / f).exists() for f in (
+        "test_run_report.json", "conversations.json", "failure_inbox.json"
+    )):
+        return None
+
+    report = output_dir / "test_run_report.json"
+    stamp_src = report if report.exists() else output_dir
+    stamp = datetime.fromtimestamp(
+        stamp_src.stat().st_mtime, tz=timezone.utc
+    ).strftime("%Y%m%dT%H%M%SZ")
+
+    archive = output_dir.parent / f"results_{stamp}"
+    n = 1
+    while archive.exists():
+        n += 1
+        archive = output_dir.parent / f"results_{stamp}_{n}"
+    shutil.move(str(output_dir), str(archive))
+    return archive
+
+
 async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> dict:
     """Run Phase C asynchronously."""
     import random as _random
@@ -37,6 +75,7 @@ async def _run_phase_c_async(req: PhaseCRequest, emitter: ProgressEmitter) -> di
 
     session = session_manager.get_session(req.session_id)
     output_dir = Path(session.output_dir) / "results"
+    _archive_previous_results(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     if req.seed is not None:

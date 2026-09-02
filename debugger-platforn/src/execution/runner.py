@@ -81,6 +81,19 @@ class TestExecutionEngine:
 
     async def run_all(self) -> List[TestResult]:
         """Execute every test case and return the collected results."""
+        # Return the agent's datastore to its seeded state before the batch, so
+        # a run does not inherit mutations from the previous one. Once per run:
+        # workers are concurrent, so a per-test reset would race.
+        try:
+            did_reset = await self.agent_connector.reset_backend()
+        except Exception:
+            did_reset = False
+        if did_reset:
+            await self._emit({
+                "type": "backend_reset",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+            })
+
         await self._emit({
             "type": "run_started",
             "total_tests": len(self.test_cases),
