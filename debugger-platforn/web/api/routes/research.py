@@ -55,6 +55,9 @@ class AnonymizeRequest(BaseModel):
     input_path: str
     output_path: str
     limit: Optional[int] = None
+    # Mirrors anonymize_export.py's --allow-fallback. Off by default: emitting
+    # weaker redaction must never happen by accident, on either entry point.
+    allow_fallback: bool = False
 
 
 def _new_run(kind: str) -> Dict[str, Any]:
@@ -157,6 +160,19 @@ async def run_anonymization(req: AnonymizeRequest):
                 "at": datetime.now(timezone.utc).isoformat(),
                 "message": f"Anonymisation pipeline: {level}",
             })
+            if level != "full" and not req.allow_fallback:
+                # Same fail-closed gate as anonymize_export.py. Without it the
+                # UI silently emits person-name- and location-bearing output on
+                # a machine missing spaCy, while the CLI refuses the identical
+                # operation.
+                raise RuntimeError(
+                    "Full anonymisation pipeline unavailable - refusing to run. "
+                    "Regex-only fallback would leave person names, locations and "
+                    "brand terms in the output. Install the anonymisation backend "
+                    "(pip install -r anonymization/backend/requirements.txt && "
+                    "python -m spacy download es_core_news_lg), or set "
+                    "allow_fallback=true to explicitly accept weaker redaction."
+                )
 
             # Reuse the CLI's field policy by importing its worker directly.
             from anonymize_export import (

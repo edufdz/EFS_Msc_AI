@@ -38,10 +38,33 @@ def get_anonymiser() -> Tuple[Callable[[str], str], str]:
     if backend_dir.exists():
         # The anonymisation backend uses flat intra-package imports
         # (``from brand_scrub import ...``), so its directory itself must be
-        # on sys.path.
+        # on sys.path -- but only for the duration of this import.
+        #
+        # It ships a top-level ``config.py`` that shadows this project's
+        # ``config/`` package. Leaving the path entry in place permanently
+        # breaks every later ``from config.framework_signatures import ...``
+        # with "'config' is not a package". In a long-lived process (the
+        # FastAPI server) that means one anonymise request poisons Phase A for
+        # the rest of the process's life. So restore both sys.path and the
+        # ``config`` binding once the backend has finished importing.
+        #
+        # Safe to restore: the backend's modules bind the names they need at
+        # import time (``from config import PII_PATTERNS``), so they never
+        # consult sys.modules['config'] again afterwards.
         path = str(backend_dir)
-        if path not in sys.path:
+        added = path not in sys.path
+        if added:
             sys.path.insert(0, path)
+
+        # The backend's modules are flat and generically named -- ``config`` and
+        # ``pipeline`` both collide with names this project already uses. If
+        # either is already in sys.modules, Python will not re-import it, so
+        # ``pipeline.py``'s ``from config import PII_PATTERNS`` silently binds
+        # the *wrong* config and the whole import fails -- degrading a run to
+        # regex-only redaction with no visible error. Evict the colliding names
+        # for the duration of the import and put them back afterwards.
+        _COLLIDING = ("config", "pipeline", "regex_pass", "ner_pass", "brand_scrub")
+        saved = {name: sys.modules.pop(name, None) for name in _COLLIDING}
         try:
             from pipeline import anonymize_text  # type: ignore
 
@@ -50,6 +73,16 @@ def get_anonymiser() -> Tuple[Callable[[str], str], str]:
             return anonymize_text, "full"
         except Exception:
             pass
+        finally:
+            if added and path in sys.path:
+                sys.path.remove(path)
+            # Restore whatever was there before; the backend's own modules have
+            # already bound the names they need, so dropping them is safe.
+            for name, mod in saved.items():
+                if mod is not None:
+                    sys.modules[name] = mod
+                else:
+                    sys.modules.pop(name, None)
     return _regex_fallback, "regex_fallback"
 
 

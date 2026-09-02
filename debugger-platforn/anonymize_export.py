@@ -62,9 +62,26 @@ _TEXT_MSG_FIELDS = ("text_body", "media_caption", "media_transcript", "error_mes
               help="Anonymised export destination")
 @click.option("--limit", default=None, type=int,
               help="Only process the first N conversations (for testing)")
-def main(input_path: str, output_path: str, limit: int | None):
+@click.option("--allow-fallback", is_flag=True, default=False,
+              help="Permit regex-only redaction when the full NER+brand pipeline "
+                   "is unavailable. Unsafe for research output; off by default.")
+def main(input_path: str, output_path: str, limit: int | None, allow_fallback: bool):
     """Anonymise every free-text field of a conversation export."""
     anonymise_fn, level = get_anonymiser()
+    if level != "full" and not allow_fallback:
+        # Fail closed. This script is the project's ethical gate: silently
+        # emitting weaker redaction is the one failure mode that must not be
+        # possible by accident.
+        raise click.ClickException(
+            "Full anonymisation pipeline unavailable — refusing to run.\n"
+            "Regex-only fallback would leave person names, locations and brand "
+            "terms in the output.\n"
+            "Fix with:\n"
+            "    pip install -r ../anonymization/backend/requirements.txt\n"
+            "    python -m spacy download es_core_news_lg\n"
+            "Or pass --allow-fallback if you explicitly accept weaker redaction "
+            "(never for research output)."
+        )
     if level != "full":
         console.print(
             "[yellow]WARNING: full anonymisation pipeline unavailable — "
