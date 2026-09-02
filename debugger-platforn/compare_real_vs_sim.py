@@ -329,7 +329,7 @@ def build_results(
             "jsd_full_support": {"support": full_support, **jsd_full},
             "split_half_noise_floor_real": noise_floor,
             "jsd_real_vs_uniform_baseline": round(jsd_uniform, 4),
-            "note": "JSD in bits, bounded [0,1]. Compare real-vs-sim against the noise floor (lower bound) and the uniform baseline (upper anchor).",
+            "note": "JSD in bits, bounded [0,1]. Read real-vs-sim against two reference points: the split-half noise floor (what a perfect simulator would score at finite sample size) and the real-vs-uniform divergence (the distance to a maximally uninformative distribution). Uniform is a reference point, not an upper bound: a simulator with structural zeros can and here does exceed it.",
         },
         "per_category_rates": {
             "real_production_vocab": rate_table(real_prod, len(real_failed)),

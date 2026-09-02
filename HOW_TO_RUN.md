@@ -76,7 +76,41 @@ npm run dev
 
 Open **http://localhost:5173** in your browser. Vite proxies `/api` and `/ws` requests to the backend on port 8000 (see `vite.config.ts`), so no extra configuration is needed.
 
-### Terminal 3 — Sample agent (optional, port 3099)
+### Terminal 3 — The sandboxed production agent (port 3098) ← the demo target
+
+This is the verbatim TechRepair WhatsApp agent (real LangGraph, real prompts,
+real guardrails) running against an in-memory fake database. It is what the
+dissertation's results were produced against.
+
+```bash
+cd tech_repair-live-agent
+bun server.ts
+```
+
+Requires `ANTHROPIC_API_KEY` in `tech_repair-live-agent/.env` (an
+`OPENAI_API_KEY` is optional — without it the event verifier degrades but the
+agent still runs). Endpoints:
+
+| Route | Purpose |
+|---|---|
+| `POST /chat` | `{ message, session_id? }` → `{ response, tool_calls }` |
+| `GET /db` | inspect the fake database (escalations, mutations) |
+| `POST /reset` | fresh fake DB + sessions — **run this between batches** |
+
+Smoke test:
+
+```bash
+curl -s -X POST http://localhost:3098/chat -H 'Content-Type: application/json' \
+  -d '{"message":"Hola, quiero saber el estado de mi orden 4151234567","session_id":"smoke"}'
+```
+
+You should get a Spanish reply plus an `order_lookup` tool call for Valeria
+Mendoza García's Galaxy S24 Ultra.
+
+> The fake database is **shared across tests within a run** (sessions are
+> isolated, the database is not). Call `POST /reset` between batches.
+
+### Terminal 4 — Sample agent (optional, port 3099)
 
 The mock car dealership agent ("AutoServe AI") gives the platform a real endpoint to test against:
 
@@ -163,13 +197,98 @@ python3 sandbox_bridge.py replay --agent-map tech_repair_whatsapp_map.json \
     --output fidelity_report.json
 ```
 
-## 5. Running Tests
+## 5. The demo: end-to-end against the live agent
+
+The full research loop in three commands, with the agent running on :3098.
 
 ```bash
 cd debugger-platforn
-source venv/bin/activate
-pytest tests/ -v
+
+# 1. Execute simulated conversations against the real agent code.
+#    Persona context must be stated explicitly — it materially changes
+#    conversation shape, so scripted runs never inherit a silent default.
+python3 execute_tests.py \
+    pipeline_output/session-636fc721/generated/test_suite.json \
+    tech_repair_whatsapp_map_live.json \
+    -o results_demo -c 10 -w 4 --ai-personas --seed 42 \
+    --persona-context
+
+# 2. Score the run with the *production* scorer and compare against reality.
+python3 compare_real_vs_sim.py \
+    --real ../investigation/02_data/real/tech_repair-conversations-anonymized.json \
+    --sim results_demo/conversations.json \
+    -o results_demo/comparison
 ```
+
+Step 1 prints pass/fail, tool coverage, cost, and writes
+`conversations.json` (every dialogue, verdict-independent). Step 2 prints
+category coverage and JSD against the real corpus with its noise floor.
+
+Persona-context flags:
+
+| Flag | Effect |
+|---|---|
+| `--persona-context` | use the default fake-customer context (the dissertation's setting) |
+| `--persona-context-file PATH` | use your own |
+| `--no-persona-context` | run without it, explicitly |
+
+Omitting all three on a non-interactive terminal is an error rather than a
+silent default.
+
+## 6. The anonymisation system
+
+```bash
+cd anonymization/backend
+./venv/bin/python -m uvicorn app:app --port 8077
+```
+
+`GET /api/health`, `POST /api/anonymize` and `POST /api/anonymize/preview` take
+a file upload (`.txt` or `.json`):
+
+```bash
+curl -s -X POST http://localhost:8077/api/anonymize -F "file=@conversation.txt"
+```
+
+Frontend review surface:
+
+```bash
+cd anonymization/frontend && npm install && npm run dev
+```
+
+Batch-anonymising a production export goes through the platform, which reuses
+this same backend:
+
+```bash
+cd debugger-platforn
+python3 anonymize_export.py --input raw-export.json --output anonymized.json
+```
+
+This **fails closed**: if the spaCy/Presidio backend is not importable it aborts
+rather than silently falling back to regex-only redaction. Pass
+`--allow-fallback` only if you explicitly accept weaker redaction (never for
+research output).
+
+## 7. Running tests
+
+```bash
+# Platform — 748 tests
+cd debugger-platforn && ./venv/bin/python -m pytest tests/ -q
+
+# Anonymiser — 51 tests
+cd anonymization && ./backend/venv/bin/python -m pytest tests/ -q
+```
+
+## 8. Regenerating the dissertation figures
+
+```bash
+cd "dissertation edu/tools"
+../../debugger-platforn/venv/bin/python render_langgraph.py
+../../debugger-platforn/venv/bin/python render_chapter3_figures.py
+```
+
+See `dissertation edu/FIGURES.md` for what each figure is and where it belongs,
+and `dissertation edu/CORRECTIONS.md` for the claim-by-claim audit of the
+dissertation against this repository.
 
 ## Quick Reference
 
