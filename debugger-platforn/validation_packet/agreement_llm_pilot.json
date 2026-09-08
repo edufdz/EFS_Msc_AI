@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-07-14T16:19:43.151612+00:00",
+  "n_items": 50,
+  "n_labelled": 50,
+  "unlabelled": [],
+  "binary_lenient": {
+    "n": 50,
+    "observed_agreement": 0.86,
+    "cohens_kappa": 0.507,
+    "heuristic_precision": 0.95,
+    "heuristic_recall": 0.8837,
+    "confusion": {
+      "tp": 38,
+      "fp": 2,
+      "fn": 5,
+      "tn": 5
+    }
+  },
+  "binary_strict": {
+    "n": 50,
+    "observed_agreement": 0.36,
+    "cohens_kappa": 0.0909,
+    "heuristic_precision": 0.2,
+    "heuristic_recall": 1.0,
+    "confusion": {
+      "tp": 8,
+      "fp": 32,
+      "fn": 0,
+      "tn": 10
+    }
+  },
+  "per_category": {
+    "comprehension": {
+      "tp": 11,
+      "fp": 5,
+      "fn": 14,
+      "precision": 0.6875,
+      "recall": 0.44
+    },
+    "resolution": {
+      "tp": 0,
+      "fp": 21,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "data_gap": {
+      "tp": 4,
+      "fp": 2,
+      "fn": 14,
+      "precision": 0.6667,
+      "recall": 0.2222
+    },
+    "loop_stall": {
+      "tp": 23,
+      "fp": 5,
+      "fn": 7,
+      "precision": 0.8214,
+      "recall": 0.7667
+    },
+    "delivery_infra": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "missed_escalation": {
+      "tp": 2,
+      "fp": 2,
+      "fn": 31,
+      "precision": 0.5,
+      "recall": 0.0606
+    },
+    "silent_abandonment": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "hallucination": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 3,
+      "precision": null,
+      "recall": 0.0
+    }
+  },
+  "disagreements": [
+    {
+      "conversation_id": "71c3a4ba-af0d-4f62-b2f4-e614d9608c8f",
+      "heuristic_failed": false,
+      "heuristic_categories": [],
+      "annotator": "partial",
+      "annotator_categories": [
+        "comprehension",
+        "data_gap"
+      ],
+      "note": "The agent dismissed the customer's email evidence of repair completion without investigating the discrepancy, instead deflecting to a phone number rather than reconciling the conflicting system states."
+    },
+    {
+      "conversation_id": "ba3893be-f7fc-41a1-918b-6482627f2980",
+      "heuristic_failed": false,
+      "heuristic_categories": [],
+      "annotator": "partial",
+      "annotator_categories": [
+        "comprehension",
+        "loop_stall"
+      ],
+      "note": "The agent failed to recognize the customer was asking for an update/progress on their repair (asking 'alguna novedad?') and instead responded with a generic welcome menu, then provided the same status information already communicated in the system message, creating circular conversation without new "
+    },
+    {
+      "conversation_id": "d5d87fc7-3500-48da-b495-8e292976d94b",
+      "heuristic_failed": false,
+      "heuristic_categories": [],
+      "annotator": "partial",
+      "annotator_categories": [
+        "data_gap",
+        "loop_stall"
+      ],
+      "note": "The agent repeatedly stated it lacked delivery date information despite the customer asking multiple times, and the conversation looped through the same status query without progressing to actual delivery scheduling until a human agent intervened."
+    },
+    {
+      "conversation_id": "1d8fb37e-3b74-4a8d-a618-e5094a7ca964",
+      "heuristic_failed": true,
+      "heuristic_categories": [
+        "delivery_infra",
+        "silent_abandonment"
+      ],
+      "annotator": "no",
+      "annotator_categories": [],
+      "note": "The customer sent a test message ('esto es una prueba') and the agent appropriately responded with a standard greeting and service menu without error."
+    },
+    {
+      "conversation_id": "d7d564e5-56ab-41ee-b750-5c6af8e63528",
+      "heuristic_failed": false,
+      "heuristic_categories": [],
+      "annotator": "partial",
+      "annotator_categories": [
+        "comprehension",
+        "data_gap"
+      ],
+      "note": "The agent failed to understand the customer's question about whether the service order number changed, and instead gave a generic error message without attempting to clarify or investigate the actual concern."
+    },
+    {
+      "conversation_id": "0dd8f31a-d44a-4371-adc4-219260bf3ea5",
+      "heuristic_failed": true,
+      "heuristic_categories": [
+        "loop_stall",
+        "silent_abandonment"
+      ],
+      "annotator": "no",
+      "annotator_categories": [],
+      "note": "The agent correctly identified the customer's request, provided accurate order status information (folio, state, warranty type, request date), and maintained appropriate support tone throughout."
+    },
+    {
+      "conversation_id": "f7d36f63-566d-40ff-861d-27eec6ca5e7f",
+      "heuristic_failed": false,
+      "heuristic_categories": [],
+      "annotator": "partial",
+      "annotator_categories": [
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The AI agent lacked access to repair details and delivery estimates, forcing the customer to call a phone line, and failed to proactively escalate when the human agent's explanation was unclear to the customer."
+    }
+  ],
+  "annotator_type": "llm_pilot",
+  "caveat": "LLM pilot agreement — preliminary check only; the dissertation must report the human number."
+}

@@ -1,0 +1,422 @@
+[
+  {
+    "conversation_id": "af738cb4-9fe5-452a-8df6-b37e4fdd14df",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 10.0
+  },
+  {
+    "conversation_id": "901a4fdf-e9b1-4316-96ac-f81fbecb6f7b",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "data_gap",
+      "loop_stall"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "644ac093-09f1-4e85-bb10-221739f24b41",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "data_gap"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "086f7a23-e795-4cad-b877-69e3bdfe54e7",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "loop_stall",
+      "missed_escalation"
+    ],
+    "failure_score": 5.167
+  },
+  {
+    "conversation_id": "7a5d5827-4a0e-4535-a6d4-199b5152f71e",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 11.0
+  },
+  {
+    "conversation_id": "71c3a4ba-af0d-4f62-b2f4-e614d9608c8f",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "df07c095-84a1-43c7-b800-122de8607090",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall",
+      "delivery_infra"
+    ],
+    "failure_score": 25.227
+  },
+  {
+    "conversation_id": "ce38fbb3-e868-40b5-b9bd-b5b483dd52d1",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall",
+      "missed_escalation"
+    ],
+    "failure_score": 9.447
+  },
+  {
+    "conversation_id": "d1a0d117-0357-4412-b4bc-1b042eef04fb",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 16.103
+  },
+  {
+    "conversation_id": "1761006b-9a4f-4057-85e9-4db25b6297e8",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 13.0
+  },
+  {
+    "conversation_id": "ba3893be-f7fc-41a1-918b-6482627f2980",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 2.0
+  },
+  {
+    "conversation_id": "a95dcfa1-6558-4785-95e5-a14267b5ca01",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 12.353
+  },
+  {
+    "conversation_id": "a95a2eb4-d51d-41fa-a3c8-a8355d1a149c",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 11.0
+  },
+  {
+    "conversation_id": "b9a9e7b0-b2be-49d2-8b97-2326039fe68a",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.5
+  },
+  {
+    "conversation_id": "057b2af9-fba0-4340-9ab7-8e9899745ec9",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "missed_escalation"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "ed67e5c2-3551-43e4-9349-87f0ba6c2972",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 11.554
+  },
+  {
+    "conversation_id": "c4f8c27a-0a8e-47d0-a40b-bc3cd22233a4",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 14.143
+  },
+  {
+    "conversation_id": "a17f8c4b-932b-4b53-b0d9-45e0ffb2cdd5",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 1.0
+  },
+  {
+    "conversation_id": "3046d0c8-7ad7-4143-a8de-c482b72ced02",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "02ebdb82-999d-45de-84bb-224041cb9c36",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 11.0
+  },
+  {
+    "conversation_id": "e9c3ad35-684e-44da-bb41-48fc3e509ca0",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 9.05
+  },
+  {
+    "conversation_id": "48094e06-89b7-4440-84b9-3a4143fb8612",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 8.091
+  },
+  {
+    "conversation_id": "d5d87fc7-3500-48da-b495-8e292976d94b",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "a6bbaf95-f331-4e0e-9f19-52f8d48ca37f",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 1.0
+  },
+  {
+    "conversation_id": "9542bdfe-6149-487b-ad35-2ad13d0681a7",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 17.0
+  },
+  {
+    "conversation_id": "62e1c594-2004-429c-9844-a663f991c01a",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "5cd92fd4-6658-4f7b-952a-3d7d111845c6",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.333
+  },
+  {
+    "conversation_id": "36a99ea4-473d-4fa9-83a2-6dc148214e6e",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 10.087
+  },
+  {
+    "conversation_id": "25d866e0-2309-4809-bfca-1724f1b23074",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "loop_stall",
+      "missed_escalation"
+    ],
+    "failure_score": 5.095
+  },
+  {
+    "conversation_id": "fb3c4754-8d3d-4950-b9e6-de60fe964075",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "1d8fb37e-3b74-4a8d-a618-e5094a7ca964",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "delivery_infra",
+      "silent_abandonment"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "a35d2145-2924-49d3-a77e-cd880d6e8f7e",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "d7d564e5-56ab-41ee-b750-5c6af8e63528",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "0f8de225-18b0-45a5-b1fc-e1ecbfffde21",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 1.6
+  },
+  {
+    "conversation_id": "90476ba2-e250-4817-b0d2-9c4dcf23d615",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "data_gap"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "0dd8f31a-d44a-4371-adc4-219260bf3ea5",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "loop_stall",
+      "silent_abandonment"
+    ],
+    "failure_score": 3.0
+  },
+  {
+    "conversation_id": "dc1c1fd2-fec6-4fc0-b800-fe44f2b53bae",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 3.462
+  },
+  {
+    "conversation_id": "910ff72b-9f99-4501-af3f-a0ff1e15ce43",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "748c05ce-a77f-45aa-8770-793c5e2a1eb1",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 11.2
+  },
+  {
+    "conversation_id": "b24e5dc5-5440-416f-8f5a-2c6058fd5cca",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "efdc85e2-adcb-4fb1-93dd-cd990db0c4d4",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 32.305
+  },
+  {
+    "conversation_id": "2532e42f-3f36-40ad-b4e6-b8c8ac875b98",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "data_gap",
+      "loop_stall"
+    ],
+    "failure_score": 6.0
+  },
+  {
+    "conversation_id": "50c84cd1-658d-4fe7-8471-907291950d33",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 10.133
+  },
+  {
+    "conversation_id": "28238406-71e7-4835-882d-ffe285a076dc",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "resolution"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "0384b7ca-8f69-49fb-ba62-2ac3b1db856d",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "data_gap",
+      "loop_stall"
+    ],
+    "failure_score": 8.0
+  },
+  {
+    "conversation_id": "db108ca2-2a41-43ad-97aa-7bb326ff0f39",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "data_gap",
+      "loop_stall"
+    ],
+    "failure_score": 7.0
+  },
+  {
+    "conversation_id": "58017b4e-fd30-47cc-b9fe-eab9f47818ce",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "resolution",
+      "loop_stall"
+    ],
+    "failure_score": 16.308
+  },
+  {
+    "conversation_id": "a3e9b80c-83d1-4239-aba3-7d6417547fe2",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "silent_abandonment"
+    ],
+    "failure_score": 6.0
+  },
+  {
+    "conversation_id": "f7d36f63-566d-40ff-861d-27eec6ca5e7f",
+    "heuristic_failed": false,
+    "heuristic_categories": [],
+    "failure_score": 0.0
+  },
+  {
+    "conversation_id": "7b840f50-10a3-4f53-acc0-4b9ddc41ebe9",
+    "heuristic_failed": true,
+    "heuristic_categories": [
+      "comprehension",
+      "loop_stall"
+    ],
+    "failure_score": 7.0
+  }
+]

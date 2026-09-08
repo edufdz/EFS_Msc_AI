@@ -41,18 +41,29 @@ node_modules/
 
 # Generated / pipeline outputs
 pipeline_output/
-results/
-traces/
+/results/
 .pytest_cache/
 
-# Output files
-*.json
-!tests/sample_output.json
-!tests/phase_b/fixtures/*.json
+# Run traces. Anchored to the output directories — a bare `traces/` also
+# matches src/traces/, which silently kept five source modules out of the
+# repository until a fresh clone failed to import them.
+/results/traces/
+/results_*/**/traces/
+/experiments_output/**/traces/
+
+# Generated JSON output. Scoped to the directories that produce it rather
+# than a blanket `*.json`, which previously swallowed the agent maps, the
+# frontend package.json and the validation packet.
+/fidelity_report.json
+/agent_map.json
+/test_suite*.json
+/persona_library*.json
+/coverage_report*.json
+/diagnosis_report*.json
+/evaluation_report*.json
 
 # OS
 .DS_Store
 Thumbs.db
 experiments_output/
 sandbox_traces/
-fidelity_report.json

@@ -1,0 +1,461 @@
+{
+  "annotator_type": "llm_pilot",
+  "caveat": "Preliminary check only; not a substitute for human validation.",
+  "annotations": [
+    {
+      "conversation_id": "af738cb4-9fe5-452a-8df6-b37e4fdd14df",
+      "did_fail": "yes",
+      "categories": [
+        "comprehension",
+        "data_gap",
+        "loop_stall",
+        "missed_escalation",
+        "silent_abandonment"
+      ],
+      "note": "The AI agent repeatedly confirmed repair completion without addressing the customer's core concern about shipment status to their province, failed to escalate despite clear frustration and multiple transfers, and the conversation expired unresolved with the customer's final question unanswered."
+    },
+    {
+      "conversation_id": "901a4fdf-e9b1-4316-96ac-f81fbecb6f7b",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly gave the same canned response about pending diagnosis without providing timeline estimates despite the customer explicitly asking multiple times for repair duration, and failed to escalate when the customer requested a human advisor."
+    },
+    {
+      "conversation_id": "644ac093-09f1-4e85-bb10-221739f24b41",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall"
+      ],
+      "note": "The AI agent failed to understand the customer's direct question about repair timeline and repeated a generic welcome menu instead of addressing the specific inquiry, forcing escalation to human agent who also did not provide the requested timeframe."
+    },
+    {
+      "conversation_id": "086f7a23-e795-4cad-b877-69e3bdfe54e7",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly gave generic contact information instead of addressing the customer's warranty dispute, then contradicted itself by first confirming warranty coverage and later denying it, leaving the customer frustrated without proper escalation or resolution."
+    },
+    {
+      "conversation_id": "7a5d5827-4a0e-4535-a6d4-199b5152f71e",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The customer repeatedly asked for home delivery coordination across multiple agent handoffs, but received only generic phone numbers and repetitive template responses instead of actual assistance, causing frustration and circular conversation."
+    },
+    {
+      "conversation_id": "71c3a4ba-af0d-4f62-b2f4-e614d9608c8f",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "data_gap"
+      ],
+      "note": "The agent dismissed the customer's email evidence of repair completion without investigating the discrepancy, instead deflecting to a phone number rather than reconciling the conflicting system states."
+    },
+    {
+      "conversation_id": "df07c095-84a1-43c7-b800-122de8607090",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "hallucination",
+        "missed_escalation"
+      ],
+      "note": "The agent initially misdiagnosed the issue as physical damage ('fractura en octa por agente externo') despite the customer explicitly stating no visible damage and protectors intact, then failed to escalate when the customer disputed this finding and requested technical support."
+    },
+    {
+      "conversation_id": "ce38fbb3-e868-40b5-b9bd-b5b483dd52d1",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "comprehension"
+      ],
+      "note": "The agent repeated the same question about order number three times in a row despite the customer providing a phone number, and later restarted the entire diagnostic process from scratch instead of referencing the already-completed troubleshooting."
+    },
+    {
+      "conversation_id": "d1a0d117-0357-4412-b4bc-1b042eef04fb",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The customer repeatedly asked for repair timeline and order status, receiving only generic 'Ingeniero asignado' responses and phone number redirects; the agent then contradicted itself on quotation status and failed to escalate despite clear customer frustration across multiple interactions."
+    },
+    {
+      "conversation_id": "1761006b-9a4f-4057-85e9-4db25b6297e8",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly failed to locate the order in early exchanges, causing customer frustration and escalation to profanity; the agent then looped with identical generic responses instead of recognizing the customer's distress and escalating appropriately until the human agent intervened."
+    },
+    {
+      "conversation_id": "ba3893be-f7fc-41a1-918b-6482627f2980",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall"
+      ],
+      "note": "The agent failed to recognize the customer was asking for an update/progress on their repair (asking 'alguna novedad?') and instead responded with a generic welcome menu, then provided the same status information already communicated in the system message, creating circular conversation without new "
+    },
+    {
+      "conversation_id": "a95dcfa1-6558-4785-95e5-a14267b5ca01",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly provided the same phone number and hours without understanding the customer's actual problem (payment system rejections and unreachable support), creating circular frustration until a human agent finally provided banking details."
+    },
+    {
+      "conversation_id": "a95a2eb4-d51d-41fa-a3c8-a8355d1a149c",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly gave outdated status ('still in diagnosis') contradicting the human agent's confirmation that repair was complete and a return address was needed, causing customer frustration and forcing escalation."
+    },
+    {
+      "conversation_id": "b9a9e7b0-b2be-49d2-8b97-2326039fe68a",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly failed to understand the customer's initial question, made an incorrect product assumption (Tab instead of the actual service), and only escalated after the customer explicitly corrected them multiple times."
+    },
+    {
+      "conversation_id": "057b2af9-fba0-4340-9ab7-8e9899745ec9",
+      "did_fail": "partial",
+      "categories": [
+        "delivery_infra",
+        "missed_escalation"
+      ],
+      "note": "A system error sent an incorrect warranty denial message to the customer about a different order, and while the agent dismissed it as a mistake, no escalation or investigation was offered to prevent future similar errors."
+    },
+    {
+      "conversation_id": "ed67e5c2-3551-43e4-9349-87f0ba6c2972",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly failed to understand or address the customer's specific questions about accessories (tempered glass, camera protectors, titanium skin) that were removed during repair, instead providing generic contact information and re-asking for order numbers despite the customer's clear f"
+    },
+    {
+      "conversation_id": "c4f8c27a-0a8e-47d0-a40b-bc3cd22233a4",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent re-asked for the order number after the customer had already provided it and expressed frustration, then failed to escalate when the customer explicitly requested a human agent, instead repeating the same generic response before the human agent finally intervened."
+    },
+    {
+      "conversation_id": "a17f8c4b-932b-4b53-b0d9-45e0ffb2cdd5",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The agent sent a clear, professional initial message requesting necessary information (fault details and proof of purchase) to process the service order, with no apparent failures in a single-message conversation."
+    },
+    {
+      "conversation_id": "3046d0c8-7ad7-4143-a8de-c482b72ced02",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "data_gap",
+        "loop_stall"
+      ],
+      "note": "The AI agent failed to locate the order in the system despite the customer providing it multiple times, then asked for it again at the end, creating frustration and circular dialogue while the customer waited days for repair status updates."
+    },
+    {
+      "conversation_id": "02ebdb82-999d-45de-84bb-224041cb9c36",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly failed to access or correctly interpret order data, circled through the same queries without progress, and did not escalate despite the customer's explicit frustration and request for human contact ('ocupo más información o que se comuniquen con nosotros'), leaving the custom"
+    },
+    {
+      "conversation_id": "e9c3ad35-684e-44da-bb41-48fc3e509ca0",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation",
+        "data_gap"
+      ],
+      "note": "The AI agent repeatedly failed to access or provide payment/repair details despite the customer's clear requests, cycling through generic responses and phone number redirects instead of escalating to a human agent who had already provided diagnosis and cost information."
+    },
+    {
+      "conversation_id": "48094e06-89b7-4440-84b9-3a4143fb8612",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "comprehension",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly gave the same canned response about pending cotización despite the customer confirming payment and approval was already sent, creating circular frustration without acknowledging the customer's updates or escalating to human review."
+    },
+    {
+      "conversation_id": "d5d87fc7-3500-48da-b495-8e292976d94b",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "loop_stall"
+      ],
+      "note": "The agent repeatedly stated it lacked delivery date information despite the customer asking multiple times, and the conversation looped through the same status query without progressing to actual delivery scheduling until a human agent intervened."
+    },
+    {
+      "conversation_id": "a6bbaf95-f331-4e0e-9f19-52f8d48ca37f",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The agent provided a clear status update on the repair order, explaining the delay due to pending parts and committing to future communication."
+    },
+    {
+      "conversation_id": "9542bdfe-6149-487b-ad35-2ad13d0681a7",
+      "did_fail": "yes",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly failed to understand the customer's core question ('¿cuál equipo?'), looped the same scripted response 4 times despite explicit frustration and escalation requests, and did not transfer to a human until after the customer became abusive."
+    },
+    {
+      "conversation_id": "62e1c594-2004-429c-9844-a663f991c01a",
+      "did_fail": "yes",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation",
+        "hallucination"
+      ],
+      "note": "The AI agent repeatedly gave contradictory information (equipment in diagnosis vs. repair completed), failed to understand the customer's core complaint about conflicting messages from staff, looped through the same generic responses about cotización without resolving the year-long issue, and did no"
+    },
+    {
+      "conversation_id": "5cd92fd4-6658-4f7b-952a-3d7d111845c6",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The agent acknowledged a completed diagnosis but could not access or provide repair timeline details, then delayed escalation until the customer expressed frustration multiple times."
+    },
+    {
+      "conversation_id": "36a99ea4-473d-4fa9-83a2-6dc148214e6e",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly confirmed the repair was ready since April 13 but could not provide shipping details, and when the customer explicitly demanded human escalation due to lack of resolution, the agent only offered a generic closing message before the system transferred the case."
+    },
+    {
+      "conversation_id": "25d866e0-2309-4809-bfca-1724f1b23074",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "loop_stall"
+      ],
+      "note": "The agent repeatedly failed to retrieve order status from the backend despite the customer providing their order number multiple times, forcing the customer to contact the phone line directly and creating circular conversations about the same unresolved query."
+    },
+    {
+      "conversation_id": "fb3c4754-8d3d-4950-b9e6-de60fe964075",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The agent successfully completed a post-resolution survey, the customer confirmed satisfaction (rating 10/10, issue resolved), and the conversation closed appropriately with no unresolved issues or friction."
+    },
+    {
+      "conversation_id": "1d8fb37e-3b74-4a8d-a618-e5094a7ca964",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The customer sent a test message ('esto es una prueba') and the agent appropriately responded with a standard greeting and service menu without error."
+    },
+    {
+      "conversation_id": "a35d2145-2924-49d3-a77e-cd880d6e8f7e",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The customer repeatedly confirmed payment on April 22 but was asked multiple times to provide proof, and the AI agent failed to escalate the finance confirmation issue despite clear customer frustration, causing unnecessary friction over 5+ days."
+    },
+    {
+      "conversation_id": "d7d564e5-56ab-41ee-b750-5c6af8e63528",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "data_gap"
+      ],
+      "note": "The agent failed to understand the customer's question about whether the service order number changed, and instead gave a generic error message without attempting to clarify or investigate the actual concern."
+    },
+    {
+      "conversation_id": "0f8de225-18b0-45a5-b1fc-e1ecbfffde21",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The agent understood the customer's hardware issue, processed the warranty claim despite document upload friction, and successfully resolved the repair with shipping confirmation."
+    },
+    {
+      "conversation_id": "90476ba2-e250-4817-b0d2-9c4dcf23d615",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "comprehension"
+      ],
+      "note": "The agent repeatedly claimed the device was 'in delivery' and 'repair completed' while system messages later revealed it was actually waiting for parts, creating confusion and misinformation about the actual status."
+    },
+    {
+      "conversation_id": "0dd8f31a-d44a-4371-adc4-219260bf3ea5",
+      "did_fail": "no",
+      "categories": [],
+      "note": "The agent correctly identified the customer's request, provided accurate order status information (folio, state, warranty type, request date), and maintained appropriate support tone throughout."
+    },
+    {
+      "conversation_id": "dc1c1fd2-fec6-4fc0-b800-fe44f2b53bae",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly cycled through the same responses (requesting order number, providing limited cached data, redirecting to phone support) across 20+ messages without recognizing the customer's persistent frustration or escalating to human support despite clear signs of unresolved need."
+    },
+    {
+      "conversation_id": "910ff72b-9f99-4501-af3f-a0ff1e15ce43",
+      "did_fail": "no",
+      "categories": [],
+      "note": "This is a system notification providing a legitimate status update on an ongoing repair order with no customer request or issue presented."
+    },
+    {
+      "conversation_id": "748c05ce-a77f-45aa-8770-793c5e2a1eb1",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "missed_escalation"
+      ],
+      "note": "The agent failed to understand the customer's critical complaint about screen movement after repair and did not escalate despite the customer reporting a defect in the completed work."
+    },
+    {
+      "conversation_id": "b24e5dc5-5440-416f-8f5a-2c6058fd5cca",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The customer provided address information multiple times starting from the first message, but the AI agent failed to process it and kept re-requesting the same information, causing frustration; when escalated to a human agent who acknowledged the issue, the human then disappeared for 20 minutes with"
+    },
+    {
+      "conversation_id": "efdc85e2-adcb-4fb1-93dd-cd990db0c4d4",
+      "did_fail": "yes",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "After initially failing to locate the order despite the customer's repeated confirmation of receipt, the agent eventually found it but then entered an unproductive loop repeating the same order status 20+ times without addressing the customer's underlying need or escalating to a human agent."
+    },
+    {
+      "conversation_id": "2532e42f-3f36-40ad-b4e6-b8c8ac875b98",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation",
+        "data_gap"
+      ],
+      "note": "The agent repeatedly cycled through the same generic menu and status responses without addressing the customer's specific questions (delivery timing, shipping agency, tracking number), and failed to escalate despite multiple explicit escalation requests ('asesor') that were acknowledged but never ac"
+    },
+    {
+      "conversation_id": "50c84cd1-658d-4fe7-8471-907291950d33",
+      "did_fail": "partial",
+      "categories": [
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The agent repeatedly provided the same status information and phone number without addressing the customer's explicit complaint that the number doesn't answer, leading to frustration and requiring human escalation."
+    },
+    {
+      "conversation_id": "28238406-71e7-4835-882d-ffe285a076dc",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "missed_escalation"
+      ],
+      "note": "The agent provided warranty status information that contradicted the customer's expectation (they believed they had a valid claim with proof of purchase), and although the customer expressed confusion and frustration, the escalation to human agent occurred only after the customer's objection rather "
+    },
+    {
+      "conversation_id": "0384b7ca-8f69-49fb-ba62-2ac3b1db856d",
+      "did_fail": "yes",
+      "categories": [
+        "comprehension",
+        "data_gap",
+        "missed_escalation",
+        "hallucination"
+      ],
+      "note": "The AI agent failed to understand the customer's legitimate complaint about repeated cancellations and changed repair diagnoses, provided inconsistent information about repair status, and did not escalate despite clear frustration and a month-long unresolved issue with four cancellations."
+    },
+    {
+      "conversation_id": "db108ca2-2a41-43ad-97aa-7bb326ff0f39",
+      "did_fail": "partial",
+      "categories": [
+        "comprehension",
+        "loop_stall",
+        "missed_escalation",
+        "data_gap"
+      ],
+      "note": "The AI repeatedly provided conflicting status information (diagnóstico vs. refacciones, varying guarantee states), failed to address the customer's address-change request when escalated to a human agent, and cycled through multiple escalation attempts without resolving the underlying issue or provid"
+    },
+    {
+      "conversation_id": "58017b4e-fd30-47cc-b9fe-eab9f47818ce",
+      "did_fail": "yes",
+      "categories": [
+        "comprehension",
+        "data_gap",
+        "loop_stall",
+        "missed_escalation"
+      ],
+      "note": "The AI agent repeatedly asked for the order number despite the customer providing it multiple times, failed to access shipping/return status information, and looped through the same unhelpful responses while the customer's legitimate complaint about warranty denial and return tracking went unresolve"
+    },
+    {
+      "conversation_id": "a3e9b80c-83d1-4239-aba3-7d6417547fe2",
+      "did_fail": "yes",
+      "categories": [
+        "resolution",
+        "data_gap"
+      ],
+      "note": "The agent encountered a backend error and could not retrieve order status, leaving the customer's request completely unserved with only a generic error message and no escalation or alternative support path."
+    },
+    {
+      "conversation_id": "f7d36f63-566d-40ff-861d-27eec6ca5e7f",
+      "did_fail": "partial",
+      "categories": [
+        "data_gap",
+        "missed_escalation"
+      ],
+      "note": "The AI agent lacked access to repair details and delivery estimates, forcing the customer to call a phone line, and failed to proactively escalate when the human agent's explanation was unclear to the customer."
+    },
+    {
+      "conversation_id": "7b840f50-10a3-4f53-acc0-4b9ddc41ebe9",
+      "did_fail": "yes",
+      "categories": [
+        "loop_stall",
+        "comprehension",
+        "missed_escalation"
+      ],
+      "note": "The agent repeated the same generic response 9 times without acknowledging the customer's clear contradiction (a technician email says repair is complete, but the agent claims it's still in diagnosis) or escalating despite obvious frustration."
+    }
+  ]
+}
