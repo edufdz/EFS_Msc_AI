@@ -64,15 +64,15 @@ npm install
 
 ## Running
 
-### 1. Start the backend (port 8000)
+### 1. Start the backend (port 8100)
 
 ```bash
 cd anonymization/backend
 source venv/bin/activate
-python -m uvicorn app:app --reload --port 8000
+python -m uvicorn app:app --reload --port 8100
 ```
 
-### 2. Start the frontend (port 5173)
+### 2. Start the frontend (port 5174)
 
 ```bash
 cd anonymization/frontend
@@ -81,7 +81,7 @@ npm run dev
 
 ### 3. Open the UI
 
-Go to `http://localhost:5173`
+Go to `http://localhost:5174`
 
 ---
 
@@ -105,11 +105,11 @@ Go to `http://localhost:5173`
 ### Anonymize a file (TXT or JSON)
 
 ```bash
-curl -X POST http://localhost:8000/api/anonymize \
+curl -X POST http://localhost:8100/api/anonymize \
   -F "file=@conversation.txt"
 
 # Also works with JSON
-curl -X POST http://localhost:8000/api/anonymize \
+curl -X POST http://localhost:8100/api/anonymize \
   -F "file=@conversation.json"
 ```
 
@@ -125,7 +125,7 @@ Response:
 ### Preview (original + anonymized)
 
 ```bash
-curl -X POST http://localhost:8000/api/anonymize/preview \
+curl -X POST http://localhost:8100/api/anonymize/preview \
   -F "file=@conversation.txt"
 ```
 
@@ -134,7 +134,7 @@ Response includes both `original_text` and `anonymized_text` for comparison.
 ### Health check
 
 ```bash
-curl http://localhost:8000/api/health
+curl http://localhost:8100/api/health
 ```
 
 ---
@@ -193,7 +193,7 @@ Longer compound terms are always matched before shorter substrings.
 ```bash
 cd anonymization
 
-# Full test suite (50 tests)
+# Full test suite (64 tests)
 python3 -m pytest tests/ -v
 
 # Only regex tests (fast, no spaCy needed)
@@ -227,18 +227,25 @@ anonymization/
 │   ├── brand_scrub.py      # Pass 3: brand term replacement
 │   ├── config.py           # Regex patterns, category order, PlaceholderTracker
 │   ├── brand_terms.json    # Configurable brand/device/product terms
-│   └── requirements.txt    # Python dependencies
+│   ├── requirements.txt    # Python dependencies
+│   └── .env.example        # Environment variable template
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── App.tsx         # Main app with upload + results view
+│   │   ├── main.tsx        # React entry point
+│   │   ├── index.css       # Tailwind styles
 │   │   ├── components/     # UploadZone, DiffViewer, StatsBar, DownloadBar, etc.
-│   │   ├── lib/            # API client, highlight logic, download helpers
-│   │   └── ...
+│   │   ├── api/            # API client + TypeScript types
+│   │   └── utils/          # Highlight logic, download helpers
+│   ├── index.html
 │   ├── package.json
-│   └── vite.config.ts      # Proxies /api → localhost:8000
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   └── vite.config.ts      # Proxies /api → localhost:8100
 │
 ├── tests/
+│   ├── conftest.py         # pytest fixtures
 │   ├── fixtures/           # Test conversations with planted PII
 │   ├── test_regex_pass.py  # Regex pattern tests
 │   ├── test_ner_pass.py    # NER tests
@@ -246,10 +253,7 @@ anonymization/
 │   ├── test_pipeline_integration.py  # Full pipeline tests
 │   └── test_spot_check.py  # HTML report generator
 │
-├── CONTEXT.md              # Project context for AI assistants
-├── SPRINT_1_BACKEND.md     # Backend sprint spec
-├── SPRINT_2_FRONTEND.md    # Frontend sprint spec
-└── SPRINT_3_TESTING.md     # Testing sprint spec
+└── README.md               # This document
 ```
 
 ---

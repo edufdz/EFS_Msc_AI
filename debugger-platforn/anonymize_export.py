@@ -18,7 +18,7 @@ preserved untouched because the ground-truth scorer depends on them.
 
 Usage:
     python3 anonymize_export.py \
-        --input ../docs/tech_repair-conversations-export.json \
+        --input raw-export.json \
         --output ../docs/tech_repair-conversations-anonymized.json
 """
 

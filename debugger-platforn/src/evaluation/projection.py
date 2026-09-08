@@ -7,8 +7,8 @@ The predictive-validity study compares failures from two independent origins:
      vocabulary is :class:`src.diagnosis.models.RootCauseType` (12 values).
   2. PRODUCTION — human-process signals mined from real deployed-agent
      conversations, whose vocabulary is the eight production failure
-     categories defined in the TechRepair failure-analysis plan
-     (docs/Agent_Failure_Plan.md).
+     categories listed below, as assigned by the rule-based scorer in
+     :mod:`src.production.scoring`.
 
 Comparability is impossible until both speak the same vocabulary, so this
 module defines two TOTAL, FROZEN mappings onto
@@ -28,8 +28,8 @@ from src.diagnosis.models import RootCauseType
 from src.evaluation.taxonomy import TAXONOMY_VERSION, FailureCategory
 
 # ----------------------------------------------------------------------
-# Production-side vocabulary (Agent_Failure_Plan.md, section "Failure
-# Taxonomy") — the eight categories detectable from human-process signals.
+# Production-side vocabulary — the eight categories detectable from
+# human-process signals, as assigned by src.production.scoring.
 # ----------------------------------------------------------------------
 
 PRODUCTION_CATEGORIES: List[str] = [

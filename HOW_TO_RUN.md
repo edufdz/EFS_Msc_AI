@@ -42,7 +42,6 @@ This guide covers running the full platform: the web UI (FastAPI backend + React
 - **Node.js 18+** or **Bun** (frontend and sample agent)
 - **API keys** in `debugger-platforn/.env`:
   - `ANTHROPIC_API_KEY` — used by the platform's AI analysis phases (not needed with `--skip-ai` / mock mode)
-  - `OPENAI_API_KEY` — used by the sample car dealership agent
 
 ## 1. One-Time Setup
 
@@ -79,17 +78,17 @@ cd debugger-platforn/web/frontend
 npm install        # or: bun install
 ```
 
-### Sample agent dependencies (optional)
+### Agent-under-test dependencies
 
 ```bash
-cd fake-car-dealership-agent
-npm install        # or: bun install
-echo "OPENAI_API_KEY=sk-..." > .env
+cd tech_repair-live-agent
+bun install        # or: npm install
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env
 ```
 
 ## 2. Running the Web Platform
 
-The web platform needs **two processes** (three if you also run the sample agent). Open a terminal for each.
+The web platform needs **two processes** (three if you also run the agent under test). Open a terminal for each.
 
 ### Terminal 1 — Backend API (port 8000)
 
@@ -144,17 +143,6 @@ Mendoza García's Galaxy S24 Ultra.
 > The fake database is **shared across tests within a run** (sessions are
 > isolated, the database is not). Call `POST /reset` between batches.
 
-### Terminal 4 — Sample agent (optional, port 3099)
-
-The mock car dealership agent ("AutoServe AI") gives the platform a real endpoint to test against:
-
-```bash
-cd fake-car-dealership-agent
-bun server.ts       # or: npm run api
-```
-
-The agent API listens on http://localhost:3099 (override with `PORT=xxxx`).
-
 ### Production build (single server)
 
 To serve the frontend from the backend instead of running Vite:
@@ -177,14 +165,14 @@ The pipeline runs Phases A→E: **Analyze → Generate Tests → Execute → Dia
 cd debugger-platforn
 source venv/bin/activate
 
-# Full offline run against the sample agent (no API keys needed)
-python run_pipeline.py ../fake-car-dealership-agent --mock --skip-ai --test-count 20 --count 10
+# Full offline run against the agent under test (no API keys needed)
+python run_pipeline.py ../tech_repair-live-agent --mock --skip-ai --test-count 20 --count 10
 
 # Stop after test execution (Phase C)
-python run_pipeline.py ../fake-car-dealership-agent --mock --skip-ai --stop-after c
+python run_pipeline.py ../tech_repair-live-agent --mock --skip-ai --stop-after c
 
 # Resume from an existing agent map (skips Phase A)
-python run_pipeline.py ../fake-car-dealership-agent --agent-map agent_map.json --mock --skip-ai
+python run_pipeline.py ../tech_repair-live-agent --agent-map tech_repair_whatsapp_map.json --mock --skip-ai
 ```
 
 Useful flags:
@@ -208,9 +196,10 @@ truth, compare blind vs feedback-seeded generation — is documented in
 ```bash
 cd debugger-platforn
 
-# 1. Anonymise the extracted conversations (once)
+# 1. Anonymise a raw extracted export (once). The raw export is never committed —
+#    supply your own. The anonymised corpus every experiment uses is already in docs/.
 python3 anonymize_export.py \
-    --input ../docs/tech_repair-conversations-export.json \
+    --input raw-export.json \
     --output ../docs/tech_repair-conversations-anonymized.json
 
 # 2. Run the predictive-validity experiments
@@ -249,7 +238,7 @@ python3 execute_tests.py \
 
 # 2. Score the run with the *production* scorer and compare against reality.
 python3 compare_real_vs_sim.py \
-    --real ../investigation/02_data/real/tech_repair-conversations-anonymized.json \
+    --real ../docs/tech_repair-conversations-anonymized.json \
     --sim results_demo/conversations.json \
     -o results_demo/comparison
 ```
@@ -305,24 +294,12 @@ research output).
 ## 7. Running tests
 
 ```bash
-# Platform — 748 tests
+# Platform — 759 tests
 cd debugger-platforn && ./venv/bin/python -m pytest tests/ -q
 
-# Anonymiser — 51 tests
+# Anonymiser — 64 tests
 cd anonymization && ./backend/venv/bin/python -m pytest tests/ -q
 ```
-
-## 8. Regenerating the dissertation figures
-
-```bash
-cd "dissertation edu/tools"
-../../debugger-platforn/venv/bin/python render_langgraph.py
-../../debugger-platforn/venv/bin/python render_chapter3_figures.py
-```
-
-See `dissertation edu/FIGURES.md` for what each figure is and where it belongs,
-and `dissertation edu/CORRECTIONS.md` for the claim-by-claim audit of the
-dissertation against this repository.
 
 ## Quick Reference
 
@@ -330,7 +307,9 @@ dissertation against this repository.
 |-----------|-----------|---------|------|
 | Backend API | `debugger-platforn` | `uvicorn web.api.app:app --reload --port 8000` | 8000 |
 | Frontend | `debugger-platforn/web/frontend` | `npm run dev` | 5173 |
-| Sample agent | `fake-car-dealership-agent` | `bun server.ts` | 3099 |
+| Anonymisation API | `anonymization/backend` | `python -m uvicorn app:app --port 8100` | 8100 |
+| Anonymisation UI | `anonymization/frontend` | `npm run dev` | 5174 |
+| Agent under test | `tech_repair-live-agent` | `bun server.ts` | 3098 |
 | CLI pipeline | `debugger-platforn` | `python run_pipeline.py <agent> --mock --skip-ai` | — |
 
 ## Troubleshooting
@@ -338,4 +317,4 @@ dissertation against this repository.
 - **Frontend loads but API calls fail** — make sure the backend is running on port 8000; the Vite proxy targets `http://localhost:8000`.
 - **`ModuleNotFoundError: fastapi` / `uvicorn: command not found`** — install them into the venv: `pip install fastapi uvicorn`.
 - **AI phases fail with auth errors** — check `ANTHROPIC_API_KEY` in `debugger-platforn/.env`, or add `--skip-ai` to run offline.
-- **Sample agent exits immediately** — it requires `OPENAI_API_KEY` in `fake-car-dealership-agent/.env`.
+- **Agent under test exits immediately** — it requires `ANTHROPIC_API_KEY` in `tech_repair-live-agent/.env`.

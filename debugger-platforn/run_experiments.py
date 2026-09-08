@@ -4,9 +4,9 @@ Run the RQ1-RQ4 predictive-validity experiments.
 
 Examples:
 
-    # Full offline run on the production export (static targeting mode)
+    # Full offline run on the anonymised production corpus (static targeting mode)
     python3 run_experiments.py \
-        --export ../docs/tech_repair-conversations-export.json \
+        --export ../docs/tech_repair-conversations-anonymized.json \
         --agent-map tech_repair_whatsapp_map.json \
         --budget 100
 

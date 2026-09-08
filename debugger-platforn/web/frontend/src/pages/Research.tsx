@@ -13,7 +13,9 @@ import type {
   ResearchResults,
 } from '../api/types'
 
-const DEFAULT_INPUT_PATH = '../docs/tech_repair-conversations-export.json'
+// Raw exports are never committed — point the anonymiser at one you supply.
+// The output is the anonymised corpus every downstream experiment reads.
+const DEFAULT_INPUT_PATH = 'raw-export.json'
 const DEFAULT_ANON_PATH = '../docs/tech_repair-conversations-anonymized.json'
 const DEFAULT_AGENT_MAP = 'tech_repair_whatsapp_map.json'
 

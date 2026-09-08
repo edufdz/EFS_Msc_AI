@@ -1,6 +1,6 @@
 """Production ingestion: real deployed-agent conversations -> ground truth.
 
-Implements the structured-signal analysis plan in docs/Agent_Failure_Plan.md:
+Implements the structured-signal analysis pipeline end to end:
 load the WhatsApp conversation export, score every conversation from
 human-process signals only (no LLM judge — that independence is the
 methodological core of the study), classify failures into the eight

@@ -66,7 +66,7 @@ python analyze.py /path/to/agent/repo -o my_agent_map.json
 5. AI semantic analysis (optional) — uses Claude to understand goal, workflow, guardrails
 6. Generates `agent_map.json` with everything the later phases need
 
-> **Note:** For the fake-car-dealership agent, `agent_map.json` is already provided in `debugger-platforn/`. You can skip this phase.
+> **Note:** For the live TechRepair agent, a pre-built map (`tech_repair_whatsapp_map_live.json`) is already provided in `debugger-platforn/`. You can skip this phase.
 
 ---
 
@@ -159,9 +159,9 @@ python execute_tests.py generated/test_suite.json agent_map.json --mock --diagno
 python execute_tests.py generated/test_suite.json agent_map.json --mock --improve --apply-fixes
 ```
 
-## Testing the fake-car-dealership agent
+## Testing the live TechRepair agent
 
-The repo includes a sample agent at `fake-car-dealership-agent/` (Prestige Motors / AutoServe AI) and a pre-built `agent_map.json` in `debugger-platforn/`.
+The repo includes a live agent target at `tech_repair-live-agent/` (the TechRepair WhatsApp agent running against a fake in-memory database) and a pre-built map, `tech_repair_whatsapp_map_live.json`, in `debugger-platforn/`.
 
 ### With mock agent (no real agent process needed)
 
@@ -169,21 +169,21 @@ The repo includes a sample agent at `fake-car-dealership-agent/` (Prestige Motor
 cd debugger-platforn
 
 # Generate test suite (or use existing generated/)
-python generate_tests.py agent_map.json --skip-ai --count 20
+python generate_tests.py tech_repair_whatsapp_map_live.json --skip-ai --count 20
 
 # Run Phase C with mock agent
-python execute_tests.py generated/test_suite.json agent_map.json --mock --count 10 -o results
+python execute_tests.py generated/test_suite.json tech_repair_whatsapp_map_live.json --mock --count 10 -o results
 
 # With web dashboard
-python execute_tests.py generated/test_suite.json agent_map.json --mock --ui --count 10
+python execute_tests.py generated/test_suite.json tech_repair_whatsapp_map_live.json --mock --ui --count 10
 ```
 
 ### Testing persona context
 
 Before Phase C runs, the CLI asks: **Do you want to add context for the personas to use? (y/n)**. If you choose **y**:
 
-- **Inline:** type or paste context (e.g. `VIN: 1HGBH41JXMN109186, Model: Honda Accord 2021`) and press Enter.
-- **File:** enter a path (e.g. `./context.txt` or `./data/vin_list.txt`). The file contents are loaded and used as context.
+- **Inline:** type or paste context (e.g. `Order: ORD-4821, Device: Galaxy S22, Issue: cracked screen`) and press Enter.
+- **File:** enter a path (e.g. `./context.txt` or `./data/order_list.txt`). The file contents are loaded and used as context.
 
 Personas (especially with `--ai-personas`) will see this context in their instructions and can mention it when talking to the agent. The execution summary shows **Persona context: yes** when context was loaded.
 
@@ -198,16 +198,16 @@ python -m pytest tests/test_persona_context.py -v
 **Terminal 1** — start the agent API (from repo root):
 
 ```bash
-cd fake-car-dealership-agent
-bun run api
-# Listens on http://localhost:3099
+cd tech_repair-live-agent
+bun server.ts
+# Listens on http://localhost:3098
 ```
 
 **Terminal 2** — run Phase C:
 
 ```bash
 cd debugger-platforn
-python execute_tests.py generated/test_suite.json agent_map.json --ui --ai-personas --count 10 -o results
+python execute_tests.py generated/test_suite.json tech_repair_whatsapp_map_live.json --ui --ai-personas --count 10 -o results
 ```
 
 The API URL is **not** stored in `agent_map.json` (the map is generated from code and has no endpoint). It is read from **`agent_endpoints.json`** in the same directory (or the current working directory). That file defines which `localhost` (or URL) to use. See [Agent endpoints config](#agent-endpoints-config) below.
@@ -216,21 +216,21 @@ The API URL is **not** stored in `agent_map.json` (the map is generated from cod
 
 Create (or edit) **`agent_endpoints.json`** next to your `agent_map.json` (or in the current working directory). It determines which base URL is used when running tests against a real agent:
 
-- **`default`** — used when the agent is not listed by ID (e.g. `"default": "http://localhost:3099"`).
+- **`default`** — used when the agent is not listed by ID (e.g. `"default": "http://localhost:3098"`).
 - **`by_agent_id`** — optional map of `agent_id` → URL for per-agent endpoints.
 
 Example:
 
 ```json
 {
-  "default": "http://localhost:3099",
+  "default": "http://localhost:3098",
   "by_agent_id": {
-    "08b16417-9e06-4521-b0e5-6f835e71af83": "http://localhost:3099"
+    "54ccc1bc-dd4c-4c68-b2d0-64af4568220d": "http://localhost:3098"
   }
 }
 ```
 
-To use another port (e.g. `3000`), run the agent with `PORT=3000 bun run api` and set that URL in `agent_endpoints.json` (in `default` and/or the relevant `by_agent_id` entry).
+To use another port (e.g. `3000`), run the agent with `PORT=3000 bun server.ts` and set that URL in `agent_endpoints.json` (in `default` and/or the relevant `by_agent_id` entry).
 
 **Output directory** (default `results/`):
 

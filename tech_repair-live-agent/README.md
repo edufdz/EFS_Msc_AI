@@ -8,11 +8,10 @@ real outbound calls are the agent's own LLM calls (Anthropic lanes +
 OpenAI verifier), which is precisely what makes it a *living* agent worth
 testing.
 
-Built as the **X3 "real-agent execute mode"** target from
-`phase-c-enhancements/CONTEXT.md`: Phase C simulates customer conversations
-against this agent through the same `POST /chat` contract the
-`APIAgentConnector` speaks, and every conversation exercises the real graph,
-the real prompts, the real guardrails.
+Built as the **X3 "real-agent execute mode"** target: Phase C simulates
+customer conversations against this agent through the same `POST /chat`
+contract the `APIAgentConnector` speaks, and every conversation exercises the
+real graph, the real prompts, the real guardrails.
 
 ## Why this exists (dissertation context)
 

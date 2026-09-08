@@ -38,9 +38,12 @@ All commands run from `debugger-platforn/`.
 
 ### 1. Anonymise the extracted export
 
+Raw exports are never committed — supply your own. The anonymised corpus this
+produces is already in `docs/`, so this step only needs re-running for new data.
+
 ```bash
 python3 anonymize_export.py \
-    --input ../docs/tech_repair-conversations-export.json \
+    --input raw-export.json \
     --output ../docs/tech_repair-conversations-anonymized.json
 ```
 

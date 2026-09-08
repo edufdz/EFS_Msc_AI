@@ -1,13 +1,13 @@
 """
-Phase-1 structured signal scoring (docs/Agent_Failure_Plan.md).
+Phase-1 structured signal scoring.
 
 Scores every conversation from structured, human-process signals only — no
 language model is involved anywhere in this module.  That restriction is the
 methodological core of the study: the ground truth against which synthetic
 testing is validated must be independent of any LLM judge.
 
-The failure-score formula and the eight production failure categories are
-taken directly from the failure-analysis plan.
+The additive failure-score formula and the eight production failure categories
+are defined here and nowhere else; this module is their only statement.
 """
 
 from __future__ import annotations
@@ -106,8 +106,8 @@ def _tool_names(messages: List[Dict[str, Any]]) -> List[str]:
 
 
 def score_conversation(conv: Dict[str, Any]) -> ConversationScore:
-    """Score one conversation with the Agent_Failure_Plan formula and
-    classify it into production failure categories.
+    """Score one conversation with the additive failure-score formula below
+    and classify it into production failure categories.
 
     Purely structural — reads only fields written by humans or operational
     systems (escalation records, delivery statuses, message metadata).
@@ -174,7 +174,7 @@ def score_conversation(conv: Dict[str, Any]) -> ConversationScore:
         and last_substantive.get("source") == "ai_agent"
     )
 
-    # --- Failure score (Agent_Failure_Plan formula) -------------------
+    # --- Failure score (additive weights, one per structured signal) ---
     s = 0.0
     if score.escalated:
         s += 3

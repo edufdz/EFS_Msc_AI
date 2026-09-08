@@ -46,7 +46,7 @@ class PhaseCRequest(BaseModel):
     language: Optional[str] = None
     persona_context: Optional[str] = None
     validate: bool = True  # Run AI-powered failure triage before Phase D
-    agent_endpoint: Optional[str] = None  # e.g. http://localhost:3099
+    agent_endpoint: Optional[str] = None  # e.g. http://localhost:3098
     llm_provider: Optional[str] = None
     llm_model: Optional[str] = None
     llm_base_url: Optional[str] = None

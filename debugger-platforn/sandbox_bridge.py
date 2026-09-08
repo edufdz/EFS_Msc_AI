@@ -12,7 +12,7 @@ Usage:
         --mode echo --port 8099 --trace-dir sandbox_traces/
 
     python3 sandbox_bridge.py replay --agent-map tech_repair_whatsapp_map.json \\
-        --export ../docs/tech_repair-conversations-export.json \\
+        --export ../docs/tech_repair-conversations-anonymized.json \\
         --mode echo --sample 20 --output fidelity_report.json
 """
 

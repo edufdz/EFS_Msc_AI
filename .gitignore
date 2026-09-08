@@ -16,3 +16,11 @@ env/
 
 # OS
 .DS_Store
+
+# Private dissertation working folders — never commit
+dissertation/
+dissertation edu/
+
+# Raw, non-anonymised conversation exports — never commit
+*-conversations-export.json
+raw-export.json

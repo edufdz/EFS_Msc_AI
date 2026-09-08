@@ -1,0 +1,1145 @@
+{
+  "scorer": "debugger-platforn/src/production/scoring.py (unmodified)",
+  "adapter": "debugger-platforn/compare_real_vs_sim.py::adapt_sim_conversation",
+  "min_score": 3.0,
+  "predicate": "loop_stall <=> message_count > 40 OR repeated_ai >= 3  (scoring.py:235)",
+  "per_file": {
+    "docs/tech_repair-conversations-anonymized.json": {
+      "n": 1299,
+      "n_conversations": 1299,
+      "n_failures": 376,
+      "n_loop_stall": 256,
+      "buckets": {
+        "length_only": {
+          "count": 87,
+          "pct_of_loop_stall": 33.98
+        },
+        "repetition_only": {
+          "count": 16,
+          "pct_of_loop_stall": 6.25
+        },
+        "both": {
+          "count": 153,
+          "pct_of_loop_stall": 59.77
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 809,
+      "max_repeated_ai": 16
+    },
+    "debugger-platforn/results_tech_repair_live_v4/conversations.json": {
+      "n": 40,
+      "n_conversations": 40,
+      "n_failures": 9,
+      "n_loop_stall": 8,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 8,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 24,
+      "max_repeated_ai": 8
+    },
+    "docs/results/simulated_runs/run_web_150tests.json": {
+      "n": 150,
+      "n_conversations": 150,
+      "n_failures": 39,
+      "n_loop_stall": 29,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 29,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 38,
+      "max_repeated_ai": 14
+    },
+    "docs/results/simulated_runs/run_200tests_recovered.json": {
+      "n": 200,
+      "n_conversations": 200,
+      "n_failures": 34,
+      "n_loop_stall": 29,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 29,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 36,
+      "max_repeated_ai": 14
+    },
+    "debugger-platforn/results_scale_study/N0010/conversations.json": {
+      "n": 10,
+      "n_conversations": 10,
+      "n_failures": 3,
+      "n_loop_stall": 1,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 1,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 22,
+      "max_repeated_ai": 6
+    },
+    "debugger-platforn/results_scale_study/N0050/conversations.json": {
+      "n": 50,
+      "n_conversations": 50,
+      "n_failures": 12,
+      "n_loop_stall": 11,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 11,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 30,
+      "max_repeated_ai": 11
+    },
+    "debugger-platforn/results_scale_study/N0100/conversations.json": {
+      "n": 100,
+      "n_conversations": 100,
+      "n_failures": 24,
+      "n_loop_stall": 22,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 22,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 36,
+      "max_repeated_ai": 13
+    },
+    "debugger-platforn/results_scale_study/N0200/conversations.json": {
+      "n": 200,
+      "n_conversations": 200,
+      "n_failures": 43,
+      "n_loop_stall": 36,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 36,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 18
+    },
+    "debugger-platforn/results_scale_study/N0400/conversations.json": {
+      "n": 400,
+      "n_conversations": 400,
+      "n_failures": 90,
+      "n_loop_stall": 74,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 74,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 16
+    },
+    "debugger-platforn/results_scale_study/N0800/conversations.json": {
+      "n": 800,
+      "n_conversations": 800,
+      "n_failures": 219,
+      "n_loop_stall": 188,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 188,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 18
+    },
+    "debugger-platforn/results_scale_study/N1000/conversations.json": {
+      "n": 1000,
+      "n_conversations": 1000,
+      "n_failures": 232,
+      "n_loop_stall": 191,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 191,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 20
+    }
+  },
+  "attribution_failure_gated": {
+    "real": {
+      "n_conversations": 1299,
+      "n_failures": 376,
+      "n_loop_stall": 256,
+      "buckets": {
+        "length_only": {
+          "count": 87,
+          "pct_of_loop_stall": 33.98
+        },
+        "repetition_only": {
+          "count": 16,
+          "pct_of_loop_stall": 6.25
+        },
+        "both": {
+          "count": 153,
+          "pct_of_loop_stall": 59.77
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 809,
+      "max_repeated_ai": 16
+    },
+    "fixed_390": {
+      "n_conversations": 390,
+      "n_failures": 82,
+      "n_loop_stall": 66,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 66,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 38,
+      "max_repeated_ai": 14
+    },
+    "scale_2560": {
+      "n_conversations": 2560,
+      "n_failures": 623,
+      "n_loop_stall": 523,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 523,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 20
+    }
+  },
+  "attribution_category_only": {
+    "real": {
+      "n_conversations": 1299,
+      "n_failures": 376,
+      "n_loop_stall": 357,
+      "buckets": {
+        "length_only": {
+          "count": 98,
+          "pct_of_loop_stall": 27.45
+        },
+        "repetition_only": {
+          "count": 70,
+          "pct_of_loop_stall": 19.61
+        },
+        "both": {
+          "count": 189,
+          "pct_of_loop_stall": 52.94
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 809,
+      "max_repeated_ai": 16
+    },
+    "fixed_390": {
+      "n_conversations": 390,
+      "n_failures": 82,
+      "n_loop_stall": 89,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 89,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 38,
+      "max_repeated_ai": 14
+    },
+    "scale_2560": {
+      "n_conversations": 2560,
+      "n_failures": 623,
+      "n_loop_stall": 681,
+      "buckets": {
+        "length_only": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "repetition_only": {
+          "count": 681,
+          "pct_of_loop_stall": 100.0
+        },
+        "both": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        },
+        "neither": {
+          "count": 0,
+          "pct_of_loop_stall": 0.0
+        }
+      },
+      "max_message_count": 40,
+      "max_repeated_ai": 20
+    }
+  },
+  "repetition_distributions": {
+    "fixed_390": {
+      "n_repetition_triggered": 66,
+      "max_identical_agent_messages (scorer signal)": {
+        "histogram": {
+          "3": 17,
+          "4": 11,
+          "5": 12,
+          "6": 3,
+          "7": 8,
+          "8": 3,
+          "9": 1,
+          "10": 1,
+          "11": 5,
+          "12": 1,
+          "13": 4
+        },
+        "summary": {
+          "n": 66,
+          "min": 3,
+          "q1": 3.25,
+          "median": 5.0,
+          "q3": 7.0,
+          "max": 13,
+          "mean": 5.92
+        }
+      },
+      "longest_consecutive_verbatim_run": {
+        "histogram": {
+          "1": 1,
+          "2": 9,
+          "3": 15,
+          "4": 12,
+          "5": 12,
+          "6": 1,
+          "7": 7,
+          "9": 1,
+          "10": 4,
+          "11": 2,
+          "12": 1,
+          "13": 1
+        },
+        "summary": {
+          "n": 66,
+          "min": 1,
+          "q1": 3.0,
+          "median": 4.0,
+          "q3": 5.75,
+          "max": 13,
+          "mean": 4.89
+        }
+      }
+    },
+    "scale_2560": {
+      "n_repetition_triggered": 523,
+      "max_identical_agent_messages (scorer signal)": {
+        "histogram": {
+          "3": 116,
+          "4": 107,
+          "5": 87,
+          "6": 52,
+          "7": 42,
+          "8": 29,
+          "9": 29,
+          "10": 12,
+          "11": 16,
+          "12": 9,
+          "13": 10,
+          "14": 5,
+          "15": 2,
+          "16": 3,
+          "17": 1,
+          "18": 2,
+          "20": 1
+        },
+        "summary": {
+          "n": 523,
+          "min": 3,
+          "q1": 4.0,
+          "median": 5.0,
+          "q3": 7.0,
+          "max": 20,
+          "mean": 5.86
+        }
+      },
+      "longest_consecutive_verbatim_run": {
+        "histogram": {
+          "2": 67,
+          "3": 125,
+          "4": 99,
+          "5": 74,
+          "6": 49,
+          "7": 46,
+          "8": 19,
+          "9": 13,
+          "10": 13,
+          "11": 9,
+          "12": 1,
+          "13": 1,
+          "14": 2,
+          "16": 4,
+          "20": 1
+        },
+        "summary": {
+          "n": 523,
+          "min": 2,
+          "q1": 3.0,
+          "median": 4.0,
+          "q3": 6.0,
+          "max": 20,
+          "mean": 4.83
+        }
+      }
+    },
+    "real": {
+      "n_repetition_triggered": 169,
+      "max_identical_agent_messages (scorer signal)": {
+        "histogram": {
+          "3": 63,
+          "4": 48,
+          "5": 23,
+          "6": 11,
+          "7": 8,
+          "8": 2,
+          "9": 5,
+          "10": 4,
+          "11": 1,
+          "13": 1,
+          "14": 1,
+          "15": 1,
+          "16": 1
+        },
+        "summary": {
+          "n": 169,
+          "min": 3,
+          "q1": 3.0,
+          "median": 4.0,
+          "q3": 5.0,
+          "max": 16,
+          "mean": 4.66
+        }
+      },
+      "longest_consecutive_verbatim_run": {
+        "histogram": {
+          "1": 33,
+          "2": 79,
+          "3": 37,
+          "4": 12,
+          "5": 4,
+          "6": 1,
+          "7": 1,
+          "10": 1,
+          "14": 1
+        },
+        "summary": {
+          "n": 169,
+          "min": 1,
+          "q1": 2.0,
+          "median": 2.0,
+          "q3": 3.0,
+          "max": 14,
+          "mean": 2.41
+        }
+      }
+    }
+  },
+  "length_distributions": {
+    "fixed_390": {
+      "flagged_loop_stall": {
+        "summary": {
+          "n": 66,
+          "min": 8,
+          "q1": 12.0,
+          "median": 16.0,
+          "q3": 22.0,
+          "max": 38,
+          "mean": 17.82
+        },
+        "histogram": {
+          "8": 3,
+          "10": 10,
+          "12": 10,
+          "14": 8,
+          "16": 7,
+          "18": 4,
+          "20": 4,
+          "22": 4,
+          "24": 4,
+          "26": 1,
+          "28": 4,
+          "30": 2,
+          "32": 1,
+          "34": 2,
+          "36": 1,
+          "38": 1
+        }
+      },
+      "not_flagged": {
+        "summary": {
+          "n": 324,
+          "min": 2,
+          "q1": 2.0,
+          "median": 2.0,
+          "q3": 6.0,
+          "max": 32,
+          "mean": 4.69
+        },
+        "histogram": {
+          "2": 163,
+          "4": 75,
+          "6": 32,
+          "8": 15,
+          "10": 13,
+          "12": 7,
+          "14": 8,
+          "16": 3,
+          "20": 1,
+          "22": 1,
+          "24": 1,
+          "26": 2,
+          "28": 1,
+          "30": 1,
+          "32": 1
+        }
+      },
+      "n_over_40_messages": 0,
+      "n_at_exactly_40_messages": 0
+    },
+    "scale_2560": {
+      "flagged_loop_stall": {
+        "summary": {
+          "n": 523,
+          "min": 8,
+          "q1": 12.0,
+          "median": 16.0,
+          "q3": 22.0,
+          "max": 40,
+          "mean": 18.03
+        },
+        "histogram": {
+          "8": 24,
+          "10": 47,
+          "12": 79,
+          "14": 75,
+          "16": 77,
+          "18": 49,
+          "20": 35,
+          "22": 23,
+          "24": 11,
+          "26": 17,
+          "28": 25,
+          "30": 19,
+          "32": 12,
+          "34": 11,
+          "36": 10,
+          "38": 3,
+          "40": 6
+        }
+      },
+      "not_flagged": {
+        "summary": {
+          "n": 2037,
+          "min": 2,
+          "q1": 2.0,
+          "median": 4.0,
+          "q3": 6.0,
+          "max": 40,
+          "mean": 5.03
+        },
+        "histogram": {
+          "2": 1006,
+          "4": 417,
+          "6": 243,
+          "8": 137,
+          "10": 78,
+          "12": 42,
+          "14": 27,
+          "16": 10,
+          "18": 8,
+          "20": 4,
+          "22": 1,
+          "24": 3,
+          "26": 3,
+          "28": 25,
+          "30": 11,
+          "32": 8,
+          "34": 7,
+          "36": 3,
+          "38": 1,
+          "40": 3
+        }
+      },
+      "n_over_40_messages": 0,
+      "n_at_exactly_40_messages": 9
+    },
+    "real": {
+      "flagged_loop_stall": {
+        "summary": {
+          "n": 256,
+          "min": 16,
+          "q1": 50.0,
+          "median": 69.0,
+          "q3": 101.0,
+          "max": 809,
+          "mean": 83.36
+        },
+        "histogram": {
+          "16": 1,
+          "27": 1,
+          "29": 1,
+          "30": 1,
+          "32": 1,
+          "33": 1,
+          "34": 1,
+          "36": 1,
+          "37": 5,
+          "38": 1,
+          "39": 1,
+          "40": 1,
+          "41": 7,
+          "42": 5,
+          "43": 4,
+          "44": 2,
+          "45": 3,
+          "46": 9,
+          "47": 6,
+          "48": 9,
+          "49": 2,
+          "50": 2,
+          "51": 7,
+          "52": 5,
+          "53": 2,
+          "54": 4,
+          "55": 3,
+          "56": 3,
+          "57": 3,
+          "58": 5,
+          "59": 4,
+          "60": 7,
+          "61": 3,
+          "63": 3,
+          "64": 4,
+          "65": 2,
+          "66": 1,
+          "67": 1,
+          "68": 5,
+          "69": 2,
+          "70": 6,
+          "71": 4,
+          "72": 4,
+          "73": 4,
+          "74": 2,
+          "75": 3,
+          "76": 2,
+          "77": 6,
+          "78": 3,
+          "79": 2,
+          "80": 1,
+          "81": 2,
+          "82": 1,
+          "83": 1,
+          "84": 2,
+          "85": 1,
+          "86": 1,
+          "88": 2,
+          "89": 2,
+          "91": 1,
+          "92": 4,
+          "93": 1,
+          "94": 2,
+          "96": 1,
+          "97": 1,
+          "98": 1,
+          "100": 2,
+          "101": 4,
+          "102": 4,
+          "103": 1,
+          "104": 3,
+          "105": 2,
+          "107": 2,
+          "108": 1,
+          "109": 1,
+          "110": 1,
+          "112": 1,
+          "113": 2,
+          "114": 1,
+          "116": 1,
+          "117": 2,
+          "118": 2,
+          "120": 2,
+          "121": 1,
+          "126": 2,
+          "127": 2,
+          "129": 1,
+          "131": 1,
+          "132": 1,
+          "134": 1,
+          "139": 1,
+          "140": 1,
+          "141": 1,
+          "143": 1,
+          "144": 1,
+          "146": 2,
+          "150": 1,
+          "151": 1,
+          "155": 1,
+          "158": 2,
+          "159": 1,
+          "160": 1,
+          "162": 1,
+          "172": 1,
+          "180": 1,
+          "191": 1,
+          "209": 1,
+          "227": 1,
+          "229": 1,
+          "231": 1,
+          "287": 1,
+          "313": 1,
+          "321": 1,
+          "809": 1
+        }
+      },
+      "not_flagged": {
+        "summary": {
+          "n": 1043,
+          "min": 0,
+          "q1": 2.5,
+          "median": 10.0,
+          "q3": 21.5,
+          "max": 94,
+          "mean": 14.26
+        },
+        "histogram": {
+          "0": 15,
+          "1": 165,
+          "2": 81,
+          "3": 50,
+          "4": 49,
+          "5": 25,
+          "6": 38,
+          "7": 31,
+          "8": 23,
+          "9": 24,
+          "10": 34,
+          "11": 19,
+          "12": 25,
+          "13": 25,
+          "14": 26,
+          "15": 20,
+          "16": 31,
+          "17": 26,
+          "18": 24,
+          "19": 21,
+          "20": 17,
+          "21": 13,
+          "22": 18,
+          "23": 10,
+          "24": 16,
+          "25": 12,
+          "26": 16,
+          "27": 13,
+          "28": 14,
+          "29": 12,
+          "30": 13,
+          "31": 8,
+          "32": 5,
+          "33": 9,
+          "34": 15,
+          "35": 9,
+          "36": 11,
+          "37": 8,
+          "38": 9,
+          "39": 8,
+          "40": 8,
+          "41": 3,
+          "42": 1,
+          "43": 3,
+          "44": 1,
+          "45": 4,
+          "46": 1,
+          "48": 2,
+          "49": 3,
+          "51": 2,
+          "52": 2,
+          "53": 3,
+          "54": 3,
+          "55": 2,
+          "56": 2,
+          "57": 2,
+          "59": 1,
+          "61": 1,
+          "63": 2,
+          "64": 1,
+          "67": 1,
+          "68": 1,
+          "71": 1,
+          "73": 1,
+          "75": 1,
+          "85": 1,
+          "89": 1,
+          "94": 1
+        }
+      },
+      "n_over_40_messages": 287,
+      "n_at_exactly_40_messages": 9
+    }
+  },
+  "budget_check": {
+    "fixed_390": {
+      "max_loop_iterations_observed": 19,
+      "max_raw_turn_entries": 38,
+      "max_adapted_message_count": 38,
+      "n_hitting_20_iterations": 0,
+      "n_with_max_turns_exceeded_reason": 0,
+      "iteration_histogram_top": {
+        "12": 4,
+        "13": 2,
+        "14": 5,
+        "15": 4,
+        "16": 2,
+        "17": 1,
+        "18": 2,
+        "19": 2
+      }
+    },
+    "scale_2560": {
+      "max_loop_iterations_observed": 20,
+      "max_raw_turn_entries": 40,
+      "max_adapted_message_count": 40,
+      "n_hitting_20_iterations": 9,
+      "n_with_max_turns_exceeded_reason": 4,
+      "iteration_histogram_top": {
+        "13": 19,
+        "14": 50,
+        "15": 28,
+        "16": 22,
+        "17": 20,
+        "18": 14,
+        "19": 5,
+        "20": 9
+      }
+    }
+  },
+  "case_hunt_200run": {
+    "top_repetition_conversations": [
+      {
+        "id": "073cc8c9-ffca-4f27-97d2-b3a18ab2ea35",
+        "failure_score": 2.0,
+        "failed": false,
+        "categories": [
+          "loop_stall",
+          "silent_abandonment"
+        ],
+        "loop_stall_counted": false,
+        "message_count": 32,
+        "loop_iterations": 16,
+        "repeated_ai": 14,
+        "longest_consecutive_run": 14,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "user_abandoned",
+        "failure_reason": "Persona gave up after 16 turns",
+        "repeated_text_prefix": "para consultar el estado de su orden por telefono, marque a la linea de atencion: *+525588"
+      },
+      {
+        "id": "7603f524-0dcc-4949-b612-dad3893652f9",
+        "failure_score": 5.0,
+        "failed": true,
+        "categories": [
+          "loop_stall",
+          "missed_escalation",
+          "silent_abandonment"
+        ],
+        "loop_stall_counted": true,
+        "message_count": 32,
+        "loop_iterations": 16,
+        "repeated_ai": 13,
+        "longest_consecutive_run": 10,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "user_abandoned",
+        "failure_reason": "Persona gave up after 16 turns",
+        "repeated_text_prefix": "veo que tienes mas de una orden con nosotros. ¿me compartes el numero de folio de la que q"
+      },
+      {
+        "id": "ae1fdcae-473e-434a-ae9d-73791588d9a3",
+        "failure_score": 5.0,
+        "failed": true,
+        "categories": [
+          "loop_stall",
+          "missed_escalation",
+          "silent_abandonment"
+        ],
+        "loop_stall_counted": true,
+        "message_count": 36,
+        "loop_iterations": 18,
+        "repeated_ai": 13,
+        "longest_consecutive_run": 9,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "user_abandoned",
+        "failure_reason": "Persona gave up after 18 turns",
+        "repeated_text_prefix": "para consultar el estado de su orden por telefono, marque a la linea de atencion: *+525588"
+      },
+      {
+        "id": "6025928f-e563-4403-90d9-cac1b5dcb8cd",
+        "failure_score": 5.0,
+        "failed": true,
+        "categories": [
+          "loop_stall",
+          "missed_escalation",
+          "silent_abandonment"
+        ],
+        "loop_stall_counted": true,
+        "message_count": 34,
+        "loop_iterations": 17,
+        "repeated_ai": 11,
+        "longest_consecutive_run": 7,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "user_abandoned",
+        "failure_reason": "Persona gave up after 17 turns",
+        "repeated_text_prefix": "para consultar el estado de su orden por telefono, marque a la linea de atencion: *+525588"
+      },
+      {
+        "id": "936e9465-ab23-4ff5-9554-ca774346a870",
+        "failure_score": 11.0,
+        "failed": true,
+        "categories": [
+          "resolution",
+          "loop_stall"
+        ],
+        "loop_stall_counted": true,
+        "message_count": 28,
+        "loop_iterations": 14,
+        "repeated_ai": 11,
+        "longest_consecutive_run": 10,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "escalated_to_human",
+        "failure_reason": null,
+        "repeated_text_prefix": "el diagnostico aun no tiene costo. te aviso por aqui cuando el tecnico lo registre."
+      },
+      {
+        "id": "ffa0234b-f4ec-4709-994b-004edea8aa46",
+        "failure_score": 5.0,
+        "failed": true,
+        "categories": [
+          "loop_stall",
+          "missed_escalation",
+          "silent_abandonment"
+        ],
+        "loop_stall_counted": true,
+        "message_count": 28,
+        "loop_iterations": 14,
+        "repeated_ai": 11,
+        "longest_consecutive_run": 10,
+        "length_fired": false,
+        "repetition_fired": true,
+        "outcome": "user_abandoned",
+        "failure_reason": "Persona gave up after 14 turns",
+        "repeated_text_prefix": "para consultar el estado de su orden por telefono, marque a la linea de atencion: *+525588"
+      }
+    ],
+    "loop_stall_flagged_ids": [
+      "7603f524-0dcc-4949-b612-dad3893652f9",
+      "6025928f-e563-4403-90d9-cac1b5dcb8cd",
+      "69b66ddc-b693-4466-9bc3-7820aa0cf984",
+      "b260b0e8-6c88-425e-b74f-f444dd58e89b",
+      "01ae44ea-3996-4b95-b07c-cc4f6ef80d40",
+      "2bd3a016-5d45-442f-8d05-8557432f91fc",
+      "ae1fdcae-473e-434a-ae9d-73791588d9a3",
+      "0fdf3f83-5dde-4847-93e1-718345d47bbd",
+      "bf61a527-0923-4f6e-8222-8891a5f90b16",
+      "d9e46612-c0e6-446f-9494-d37c5b7cb33f",
+      "0baca1d3-68e4-4db2-ae2e-7dd99f4c43cc",
+      "e0c30ae9-22b8-45b3-a6d3-d4de781559da",
+      "158fa4bc-6f12-446f-b076-77fb140f1e50",
+      "aca97439-84b8-4cb8-b80f-1543b2f49789",
+      "bbdf363f-7891-4bd1-9e47-4b18b2d97d1d",
+      "6bca75b6-7f71-4726-b6c7-5920fb517d50",
+      "789ec2ac-c38b-44df-825c-f374c8433004",
+      "079fe481-c3fb-4e88-9ebf-698072eb4421",
+      "65d73f30-d4f2-41fd-a0af-55d6821f4e25",
+      "4c3964c1-a9d1-4c4d-ab81-2c589a2e5d04",
+      "936e9465-ab23-4ff5-9554-ca774346a870",
+      "57b5a1ac-912b-4018-a07d-0c27bb3748fe",
+      "787a8a5f-5d9a-4709-9731-ba15b84c0c89",
+      "b4e5da20-f93f-4843-bfe1-de350a7b346e",
+      "931eac4d-4b70-401d-90ac-ae8c333ca2f4",
+      "c0c3c9c7-7341-4e6d-8291-def944a2eae2",
+      "7cb938b2-618e-4390-8ca2-0531d3c2d31b",
+      "b5e47554-5026-41e5-9a08-e0ed8599b014",
+      "ffa0234b-f4ec-4709-994b-004edea8aa46"
+    ]
+  }
+}
