@@ -23,9 +23,37 @@ openai>=1.0.0
 # Observability / traces
 langfuse>=2.0.0
 
+# Anonymisation. src/production/anonymize.py imports anonymization/backend/
+# directly via sys.path, so the backend's dependencies must be importable
+# from THIS environment — not just from the anonymiser's own venv. Without
+# them anonymize_export.py and the Research page's anonymise step fail
+# closed rather than silently degrading to regex-only redaction.
+# The Spanish NER model is a separate download:
+#     python -m spacy download es_core_news_lg
+spacy>=3.7.0
+presidio-analyzer>=2.2.0
+
 # Real-time / WebSocket
 websockets>=12.0
+
+# HTTP client for talking to a live agent under test. src/execution/
+# agent_connector.py imports it unguarded inside send_message/reset, so
+# Phase C against a real endpoint fails without it.
+aiohttp>=3.9.0
+
+# Web API (web/api/app.py). These are imports, not extras — without them
+# `uvicorn web.api.app:app` fails and the whole UI is unreachable.
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+python-multipart>=0.0.9
 
 # Dev / tests
 pytest>=7.0
 pytest-asyncio>=0.21
+httpx>=0.27
+
+# Optional. src/diagnosis/clustering.py uses sentence-transformers for
+# embedding-based failure clustering and falls back to lexical similarity
+# when it is absent. It pulls in torch (~2 GB), so it is not installed by
+# default:
+#     pip install sentence-transformers

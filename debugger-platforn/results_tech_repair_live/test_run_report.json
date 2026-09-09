@@ -1,0 +1,95 @@
+{
+  "run_id": "7b9d15ce-e874-40dc-a72b-87834cdc3e9c",
+  "test_suite_id": "c1ac0338-b1ef-4be4-a044-0f641a2d2e19",
+  "total_tests": 10,
+  "passed": 0,
+  "failed": 10,
+  "errors": 0,
+  "timeouts": 0,
+  "pass_rate": 0.0,
+  "total_duration_sec": 825.725847,
+  "avg_duration_sec": 82.57258470000001,
+  "total_cost_usd": 0.0,
+  "tool_coverage": {
+    "order_lookup": 144
+  },
+  "tools_not_covered": [
+    "routeByIntent",
+    "routeAfterSupport",
+    "getCustomerInfo",
+    "getActiveOrders",
+    "getSessionInfo",
+    "shouldEscalate",
+    "formatConversationHistory",
+    "contactInfoNode",
+    "deliveryLogisticsDispatchNode",
+    "isFirstOutbound",
+    "styleCtx",
+    "logThought",
+    "eventDetectorNode",
+    "memoryExtractionNode",
+    "pricingAnswerNode",
+    "runSideEffects",
+    "resolveTypedReason",
+    "buildHandoffContext",
+    "responseNode",
+    "escalationNode",
+    "humanTakenOverNode",
+    "routerNode",
+    "statusNode",
+    "supportNode",
+    "warrantyAnswerNode",
+    "so",
+    "applyCorrections",
+    "planPricingResponse",
+    "truncateResponse",
+    "buildEscalationResponse",
+    "payment_receipt",
+    "buildGraph",
+    "address",
+    "classifyByKeywords",
+    "classifyByLLM",
+    "joinSpanish",
+    "lookupOrder",
+    "assertNoHedgeWords",
+    "parseCorrections",
+    "getCheckpointer",
+    "multiOrderDisambiguation",
+    "escalateDetectedEvent",
+    "verifyDetectedEvents",
+    "getGraph",
+    "normalizeIntentForVersion",
+    "makeClassificationSchema",
+    "baseState",
+    "EventDetector",
+    "order_received",
+    "createInitialState",
+    "intakeFeeCopy",
+    "makeSO",
+    "stateWithOrders",
+    "quotedCopy",
+    "buildWaitTimeNotice"
+  ],
+  "coverage_pct": 0.0,
+  "by_difficulty": {
+    "hard": {
+      "failed": 8
+    },
+    "medium": {
+      "failed": 2
+    }
+  },
+  "by_coverage_goal": {
+    "adversarial:ASI03": {
+      "failed": 1
+    },
+    "interaction_coverage": {
+      "failed": 2
+    },
+    "tool_coverage": {
+      "failed": 7
+    }
+  },
+  "started_at": "2026-07-23 22:13:51.586086+00:00",
+  "completed_at": "2026-07-23 22:21:00.478315+00:00"
+}

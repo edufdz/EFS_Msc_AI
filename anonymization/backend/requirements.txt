@@ -5,3 +5,12 @@ python-multipart>=0.0.9
 spacy>=3.7.0
 presidio-analyzer>=2.2.0
 pydantic>=2.0.0
+pytest>=7.0
+
+# The Spanish NER model is NOT installed by `pip install spacy` — it is a
+# separate download, and the anonymiser fails closed without it:
+#
+#     python -m spacy download es_core_news_lg
+#
+# Override with SPACY_MODEL if you want a smaller one (es_core_news_sm),
+# at the cost of recall on names.

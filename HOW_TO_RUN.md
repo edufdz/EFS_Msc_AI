@@ -47,19 +47,26 @@ This guide covers running the full platform: the web UI (FastAPI backend + React
 
 ### Python environment
 
+Two virtual environments: one for the platform, one for the anonymiser. Both
+are what `dev.sh` expects.
+
 ```bash
-cd debugger-platforn
+# Platform
+python3 -m venv debugger-platforn/venv
+debugger-platforn/venv/bin/pip install -r debugger-platforn/requirements.txt
+debugger-platforn/venv/bin/python -m spacy download es_core_news_lg
 
-# Create and activate a virtual environment
-python3 -m venv venv
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-pip install fastapi uvicorn   # required by the web API
+# Anonymiser
+python3 -m venv anonymization/backend/venv
+anonymization/backend/venv/bin/pip install -r anonymization/backend/requirements.txt
+anonymization/backend/venv/bin/python -m spacy download es_core_news_lg
 ```
 
-Alternatively, `source run.sh` creates/activates the venv for CLI use (it installs a minimal dependency set — prefer `requirements.txt` for the full platform).
+The Spanish NER model is a separate download in **both** environments — the
+platform imports the anonymisation backend directly, and it fails closed
+rather than degrading to regex-only redaction when the model is missing.
+
+Alternatively, `source run.sh` creates/activates the platform venv for CLI use (it installs a minimal dependency set — prefer `requirements.txt` for the full platform).
 
 ### Environment variables
 
